@@ -685,41 +685,6 @@ namespace ImageProcessingAssignment1
             G = GTemp;
             B = BTemp;
         }
-        //private int BitMixed(byte R, byte G, byte B)
-        //{
-        //    int res;
-        //    string RT = Convert.ToString((int)R, 2), GT = Convert.ToString((int)G, 2), BT = Convert.ToString((int)B, 2);
-        //    string t = "";
-        //    for (int i = 0; i < 8;i++)
-        //    {
-        //        try
-        //        {
-        //            t += RT[i].ToString();
-        //        }
-        //        catch
-        //        {
-        //            t += "0";
-        //        }
-        //        try
-        //        {
-        //            t += GT[i].ToString();
-        //        }
-        //        catch
-        //        {
-        //            t += "0";
-        //        }
-        //        try
-        //        {
-        //            t += BT[i].ToString();
-        //        }
-        //        catch
-        //        {
-        //            t += "0";
-        //        }
-        //    }
-        //    res = Convert.ToInt32(t, 2);
-        //    return res;
-        //}
         public void Apply2DContraharmonicFilter(int Fwidth, int Fheight, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue , double Q)
         {
             int height = OldPic.height, width = OldPic.width;
@@ -916,6 +881,166 @@ namespace ImageProcessingAssignment1
                 }
             }
             return res;
+        }
+        public void BandFilters(PictureInfo pic, int filterType, double D, double W)
+        {
+            int height = pic.height;
+            int width = pic.width;
+            MatlabClass matlabClass = new MatlabClass();
+            byte[,] NewR = new byte[height, width];
+            byte[,] NewG = new byte[height, width];
+            byte[,] NewB = new byte[height, width];
+            
+            MWArray[] MNewR = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.redPixels));
+            MWArray[] MNewG = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.greenPixels));
+            MWArray[] MNewB = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.bluePixels));
+            pic.redReal = (double[,])((MWNumericArray)(MNewR[0])).ToArray(MWArrayComponent.Real);
+            pic.greenReal = (double[,])((MWNumericArray)(MNewG[0])).ToArray(MWArrayComponent.Real);
+            pic.blueReal = (double[,])((MWNumericArray)(MNewB[0])).ToArray(MWArrayComponent.Real);
+            pic.redImag = (double[,])((MWNumericArray)(MNewR[1])).ToArray(MWArrayComponent.Real);
+            pic.greenImag = (double[,])((MWNumericArray)(MNewG[1])).ToArray(MWArrayComponent.Real);
+            pic.blueImag = (double[,])((MWNumericArray)(MNewB[1])).ToArray(MWArrayComponent.Real);
+            double[,] Filter = new double[height, width];
+
+            switch (filterType)
+            {
+                case 0: //ideal band reject 
+                    double temp;
+                    double Rdis = D - (W / 2), Ldis = D + (W / 2);
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < width; j++)
+                        {
+                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
+                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            if (temp <= Ldis && temp >= Rdis)
+                                Filter[i, j] = 0;
+                            else
+                                Filter[i, j] = 1;
+                            pic.redReal[i, j] *= Filter[i, j];
+                            pic.greenReal[i, j] *= Filter[i, j];
+                            pic.blueReal[i, j] *= Filter[i, j];
+                            pic.redImag[i, j] *= Filter[i, j];
+                            pic.greenImag[i, j] *= Filter[i, j];
+                            pic.blueImag[i, j] *= Filter[i, j];
+                        }
+                    }
+                    break;
+                case 1: // ideal band pass
+                    Rdis = D - (W / 2); Ldis = D + (W / 2);
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < width; j++)
+                        {
+                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            if (temp <= Ldis && temp >= Rdis)
+                                Filter[i, j] = 1;
+                            pic.redReal[i, j] *= Filter[i, j];
+                            pic.greenReal[i, j] *= Filter[i, j];
+                            pic.blueReal[i, j] *= Filter[i, j];
+                            pic.redImag[i, j] *= Filter[i, j];
+                            pic.greenImag[i, j] *= Filter[i, j];
+                            pic.blueImag[i, j] *= Filter[i, j];
+                        }
+                    }
+                    break;
+            }
+
+            double[,] NMNewR = (double[,])((MWNumericArray)(matlabClass.ConvertToSpatial((MWNumericArray)pic.redReal, (MWNumericArray)pic.redImag))).ToArray(MWArrayComponent.Real);
+            double[,] NMNewG = (double[,])((MWNumericArray)(matlabClass.ConvertToSpatial((MWNumericArray)pic.greenReal, (MWNumericArray)pic.greenImag))).ToArray(MWArrayComponent.Real);
+            double[,] NMNewB = (double[,])((MWNumericArray)(matlabClass.ConvertToSpatial((MWNumericArray)pic.blueReal, (MWNumericArray)pic.blueImag))).ToArray(MWArrayComponent.Real);
+            NewR = Normalize(NMNewR, height, width);
+            NewG = Normalize(NMNewG, height, width);
+            NewB = Normalize(NMNewB, height, width);
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    pic.redPixels[i, j] = NewR[i, j];
+                    pic.greenPixels[i, j] = NewG[i, j];
+                    pic.bluePixels[i, j] = NewB[i, j];
+                }
+            }
+        }
+        public void NotchFilters(PictureInfo pic, int filterType, double X, double Y , double R)
+        {
+            int height = pic.height;
+            int width = pic.width;
+            MatlabClass matlabClass = new MatlabClass();
+            byte[,] NewR = new byte[height, width];
+            byte[,] NewG = new byte[height, width];
+            byte[,] NewB = new byte[height, width];
+
+            MWArray[] MNewR = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.redPixels));
+            MWArray[] MNewG = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.greenPixels));
+            MWArray[] MNewB = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.bluePixels));
+            pic.redReal = (double[,])((MWNumericArray)(MNewR[0])).ToArray(MWArrayComponent.Real);
+            pic.greenReal = (double[,])((MWNumericArray)(MNewG[0])).ToArray(MWArrayComponent.Real);
+            pic.blueReal = (double[,])((MWNumericArray)(MNewB[0])).ToArray(MWArrayComponent.Real);
+            pic.redImag = (double[,])((MWNumericArray)(MNewR[1])).ToArray(MWArrayComponent.Real);
+            pic.greenImag = (double[,])((MWNumericArray)(MNewG[1])).ToArray(MWArrayComponent.Real);
+            pic.blueImag = (double[,])((MWNumericArray)(MNewB[1])).ToArray(MWArrayComponent.Real);
+            double[,] Filter = new double[height, width];
+
+            switch (filterType)
+            {
+                case 0: //ideal notch reject 
+                    double temp1 , temp2;
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < width; j++)
+                        {
+                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
+                            temp1 = Math.Sqrt(Math.Pow((i - (width / 2 + X)), 2) + Math.Pow((j - (height / 2 + Y)), 2));
+                            temp2 = Math.Sqrt(Math.Pow((i - (width / 2 - X)), 2) + Math.Pow((j - (height / 2 - Y)), 2));
+                            if (temp1 < R || temp2 < R)
+                                Filter[i, j] = 0;
+                            else
+                                Filter[i, j] = 1;
+                            pic.redReal[i, j] *= Filter[i, j];
+                            pic.greenReal[i, j] *= Filter[i, j];
+                            pic.blueReal[i, j] *= Filter[i, j];
+                            pic.redImag[i, j] *= Filter[i, j];
+                            pic.greenImag[i, j] *= Filter[i, j];
+                            pic.blueImag[i, j] *= Filter[i, j];
+                        }
+                    }
+                    break;
+                case 1: // ideal notch pass
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < width; j++)
+                        {
+                            temp1 = Math.Sqrt(Math.Pow((i - (width / 2 + X)), 2) + Math.Pow((j - (height / 2 + Y)), 2));
+                            temp2 = Math.Sqrt(Math.Pow((i - (width / 2 - X)), 2) + Math.Pow((j - (height / 2 - Y)), 2));
+                            if (temp1 < R || temp2 < R)
+                                Filter[i, j] = 0;
+                            pic.redReal[i, j] *= Filter[i, j];
+                            pic.greenReal[i, j] *= Filter[i, j];
+                            pic.blueReal[i, j] *= Filter[i, j];
+                            pic.redImag[i, j] *= Filter[i, j];
+                            pic.greenImag[i, j] *= Filter[i, j];
+                            pic.blueImag[i, j] *= Filter[i, j];
+                        }
+                    }
+                    break;
+            }
+
+            double[,] NMNewR = (double[,])((MWNumericArray)(matlabClass.ConvertToSpatial((MWNumericArray)pic.redReal, (MWNumericArray)pic.redImag))).ToArray(MWArrayComponent.Real);
+            double[,] NMNewG = (double[,])((MWNumericArray)(matlabClass.ConvertToSpatial((MWNumericArray)pic.greenReal, (MWNumericArray)pic.greenImag))).ToArray(MWArrayComponent.Real);
+            double[,] NMNewB = (double[,])((MWNumericArray)(matlabClass.ConvertToSpatial((MWNumericArray)pic.blueReal, (MWNumericArray)pic.blueImag))).ToArray(MWArrayComponent.Real);
+            NewR = Normalize(NMNewR, height, width);
+            NewG = Normalize(NMNewG, height, width);
+            NewB = Normalize(NMNewB, height, width);
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    pic.redPixels[i, j] = NewR[i, j];
+                    pic.greenPixels[i, j] = NewG[i, j];
+                    pic.bluePixels[i, j] = NewB[i, j];
+                }
+            }
         }
     }
 }

@@ -85,9 +85,6 @@
             this.tileHorizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arrangeIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blurringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meanFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,6 +130,9 @@
             this.rayleighNoiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gammaNoiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exponentialNoiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.openToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.newToolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -171,6 +171,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.InputPanel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.bandFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bandRejectFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bandPassFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notchFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idealToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.idealToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.notchRejectFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notchPassFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idealToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.idealToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -642,27 +652,6 @@
             this.arrangeIconsToolStripMenuItem.Text = "&Arrange Icons";
             this.arrangeIconsToolStripMenuItem.Click += new System.EventHandler(this.ArrangeIconsToolStripMenuItem_Click);
             // 
-            // helpMenu
-            // 
-            this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator8,
-            this.aboutToolStripMenuItem});
-            this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(44, 20);
-            this.helpMenu.Text = "&Help";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(149, 6);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "&About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
             // filtersToolStripMenuItem
             // 
             this.filtersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -867,7 +856,9 @@
             // 
             this.removingNoiseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.geometricMeanFilterToolStripMenuItem,
-            this.orderStatisticsFiltersToolStripMenuItem});
+            this.orderStatisticsFiltersToolStripMenuItem,
+            this.bandFiltersToolStripMenuItem,
+            this.notchFiltersToolStripMenuItem});
             this.removingNoiseToolStripMenuItem.Name = "removingNoiseToolStripMenuItem";
             this.removingNoiseToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.removingNoiseToolStripMenuItem.Text = "Removing Noise";
@@ -1019,6 +1010,27 @@
             this.exponentialNoiseToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.exponentialNoiseToolStripMenuItem.Text = "Exponential Noise";
             this.exponentialNoiseToolStripMenuItem.Click += new System.EventHandler(this.exponentialNoiseToolStripMenuItem_Click);
+            // 
+            // helpMenu
+            // 
+            this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator8,
+            this.aboutToolStripMenuItem});
+            this.helpMenu.Name = "helpMenu";
+            this.helpMenu.Size = new System.Drawing.Size(44, 20);
+            this.helpMenu.Text = "&Help";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(104, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // toolStrip
             // 
@@ -1383,6 +1395,84 @@
             this.panel3.Size = new System.Drawing.Size(296, 258);
             this.panel3.TabIndex = 0;
             // 
+            // bandFiltersToolStripMenuItem
+            // 
+            this.bandFiltersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bandRejectFilterToolStripMenuItem,
+            this.bandPassFilterToolStripMenuItem});
+            this.bandFiltersToolStripMenuItem.Name = "bandFiltersToolStripMenuItem";
+            this.bandFiltersToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.bandFiltersToolStripMenuItem.Text = "Band Filters";
+            // 
+            // bandRejectFilterToolStripMenuItem
+            // 
+            this.bandRejectFilterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.idealToolStripMenuItem1});
+            this.bandRejectFilterToolStripMenuItem.Name = "bandRejectFilterToolStripMenuItem";
+            this.bandRejectFilterToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.bandRejectFilterToolStripMenuItem.Text = "Band Reject Filters";
+            // 
+            // bandPassFilterToolStripMenuItem
+            // 
+            this.bandPassFilterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.idealToolStripMenuItem2});
+            this.bandPassFilterToolStripMenuItem.Name = "bandPassFilterToolStripMenuItem";
+            this.bandPassFilterToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.bandPassFilterToolStripMenuItem.Text = "Band Pass Filters";
+            // 
+            // notchFiltersToolStripMenuItem
+            // 
+            this.notchFiltersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.notchRejectFiltersToolStripMenuItem,
+            this.notchPassFiltersToolStripMenuItem});
+            this.notchFiltersToolStripMenuItem.Name = "notchFiltersToolStripMenuItem";
+            this.notchFiltersToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.notchFiltersToolStripMenuItem.Text = "Notch Filters";
+            // 
+            // idealToolStripMenuItem1
+            // 
+            this.idealToolStripMenuItem1.Name = "idealToolStripMenuItem1";
+            this.idealToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.idealToolStripMenuItem1.Text = "Ideal";
+            this.idealToolStripMenuItem1.Click += new System.EventHandler(this.idealToolStripMenuItem1_Click);
+            // 
+            // idealToolStripMenuItem2
+            // 
+            this.idealToolStripMenuItem2.Name = "idealToolStripMenuItem2";
+            this.idealToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.idealToolStripMenuItem2.Text = "Ideal";
+            this.idealToolStripMenuItem2.Click += new System.EventHandler(this.idealToolStripMenuItem2_Click);
+            // 
+            // notchRejectFiltersToolStripMenuItem
+            // 
+            this.notchRejectFiltersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.idealToolStripMenuItem4});
+            this.notchRejectFiltersToolStripMenuItem.Name = "notchRejectFiltersToolStripMenuItem";
+            this.notchRejectFiltersToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.notchRejectFiltersToolStripMenuItem.Text = "Notch Reject Filters";
+            // 
+            // notchPassFiltersToolStripMenuItem
+            // 
+            this.notchPassFiltersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.idealToolStripMenuItem3});
+            this.notchPassFiltersToolStripMenuItem.Name = "notchPassFiltersToolStripMenuItem";
+            this.notchPassFiltersToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.notchPassFiltersToolStripMenuItem.Text = "Notch Pass Filters";
+            // 
+            // idealToolStripMenuItem3
+            // 
+            this.idealToolStripMenuItem3.Name = "idealToolStripMenuItem3";
+            this.idealToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.idealToolStripMenuItem3.Text = "Ideal";
+            this.idealToolStripMenuItem3.Click += new System.EventHandler(this.idealToolStripMenuItem3_Click);
+            // 
+            // idealToolStripMenuItem4
+            // 
+            this.idealToolStripMenuItem4.Name = "idealToolStripMenuItem4";
+            this.idealToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.idealToolStripMenuItem4.Text = "Ideal";
+            this.idealToolStripMenuItem4.Click += new System.EventHandler(this.idealToolStripMenuItem4_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1559,5 +1649,15 @@
         private System.Windows.Forms.ToolStripMenuItem midPointFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contraharmonicMeanFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alphaTrimmedMeanFilterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bandFiltersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bandRejectFilterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem idealToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem bandPassFilterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem idealToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem notchFiltersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem notchRejectFiltersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem idealToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem notchPassFiltersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem idealToolStripMenuItem3;
     }
 }

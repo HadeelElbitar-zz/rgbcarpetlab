@@ -1458,7 +1458,196 @@ namespace ImageProcessingAssignment1
             Image.AddExponentialNoise(PicturesList[picIndex], int.Parse(aTxt.Text), double.Parse(NoisePercentageTxt.Text));
             DisplayImage(PicturesList[picIndex]);
         }
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+        //Periodic Filters
 
+        private void idealToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Band Reject Filter";
+            //D Text Box
+            TextBox dTxt = new TextBox();
+            dTxt.Location = new System.Drawing.Point(15, 42);
+            dTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(dTxt);
+            //D Label
+            System.Windows.Forms.Label dLabel = new System.Windows.Forms.Label();
+            dLabel.Location = new System.Drawing.Point(12, 26);
+            dLabel.Text = "D";
+            inputGroupBox.Controls.Add(dLabel);
+            //W Text Box
+            TextBox nTxt = new TextBox();
+            nTxt.Location = new System.Drawing.Point(158, 42);
+            nTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(nTxt);
+            //W Label
+            System.Windows.Forms.Label nLabel = new System.Windows.Forms.Label();
+            nLabel.Location = new System.Drawing.Point(155, 26);
+            nLabel.Text = "Band Width";
+            inputGroupBox.Controls.Add(nLabel);
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 85);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealBandRejectFilter_Click(sender1, e1, dTxt, nTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void ApplyIdealBandRejectFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
+        {
+            double D = double.Parse(dTxt.Text);         
+            double w = double.Parse(nTxt.Text);
+            Filter filter = new Filter();
+            filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 0, D, w);
+            DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+        }
+
+        private void idealToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Band Reject Filter";
+            //D Text Box
+            TextBox dTxt = new TextBox();
+            dTxt.Location = new System.Drawing.Point(15, 42);
+            dTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(dTxt);
+            //D Label
+            System.Windows.Forms.Label dLabel = new System.Windows.Forms.Label();
+            dLabel.Location = new System.Drawing.Point(12, 26);
+            dLabel.Text = "D";
+            inputGroupBox.Controls.Add(dLabel);
+            //W Text Box
+            TextBox nTxt = new TextBox();
+            nTxt.Location = new System.Drawing.Point(158, 42);
+            nTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(nTxt);
+            //W Label
+            System.Windows.Forms.Label nLabel = new System.Windows.Forms.Label();
+            nLabel.Location = new System.Drawing.Point(155, 26);
+            nLabel.Text = "Band Width";
+            inputGroupBox.Controls.Add(nLabel);
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 85);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealBandPassFilter_Click(sender1, e1, dTxt, nTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void ApplyIdealBandPassFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
+        {
+            double D = double.Parse(dTxt.Text);
+            double w = double.Parse(nTxt.Text);
+            Filter filter = new Filter();
+            filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 1, D, w);
+            DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+        }
+
+        private void idealToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Notch Reject Filter";
+            //X Text Box
+            TextBox muTxt = new TextBox();
+            muTxt.Location = new System.Drawing.Point(15, 42);
+            muTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(muTxt);
+            //X Label
+            System.Windows.Forms.Label muLabel = new System.Windows.Forms.Label();
+            muLabel.Location = new System.Drawing.Point(12, 26);
+            muLabel.Text = "X";
+            inputGroupBox.Controls.Add(muLabel);
+            //Y Text Box
+            TextBox sigmaTxt = new TextBox();
+            sigmaTxt.Location = new System.Drawing.Point(158, 42);
+            sigmaTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(sigmaTxt);
+            //Y Label
+            System.Windows.Forms.Label sigmaLabel = new System.Windows.Forms.Label();
+            sigmaLabel.Location = new System.Drawing.Point(155, 26);
+            sigmaLabel.Text = "Y";
+            inputGroupBox.Controls.Add(sigmaLabel);
+
+            //R Text Box
+            TextBox NoisePercentageTxt = new TextBox();
+            NoisePercentageTxt.Location = new System.Drawing.Point(90, 91);
+            NoisePercentageTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(NoisePercentageTxt);
+            //R Label
+            System.Windows.Forms.Label NoisePercentageLabel = new System.Windows.Forms.Label();
+            NoisePercentageLabel.Location = new System.Drawing.Point(87, 75);
+            NoisePercentageLabel.Text = "Radius";
+            inputGroupBox.Controls.Add(NoisePercentageLabel);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 130);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealNotchRejectBtn_Click(sender1, e1, muTxt, sigmaTxt, NoisePercentageTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+
+        }
+        private void ApplyIdealNotchRejectBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            Filter filter = new Filter();
+            filter.NotchFilters(PicturesList[picIndex], 0, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+            DisplayImage(PicturesList[picIndex]);
+        }
+
+        private void idealToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Notch Pass Filter";
+            //X Text Box
+            TextBox muTxt = new TextBox();
+            muTxt.Location = new System.Drawing.Point(15, 42);
+            muTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(muTxt);
+            //X Label
+            System.Windows.Forms.Label muLabel = new System.Windows.Forms.Label();
+            muLabel.Location = new System.Drawing.Point(12, 26);
+            muLabel.Text = "X";
+            inputGroupBox.Controls.Add(muLabel);
+            //Y Text Box
+            TextBox sigmaTxt = new TextBox();
+            sigmaTxt.Location = new System.Drawing.Point(158, 42);
+            sigmaTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(sigmaTxt);
+            //Y Label
+            System.Windows.Forms.Label sigmaLabel = new System.Windows.Forms.Label();
+            sigmaLabel.Location = new System.Drawing.Point(155, 26);
+            sigmaLabel.Text = "Y";
+            inputGroupBox.Controls.Add(sigmaLabel);
+
+            //R Text Box
+            TextBox NoisePercentageTxt = new TextBox();
+            NoisePercentageTxt.Location = new System.Drawing.Point(90, 91);
+            NoisePercentageTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(NoisePercentageTxt);
+            //R Label
+            System.Windows.Forms.Label NoisePercentageLabel = new System.Windows.Forms.Label();
+            NoisePercentageLabel.Location = new System.Drawing.Point(87, 75);
+            NoisePercentageLabel.Text = "Radius";
+            inputGroupBox.Controls.Add(NoisePercentageLabel);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 130);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealNotchPassBtn_Click(sender1, e1, muTxt, sigmaTxt, NoisePercentageTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+
+        }
+        private void ApplyIdealNotchPassBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            Filter filter = new Filter();
+            filter.NotchFilters(PicturesList[picIndex], 1, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+            DisplayImage(PicturesList[picIndex]);
+        }
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
     }

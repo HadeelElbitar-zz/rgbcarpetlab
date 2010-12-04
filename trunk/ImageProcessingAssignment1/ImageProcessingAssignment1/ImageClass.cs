@@ -531,7 +531,7 @@ namespace ImageProcessingAssignment1
             {
                 for (int j = 0; j < width; j++)
                 {
-                    BrightnessTemp = ((double)tempPixelArray[i, j] + lastBrightness);
+                    BrightnessTemp = ((double)tempPixelArray[i, j] + lastBrightness); //bydrdab hena !
                     modifiedPixelArray[i, j] = (byte)(CutOffValue(BrightnessTemp));
                 }
             }

@@ -57,7 +57,7 @@ namespace ImageProcessingAssignment1
             numericUpDown1.Value = trackBar1.Value;
             double lastBrightness = (double)numericUpDown1.Value;
             ImageClass Image = new ImageClass();
-            Image.ChangeBrightness(pictureBox1.Height, pictureBox1.Width, lastBrightness, tempRPixelArray, tempGPixelArray, tempBPixelArray, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray);
+            Image.ChangeBrightness(PicParent.height, PicParent.width, lastBrightness, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
             UpdateForm();
         }
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -65,10 +65,10 @@ namespace ImageProcessingAssignment1
             trackBar1.Value = (int)numericUpDown1.Value;
             double lastBrightness = (double)numericUpDown1.Value;
             ImageClass Image = new ImageClass();
-            Image.ChangeBrightness(pictureBox1.Height, pictureBox1.Width, lastBrightness, tempRPixelArray, tempGPixelArray, tempBPixelArray, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray);
+            Image.ChangeBrightness(PicParent.height, PicParent.width, lastBrightness, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
             UpdateForm();
         }
-        
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         //Contrast
@@ -77,7 +77,7 @@ namespace ImageProcessingAssignment1
             numericUpDown2.Value = trackBar2.Value;
             double lastContrast = (double)numericUpDown2.Value;
             ImageClass Image = new ImageClass();
-            Image.ChangeBrightness(pictureBox1.Height, pictureBox1.Width, lastContrast, tempRPixelArray, tempGPixelArray, tempBPixelArray, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray);
+            Image.ChangeContrast(PicParent.height, PicParent.width, lastContrast, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
             UpdateForm();
         }
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace ImageProcessingAssignment1
             trackBar2.Value = (int)numericUpDown2.Value;
             double lastContrast = (double)numericUpDown2.Value;
             ImageClass Image = new ImageClass();
-            Image.ChangeBrightness(pictureBox1.Height, pictureBox1.Width, lastContrast, tempRPixelArray, tempGPixelArray, tempBPixelArray, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray);
+            Image.ChangeContrast(PicParent.height, PicParent.width, lastContrast, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
             UpdateForm();
         }
 
@@ -97,14 +97,14 @@ namespace ImageProcessingAssignment1
             if (trackBar3.Value == 0) numericUpDown3.Value = 0.1M;
             else numericUpDown3.Value = trackBar3.Value;
             ImageClass Image = new ImageClass();
-            Image.GammaCorrection(pictureBox1.Height, pictureBox1.Width, (double)numericUpDown3.Value, tempRPixelArray, tempGPixelArray, tempBPixelArray, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray);
+            Image.GammaCorrection(PicParent.height, PicParent.width, (double)numericUpDown3.Value, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
             UpdateForm();
         }
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             trackBar3.Value = (int)numericUpDown3.Value;
             ImageClass Image = new ImageClass();
-            Image.GammaCorrection(pictureBox1.Height, pictureBox1.Width, (double)numericUpDown3.Value, tempRPixelArray, tempGPixelArray, tempBPixelArray, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray);
+            Image.GammaCorrection(PicParent.height, PicParent.width, (double)numericUpDown3.Value, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
             UpdateForm();
         }
 

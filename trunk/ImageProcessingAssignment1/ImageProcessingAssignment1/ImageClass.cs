@@ -517,7 +517,7 @@ namespace ImageProcessingAssignment1
         }
 
         //Brigthness
-        public void ChangeBrightness(int height, int width, double lastBrightness, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray)
+        public void ChangeBrightness(int height, int width, double lastBrightness, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
             modifiedRPixelArray = BrightnessHelp(height, width, lastBrightness, tempRPixelArray);
             modifiedGPixelArray = BrightnessHelp(height, width, lastBrightness, tempGPixelArray);
@@ -531,7 +531,7 @@ namespace ImageProcessingAssignment1
             {
                 for (int j = 0; j < width; j++)
                 {
-                    BrightnessTemp = ((double)tempPixelArray[i, j] + lastBrightness); //bydrdab hena !
+                    BrightnessTemp = ((double)tempPixelArray[i, j] + lastBrightness);
                     modifiedPixelArray[i, j] = (byte)(CutOffValue(BrightnessTemp));
                 }
             }
@@ -539,7 +539,7 @@ namespace ImageProcessingAssignment1
         }
 
         //Contrast
-        public void ChangeContrastint(int height, int width, double lastContrast, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray)
+        public void ChangeContrast(int height, int width, double lastContrast, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
             modifiedRPixelArray = ContrastHelp(height, width, lastContrast, tempRPixelArray);
             modifiedGPixelArray = ContrastHelp(height, width, lastContrast, tempGPixelArray);
@@ -564,7 +564,7 @@ namespace ImageProcessingAssignment1
         }
 
         //Gamma Correction
-        public void GammaCorrection(int height, int width, double Gamma, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray)
+        public void GammaCorrection(int height, int width, double Gamma, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
             modifiedRPixelArray = GammaHelp(height, width, Gamma, tempRPixelArray);
             modifiedGPixelArray = GammaHelp(height, width, Gamma, tempGPixelArray);
@@ -626,7 +626,7 @@ namespace ImageProcessingAssignment1
             return Value;
         }
 
-        public void ApplyQuantization(int height, int width, int binary, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray,PictureInfo PicParent)
+        public void ApplyQuantization(int height, int width, int binary, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray, PictureInfo PicParent)
         {
             for (int i = 0; i < height; i++)
             {
@@ -801,7 +801,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
         //Converting between Spatial & frequency domain
 

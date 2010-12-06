@@ -1118,6 +1118,50 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        public void AddPeriodicNoise(PictureInfo pic, double Amp, double xFreq, double yFreq, double xPhase, double yPhase)
+        {
+            int height = pic.height;
+            int width = pic.width;
+            double xConst = 2 * Math.PI * xFreq / width;
+            double yConst = 2 * Math.PI * yFreq / height;
+            double[,] Red = new double[height, width];
+            double[,] Green = new double[height, width];
+            double[,] Blue = new double[height, width];
+
+            double rMin=double.MaxValue,rMax=double.MinValue;
+            double gMin=double.MaxValue,gMax=double.MinValue;
+            double bMin=double.MaxValue,bMax=double.MinValue;
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    double x = xConst * i + xPhase;
+                    double y = yConst * j + yPhase;
+                    Red[i, j] = (double)(pic.redPixels[i, j]) + Amp * (Math.Sin(x + y));
+                    Green[i, j] = (double)(pic.greenPixels[i, j]) + Amp * (Math.Sin(x + y));
+                    Blue[i, j] = (double)(pic.bluePixels[i, j]) + Amp * (Math.Sin(x + y));
+                    rMin=Math.Min(rMin,Red[i,j]);
+                    rMax=Math.Max(rMax,Red[i,j]);
+                    gMin=Math.Min(gMin,Red[i,j]);
+                    gMax=Math.Max(gMax,Red[i,j]);
+                    bMin=Math.Min(bMin,Red[i,j]);
+                    bMax=Math.Max(bMax,Red[i,j]);
+                }
+            }
+            Normalization(height, width, rMin, rMax, 255, 0, Red);
+            Normalization(height, width, gMin, gMax, 255, 0, Green);
+            Normalization(height, width, bMin, bMax, 255, 0, Blue);
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    pic.redPixels[i, j] = (byte)Red[i, j];
+                    pic.greenPixels[i, j] = (byte)Green[i, j];
+                    pic.bluePixels[i, j] = (byte)Blue[i, j];
+                }
+            }
+        }
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

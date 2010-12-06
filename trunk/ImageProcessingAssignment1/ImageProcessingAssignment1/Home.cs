@@ -142,6 +142,24 @@ namespace ImageProcessingAssignment1
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
+
+
+        private void openToolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newToolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveToolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
         //Open Image
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -181,6 +199,10 @@ namespace ImageProcessingAssignment1
                 }
             }
             catch { }
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1166,7 +1188,7 @@ namespace ImageProcessingAssignment1
         private void saltPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
             inputGroupBox.Controls.Clear();
-            inputGroupBox.Text = "Salt & Pepper Noise";
+            inputGroupBox.Text = "Salt and Pepper Noise";
             //Salt Text Box
             TextBox saltTxt = new TextBox();
             saltTxt.Location = new System.Drawing.Point(15, 42);
@@ -1495,7 +1517,7 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyIdealBandRejectFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
         {
-            double D = double.Parse(dTxt.Text);         
+            double D = double.Parse(dTxt.Text);
             double w = double.Parse(nTxt.Text);
             Filter filter = new Filter();
             filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 0, D, w);
@@ -1648,6 +1670,127 @@ namespace ImageProcessingAssignment1
             filter.NotchFilters(PicturesList[picIndex], 1, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
             DisplayImage(PicturesList[picIndex]);
         }
+
+        private void periodicNoiseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int height = PicturesList[tabControl1.SelectedIndex].height;
+            int width = PicturesList[tabControl1.SelectedIndex].width;
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Periodic Noise";
+            //Amplitude Label
+            System.Windows.Forms.Label AmplitudeLabel = new System.Windows.Forms.Label();
+            AmplitudeLabel.Location = new System.Drawing.Point(27, 26);
+            AmplitudeLabel.Text = "Amplitude";
+            inputGroupBox.Controls.Add(AmplitudeLabel);
+            //Amplitude NumericUpDown
+            NumericUpDown AmpNumericUpDown = new NumericUpDown();
+            AmpNumericUpDown.Location = new System.Drawing.Point(130, 24);
+            AmpNumericUpDown.DecimalPlaces = 2;
+            AmpNumericUpDown.Minimum = 0;
+            AmpNumericUpDown.Maximum = 255;
+            inputGroupBox.Controls.Add(AmpNumericUpDown);
+
+            //xFreq Label
+            System.Windows.Forms.Label xFreqLabel = new System.Windows.Forms.Label();
+            xFreqLabel.Location = new System.Drawing.Point(27, 56);
+            xFreqLabel.Text = "X-Frequency";
+            inputGroupBox.Controls.Add(xFreqLabel);
+            //xFreq NumericUpDown
+            NumericUpDown xFreqNumericUpDown = new NumericUpDown();
+            xFreqNumericUpDown.Location = new System.Drawing.Point(130, 54);
+            xFreqNumericUpDown.DecimalPlaces = 2;
+            xFreqNumericUpDown.Minimum = 0;
+            xFreqNumericUpDown.Maximum = width / 2;
+            inputGroupBox.Controls.Add(xFreqNumericUpDown);
+
+            //yFreq Label
+            System.Windows.Forms.Label yFreqLabel = new System.Windows.Forms.Label();
+            yFreqLabel.Location = new System.Drawing.Point(27, 86);
+            yFreqLabel.Text = "Y-Frequency";
+            inputGroupBox.Controls.Add(yFreqLabel);
+            //yFreq NumericUpDown
+            NumericUpDown yFreqNumericUpDown = new NumericUpDown();
+            yFreqNumericUpDown.Location = new System.Drawing.Point(130, 84);
+            yFreqNumericUpDown.DecimalPlaces = 2;
+            yFreqNumericUpDown.Minimum = 0;
+            yFreqNumericUpDown.Maximum = height / 2;
+            inputGroupBox.Controls.Add(yFreqNumericUpDown);
+
+            //xPhase Label
+            System.Windows.Forms.Label xPhaseLabel = new System.Windows.Forms.Label();
+            xPhaseLabel.Location = new System.Drawing.Point(27, 116);
+            xPhaseLabel.Text = "X-Phase Shift";
+            inputGroupBox.Controls.Add(xPhaseLabel);
+            //xFreq NumericUpDown
+            NumericUpDown xPhaseNumericUpDown = new NumericUpDown();
+            xPhaseNumericUpDown.Location = new System.Drawing.Point(130, 114);
+            xPhaseNumericUpDown.DecimalPlaces = 2;
+            xPhaseNumericUpDown.Minimum = 0;
+            xPhaseNumericUpDown.Maximum = (int)(2 * Math.PI);
+            inputGroupBox.Controls.Add(xPhaseNumericUpDown);
+
+            //yPhase Label
+            System.Windows.Forms.Label yPhaseLabel = new System.Windows.Forms.Label();
+            yPhaseLabel.Location = new System.Drawing.Point(27, 146);
+            yPhaseLabel.Text = "Y-Phase Shift";
+            inputGroupBox.Controls.Add(yPhaseLabel);
+            //yFreq NumericUpDown
+            NumericUpDown yPhaseNumericUpDown = new NumericUpDown();
+            yPhaseNumericUpDown.Location = new System.Drawing.Point(130, 144);
+            yPhaseNumericUpDown.DecimalPlaces = 2;
+            yPhaseNumericUpDown.Minimum = 0;
+            yPhaseNumericUpDown.Maximum = (int)(2 * Math.PI);
+            inputGroupBox.Controls.Add(yPhaseNumericUpDown);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 180);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { AddPeriodicNoiseBtn_Click(sender1, e1, (double)AmpNumericUpDown.Value, (double)xFreqNumericUpDown.Value, (double)yFreqNumericUpDown.Value, (double)xPhaseNumericUpDown.Value, (double)yPhaseNumericUpDown.Value); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void AddPeriodicNoiseBtn_Click(object sender, EventArgs e, double Amp, double xFreq, double yFreq, double xPhase, double yPhase)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            ImageClass Image = new ImageClass();
+            Image.AddPeriodicNoise(PicturesList[picIndex], Amp, xFreq, yFreq, xPhase, yPhase);
+            DisplayImage(PicturesList[picIndex]);
+        }
+
+        private void adaptiveMedianFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Adaptive Median Filter";
+            //MaxWinSize Text Box
+            TextBox MaxWinSizeTxt = new TextBox();
+            MaxWinSizeTxt.Location = new System.Drawing.Point(15, 42);
+            MaxWinSizeTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(MaxWinSizeTxt);
+            //MaxWinSize Label
+            System.Windows.Forms.Label MaxWinSizeLabel = new System.Windows.Forms.Label();
+            MaxWinSizeLabel.Location = new System.Drawing.Point(12, 26);
+            MaxWinSizeLabel.Text = "Maximum Window Size";
+            inputGroupBox.Controls.Add(MaxWinSizeLabel);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 90);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveMedianFilterBtn_Click(sender1, e1, MaxWinSizeTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void AdaptiveMedianFilterBtn_Click(object sender, EventArgs e, TextBox MaxWinSize)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            Filter filter = new Filter();
+            filter.AdaptiveMedianFilter(PicturesList[picIndex], int.Parse(MaxWinSize.Text));
+            DisplayImage(PicturesList[picIndex]);
+        }
+
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
     }

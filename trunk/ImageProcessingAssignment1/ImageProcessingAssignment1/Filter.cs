@@ -19,7 +19,7 @@ namespace ImageProcessingAssignment1
             byte[,] returnArray = new byte[newHeight, newWidth];
             for (int i = 0; i < newHeight; i++)
             {
-                for (int j = 0; j < newWidth ; j++)
+                for (int j = 0; j < newWidth; j++)
                 {
                     if (i <= N)
                     {
@@ -235,7 +235,7 @@ namespace ImageProcessingAssignment1
             byte[,] NewR = new byte[height, width];
             byte[,] NewG = new byte[height, width];
             byte[,] NewB = new byte[height, width];
-            
+
             MWArray[] MNewR = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.redPixels));
             MWArray[] MNewG = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.greenPixels));
             MWArray[] MNewB = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.bluePixels));
@@ -250,16 +250,11 @@ namespace ImageProcessingAssignment1
             switch (filterType)
             {
                 case 0:
-                    //D = 160;
-                    //NewR = (double[,])((MWNumericArray)(matlabClass.IdealLFP((MWNumericArray)pic.redPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewG = (double[,])((MWNumericArray)(matlabClass.IdealLFP((MWNumericArray)pic.greenPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewB = (double[,])((MWNumericArray)(matlabClass.IdealLFP((MWNumericArray)pic.bluePixels, D))).ToArray(MWArrayComponent.Real);
                     double temp;
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
                             temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
                             if (temp <= D)
                                 Filter[i, j] = 1;
@@ -273,21 +268,10 @@ namespace ImageProcessingAssignment1
                     }
                     break;
                 case 1:
-                    //N = 1;
-                    //D = 30;
-                    //NewR = (double[,])((MWNumericArray)(matlabClass.ButterWorthLPF((MWNumericArray)pic.redPixels, D, N))).ToArray(MWArrayComponent.Real);
-                    //NewG = (double[,])((MWNumericArray)(matlabClass.ButterWorthLPF((MWNumericArray)pic.greenPixels, D, N))).ToArray(MWArrayComponent.Real);
-                    //NewB = (double[,])((MWNumericArray)(matlabClass.ButterWorthLPF((MWNumericArray)pic.bluePixels, D, N))).ToArray(MWArrayComponent.Real);
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
-                            //Temp = Temp / D;
-                            //power = 2 * N;
-                            //Temp = Temp ^ power;
-                            //Temp = Temp + 1;
-                            //Filter(i, j) = 1 / Temp;
                             temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
                             temp /= D;
                             temp = Math.Pow(temp, 2 * N);
@@ -303,21 +287,10 @@ namespace ImageProcessingAssignment1
                     }
                     break;
                 case 2:
-                    //D = 100;
-                    //NewR = (double[,])((MWNumericArray)(matlabClass.GaussianLPF((MWNumericArray)pic.redPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewG = (double[,])((MWNumericArray)(matlabClass.GaussianLPF((MWNumericArray)pic.greenPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewB = (double[,])((MWNumericArray)(matlabClass.GaussianLPF((MWNumericArray)pic.bluePixels, D))).ToArray(MWArrayComponent.Real);
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
-                            //Temp = Temp ^ 2;
-                            //N = D ^ 2;
-                            //N = N * 2;
-                            //Temp = Temp / N;
-                            //Temp = -1 * Temp;
-                            //Filter(i, j) = exp(Temp);
                             temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
                             temp = Math.Pow(temp, 2);
                             double temp2 = Math.Pow(D, 2) * 2;
@@ -373,16 +346,11 @@ namespace ImageProcessingAssignment1
             switch (filterType)
             {
                 case 0:
-                    //double D = 80;
-                    //NewR = (double[,])((MWNumericArray)(matlabClass.IdealHPF((MWNumericArray)pic.redPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewG = (double[,])((MWNumericArray)(matlabClass.IdealHPF((MWNumericArray)pic.greenPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewB = (double[,])((MWNumericArray)(matlabClass.IdealHPF((MWNumericArray)pic.bluePixels, D))).ToArray(MWArrayComponent.Real);
                     double temp;
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
                             temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
                             if (temp > D)
                                 Filter[i, j] = 1;
@@ -396,21 +364,10 @@ namespace ImageProcessingAssignment1
                     }
                     break;
                 case 1:
-                    //double N = 2;
-                    //D = 160;
-                    //NewR = (double[,])((MWNumericArray)(matlabClass.ButterWorthHPF((MWNumericArray)pic.redPixels, D, N))).ToArray(MWArrayComponent.Real);
-                    //NewG = (double[,])((MWNumericArray)(matlabClass.ButterWorthHPF((MWNumericArray)pic.greenPixels, D, N))).ToArray(MWArrayComponent.Real);
-                    //NewB = (double[,])((MWNumericArray)(matlabClass.ButterWorthHPF((MWNumericArray)pic.bluePixels, D, N))).ToArray(MWArrayComponent.Real);
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
-                            //Temp = D / Temp;
-                            //power = 2 * N;
-                            //Temp = Temp ^ power;
-                            //Temp = Temp + 1;
-                            //Filter(i, j) = 1 / Temp;
                             temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
                             temp = D / temp;
                             temp = Math.Pow(temp, 2 * N);
@@ -426,21 +383,10 @@ namespace ImageProcessingAssignment1
                     }
                     break;
                 case 2:
-                    //D = 60;
-                    //NewR = (double[,])((MWNumericArray)(matlabClass.GaussianHPF((MWNumericArray)pic.redPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewG = (double[,])((MWNumericArray)(matlabClass.GaussianHPF((MWNumericArray)pic.greenPixels, D))).ToArray(MWArrayComponent.Real);
-                    //NewB = (double[,])((MWNumericArray)(matlabClass.GaussianHPF((MWNumericArray)pic.bluePixels, D))).ToArray(MWArrayComponent.Real);
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
-                            //Temp = Temp ^ 2;
-                            //N = D ^ 2;
-                            //N = N * 2;
-                            //Temp = Temp / N;
-                            //Temp = -1 * Temp;
-                            //Filter(i, j) = 1 - exp(Temp);
                             temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
                             temp = Math.Pow(temp, 2);
                             double temp2 = Math.Pow(D, 2) * 2;
@@ -512,7 +458,7 @@ namespace ImageProcessingAssignment1
                     NewPicB[i + M, j + N] = (byte)(Math.Pow(Bmul, Power));
                 }
             }
-            
+
             Red = unreplicateImage(Fheight, Fwidth, height, width, NewPicR);
             Green = unreplicateImage(Fheight, Fwidth, height, width, NewPicG);
             Blue = unreplicateImage(Fheight, Fwidth, height, width, NewPicB);
@@ -533,7 +479,7 @@ namespace ImageProcessingAssignment1
             byte[,] NewPicB = new byte[newHeight, newWidth];
 
             int M = (Fheight - 1) / 2, N = (Fwidth - 1) / 2, FSize = Fheight * Fwidth;
-            
+
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -551,65 +497,65 @@ namespace ImageProcessingAssignment1
                             B[F++] = repBPixels[i + c, j + k];
                         }
                     }
-                   #region sorting 
-                   // // int size = R.Length;
-                   // Dictionary<int, int> L = new Dictionary<int, int>();
-                   // for (int T = 0; T < FSize; T++)
-                   // {
-                   //     int res;
-                   //     string RT = Convert.ToString((int)R[T], 2), GT = Convert.ToString((int)G[T], 2), BT = Convert.ToString((int)B[T], 2);
-                   //     string t = "";
-                   //     for (int O = 0; O < 8; O++)
-                   //     {
-                   //         try
-                   //         {
-                   //             t += RT[O].ToString();
-                   //         }
-                   //         catch
-                   //         {
-                   //             t += "0";
-                   //         }
-                   //         try
-                   //         {
-                   //             t += GT[O].ToString();
-                   //         }
-                   //         catch
-                   //         {
-                   //             t += "0";
-                   //         }
-                   //         try
-                   //         {
-                   //             t += BT[O].ToString();
-                   //         }
-                   //         catch
-                   //         {
-                   //             t += "0";
-                   //         }
-                   //     }
-                   //     res = Convert.ToInt32(t, 2);
-                   //     L.Add(T, res);
-                   // }
-                   // List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
-                   // result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
-                   // {
-                   //     return second.Value.CompareTo(first.Value);
-                   // });
-                   // byte[] RTemp = new byte[FSize];
-                   // byte[] GTemp = new byte[FSize];
-                   // byte[] BTemp = new byte[FSize];
-                   // int S = 0;
-                   // foreach (KeyValuePair<int, int> item in result)
-                   // {
-                   //     RTemp[S] = R[item.Key];
-                   //     GTemp[S] = G[item.Key];
-                   //     BTemp[S] = B[item.Key];
-                   //     S++;
-                   // }
-                   // R = RTemp;
-                   // G = GTemp;
-                   // B = BTemp;
+                    #region sorting
+                    // // int size = R.Length;
+                    // Dictionary<int, int> L = new Dictionary<int, int>();
+                    // for (int T = 0; T < FSize; T++)
+                    // {
+                    //     int res;
+                    //     string RT = Convert.ToString((int)R[T], 2), GT = Convert.ToString((int)G[T], 2), BT = Convert.ToString((int)B[T], 2);
+                    //     string t = "";
+                    //     for (int O = 0; O < 8; O++)
+                    //     {
+                    //         try
+                    //         {
+                    //             t += RT[O].ToString();
+                    //         }
+                    //         catch
+                    //         {
+                    //             t += "0";
+                    //         }
+                    //         try
+                    //         {
+                    //             t += GT[O].ToString();
+                    //         }
+                    //         catch
+                    //         {
+                    //             t += "0";
+                    //         }
+                    //         try
+                    //         {
+                    //             t += BT[O].ToString();
+                    //         }
+                    //         catch
+                    //         {
+                    //             t += "0";
+                    //         }
+                    //     }
+                    //     res = Convert.ToInt32(t, 2);
+                    //     L.Add(T, res);
+                    // }
+                    // List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
+                    // result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
+                    // {
+                    //     return second.Value.CompareTo(first.Value);
+                    // });
+                    // byte[] RTemp = new byte[FSize];
+                    // byte[] GTemp = new byte[FSize];
+                    // byte[] BTemp = new byte[FSize];
+                    // int S = 0;
+                    // foreach (KeyValuePair<int, int> item in result)
+                    // {
+                    //     RTemp[S] = R[item.Key];
+                    //     GTemp[S] = G[item.Key];
+                    //     BTemp[S] = B[item.Key];
+                    //     S++;
+                    // }
+                    // R = RTemp;
+                    // G = GTemp;
+                    // B = BTemp;
                     #endregion
-                    PrallelSort(ref R, ref G, ref B);
+                    ParallelSort(ref R, ref G, ref B);
                     byte Rval = 0, Gval = 0, Bval = 0;
                     int index;
                     switch (Filter)
@@ -640,7 +586,6 @@ namespace ImageProcessingAssignment1
                             }
                         case "MidPoint":
                             {
-                                //index = FSize / 2;
                                 Rval = (byte)(((double)R[0] + (double)R[FSize - 1]) / 2);
                                 Gval = (byte)(((double)G[0] + (double)G[FSize - 1]) / 2);
                                 Bval = (byte)(((double)B[0] + (double)B[FSize - 1]) / 2);
@@ -657,7 +602,7 @@ namespace ImageProcessingAssignment1
             Green = unreplicateImage(Fheight, Fwidth, height, width, NewPicG);
             Blue = unreplicateImage(Fheight, Fwidth, height, width, NewPicB);
         }
-        private void PrallelSort(ref byte[] R, ref byte[] G, ref byte[] B)
+        private void ParallelSort(ref byte[] R, ref byte[] G, ref byte[] B)
         {
             int size = R.Length;
             Dictionary<int, int> L = new Dictionary<int, int>();
@@ -674,7 +619,7 @@ namespace ImageProcessingAssignment1
             byte[] GTemp = new byte[size];
             byte[] BTemp = new byte[size];
             int j = 0;
-            foreach (KeyValuePair<int,int> item in result)
+            foreach (KeyValuePair<int, int> item in result)
             {
                 RTemp[j] = R[item.Key];
                 GTemp[j] = G[item.Key];
@@ -685,7 +630,7 @@ namespace ImageProcessingAssignment1
             G = GTemp;
             B = BTemp;
         }
-        public void Apply2DContraharmonicFilter(int Fwidth, int Fheight, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue , double Q)
+        public void Apply2DContraharmonicFilter(int Fwidth, int Fheight, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue, double Q)
         {
             int height = OldPic.height, width = OldPic.width;
             int newHeight = height + Fheight;
@@ -750,7 +695,7 @@ namespace ImageProcessingAssignment1
             byte[,] NewPicB = new byte[newHeight, newWidth];
 
             int M = (Fheight - 1) / 2, N = (Fwidth - 1) / 2, FSize = Fheight * Fwidth;
-            
+
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -768,8 +713,8 @@ namespace ImageProcessingAssignment1
                             B[F++] = repBPixels[i + c, j + k];
                         }
                     }
-                    #region sorting 
-                   // int size = R.Length;
+                    #region sorting
+                    // int size = R.Length;
                     Dictionary<int, int> L = new Dictionary<int, int>();
                     for (int T = 0; T < FSize; T++)
                     {
@@ -826,15 +771,15 @@ namespace ImageProcessingAssignment1
                     G = GTemp;
                     B = BTemp;
                     #endregion
-                    //PrallelSort(R, G, B);
+                    //ParallelSort(R, G, B);
                     double Rval = 0, Gval = 0, Bval = 0;
-                    int index = (int)Math.Ceiling(D/2);
-                    for (int H =index ; H < FSize - index; H++)
-			        {
-			            Rval += R[H];
+                    int index = (int)Math.Ceiling(D / 2);
+                    for (int H = index; H < FSize - index; H++)
+                    {
+                        Rval += R[H];
                         Gval += G[H];
                         Bval += B[H];
-			        }
+                    }
                     NewPicR[i + M, j + N] = (byte)(Rval / ((double)FSize - D));
                     NewPicG[i + M, j + N] = (byte)(Gval / ((double)FSize - D));
                     NewPicB[i + M, j + N] = (byte)(Bval / ((double)FSize - D));
@@ -856,17 +801,12 @@ namespace ImageProcessingAssignment1
             BitArray B_bits = new BitArray(TempB);
             BitArray Temp = new BitArray(24);
 
-            for (int i = 0, j=0; i < 24;j++)
+            for (int i = 0, j = 0; i < 24; j++)
             {
                 Temp[i++] = R_bits[j];
                 Temp[i++] = G_bits[j];
                 Temp[i++] = B_bits[j];
             }
-            //for (int i = 0; i < 24; i++)
-            //{
-            //    bool x = Temp[i];
-            //}
-            
             res = ToInt(Temp);
             return res;
         }
@@ -890,7 +830,7 @@ namespace ImageProcessingAssignment1
             byte[,] NewR = new byte[height, width];
             byte[,] NewG = new byte[height, width];
             byte[,] NewB = new byte[height, width];
-            
+
             MWArray[] MNewR = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.redPixels));
             MWArray[] MNewG = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.greenPixels));
             MWArray[] MNewB = (MWArray[])(matlabClass.ConvertToFrequencyDomain(2, (MWNumericArray)pic.bluePixels));
@@ -911,7 +851,6 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
                             temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
                             if (temp <= Ldis && temp >= Rdis)
                                 Filter[i, j] = 0;
@@ -962,7 +901,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        public void NotchFilters(PictureInfo pic, int filterType, double X, double Y , double R)
+        public void NotchFilters(PictureInfo pic, int filterType, double X, double Y, double R)
         {
             int height = pic.height;
             int width = pic.width;
@@ -985,12 +924,11 @@ namespace ImageProcessingAssignment1
             switch (filterType)
             {
                 case 0: //ideal notch reject 
-                    double temp1 , temp2;
+                    double temp1, temp2;
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            //Temp = sqrt((i - (W / 2)) ^ 2 + (j - (H / 2)) ^ 2);
                             temp1 = Math.Sqrt(Math.Pow((i - (width / 2 + X)), 2) + Math.Pow((j - (height / 2 + Y)), 2));
                             temp2 = Math.Sqrt(Math.Pow((i - (width / 2 - X)), 2) + Math.Pow((j - (height / 2 - Y)), 2));
                             if (temp1 < R || temp2 < R)
@@ -1040,6 +978,26 @@ namespace ImageProcessingAssignment1
                     pic.greenPixels[i, j] = NewG[i, j];
                     pic.bluePixels[i, j] = NewB[i, j];
                 }
+            }
+        }
+
+        public void AdaptiveMedianFilter(PictureInfo pic, int MaxWinSize)
+        {
+
+        }
+        private void CountingSort(byte[] Array, int ArrayLength, byte[] SortedArray, int Max)
+        {
+            int[] ArrayAux = new int[Max + 1];
+            for (int i = 0; i <= Max; i++)
+                ArrayAux[i] = 0;
+            for (int i = 0; i < ArrayLength; i++)
+                ArrayAux[Array[i]]++;
+            for (int i = 1; i <= Max; i++)
+                ArrayAux[i] += ArrayAux[i - 1];
+            for (int i = ArrayLength - 1; i >= 0; i--)
+            {
+                SortedArray[ArrayAux[Array[i]] - 1] = Array[i];
+                ArrayAux[Array[i]]--;
             }
         }
     }

@@ -113,6 +113,7 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.DecimalPlaces = 2;
             resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
             this.numericUpDown1.Maximum = new decimal(new int[] {
             200,
@@ -147,6 +148,7 @@
             // 
             // numericUpDown2
             // 
+            this.numericUpDown2.DecimalPlaces = 2;
             resources.ApplyResources(this.numericUpDown2, "numericUpDown2");
             this.numericUpDown2.Maximum = new decimal(new int[] {
             200,
@@ -211,6 +213,12 @@
             // 
             // numericUpDown3
             // 
+            this.numericUpDown3.DecimalPlaces = 2;
+            this.numericUpDown3.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             resources.ApplyResources(this.numericUpDown3, "numericUpDown3");
             this.numericUpDown3.Maximum = new decimal(new int[] {
             25,

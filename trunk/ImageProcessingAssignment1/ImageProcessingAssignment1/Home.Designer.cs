@@ -1495,6 +1495,7 @@
             this.otsuThresholdingToolStripMenuItem.Name = "otsuThresholdingToolStripMenuItem";
             this.otsuThresholdingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.otsuThresholdingToolStripMenuItem.Text = "Otsu Thresholding";
+            this.otsuThresholdingToolStripMenuItem.Click += new System.EventHandler(this.otsuThresholdingToolStripMenuItem_Click);
             // 
             // Home
             // 

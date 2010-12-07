@@ -769,6 +769,15 @@ namespace ImageProcessingAssignment1
             for (int i = 0; i < length; i++)
                 Array[i] = Math.Round((Array[i] / Array[length - 1]) * 255);
         }
+        private void NormalizeHistogram(ref double[] R, ref double[] G, ref double[] B , int W_H)
+        {
+            for (int i = 0; i < 255; i++)
+            {
+                R[i] /= W_H;
+                G[i] /= W_H;
+                B[i] /= W_H;
+            }
+        }
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
@@ -805,6 +814,26 @@ namespace ImageProcessingAssignment1
                 {
                     if (doublePixels[i, j] > oldMax && doublePixels[i, j] < double.MaxValue) oldMax = doublePixels[i, j];
                     if (doublePixels[i, j] < oldMin) oldMin = doublePixels[i, j];
+                }
+            }
+        }
+        private void getNonZeroIndex(double[] R , double[] G , double[] B, ref int S , ref int F)
+        {
+            //int first , last;
+            for (int i = 0; i < 255; i++)
+            {
+                if (R[i] != 0 || G[i] != 0 || B[i] != 0)
+                {
+                    S = i;
+                    break;
+                }
+            }
+            for (int i = 254; i >= 0; i--)
+            {
+                if (R[i] != 0 || G[i] != 0 || B[i] != 0)
+                {
+                    F = i;
+                    break;
                 }
             }
         }
@@ -1175,5 +1204,108 @@ namespace ImageProcessingAssignment1
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
+        #region Image Segmentation
+        public void OtsuSegmentation(PictureInfo pic)
+        {
+            //Get Histogram
+            double[] R = new double[256], G = new double[256], B = new double[256];
+            GetHistogram(ref R, ref G, ref B, pic);
+            int Start = 0, End = 0;
+            getNonZeroIndex(R, G, B, ref Start, ref End); //get start and end points for iterating on K
+            //Normalize el Histogram
+            int size = pic.width * pic.height;
+            NormalizeHistogram(ref R, ref G, ref B, size); //P(i)
+            //Calculate Cummulative sum P1(k) = sum P(i)
+            double[] CummulateR = new double[255], CummulateG = new double[255], CummulateB = new double[255];
+            CummulateR[0] = R[0];
+            CummulateG[0] = G[0];
+            CummulateB[0] = B[0];
+            for (int i = 1; i < 255; i++)
+            {
+                CummulateR[i] = CummulateR[i - 1] + R[i];
+                CummulateG[i] = CummulateG[i - 1] + G[i];
+                CummulateB[i] = CummulateB[i - 1] + B[i];
+            }
+            //Calculate Cummulative mean m(k) = sum iP(i) a3taked eno kda da bardo el Global mean
+            double[] CummulateMeanR = new double[255], CummulateMeanG = new double[255], CummulateMeanB = new double[255];
+            CummulateMeanR[0] = 0;
+            CummulateMeanG[0] = 0;
+            CummulateMeanB[0] = 0;
+            for (int i = 1; i < 255; i++)
+            {
+                CummulateMeanR[i] = CummulateMeanR[i - 1] + R[i] * i;
+                CummulateMeanG[i] = CummulateMeanG[i - 1] + G[i] * i;
+                CummulateMeanB[i] = CummulateMeanB[i - 1] + B[i] * i;
+            }
+            // get K 
+            double MaxR = int.MinValue, MaxG = int.MinValue, MaxB = int.MinValue;
+            int ArraySZ = End - Start + 1;
+            double[] SigmaR = new double[ArraySZ], SigmaG = new double[ArraySZ], SigmaB = new double[ArraySZ];
+            for (int i = Start , j = 0; i <= End; i++ , j++)
+            {
+                SigmaR[j] = Math.Pow((CummulateMeanR[254] * CummulateR[i] - CummulateMeanR[i]), 2) / (CummulateR[i] * (1 - CummulateR[i]));
+                if (SigmaR[j] > MaxR)
+                    MaxR = SigmaR[j];
+                SigmaG[j] = Math.Pow((CummulateMeanG[254] * CummulateG[i] - CummulateMeanG[i]), 2) / (CummulateG[i] * (1 - CummulateG[i]));
+                if (SigmaG[j] > MaxG)
+                    MaxG = SigmaG[j];
+                SigmaB[j] = Math.Pow((CummulateMeanB[254] * CummulateB[i] - CummulateMeanB[i]), 2) / (CummulateB[i] * (1 - CummulateB[i]));
+                if (SigmaB[j] > MaxB)
+                    MaxB = SigmaB[j];
+            }
+            int FinalKr = 0, FinalKg = 0, FinalKb = 0, Rcount = 0, Gcount = 0, Bcount = 0;
+            for (int i = 0; i < ArraySZ; i++)
+            {
+                if (SigmaR[i] == MaxR)
+                {
+                    FinalKr += i;
+                    Rcount++;
+                }
+                if (SigmaG[i] == MaxG)
+                {
+                    FinalKg += i;
+                    Gcount++;
+                }
+                if (SigmaB[i] == MaxB)
+                {
+                    FinalKb += i;
+                    Bcount++;
+                }
+            }
+            FinalKr /= Rcount;
+            FinalKg /= Gcount;
+            FinalKb /= Bcount;
+            //Segmkent the picture
+            double Final = (FinalKr + FinalKb + FinalKg) / 3;
+            for (int i = 0; i < pic.height; i++)
+            {
+                for (int j = 0; j < pic.width; j++)
+                {
+                    if (pic.redPixels[i, j] < Final)
+                    {
+                        pic.redPixels[i, j] = 0;
+                        pic.greenPixels[i, j] = 0;
+                        pic.bluePixels[i, j] = 0;
+                    }
+                    else
+                    {
+                        pic.redPixels[i, j] = 255;
+                        pic.greenPixels[i, j] = 255;
+                        pic.bluePixels[i, j] = 255;
+                    }
+                    //if (pic.greenPixels[i, j] < FinalKg)
+                    //    pic.greenPixels[i, j] = 0;
+                    //else
+                    //    pic.greenPixels[i, j] = 255;
+                    //if (pic.bluePixels[i, j] < FinalKb)
+                    //    pic.bluePixels[i, j] = 0;
+                    //else
+                    //    pic.bluePixels[i, j] = 255;
+                }
+            }
+        }
+        #endregion
+
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
     }
 }

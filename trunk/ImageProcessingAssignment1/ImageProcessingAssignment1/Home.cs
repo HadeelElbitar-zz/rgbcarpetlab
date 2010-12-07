@@ -1864,6 +1864,18 @@ namespace ImageProcessingAssignment1
         }
 
         #endregion
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
+        #region Segmentaion
+        //Otsu Thresholding
+        private void otsuThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            ImageClass Image = new ImageClass();
+            Image.OtsuSegmentation(PicturesList[picIndex]);
+            DisplayImage(PicturesList[picIndex]);
+        }
+        #endregion 
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

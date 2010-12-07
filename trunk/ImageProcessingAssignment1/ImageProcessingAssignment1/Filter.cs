@@ -11,6 +11,7 @@ namespace ImageProcessingAssignment1
 {
     class Filter
     {
+        #region Replicate & Unreplicate
         private byte[,] ReplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] Array)
         {
             int N = (Fheight - 1) / 2, M = (Fwidth - 1) / 2;
@@ -56,6 +57,9 @@ namespace ImageProcessingAssignment1
             }
             return unrepArray;
         }
+        #endregion
+
+        #region Helping Functions
         private double Summation(double[,] filter, int w, int h)
         {
             double sum = 0;
@@ -103,17 +107,103 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        private int BitMixed(byte R, byte G, byte B)
+        {
+            byte[] TempR = BitConverter.GetBytes((int)R);
+            BitArray R_bits = new BitArray(TempR);
+            byte[] TempG = BitConverter.GetBytes((int)G);
+            BitArray G_bits = new BitArray(TempG);
+            byte[] TempB = BitConverter.GetBytes((int)B);
+            BitArray B_bits = new BitArray(TempB);
+            BitArray Temp = new BitArray(24);
+            for (int i = 0, j = 0; i < 24; j++)
+            {
+                Temp[i++] = R_bits[j];
+                Temp[i++] = G_bits[j];
+                Temp[i++] = B_bits[j];
+            }
+            return ToInt(Temp);
+        }
+        private int ToInt(BitArray bits)
+        {
+            int res = 0;
+            for (int i = 0; i < 24; i++)
+            {
+                if (bits[i])
+                {
+                    res += (int)Math.Pow(2, i);
+                }
+            }
+            return res;
+        }
+        #region Sorting
+        private void ParallelSort(ref byte[] R, ref byte[] G, ref byte[] B)
+        {
+            int size = R.Length;
+            Dictionary<int, int> L = new Dictionary<int, int>();
+            for (int i = 0; i < size; i++)
+            {
+                L.Add(i, BitMixed(R[i], G[i], B[i]));
+            }
+            List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
+            result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
+            {
+                return second.Value.CompareTo(first.Value);
+            });
+            byte[] RTemp = new byte[size];
+            byte[] GTemp = new byte[size];
+            byte[] BTemp = new byte[size];
+            int j = 0;
+            foreach (KeyValuePair<int, int> item in result)
+            {
+                RTemp[j] = R[item.Key];
+                GTemp[j] = G[item.Key];
+                BTemp[j] = B[item.Key];
+                j++;
+            }
+            R = RTemp;
+            G = GTemp;
+            B = BTemp;
+        }
+        private void CountingSort(int[] Array, byte[] R, byte[] G, byte[] B, int ArrayLength, int Max)
+        {
+            int[] SortedArray = new int[ArrayLength];
+            byte[] rSorted = new byte[ArrayLength];
+            byte[] gSorted = new byte[ArrayLength];
+            byte[] bSorted = new byte[ArrayLength];
+            int[] ArrayAux = new int[Max + 1];
+            for (int i = 0; i <= Max; i++)
+                ArrayAux[i] = 0;
+            for (int i = 0; i < ArrayLength; i++)
+                ArrayAux[Array[i]]++;
+            for (int i = 1; i <= Max; i++)
+                ArrayAux[i] += ArrayAux[i - 1];
+            for (int i = ArrayLength - 1; i >= 0; i--)
+            {
+                rSorted[ArrayAux[Array[i]] - 1] = R[i];
+                gSorted[ArrayAux[Array[i]] - 1] = G[i];
+                bSorted[ArrayAux[Array[i]] - 1] = B[i];
+                SortedArray[ArrayAux[Array[i]] - 1] = Array[i];
+                ArrayAux[Array[i]]--;
+            }
+            Array = SortedArray;
+            R = rSorted;
+            G = gSorted;
+            B = bSorted;
+        }
+        #endregion
+
+        #endregion
+
+        #region Apply 1D & 2D Filter
         public void Apply1DFilter(int length, double[] Filter, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue)
         {
             int height = OldPic.height, width = OldPic.width;
             int newHeight = height + length - 1;
             int newWidth = width + length - 1;
-            byte[,] repRPixels = new byte[newHeight, newWidth];//Replicated Borders
-            byte[,] repGPixels = new byte[newHeight, newWidth];
-            byte[,] repBPixels = new byte[newHeight, newWidth];
-            repRPixels = ReplicateImage(length, length, height, width, OldPic.redPixels);
-            repGPixels = ReplicateImage(length, length, height, width, OldPic.greenPixels);
-            repBPixels = ReplicateImage(length, length, height, width, OldPic.bluePixels);
+            byte[,] repRPixels = ReplicateImage(length, length, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(length, length, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(length, length, height, width, OldPic.bluePixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
@@ -168,12 +258,9 @@ namespace ImageProcessingAssignment1
             double SumOfFilter = Summation(Filter, Fwidth, Fheight);
             int newHeight = height + Fheight;
             int newWidth = width + Fwidth;
-            byte[,] repRPixels = new byte[newHeight, newWidth];//Replicated Borders
-            byte[,] repGPixels = new byte[newHeight, newWidth];
-            byte[,] repBPixels = new byte[newHeight, newWidth];
-            repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
-            repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
-            repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
+            byte[,] repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
@@ -227,6 +314,9 @@ namespace ImageProcessingAssignment1
             Green = unreplicateImage(Fheight, Fwidth, height, width, NewPicG);
             Blue = unreplicateImage(Fheight, Fwidth, height, width, NewPicB);
         }
+        #endregion
+
+        #region LowPass & High Pass Filters
         public void LowPassFilters(PictureInfo pic, int filterType, double D, double N)
         {
             int height = pic.height;
@@ -419,18 +509,18 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        #endregion
+
+        #region Mean-OrderStat-Contra-Alpha
         public void Apply2DGMeanFilter(int Fwidth, int Fheight, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue)
         {
             int height = OldPic.height, width = OldPic.width;
             double Power = (double)(1 / (double)((double)Fwidth * (double)Fheight));
             int newHeight = height + Fheight;
             int newWidth = width + Fwidth;
-            byte[,] repRPixels = new byte[newHeight, newWidth];//Replicated Borders
-            byte[,] repGPixels = new byte[newHeight, newWidth];
-            byte[,] repBPixels = new byte[newHeight, newWidth];
-            repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
-            repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
-            repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
+            byte[,] repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
@@ -468,12 +558,9 @@ namespace ImageProcessingAssignment1
             int height = OldPic.height, width = OldPic.width;
             int newHeight = height + Fheight;
             int newWidth = width + Fwidth;
-            byte[,] repRPixels = new byte[newHeight, newWidth];//Replicated Borders
-            byte[,] repGPixels = new byte[newHeight, newWidth];
-            byte[,] repBPixels = new byte[newHeight, newWidth];
-            repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
-            repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
-            repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
+            byte[,] repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
@@ -602,45 +689,14 @@ namespace ImageProcessingAssignment1
             Green = unreplicateImage(Fheight, Fwidth, height, width, NewPicG);
             Blue = unreplicateImage(Fheight, Fwidth, height, width, NewPicB);
         }
-        private void ParallelSort(ref byte[] R, ref byte[] G, ref byte[] B)
-        {
-            int size = R.Length;
-            Dictionary<int, int> L = new Dictionary<int, int>();
-            for (int i = 0; i < size; i++)
-            {
-                L.Add(i, BitMixed(R[i], G[i], B[i]));
-            }
-            List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
-            result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
-              {
-                  return second.Value.CompareTo(first.Value);
-              });
-            byte[] RTemp = new byte[size];
-            byte[] GTemp = new byte[size];
-            byte[] BTemp = new byte[size];
-            int j = 0;
-            foreach (KeyValuePair<int, int> item in result)
-            {
-                RTemp[j] = R[item.Key];
-                GTemp[j] = G[item.Key];
-                BTemp[j] = B[item.Key];
-                j++;
-            }
-            R = RTemp;
-            G = GTemp;
-            B = BTemp;
-        }
         public void Apply2DContraharmonicFilter(int Fwidth, int Fheight, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue, double Q)
         {
             int height = OldPic.height, width = OldPic.width;
             int newHeight = height + Fheight;
             int newWidth = width + Fwidth;
-            byte[,] repRPixels = new byte[newHeight, newWidth];//Replicated Borders
-            byte[,] repGPixels = new byte[newHeight, newWidth];
-            byte[,] repBPixels = new byte[newHeight, newWidth];
-            repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
-            repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
-            repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
+            byte[,] repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
@@ -684,12 +740,9 @@ namespace ImageProcessingAssignment1
             int height = OldPic.height, width = OldPic.width;
             int newHeight = height + Fheight;
             int newWidth = width + Fwidth;
-            byte[,] repRPixels = new byte[newHeight, newWidth];//Replicated Borders
-            byte[,] repGPixels = new byte[newHeight, newWidth];
-            byte[,] repBPixels = new byte[newHeight, newWidth];
-            repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
-            repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
-            repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
+            byte[,] repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
@@ -790,38 +843,9 @@ namespace ImageProcessingAssignment1
             Green = unreplicateImage(Fheight, Fwidth, height, width, NewPicG);
             Blue = unreplicateImage(Fheight, Fwidth, height, width, NewPicB);
         }
-        private int BitMixed(byte R, byte G, byte B)
-        {
-            int res;
-            byte[] TempR = BitConverter.GetBytes((int)R);
-            BitArray R_bits = new BitArray(TempR);
-            byte[] TempG = BitConverter.GetBytes((int)G);
-            BitArray G_bits = new BitArray(TempG);
-            byte[] TempB = BitConverter.GetBytes((int)B);
-            BitArray B_bits = new BitArray(TempB);
-            BitArray Temp = new BitArray(24);
+        #endregion
 
-            for (int i = 0, j = 0; i < 24; j++)
-            {
-                Temp[i++] = R_bits[j];
-                Temp[i++] = G_bits[j];
-                Temp[i++] = B_bits[j];
-            }
-            res = ToInt(Temp);
-            return res;
-        }
-        private int ToInt(BitArray bits)
-        {
-            int res = 0;
-            for (int i = 0; i < 24; i++)
-            {
-                if (bits[i])
-                {
-                    res += (int)Math.Pow(2, i);
-                }
-            }
-            return res;
-        }
+        #region Periodic Filters
         public void BandFilters(PictureInfo pic, int filterType, double D, double W)
         {
             int height = pic.height;
@@ -980,25 +1004,136 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        #endregion
 
-        public void AdaptiveMedianFilter(PictureInfo pic, int MaxWinSize)
+        #region Adaptive Filters
+        public void AdaptiveFilter(PictureInfo OldPic, int MaxWinSize, int type)
         {
-
+            int height = OldPic.height, width = OldPic.width;
+            byte[,] repRPixels = ReplicateImage(MaxWinSize, MaxWinSize, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(MaxWinSize, MaxWinSize, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(MaxWinSize, MaxWinSize, height, width, OldPic.bluePixels);
+            int newHeight = height + MaxWinSize;
+            int newWidth = width + MaxWinSize;
+            byte[,] NewPicR = new byte[newHeight, newWidth];
+            byte[,] NewPicG = new byte[newHeight, newWidth];
+            byte[,] NewPicB = new byte[newHeight, newWidth];
+            if (type == 0) AdaptiveMedianFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, NewPicR, NewPicG, NewPicB);
+            else AdaptiveMeanFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, NewPicR, NewPicG, NewPicB);
+            OldPic.redPixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicR);
+            OldPic.greenPixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicG);
+            OldPic.bluePixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicB);
         }
-        private void CountingSort(byte[] Array, int ArrayLength, byte[] SortedArray, int Max)
+        private void AdaptiveMedianFilter(int height, int width, int MaxWinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, byte[,] NewPicR, byte[,] NewPicG, byte[,] NewPicB)
         {
-            int[] ArrayAux = new int[Max + 1];
-            for (int i = 0; i <= Max; i++)
-                ArrayAux[i] = 0;
-            for (int i = 0; i < ArrayLength; i++)
-                ArrayAux[Array[i]]++;
-            for (int i = 1; i <= Max; i++)
-                ArrayAux[i] += ArrayAux[i - 1];
-            for (int i = ArrayLength - 1; i >= 0; i--)
+            for (int i = 0; i < height; i++)
             {
-                SortedArray[ArrayAux[Array[i]] - 1] = Array[i];
-                ArrayAux[Array[i]]--;
+                for (int j = 0; j < width; j++)
+                {
+                    bool repeat = false;
+                    for (int h = 3; h <= MaxWinSize; h += 2)
+                    {
+                        int M = (h - 1) / 2, N = (h - 1) / 2, FSize = h * h;
+                        NewPicR[i + M, j + N] = repRPixels[i + M, j + N];
+                        NewPicG[i + M, j + N] = repGPixels[i + M, j + N];
+                        NewPicB[i + M, j + N] = repBPixels[i + M, j + N];
+                        byte[] R = new byte[FSize];
+                        byte[] G = new byte[FSize];
+                        byte[] B = new byte[FSize];
+                        int[] intPixel = new int[FSize];
+                        int F = 0, MaxPixel = int.MinValue, MinPixel = int.MaxValue;
+                        for (int c = 0; c < h; c++)
+                        {
+                            for (int k = 0; k < h; k++)
+                            {
+                                R[F] = repRPixels[i + c, j + k];
+                                G[F] = repGPixels[i + c, j + k];
+                                B[F] = repBPixels[i + c, j + k];
+                                intPixel[F] = BitMixed(R[F], G[F], B[F]);
+                                MaxPixel = Math.Max(MaxPixel, intPixel[F]);
+                                MinPixel = Math.Min(MinPixel, intPixel[F]);
+                                F++;
+                            }
+                        }
+                        int Center = intPixel[FSize / 2];
+                        CountingSort(intPixel, R, G, B, FSize, MaxPixel);
+                        if (intPixel[FSize / 2] > MinPixel && intPixel[FSize / 2] < MaxPixel)
+                        {
+                            if (!(Center > MinPixel && Center < MaxPixel))
+                            {
+                                NewPicR[i + M, j + N] = R[FSize / 2];
+                                NewPicG[i + M, j + N] = G[FSize / 2];
+                                NewPicB[i + M, j + N] = B[FSize / 2];
+                            }
+                        }
+                        else
+                        {
+                            repeat = true;
+                        }
+                        if (repeat == false)
+                            break;
+                    }
+                }
             }
         }
+        private void AdaptiveMeanFilter(int height, int width, int MaxWinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, byte[,] NewPicR, byte[,] NewPicG, byte[,] NewPicB)
+        {
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    bool repeat = false;
+                    for (int h = 3; h <= MaxWinSize; h += 2)
+                    {
+                        double Power = (double)(1 / (double)((double)h * (double)h));
+                        int M = (h - 1) / 2, N = (h - 1) / 2, FSize = h * h;
+                        NewPicR[i + M, j + N] = repRPixels[i + M, j + N];
+                        NewPicG[i + M, j + N] = repGPixels[i + M, j + N];
+                        NewPicB[i + M, j + N] = repBPixels[i + M, j + N];
+                        double Rmul = 1;
+                        double Gmul = 1;
+                        double Bmul = 1;
+                        int MaxPixel = int.MinValue, MinPixel = int.MaxValue;
+                        for (int c = 0; c < h; c++)
+                        {
+                            for (int k = 0; k < h; k++)
+                            {
+                                Rmul *= (double)repRPixels[i + c, j + k];
+                                Gmul *= (double)repGPixels[i + c, j + k];
+                                Bmul *= (double)repBPixels[i + c, j + k];
+                                int temp = BitMixed(repRPixels[i + c, j + k], repRPixels[i + c, j + k], repRPixels[i + c, j + k]);
+                                MaxPixel = Math.Max(MaxPixel, temp);
+                                MinPixel = Math.Min(MinPixel, temp);
+                            }
+                        }
+                        int rCenter = repRPixels[i + (h / 2), j + (h / 2)];
+                        int gCenter = repGPixels[i + (h / 2), j + (h / 2)];
+                        int bCenter = repBPixels[i + (h / 2), j + (h / 2)];
+                        int Center = BitMixed((byte)rCenter, (byte)gCenter, (byte)bCenter);
+                        double rPiX = (Math.Pow(Rmul, Power));
+                        double gPiX = (Math.Pow(Gmul, Power));
+                        double bPiX = (Math.Pow(Bmul, Power));
+                        int Pix = BitMixed((byte)Rmul, (byte)gPiX, (byte)bPiX);
+
+                        if (Pix > MinPixel && Pix < MaxPixel)
+                        {
+                            if (!(Center > MinPixel && Center < MaxPixel))
+                            {
+                                NewPicR[i + M, j + N] = (byte)rPiX;
+                                NewPicG[i + M, j + N] = (byte)gPiX;
+                                NewPicB[i + M, j + N] = (byte)bPiX;
+                            }
+                        }
+                        else
+                        {
+                            repeat = true;
+                        }
+                        if (repeat == false)
+                            break;
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

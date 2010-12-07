@@ -37,6 +37,9 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +119,7 @@
             this.maximumFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.midPointFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alphaTrimmedMeanFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adaptiveMedianFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandRejectFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idealToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,6 +130,9 @@
             this.idealToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.notchPassFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idealToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.adaptiveFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medianFilterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.meanFilterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.matlabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertToFrequencyDomainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertToSpatialDomainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,7 +158,6 @@
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.printPreviewToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -175,7 +181,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.InputPanel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.adaptiveMedianFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -215,6 +220,9 @@
             this.toolStripSeparator3,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.closeToolStripMenuItem,
+            this.closeAToolStripMenuItem,
             this.toolStripSeparator4,
             this.exitToolStripMenuItem});
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
@@ -228,7 +236,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -238,14 +246,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(153, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -253,26 +261,47 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(153, 6);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // closeAToolStripMenuItem
+            // 
+            this.closeAToolStripMenuItem.Name = "closeAToolStripMenuItem";
+            this.closeAToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.closeAToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.closeAToolStripMenuItem.Text = "Close All";
+            this.closeAToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(153, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -643,14 +672,14 @@
             // meanFilterToolStripMenuItem
             // 
             this.meanFilterToolStripMenuItem.Name = "meanFilterToolStripMenuItem";
-            this.meanFilterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meanFilterToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.meanFilterToolStripMenuItem.Text = "Mean Filter";
             this.meanFilterToolStripMenuItem.Click += new System.EventHandler(this.meanFilterToolStripMenuItem_Click);
             // 
             // gaussianFilterToolStripMenuItem
             // 
             this.gaussianFilterToolStripMenuItem.Name = "gaussianFilterToolStripMenuItem";
-            this.gaussianFilterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gaussianFilterToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.gaussianFilterToolStripMenuItem.Text = "Gaussian Filter";
             this.gaussianFilterToolStripMenuItem.Click += new System.EventHandler(this.gaussianFilterToolStripMenuItem_Click);
             // 
@@ -823,7 +852,8 @@
             this.geometricMeanFilterToolStripMenuItem,
             this.orderStatisticsFiltersToolStripMenuItem,
             this.bandFiltersToolStripMenuItem,
-            this.notchFiltersToolStripMenuItem});
+            this.notchFiltersToolStripMenuItem,
+            this.adaptiveFiltersToolStripMenuItem});
             this.removingNoiseToolStripMenuItem.Name = "removingNoiseToolStripMenuItem";
             this.removingNoiseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.removingNoiseToolStripMenuItem.Text = "Removing Noise";
@@ -898,6 +928,12 @@
             this.alphaTrimmedMeanFilterToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.alphaTrimmedMeanFilterToolStripMenuItem.Text = "Alpha-Trimmed Mean Filter";
             this.alphaTrimmedMeanFilterToolStripMenuItem.Click += new System.EventHandler(this.alphaTrimmedMeanFilterToolStripMenuItem_Click);
+            // 
+            // adaptiveMedianFilterToolStripMenuItem
+            // 
+            this.adaptiveMedianFilterToolStripMenuItem.Name = "adaptiveMedianFilterToolStripMenuItem";
+            this.adaptiveMedianFilterToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.adaptiveMedianFilterToolStripMenuItem.Text = "Adaptive Median Filter";
             // 
             // bandFiltersToolStripMenuItem
             // 
@@ -976,6 +1012,29 @@
             this.idealToolStripMenuItem3.Size = new System.Drawing.Size(98, 22);
             this.idealToolStripMenuItem3.Text = "Ideal";
             this.idealToolStripMenuItem3.Click += new System.EventHandler(this.idealToolStripMenuItem3_Click);
+            // 
+            // adaptiveFiltersToolStripMenuItem
+            // 
+            this.adaptiveFiltersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.medianFilterToolStripMenuItem1,
+            this.meanFilterToolStripMenuItem1});
+            this.adaptiveFiltersToolStripMenuItem.Name = "adaptiveFiltersToolStripMenuItem";
+            this.adaptiveFiltersToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.adaptiveFiltersToolStripMenuItem.Text = "Adaptive Filters";
+            // 
+            // medianFilterToolStripMenuItem1
+            // 
+            this.medianFilterToolStripMenuItem1.Name = "medianFilterToolStripMenuItem1";
+            this.medianFilterToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.medianFilterToolStripMenuItem1.Text = "Median Filter";
+            this.medianFilterToolStripMenuItem1.Click += new System.EventHandler(this.medianFilterToolStripMenuItem1_Click);
+            // 
+            // meanFilterToolStripMenuItem1
+            // 
+            this.meanFilterToolStripMenuItem1.Name = "meanFilterToolStripMenuItem1";
+            this.meanFilterToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.meanFilterToolStripMenuItem1.Text = "Mean Filter";
+            this.meanFilterToolStripMenuItem1.Click += new System.EventHandler(this.meanFilterToolStripMenuItem1_Click);
             // 
             // matlabToolStripMenuItem
             // 
@@ -1186,15 +1245,6 @@
             this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.openToolStripButton.Text = "Open";
             // 
-            // saveToolStripButton
-            // 
-            this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
-            this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
-            this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.saveToolStripButton.Text = "Save";
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -1255,6 +1305,8 @@
             this.tabControl1.TabIndex = 9;
             this.tabControl1.Visible = false;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.tabControl1_ControlAdded);
+            this.tabControl1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.tabControl1_ControlRemoved);
             // 
             // tabControl2
             // 
@@ -1419,13 +1471,6 @@
             this.panel3.Size = new System.Drawing.Size(296, 258);
             this.panel3.TabIndex = 0;
             // 
-            // adaptiveMedianFilterToolStripMenuItem
-            // 
-            this.adaptiveMedianFilterToolStripMenuItem.Name = "adaptiveMedianFilterToolStripMenuItem";
-            this.adaptiveMedianFilterToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.adaptiveMedianFilterToolStripMenuItem.Text = "Adaptive Median Filter";
-            this.adaptiveMedianFilterToolStripMenuItem.Click += new System.EventHandler(this.adaptiveMedianFilterToolStripMenuItem_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1439,6 +1484,7 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Home";
@@ -1501,7 +1547,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpMenu;
         private System.Windows.Forms.ToolStripButton newToolStripButton;
         private System.Windows.Forms.ToolStripButton openToolStripButton;
-        private System.Windows.Forms.ToolStripButton saveToolStripButton;
         private System.Windows.Forms.ToolStripButton printToolStripButton;
         private System.Windows.Forms.ToolStripButton printPreviewToolStripButton;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
@@ -1607,5 +1652,11 @@
         private System.Windows.Forms.ToolStripMenuItem idealToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem periodicNoiseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adaptiveMedianFilterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adaptiveFiltersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem medianFilterToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem meanFilterToolStripMenuItem1;
     }
 }

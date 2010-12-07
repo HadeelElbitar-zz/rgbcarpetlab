@@ -18,7 +18,7 @@ namespace ImageProcessingAssignment1
 {
     public partial class Home : Form
     {
-        //private int childFormNumber = 0;
+        #region Form Related
         List<PictureInfo> PicturesList;
         GroupBox inputGroupBox;
         public Home()
@@ -49,9 +49,11 @@ namespace ImageProcessingAssignment1
             inputGroupBox.Location = new System.Drawing.Point(7, 5);
             inputGroupBox.Size = new System.Drawing.Size(280, 240);
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-
+        
+        #region UpdateForm
         //Display Image
         private void DisplayImage(PictureInfo pictureInfo)
         {
@@ -139,26 +141,27 @@ namespace ImageProcessingAssignment1
             zedGraphControl1.AxisChange();
             zedGraphControl1.Invalidate();
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
-
-
-        private void openToolStripButton1_Click(object sender, EventArgs e)
+        #region MDIMenuItems
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)//Close
         {
-
+            int PicIndex = tabControl1.SelectedIndex;
+            tabControl1.TabPages.RemoveAt(PicIndex);
+            if (tabControl1.TabPages.Count > 0 && PicIndex != 0)
+                tabControl1.SelectedIndex = PicIndex - 1;
+            PicturesList.RemoveAt(PicIndex);
         }
-
-        private void newToolStripButton1_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)//CloseAll
         {
-
+            tabControl1.TabPages.Clear();
+            tabControl1.Visible = false;
+            PicturesList.Clear();
+            zedGraphControl1.GraphPane.CurveList.Clear();
+            zedGraphControl1.Visible = false;
         }
-
-        private void saveToolStripButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         //Open Image
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -294,9 +297,47 @@ namespace ImageProcessingAssignment1
             }
         }
 
+        private void tabControl1_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            if (tabControl1.TabPages.Count == 0)
+                DisableMenus();
+        }
+        private void tabControl1_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+                EnableMenus();
+        }
+        private void DisableMenus()
+        {
+            imageToolStripMenuItem.Visible = false;
+            histogramToolStripMenuItem2.Enabled = false;
+            filtersToolStripMenuItem.Enabled = false;
+            matlabToolStripMenuItem.Enabled = false;
+            addNoiseToolStripMenuItem.Enabled = false;
+            saveAsToolStripMenuItem.Enabled = false;
+            saveToolStripMenuItem.Enabled = false;
+            closeAllToolStripMenuItem.Enabled = false;
+            closeToolStripMenuItem.Enabled = false;
+            saveToolStripButton1.Enabled = false;
+        }
+        private void EnableMenus()
+        {
+            imageToolStripMenuItem.Enabled = false;
+            histogramToolStripMenuItem2.Enabled = false;
+            filtersToolStripMenuItem.Enabled = false;
+            matlabToolStripMenuItem.Enabled = false;
+            addNoiseToolStripMenuItem.Enabled = false;
+            saveAsToolStripMenuItem.Enabled = false;
+            saveToolStripMenuItem.Enabled = false;
+            closeAllToolStripMenuItem.Enabled = false;
+            closeToolStripMenuItem.Enabled = false;
+            saveToolStripButton1.Enabled = false;
+        }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        //Image operations
+
+        #region Image operations
         //Translating
         private void translateToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -486,6 +527,7 @@ namespace ImageProcessingAssignment1
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
+        //In Other Forms
         //Brightness/Contrast
         private void brightnessContrastToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -530,9 +572,11 @@ namespace ImageProcessingAssignment1
             HG.Show();
         }
 
+        #endregion
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
-        //Histogram Controls
+        #region Histogram Controls
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -557,10 +601,11 @@ namespace ImageProcessingAssignment1
         {
             UpdateHistogram(PicturesList[tabControl1.SelectedIndex]);
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
-        //Converting between Spatial & Frequency Domains        
+        #region Converting between Spatial & Frequency Domains
         private void convertToSpatialDomainToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int picIndex = tabControl1.SelectedIndex;
@@ -585,9 +630,11 @@ namespace ImageProcessingAssignment1
             else
                 MessageBox.Show("Image must be in spatial domain..");
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        //Filters
+        
+        #region Filters
 
         //Mean Filter
         private void meanFilterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1182,8 +1229,256 @@ namespace ImageProcessingAssignment1
             DisplayImage(PicturesList[tabControl1.SelectedIndex]);
         }
 
+
+        private void idealToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Band Reject Filter";
+            //D Text Box
+            TextBox dTxt = new TextBox();
+            dTxt.Location = new System.Drawing.Point(15, 42);
+            dTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(dTxt);
+            //D Label
+            System.Windows.Forms.Label dLabel = new System.Windows.Forms.Label();
+            dLabel.Location = new System.Drawing.Point(12, 26);
+            dLabel.Text = "D";
+            inputGroupBox.Controls.Add(dLabel);
+            //W Text Box
+            TextBox nTxt = new TextBox();
+            nTxt.Location = new System.Drawing.Point(158, 42);
+            nTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(nTxt);
+            //W Label
+            System.Windows.Forms.Label nLabel = new System.Windows.Forms.Label();
+            nLabel.Location = new System.Drawing.Point(155, 26);
+            nLabel.Text = "Band Width";
+            inputGroupBox.Controls.Add(nLabel);
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 85);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealBandRejectFilter_Click(sender1, e1, dTxt, nTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void ApplyIdealBandRejectFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
+        {
+            double D = double.Parse(dTxt.Text);
+            double w = double.Parse(nTxt.Text);
+            Filter filter = new Filter();
+            filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 0, D, w);
+            DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+        }
+
+        private void idealToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Band Reject Filter";
+            //D Text Box
+            TextBox dTxt = new TextBox();
+            dTxt.Location = new System.Drawing.Point(15, 42);
+            dTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(dTxt);
+            //D Label
+            System.Windows.Forms.Label dLabel = new System.Windows.Forms.Label();
+            dLabel.Location = new System.Drawing.Point(12, 26);
+            dLabel.Text = "D";
+            inputGroupBox.Controls.Add(dLabel);
+            //W Text Box
+            TextBox nTxt = new TextBox();
+            nTxt.Location = new System.Drawing.Point(158, 42);
+            nTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(nTxt);
+            //W Label
+            System.Windows.Forms.Label nLabel = new System.Windows.Forms.Label();
+            nLabel.Location = new System.Drawing.Point(155, 26);
+            nLabel.Text = "Band Width";
+            inputGroupBox.Controls.Add(nLabel);
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 85);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealBandPassFilter_Click(sender1, e1, dTxt, nTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void ApplyIdealBandPassFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
+        {
+            double D = double.Parse(dTxt.Text);
+            double w = double.Parse(nTxt.Text);
+            Filter filter = new Filter();
+            filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 1, D, w);
+            DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+        }
+
+        private void idealToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Notch Reject Filter";
+            //X Text Box
+            TextBox muTxt = new TextBox();
+            muTxt.Location = new System.Drawing.Point(15, 42);
+            muTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(muTxt);
+            //X Label
+            System.Windows.Forms.Label muLabel = new System.Windows.Forms.Label();
+            muLabel.Location = new System.Drawing.Point(12, 26);
+            muLabel.Text = "X";
+            inputGroupBox.Controls.Add(muLabel);
+            //Y Text Box
+            TextBox sigmaTxt = new TextBox();
+            sigmaTxt.Location = new System.Drawing.Point(158, 42);
+            sigmaTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(sigmaTxt);
+            //Y Label
+            System.Windows.Forms.Label sigmaLabel = new System.Windows.Forms.Label();
+            sigmaLabel.Location = new System.Drawing.Point(155, 26);
+            sigmaLabel.Text = "Y";
+            inputGroupBox.Controls.Add(sigmaLabel);
+
+            //R Text Box
+            TextBox NoisePercentageTxt = new TextBox();
+            NoisePercentageTxt.Location = new System.Drawing.Point(90, 91);
+            NoisePercentageTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(NoisePercentageTxt);
+            //R Label
+            System.Windows.Forms.Label NoisePercentageLabel = new System.Windows.Forms.Label();
+            NoisePercentageLabel.Location = new System.Drawing.Point(87, 75);
+            NoisePercentageLabel.Text = "Radius";
+            inputGroupBox.Controls.Add(NoisePercentageLabel);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 130);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealNotchRejectBtn_Click(sender1, e1, muTxt, sigmaTxt, NoisePercentageTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+
+        }
+        private void ApplyIdealNotchRejectBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            Filter filter = new Filter();
+            filter.NotchFilters(PicturesList[picIndex], 0, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+            DisplayImage(PicturesList[picIndex]);
+        }
+
+        private void idealToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Ideal Notch Pass Filter";
+            //X Text Box
+            TextBox muTxt = new TextBox();
+            muTxt.Location = new System.Drawing.Point(15, 42);
+            muTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(muTxt);
+            //X Label
+            System.Windows.Forms.Label muLabel = new System.Windows.Forms.Label();
+            muLabel.Location = new System.Drawing.Point(12, 26);
+            muLabel.Text = "X";
+            inputGroupBox.Controls.Add(muLabel);
+            //Y Text Box
+            TextBox sigmaTxt = new TextBox();
+            sigmaTxt.Location = new System.Drawing.Point(158, 42);
+            sigmaTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(sigmaTxt);
+            //Y Label
+            System.Windows.Forms.Label sigmaLabel = new System.Windows.Forms.Label();
+            sigmaLabel.Location = new System.Drawing.Point(155, 26);
+            sigmaLabel.Text = "Y";
+            inputGroupBox.Controls.Add(sigmaLabel);
+
+            //R Text Box
+            TextBox NoisePercentageTxt = new TextBox();
+            NoisePercentageTxt.Location = new System.Drawing.Point(90, 91);
+            NoisePercentageTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(NoisePercentageTxt);
+            //R Label
+            System.Windows.Forms.Label NoisePercentageLabel = new System.Windows.Forms.Label();
+            NoisePercentageLabel.Location = new System.Drawing.Point(87, 75);
+            NoisePercentageLabel.Text = "Radius";
+            inputGroupBox.Controls.Add(NoisePercentageLabel);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 130);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealNotchPassBtn_Click(sender1, e1, muTxt, sigmaTxt, NoisePercentageTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+
+        }
+        private void ApplyIdealNotchPassBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            Filter filter = new Filter();
+            filter.NotchFilters(PicturesList[picIndex], 1, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+            DisplayImage(PicturesList[picIndex]);
+        }
+
+        private void medianFilterToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Adaptive Median Filter";
+            //MaxWinSize Text Box
+            TextBox MaxWinSizeTxt = new TextBox();
+            MaxWinSizeTxt.Location = new System.Drawing.Point(15, 42);
+            MaxWinSizeTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(MaxWinSizeTxt);
+            //MaxWinSize Label
+            System.Windows.Forms.Label MaxWinSizeLabel = new System.Windows.Forms.Label();
+            MaxWinSizeLabel.Location = new System.Drawing.Point(12, 26);
+            MaxWinSizeLabel.Size = new System.Drawing.Size(114, 13);
+            MaxWinSizeLabel.Text = "Maximum Window Size";
+            inputGroupBox.Controls.Add(MaxWinSizeLabel);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 90);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveFilterBtn_Click(sender1, e1, MaxWinSizeTxt, 0); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void meanFilterToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Adaptive Mean Filter";
+            //MaxWinSize Text Box
+            TextBox MaxWinSizeTxt = new TextBox();
+            MaxWinSizeTxt.Location = new System.Drawing.Point(15, 42);
+            MaxWinSizeTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(MaxWinSizeTxt);
+            //MaxWinSize Label
+            System.Windows.Forms.Label MaxWinSizeLabel = new System.Windows.Forms.Label();
+            MaxWinSizeLabel.Location = new System.Drawing.Point(12, 26);
+            MaxWinSizeLabel.Size = new System.Drawing.Size(114, 13);
+            MaxWinSizeLabel.Text = "Maximum Window Size";
+            inputGroupBox.Controls.Add(MaxWinSizeLabel);
+
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 90);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveFilterBtn_Click(sender1, e1, MaxWinSizeTxt, 1); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void AdaptiveFilterBtn_Click(object sender, EventArgs e, TextBox MaxWinSize, int type)
+        {
+            int picIndex = tabControl1.SelectedIndex;
+            Filter filter = new Filter();
+            filter.AdaptiveFilter(PicturesList[picIndex], int.Parse(MaxWinSize.Text), type);
+            DisplayImage(PicturesList[picIndex]);
+        }
+
+        #endregion
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        //Adding Noise
+        
+        #region Adding Noise
 
         private void saltPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1480,196 +1775,6 @@ namespace ImageProcessingAssignment1
             Image.AddExponentialNoise(PicturesList[picIndex], int.Parse(aTxt.Text), double.Parse(NoisePercentageTxt.Text));
             DisplayImage(PicturesList[picIndex]);
         }
-        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        //Periodic Filters
-
-        private void idealToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            inputGroupBox.Controls.Clear();
-            inputGroupBox.Text = "Ideal Band Reject Filter";
-            //D Text Box
-            TextBox dTxt = new TextBox();
-            dTxt.Location = new System.Drawing.Point(15, 42);
-            dTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(dTxt);
-            //D Label
-            System.Windows.Forms.Label dLabel = new System.Windows.Forms.Label();
-            dLabel.Location = new System.Drawing.Point(12, 26);
-            dLabel.Text = "D";
-            inputGroupBox.Controls.Add(dLabel);
-            //W Text Box
-            TextBox nTxt = new TextBox();
-            nTxt.Location = new System.Drawing.Point(158, 42);
-            nTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(nTxt);
-            //W Label
-            System.Windows.Forms.Label nLabel = new System.Windows.Forms.Label();
-            nLabel.Location = new System.Drawing.Point(155, 26);
-            nLabel.Text = "Band Width";
-            inputGroupBox.Controls.Add(nLabel);
-            //Button
-            Button applyBtn = new Button();
-            applyBtn.Text = "Apply";
-            applyBtn.Location = new System.Drawing.Point(102, 85);
-            applyBtn.Size = new System.Drawing.Size(75, 23);
-            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealBandRejectFilter_Click(sender1, e1, dTxt, nTxt); };
-            inputGroupBox.Controls.Add(applyBtn);
-        }
-        private void ApplyIdealBandRejectFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
-        {
-            double D = double.Parse(dTxt.Text);
-            double w = double.Parse(nTxt.Text);
-            Filter filter = new Filter();
-            filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 0, D, w);
-            DisplayImage(PicturesList[tabControl1.SelectedIndex]);
-        }
-
-        private void idealToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            inputGroupBox.Controls.Clear();
-            inputGroupBox.Text = "Ideal Band Reject Filter";
-            //D Text Box
-            TextBox dTxt = new TextBox();
-            dTxt.Location = new System.Drawing.Point(15, 42);
-            dTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(dTxt);
-            //D Label
-            System.Windows.Forms.Label dLabel = new System.Windows.Forms.Label();
-            dLabel.Location = new System.Drawing.Point(12, 26);
-            dLabel.Text = "D";
-            inputGroupBox.Controls.Add(dLabel);
-            //W Text Box
-            TextBox nTxt = new TextBox();
-            nTxt.Location = new System.Drawing.Point(158, 42);
-            nTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(nTxt);
-            //W Label
-            System.Windows.Forms.Label nLabel = new System.Windows.Forms.Label();
-            nLabel.Location = new System.Drawing.Point(155, 26);
-            nLabel.Text = "Band Width";
-            inputGroupBox.Controls.Add(nLabel);
-            //Button
-            Button applyBtn = new Button();
-            applyBtn.Text = "Apply";
-            applyBtn.Location = new System.Drawing.Point(102, 85);
-            applyBtn.Size = new System.Drawing.Size(75, 23);
-            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealBandPassFilter_Click(sender1, e1, dTxt, nTxt); };
-            inputGroupBox.Controls.Add(applyBtn);
-        }
-        private void ApplyIdealBandPassFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
-        {
-            double D = double.Parse(dTxt.Text);
-            double w = double.Parse(nTxt.Text);
-            Filter filter = new Filter();
-            filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 1, D, w);
-            DisplayImage(PicturesList[tabControl1.SelectedIndex]);
-        }
-
-        private void idealToolStripMenuItem4_Click(object sender, EventArgs e)
-        {
-            inputGroupBox.Controls.Clear();
-            inputGroupBox.Text = "Ideal Notch Reject Filter";
-            //X Text Box
-            TextBox muTxt = new TextBox();
-            muTxt.Location = new System.Drawing.Point(15, 42);
-            muTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(muTxt);
-            //X Label
-            System.Windows.Forms.Label muLabel = new System.Windows.Forms.Label();
-            muLabel.Location = new System.Drawing.Point(12, 26);
-            muLabel.Text = "X";
-            inputGroupBox.Controls.Add(muLabel);
-            //Y Text Box
-            TextBox sigmaTxt = new TextBox();
-            sigmaTxt.Location = new System.Drawing.Point(158, 42);
-            sigmaTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(sigmaTxt);
-            //Y Label
-            System.Windows.Forms.Label sigmaLabel = new System.Windows.Forms.Label();
-            sigmaLabel.Location = new System.Drawing.Point(155, 26);
-            sigmaLabel.Text = "Y";
-            inputGroupBox.Controls.Add(sigmaLabel);
-
-            //R Text Box
-            TextBox NoisePercentageTxt = new TextBox();
-            NoisePercentageTxt.Location = new System.Drawing.Point(90, 91);
-            NoisePercentageTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(NoisePercentageTxt);
-            //R Label
-            System.Windows.Forms.Label NoisePercentageLabel = new System.Windows.Forms.Label();
-            NoisePercentageLabel.Location = new System.Drawing.Point(87, 75);
-            NoisePercentageLabel.Text = "Radius";
-            inputGroupBox.Controls.Add(NoisePercentageLabel);
-
-            //Button
-            Button applyBtn = new Button();
-            applyBtn.Text = "Apply";
-            applyBtn.Location = new System.Drawing.Point(102, 130);
-            applyBtn.Size = new System.Drawing.Size(75, 23);
-            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealNotchRejectBtn_Click(sender1, e1, muTxt, sigmaTxt, NoisePercentageTxt); };
-            inputGroupBox.Controls.Add(applyBtn);
-
-        }
-        private void ApplyIdealNotchRejectBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
-        {
-            int picIndex = tabControl1.SelectedIndex;
-            Filter filter = new Filter();
-            filter.NotchFilters(PicturesList[picIndex], 0, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
-            DisplayImage(PicturesList[picIndex]);
-        }
-
-        private void idealToolStripMenuItem3_Click(object sender, EventArgs e)
-        {
-            inputGroupBox.Controls.Clear();
-            inputGroupBox.Text = "Ideal Notch Pass Filter";
-            //X Text Box
-            TextBox muTxt = new TextBox();
-            muTxt.Location = new System.Drawing.Point(15, 42);
-            muTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(muTxt);
-            //X Label
-            System.Windows.Forms.Label muLabel = new System.Windows.Forms.Label();
-            muLabel.Location = new System.Drawing.Point(12, 26);
-            muLabel.Text = "X";
-            inputGroupBox.Controls.Add(muLabel);
-            //Y Text Box
-            TextBox sigmaTxt = new TextBox();
-            sigmaTxt.Location = new System.Drawing.Point(158, 42);
-            sigmaTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(sigmaTxt);
-            //Y Label
-            System.Windows.Forms.Label sigmaLabel = new System.Windows.Forms.Label();
-            sigmaLabel.Location = new System.Drawing.Point(155, 26);
-            sigmaLabel.Text = "Y";
-            inputGroupBox.Controls.Add(sigmaLabel);
-
-            //R Text Box
-            TextBox NoisePercentageTxt = new TextBox();
-            NoisePercentageTxt.Location = new System.Drawing.Point(90, 91);
-            NoisePercentageTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(NoisePercentageTxt);
-            //R Label
-            System.Windows.Forms.Label NoisePercentageLabel = new System.Windows.Forms.Label();
-            NoisePercentageLabel.Location = new System.Drawing.Point(87, 75);
-            NoisePercentageLabel.Text = "Radius";
-            inputGroupBox.Controls.Add(NoisePercentageLabel);
-
-            //Button
-            Button applyBtn = new Button();
-            applyBtn.Text = "Apply";
-            applyBtn.Location = new System.Drawing.Point(102, 130);
-            applyBtn.Size = new System.Drawing.Size(75, 23);
-            applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyIdealNotchPassBtn_Click(sender1, e1, muTxt, sigmaTxt, NoisePercentageTxt); };
-            inputGroupBox.Controls.Add(applyBtn);
-
-        }
-        private void ApplyIdealNotchPassBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
-        {
-            int picIndex = tabControl1.SelectedIndex;
-            Filter filter = new Filter();
-            filter.NotchFilters(PicturesList[picIndex], 1, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
-            DisplayImage(PicturesList[picIndex]);
-        }
 
         private void periodicNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1758,38 +1863,7 @@ namespace ImageProcessingAssignment1
             DisplayImage(PicturesList[picIndex]);
         }
 
-        private void adaptiveMedianFilterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            inputGroupBox.Controls.Clear();
-            inputGroupBox.Text = "Adaptive Median Filter";
-            //MaxWinSize Text Box
-            TextBox MaxWinSizeTxt = new TextBox();
-            MaxWinSizeTxt.Location = new System.Drawing.Point(15, 42);
-            MaxWinSizeTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(MaxWinSizeTxt);
-            //MaxWinSize Label
-            System.Windows.Forms.Label MaxWinSizeLabel = new System.Windows.Forms.Label();
-            MaxWinSizeLabel.Location = new System.Drawing.Point(12, 26);
-            MaxWinSizeLabel.Text = "Maximum Window Size";
-            inputGroupBox.Controls.Add(MaxWinSizeLabel);
-
-            //Button
-            Button applyBtn = new Button();
-            applyBtn.Text = "Apply";
-            applyBtn.Location = new System.Drawing.Point(102, 90);
-            applyBtn.Size = new System.Drawing.Size(75, 23);
-            applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveMedianFilterBtn_Click(sender1, e1, MaxWinSizeTxt); };
-            inputGroupBox.Controls.Add(applyBtn);
-        }
-        private void AdaptiveMedianFilterBtn_Click(object sender, EventArgs e, TextBox MaxWinSize)
-        {
-            int picIndex = tabControl1.SelectedIndex;
-            Filter filter = new Filter();
-            filter.AdaptiveMedianFilter(PicturesList[picIndex], int.Parse(MaxWinSize.Text));
-            DisplayImage(PicturesList[picIndex]);
-        }
-
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

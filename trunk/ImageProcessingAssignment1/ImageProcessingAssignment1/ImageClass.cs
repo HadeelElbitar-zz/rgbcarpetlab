@@ -14,7 +14,7 @@ namespace ImageProcessingAssignment1
 {
     class ImageClass
     {
-        //Open Image
+        #region Open Image
         public void openBmpJpeg(string picPath, ref PictureInfo newPictureItem, string PictureName, PictureBox picBox)
         {
             Bitmap Bmp = new Bitmap(picPath);
@@ -138,10 +138,11 @@ namespace ImageProcessingAssignment1
             }
             FS.Close();
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
-        //Save as
+        #region Save as
         public void SaveAsPPM(string PicturePath, PictureInfo pic, int FilterIndex)
         {
             FileStream FS = new FileStream(PicturePath, FileMode.Create);
@@ -202,10 +203,11 @@ namespace ImageProcessingAssignment1
             }
             catch { }
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        //Image operations
 
+        #region Image operations
         public void TranslateImage(PictureInfo pic, int xTranslation, int yTranslation)
         {
             int height = pic.height;
@@ -638,10 +640,11 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-
-        //Arithmetic Operations
+        
+        #region Arithmetic Operations
         public void AddSubtractTwoPictures(int height, int width, byte[,] fRed, byte[,] fGreen, byte[,] fBlue, byte[,] sRed, byte[,] sGreen, byte[,] sBlue, PictureInfo pic, int operation)
         {
             double rMin = double.MaxValue, rMax = double.MinValue, newMin = 0, newMax = 255;
@@ -727,10 +730,10 @@ namespace ImageProcessingAssignment1
                 for (int j = 0; j < width; j++)
                     temp[i, j] = first[i, j] | second[i, j];
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        //Histogram
-
+        #region Histogram
         public void GetHistogram(ref double[] R, ref double[] G, ref double[] B, PictureInfo pic)
         {
             int NR, NG, NB;
@@ -766,7 +769,11 @@ namespace ImageProcessingAssignment1
             for (int i = 0; i < length; i++)
                 Array[i] = Math.Round((Array[i] / Array[length - 1]) * 255);
         }
+        #endregion
 
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
+        #region Helping Functions
         private void Normalization(int height, int width, double oldMin, double oldMax, double newMax, double newMin, double[,] Array)
         {
             for (int i = 0; i < height; i++)
@@ -801,10 +808,11 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        //Converting between Spatial & frequency domain
 
+        #region Converting between Spatial & frequency domain
         public void ConverttoSpatialDomain(PictureInfo pic)
         {
             int height = pic.height;
@@ -886,10 +894,11 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
-        //Add Noise
+        #region Add Noise
         public void AddSaltPepperNoise(PictureInfo pic, double salt, double pepper)
         {
             if ((salt + pepper) > 100)
@@ -1162,6 +1171,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

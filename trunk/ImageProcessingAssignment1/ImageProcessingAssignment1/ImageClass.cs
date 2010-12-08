@@ -1218,22 +1218,22 @@ namespace ImageProcessingAssignment1
             int size = pic.width * pic.height;
             NormalizeHistogram(ref R, ref G, ref B, size); //P(i)
             //Calculate Cummulative sum P1(k) = sum P(i)
-            double[] CummulateR = new double[255], CummulateG = new double[255], CummulateB = new double[255];
+            double[] CummulateR = new double[256], CummulateG = new double[256], CummulateB = new double[256];
             CummulateR[0] = R[0];
             //CummulateG[0] = G[0];
             //CummulateB[0] = B[0];
-            for (int i = 1; i < 255; i++)
+            for (int i = 1; i <= 255; i++)
             {
                 CummulateR[i] = CummulateR[i - 1] + R[i];
                // CummulateG[i] = CummulateG[i - 1] + G[i];
                // CummulateB[i] = CummulateB[i - 1] + B[i];
             }
             //Calculate Cummulative mean m(k) = sum iP(i) a3taked eno kda da bardo el Global mean
-            double[] CummulateMeanR = new double[255], CummulateMeanG = new double[255], CummulateMeanB = new double[255];
+            double[] CummulateMeanR = new double[256], CummulateMeanG = new double[256], CummulateMeanB = new double[256];
             CummulateMeanR[0] = 0;
             //CummulateMeanG[0] = 0;
             //CummulateMeanB[0] = 0;
-            for (int i = 1; i < 255; i++)
+            for (int i = 1; i <= 255; i++)
             {
                 CummulateMeanR[i] = CummulateMeanR[i - 1] + R[i] * i;
                 //CummulateMeanG[i] = CummulateMeanG[i - 1] + G[i] * i;
@@ -1243,7 +1243,7 @@ namespace ImageProcessingAssignment1
             double MaxR = int.MinValue, MaxG = int.MinValue, MaxB = int.MinValue;
             int ArraySZ = End - Start + 1;
             double[] SigmaR = new double[ArraySZ], SigmaG = new double[ArraySZ], SigmaB = new double[ArraySZ];
-            for (int i = Start , j = 0; i <= End; i++ , j++)
+            for (int i = Start + 1 , j = 0; i < End; i++ , j++)
             {
                 SigmaR[j] = Math.Pow((CummulateMeanR[254] * CummulateR[i] - CummulateMeanR[i]), 2) / (CummulateR[i] * (1 - CummulateR[i]));
                 if (SigmaR[j] > MaxR)
@@ -1283,7 +1283,7 @@ namespace ImageProcessingAssignment1
             {
                 for (int j = 0; j < pic.width; j++)
                 {
-                    if (pic.redPixels[i, j] < FinalKr)
+                    if (pic.redPixels[i, j] <= FinalKr)
                     {
                         pic.redPixels[i, j] = 0;
                         pic.greenPixels[i, j] = 0;

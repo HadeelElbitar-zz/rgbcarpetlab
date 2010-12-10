@@ -22,7 +22,6 @@ namespace ImageProcessingAssignment1
         public double[,] greenImag;
         public double[,] blueImag;
         public bool frequency;
-
         public PictureInfo()
         {
             frequency = false;
@@ -36,6 +35,26 @@ namespace ImageProcessingAssignment1
             redPixels = _redPixels;
             greenPixels = _greenPixels;
             bluePixels = _bluePixels;
+            frequency = false;
+        }
+        public PictureInfo(PictureInfo pic)
+        {
+            width = pic.width;
+            height = pic.height;
+            name = pic.name;
+            pictureBox = pic.pictureBox;
+            redPixels = new byte[height, width];
+            greenPixels = new byte[height, width];
+            bluePixels = new byte[height, width];
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    redPixels[i, j] = pic.redPixels[i, j];
+                    greenPixels[i, j] = pic.greenPixels[i, j];
+                    bluePixels[i, j] = pic.bluePixels[i, j];
+                }
+            }
             frequency = false;
         }
     }

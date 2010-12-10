@@ -643,7 +643,7 @@ namespace ImageProcessingAssignment1
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        
+
         #region Arithmetic Operations
         public void AddSubtractTwoPictures(int height, int width, byte[,] fRed, byte[,] fGreen, byte[,] fBlue, byte[,] sRed, byte[,] sGreen, byte[,] sBlue, PictureInfo pic, int operation)
         {
@@ -769,7 +769,7 @@ namespace ImageProcessingAssignment1
             for (int i = 0; i < length; i++)
                 Array[i] = Math.Round((Array[i] / Array[length - 1]) * 255);
         }
-        private void NormalizeHistogram(ref double[] R, ref double[] G, ref double[] B , int W_H)
+        private void NormalizeHistogram(ref double[] R, ref double[] G, ref double[] B, int W_H)
         {
             for (int i = 0; i < 255; i++)
             {
@@ -817,7 +817,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        private void getNonZeroIndex(double[] R , double[] G , double[] B, ref int S , ref int F)
+        private void getNonZeroIndex(double[] R, double[] G, double[] B, ref int S, ref int F)
         {
             //int first , last;
             for (int i = 0; i < 255; i++)
@@ -1166,9 +1166,9 @@ namespace ImageProcessingAssignment1
             double[,] Green = new double[height, width];
             double[,] Blue = new double[height, width];
 
-            double rMin=double.MaxValue,rMax=double.MinValue;
-            double gMin=double.MaxValue,gMax=double.MinValue;
-            double bMin=double.MaxValue,bMax=double.MinValue;
+            double rMin = double.MaxValue, rMax = double.MinValue;
+            double gMin = double.MaxValue, gMax = double.MinValue;
+            double bMin = double.MaxValue, bMax = double.MinValue;
 
             for (int i = 0; i < height; i++)
             {
@@ -1179,12 +1179,12 @@ namespace ImageProcessingAssignment1
                     Red[i, j] = (double)(pic.redPixels[i, j]) + Amp * (Math.Sin(x + y));
                     Green[i, j] = (double)(pic.greenPixels[i, j]) + Amp * (Math.Sin(x + y));
                     Blue[i, j] = (double)(pic.bluePixels[i, j]) + Amp * (Math.Sin(x + y));
-                    rMin=Math.Min(rMin,Red[i,j]);
-                    rMax=Math.Max(rMax,Red[i,j]);
-                    gMin=Math.Min(gMin,Red[i,j]);
-                    gMax=Math.Max(gMax,Red[i,j]);
-                    bMin=Math.Min(bMin,Red[i,j]);
-                    bMax=Math.Max(bMax,Red[i,j]);
+                    rMin = Math.Min(rMin, Red[i, j]);
+                    rMax = Math.Max(rMax, Red[i, j]);
+                    gMin = Math.Min(gMin, Red[i, j]);
+                    gMax = Math.Max(gMax, Red[i, j]);
+                    bMin = Math.Min(bMin, Red[i, j]);
+                    bMax = Math.Max(bMax, Red[i, j]);
                 }
             }
             Normalization(height, width, rMin, rMax, 255, 0, Red);
@@ -1217,45 +1217,30 @@ namespace ImageProcessingAssignment1
             //Normalize el Histogram
             int size = pic.width * pic.height;
             NormalizeHistogram(ref R, ref G, ref B, size); //P(i)
-            //Calculate Cummulative sum P1(k) = sum P(i)
             double[] CummulateR = new double[256], CummulateG = new double[256], CummulateB = new double[256];
             CummulateR[0] = R[0];
-            //CummulateG[0] = G[0];
-            //CummulateB[0] = B[0];
             for (int i = 1; i <= 255; i++)
             {
                 CummulateR[i] = CummulateR[i - 1] + R[i];
-               // CummulateG[i] = CummulateG[i - 1] + G[i];
-               // CummulateB[i] = CummulateB[i - 1] + B[i];
             }
-            //Calculate Cummulative mean m(k) = sum iP(i) a3taked eno kda da bardo el Global mean
             double[] CummulateMeanR = new double[256], CummulateMeanG = new double[256], CummulateMeanB = new double[256];
             CummulateMeanR[0] = 0;
-            //CummulateMeanG[0] = 0;
-            //CummulateMeanB[0] = 0;
             for (int i = 1; i <= 255; i++)
             {
                 CummulateMeanR[i] = CummulateMeanR[i - 1] + R[i] * i;
-                //CummulateMeanG[i] = CummulateMeanG[i - 1] + G[i] * i;
-                //CummulateMeanB[i] = CummulateMeanB[i - 1] + B[i] * i;
+
             }
             // get K 
-            double MaxR = int.MinValue, MaxG = int.MinValue, MaxB = int.MinValue;
+            double MaxR = int.MinValue;
             int ArraySZ = End - Start + 1;
             double[] SigmaR = new double[ArraySZ], SigmaG = new double[ArraySZ], SigmaB = new double[ArraySZ];
-            for (int i = Start + 1 , j = 0; i < End; i++ , j++)
+            for (int i = Start + 1, j = 0; i < End; i++, j++)
             {
                 SigmaR[j] = Math.Pow((CummulateMeanR[254] * CummulateR[i] - CummulateMeanR[i]), 2) / (CummulateR[i] * (1 - CummulateR[i]));
                 if (SigmaR[j] > MaxR)
                     MaxR = SigmaR[j];
-                //SigmaG[j] = Math.Pow((CummulateMeanG[254] * CummulateG[i] - CummulateMeanG[i]), 2) / (CummulateG[i] * (1 - CummulateG[i]));
-                //if (SigmaG[j] > MaxG)
-                //    MaxG = SigmaG[j];
-                //SigmaB[j] = Math.Pow((CummulateMeanB[254] * CummulateB[i] - CummulateMeanB[i]), 2) / (CummulateB[i] * (1 - CummulateB[i]));
-                //if (SigmaB[j] > MaxB)
-                //    MaxB = SigmaB[j];
             }
-            int FinalKr = 0, FinalKg = 0, FinalKb = 0, Rcount = 0, Gcount = 0, Bcount = 0;
+            int FinalKr = 0, Rcount = 0;
             for (int i = 0; i < ArraySZ; i++)
             {
                 if (SigmaR[i] == MaxR)
@@ -1263,22 +1248,8 @@ namespace ImageProcessingAssignment1
                     FinalKr += i;
                     Rcount++;
                 }
-                //if (SigmaG[i] == MaxG)
-                //{
-                //    FinalKg += i;
-                //    Gcount++;
-                //}
-                //if (SigmaB[i] == MaxB)
-                //{
-                //    FinalKb += i;
-                //    Bcount++;
-                //}
             }
             FinalKr /= Rcount;
-            //FinalKg /= Gcount;
-            //FinalKb /= Bcount;
-            //Segmkent the picture
-           // double Final = (FinalKr + FinalKb + FinalKg) / 3;
             for (int i = 0; i < pic.height; i++)
             {
                 for (int j = 0; j < pic.width; j++)
@@ -1295,16 +1266,91 @@ namespace ImageProcessingAssignment1
                         pic.greenPixels[i, j] = 255;
                         pic.bluePixels[i, j] = 255;
                     }
-                    //if (pic.greenPixels[i, j] < FinalKg)
-                    //    pic.greenPixels[i, j] = 0;
-                    //else
-                    //    pic.greenPixels[i, j] = 255;
-                    //if (pic.bluePixels[i, j] < FinalKb)
-                    //    pic.bluePixels[i, j] = 0;
-                    //else
-                    //    pic.bluePixels[i, j] = 255;
                 }
             }
+        }
+        public void BasicGlobalThresholding(PictureInfo pic, int Epsilon)
+        {
+            int height = pic.height;
+            int width = pic.width;
+            int L = 256;
+            int Threshold = L / 2, TempThreshold = 0;
+            //int[] pixFreq = new int[L];
+            int firstMean = 0, secondMean = 0, firstSpace = 0, secondSpace = 0;
+            GrayScale(pic);
+            bool repeat = true;
+            while (repeat)
+            {
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        int value = (int)pic.redPixels[i, j];
+                        if ((int)value < Threshold)
+                        {
+                            firstMean += value;
+                            firstSpace++;
+                        }
+                        else
+                        {
+                            secondMean += value;
+                            secondSpace++;
+                        }
+                    }
+                }
+                firstMean /= firstSpace;
+                secondMean /= secondSpace;
+                TempThreshold = (firstMean + secondMean) / 2;
+                if (Math.Abs(TempThreshold - Threshold) <= Epsilon)
+                    repeat = false;
+                Threshold = TempThreshold;
+            }
+            for (int i = 0; i < height; i++)
+                for (int j = 0; j < width; j++)
+                    if (pic.redPixels[i, j] > TempThreshold)
+                        pic.redPixels[i, j] = pic.greenPixels[i, j] = pic.bluePixels[i, j] = 255;
+                    else
+                        pic.redPixels[i, j] = pic.greenPixels[i, j] = pic.bluePixels[i, j] = 0;
+        }
+        public void AdaptiveThresholding(PictureInfo pic, int WinSize, int meanOffset)
+        {
+            int height = pic.height, width = pic.width;
+            int newHeight = height + WinSize, newWidth = width + WinSize;
+            Filter filter = new Filter();
+            GrayScale(pic);
+            byte[,] repRPixels = filter.ReplicateImage(WinSize, WinSize, pic.height, pic.width, pic.redPixels);
+            byte[,] repGPixels = filter.ReplicateImage(WinSize, WinSize, pic.height, pic.width, pic.greenPixels);
+            byte[,] repBPixels = filter.ReplicateImage(WinSize, WinSize, pic.height, pic.width, pic.bluePixels);
+            byte[,] NewPicR = new byte[newHeight, newWidth];
+            byte[,] NewPicG = new byte[newHeight, newWidth];
+            byte[,] NewPicB = new byte[newHeight, newWidth];
+            int M = (WinSize - 1) / 2, N = (WinSize - 1) / 2, Fsize = WinSize * WinSize;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    double sum = 0;
+                    for (int c = 0; c < WinSize; c++)
+                        for (int k = 0; k < WinSize; k++)
+                            sum += (double)repRPixels[i + c, j + k];
+                    sum /= Fsize;
+                    if ((repRPixels[i + M, j + N] - sum) < meanOffset)
+                    {
+                        NewPicR[i + M, j + N] = (byte)255;
+                        NewPicG[i + M, j + N] = (byte)255;
+                        NewPicB[i + M, j + N] = (byte)255;
+                    }
+                    else
+                    {
+                        NewPicR[i + M, j + N] = (byte)0;
+                        NewPicG[i + M, j + N] = (byte)0;
+                        NewPicB[i + M, j + N] = (byte)0;
+                    }
+                }
+            }
+            pic.redPixels = filter.unreplicateImage(WinSize, WinSize, height, width, NewPicR);
+            pic.greenPixels = filter.unreplicateImage(WinSize, WinSize, height, width, NewPicG);
+            pic.bluePixels = filter.unreplicateImage(WinSize, WinSize, height, width, NewPicB);
         }
         #endregion
 

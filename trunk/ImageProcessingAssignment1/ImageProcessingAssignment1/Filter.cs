@@ -12,7 +12,7 @@ namespace ImageProcessingAssignment1
     class Filter
     {
         #region Replicate & Unreplicate
-        private byte[,] ReplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] Array)
+        public byte[,] ReplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] Array)
         {
             int N = (Fheight - 1) / 2, M = (Fwidth - 1) / 2;
             int newHeight = height + Fheight - 1;
@@ -44,7 +44,7 @@ namespace ImageProcessingAssignment1
             }
             return returnArray;
         }
-        private byte[,] unreplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] repArray)
+        public byte[,] unreplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] repArray)
         {
             byte[,] unrepArray = new byte[height, width];
             int N = (Fheight - 1) / 2, M = (Fwidth - 1) / 2;
@@ -1085,22 +1085,22 @@ namespace ImageProcessingAssignment1
                     bool repeat = false;
                     for (int h = 3; h <= MaxWinSize; h += 2)
                     {
-                        double Power = (double)(1 / (double)((double)h * (double)h));
+                        //double Power = (double)(1 / (double)((double)h * (double)h));
                         int M = (h - 1) / 2, N = (h - 1) / 2, FSize = h * h;
                         NewPicR[i + M, j + N] = repRPixels[i + M, j + N];
                         NewPicG[i + M, j + N] = repGPixels[i + M, j + N];
                         NewPicB[i + M, j + N] = repBPixels[i + M, j + N];
-                        double Rmul = 1;
-                        double Gmul = 1;
-                        double Bmul = 1;
+                        double Rmul = 0;
+                        double Gmul = 0;
+                        double Bmul = 0;
                         int MaxPixel = int.MinValue, MinPixel = int.MaxValue;
                         for (int c = 0; c < h; c++)
                         {
                             for (int k = 0; k < h; k++)
                             {
-                                Rmul *= (double)repRPixels[i + c, j + k];
-                                Gmul *= (double)repGPixels[i + c, j + k];
-                                Bmul *= (double)repBPixels[i + c, j + k];
+                                Rmul += (double)repRPixels[i + c, j + k];
+                                Gmul += (double)repGPixels[i + c, j + k];
+                                Bmul += (double)repBPixels[i + c, j + k];
                                 int temp = BitMixed(repRPixels[i + c, j + k], repRPixels[i + c, j + k], repRPixels[i + c, j + k]);
                                 MaxPixel = Math.Max(MaxPixel, temp);
                                 MinPixel = Math.Min(MinPixel, temp);
@@ -1110,11 +1110,10 @@ namespace ImageProcessingAssignment1
                         int gCenter = repGPixels[i + (h / 2), j + (h / 2)];
                         int bCenter = repBPixels[i + (h / 2), j + (h / 2)];
                         int Center = BitMixed((byte)rCenter, (byte)gCenter, (byte)bCenter);
-                        double rPiX = (Math.Pow(Rmul, Power));
-                        double gPiX = (Math.Pow(Gmul, Power));
-                        double bPiX = (Math.Pow(Bmul, Power));
+                        double rPiX = Rmul / h;
+                        double gPiX = Gmul / h;
+                        double bPiX = Bmul / h;
                         int Pix = BitMixed((byte)Rmul, (byte)gPiX, (byte)bPiX);
-
                         if (Pix > MinPixel && Pix < MaxPixel)
                         {
                             if (!(Center > MinPixel && Center < MaxPixel))
@@ -1125,9 +1124,7 @@ namespace ImageProcessingAssignment1
                             }
                         }
                         else
-                        {
                             repeat = true;
-                        }
                         if (repeat == false)
                             break;
                     }

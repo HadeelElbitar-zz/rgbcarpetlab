@@ -69,6 +69,9 @@
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.arithmeticOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quantizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.basicGlobalThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otsuThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramMatchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramEqualizationToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -181,9 +184,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.InputPanel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.basicGlobalThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.otsuThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adaptiveThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -526,6 +527,30 @@
             this.quantizationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.quantizationToolStripMenuItem.Text = "Quantization";
             this.quantizationToolStripMenuItem.Click += new System.EventHandler(this.quantizationToolStripMenuItem_Click_1);
+            // 
+            // segmentationToolStripMenuItem
+            // 
+            this.segmentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.basicGlobalThresholdingToolStripMenuItem,
+            this.otsuThresholdingToolStripMenuItem,
+            this.adaptiveThresholdingToolStripMenuItem});
+            this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
+            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.segmentationToolStripMenuItem.Text = "Segmentation";
+            // 
+            // basicGlobalThresholdingToolStripMenuItem
+            // 
+            this.basicGlobalThresholdingToolStripMenuItem.Name = "basicGlobalThresholdingToolStripMenuItem";
+            this.basicGlobalThresholdingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.basicGlobalThresholdingToolStripMenuItem.Text = "Basic Global Thresholding";
+            this.basicGlobalThresholdingToolStripMenuItem.Click += new System.EventHandler(this.basicGlobalThresholdingToolStripMenuItem_Click);
+            // 
+            // otsuThresholdingToolStripMenuItem
+            // 
+            this.otsuThresholdingToolStripMenuItem.Name = "otsuThresholdingToolStripMenuItem";
+            this.otsuThresholdingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.otsuThresholdingToolStripMenuItem.Text = "Otsu Thresholding";
+            this.otsuThresholdingToolStripMenuItem.Click += new System.EventHandler(this.otsuThresholdingToolStripMenuItem_Click);
             // 
             // histogramToolStripMenuItem2
             // 
@@ -1475,27 +1500,12 @@
             this.panel3.Size = new System.Drawing.Size(296, 258);
             this.panel3.TabIndex = 0;
             // 
-            // segmentationToolStripMenuItem
+            // adaptiveThresholdingToolStripMenuItem
             // 
-            this.segmentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.basicGlobalThresholdingToolStripMenuItem,
-            this.otsuThresholdingToolStripMenuItem});
-            this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
-            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.segmentationToolStripMenuItem.Text = "Segmentation";
-            // 
-            // basicGlobalThresholdingToolStripMenuItem
-            // 
-            this.basicGlobalThresholdingToolStripMenuItem.Name = "basicGlobalThresholdingToolStripMenuItem";
-            this.basicGlobalThresholdingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.basicGlobalThresholdingToolStripMenuItem.Text = "Basic Global Thresholding";
-            // 
-            // otsuThresholdingToolStripMenuItem
-            // 
-            this.otsuThresholdingToolStripMenuItem.Name = "otsuThresholdingToolStripMenuItem";
-            this.otsuThresholdingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.otsuThresholdingToolStripMenuItem.Text = "Otsu Thresholding";
-            this.otsuThresholdingToolStripMenuItem.Click += new System.EventHandler(this.otsuThresholdingToolStripMenuItem_Click);
+            this.adaptiveThresholdingToolStripMenuItem.Name = "adaptiveThresholdingToolStripMenuItem";
+            this.adaptiveThresholdingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.adaptiveThresholdingToolStripMenuItem.Text = "Adaptive Thresholding";
+            this.adaptiveThresholdingToolStripMenuItem.Click += new System.EventHandler(this.adaptiveThresholdingToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -1687,5 +1697,6 @@
         private System.Windows.Forms.ToolStripMenuItem segmentationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem basicGlobalThresholdingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem otsuThresholdingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adaptiveThresholdingToolStripMenuItem;
     }
 }

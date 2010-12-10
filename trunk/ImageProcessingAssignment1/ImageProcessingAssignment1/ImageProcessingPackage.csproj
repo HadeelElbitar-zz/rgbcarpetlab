@@ -74,6 +74,12 @@
     <Compile Include="AddSubtract.Designer.cs">
       <DependentUpon>AddSubtract.cs</DependentUpon>
     </Compile>
+    <Compile Include="Thresholding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Thresholding.Designer.cs">
+      <DependentUpon>Thresholding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filter.cs" />
     <Compile Include="CustomFilter.cs">
       <SubType>Form</SubType>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BrightnessContrastGamma.resx">
       <DependentUpon>BrightnessContrastGamma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Thresholding.resx">
+      <DependentUpon>Thresholding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomFilter.resx">
       <DependentUpon>CustomFilter.cs</DependentUpon>

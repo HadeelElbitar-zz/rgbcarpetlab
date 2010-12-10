@@ -48,11 +48,12 @@ namespace ImageProcessingAssignment1
             InputPanel.Controls.Add(inputGroupBox);
             inputGroupBox.Location = new System.Drawing.Point(7, 5);
             inputGroupBox.Size = new System.Drawing.Size(280, 240);
+            DisableMenus();
         }
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        
+
         #region UpdateForm
         //Display Image
         private void DisplayImage(PictureInfo pictureInfo)
@@ -150,9 +151,19 @@ namespace ImageProcessingAssignment1
         {
             int PicIndex = tabControl1.SelectedIndex;
             tabControl1.TabPages.RemoveAt(PicIndex);
-            if (tabControl1.TabPages.Count > 0 && PicIndex != 0)
-                tabControl1.SelectedIndex = PicIndex - 1;
+
+            if (tabControl1.TabPages.Count > 0)
+            {
+                if (PicIndex != 0)
+                    tabControl1.SelectedIndex = PicIndex - 1;
+            }
+            else
+            {
+                zedGraphControl1.Visible = false;
+                tabControl1.Visible = false;
+            }
             PicturesList.RemoveAt(PicIndex);
+
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)//CloseAll
         {
@@ -162,8 +173,6 @@ namespace ImageProcessingAssignment1
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.Visible = false;
         }
-
-        //Open Image
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -193,6 +202,7 @@ namespace ImageProcessingAssignment1
                     if (!tabControl1.Visible) tabControl1.Visible = true;
                     TabPage tabPage = new TabPage();
                     tabControl1.TabPages.Add(tabPage);
+                    tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
                     tabPage.Controls.Add(PicturesList[index].pictureBox);
                     tabControl1.TabPages[index].Text = PictureName;
                     tabControl1.SelectedIndex = index;
@@ -296,31 +306,17 @@ namespace ImageProcessingAssignment1
                 childForm.Close();
             }
         }
-
         private void tabControl1_ControlRemoved(object sender, ControlEventArgs e)
         {
-            if (tabControl1.TabPages.Count == 0)
+            if (tabControl1.TabPages.Count == 1)
                 DisableMenus();
         }
         private void tabControl1_ControlAdded(object sender, ControlEventArgs e)
         {
-            if (tabControl1.SelectedIndex == 1)
+            if (tabControl1.TabPages.Count == 1)
                 EnableMenus();
         }
         private void DisableMenus()
-        {
-            imageToolStripMenuItem.Visible = false;
-            histogramToolStripMenuItem2.Enabled = false;
-            filtersToolStripMenuItem.Enabled = false;
-            matlabToolStripMenuItem.Enabled = false;
-            addNoiseToolStripMenuItem.Enabled = false;
-            saveAsToolStripMenuItem.Enabled = false;
-            saveToolStripMenuItem.Enabled = false;
-            closeAllToolStripMenuItem.Enabled = false;
-            closeToolStripMenuItem.Enabled = false;
-            saveToolStripButton1.Enabled = false;
-        }
-        private void EnableMenus()
         {
             imageToolStripMenuItem.Enabled = false;
             histogramToolStripMenuItem2.Enabled = false;
@@ -329,9 +325,22 @@ namespace ImageProcessingAssignment1
             addNoiseToolStripMenuItem.Enabled = false;
             saveAsToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = false;
-            closeAllToolStripMenuItem.Enabled = false;
+            closeAToolStripMenuItem.Enabled = false;
             closeToolStripMenuItem.Enabled = false;
             saveToolStripButton1.Enabled = false;
+        }
+        private void EnableMenus()
+        {
+            imageToolStripMenuItem.Enabled = true;
+            histogramToolStripMenuItem2.Enabled = true;
+            filtersToolStripMenuItem.Enabled = true;
+            matlabToolStripMenuItem.Enabled = true;
+            addNoiseToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
+            saveToolStripMenuItem.Enabled = true;
+            closeAToolStripMenuItem.Enabled = true;
+            closeToolStripMenuItem.Enabled = true;
+            saveToolStripButton1.Enabled = true;
         }
         #endregion
 
@@ -633,7 +642,7 @@ namespace ImageProcessingAssignment1
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        
+
         #region Filters
 
         //Mean Filter
@@ -1477,7 +1486,7 @@ namespace ImageProcessingAssignment1
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        
+
         #region Adding Noise
 
         private void saltPepperToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1864,9 +1873,10 @@ namespace ImageProcessingAssignment1
         }
 
         #endregion
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
-        #region Segmentaion
+        #region Segmentation
         //Otsu Thresholding
         private void otsuThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1875,7 +1885,52 @@ namespace ImageProcessingAssignment1
             Image.OtsuSegmentation(PicturesList[picIndex]);
             DisplayImage(PicturesList[picIndex]);
         }
-        #endregion 
+        private void basicGlobalThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int PicIndex = tabControl1.SelectedIndex;
+            Thresholding thresholding = new Thresholding(PicturesList[PicIndex]);
+            thresholding.Show();
+        }
+        private void adaptiveThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            inputGroupBox.Controls.Clear();
+            inputGroupBox.Text = "Adaptive Thresholding";
+            //Epsilon Text Box
+            TextBox WinSizeTxt = new TextBox();
+            WinSizeTxt.Location = new System.Drawing.Point(15, 42);
+            WinSizeTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(WinSizeTxt);
+            //Window Size Label
+            System.Windows.Forms.Label WinSizeLabel = new System.Windows.Forms.Label();
+            WinSizeLabel.Location = new System.Drawing.Point(12, 26);
+            WinSizeLabel.Text = "Window Size";
+            inputGroupBox.Controls.Add(WinSizeLabel);
+            //MeanOffset Text Box
+            TextBox MeanOffsetTxt = new TextBox();
+            MeanOffsetTxt.Location = new System.Drawing.Point(158, 42);
+            MeanOffsetTxt.Size = new System.Drawing.Size(100, 20);
+            inputGroupBox.Controls.Add(MeanOffsetTxt);
+            //MeanOffset Label
+            System.Windows.Forms.Label MeanOffsetLabel = new System.Windows.Forms.Label();
+            MeanOffsetLabel.Location = new System.Drawing.Point(155, 26);
+            MeanOffsetLabel.Text = "Mean Offset";
+            inputGroupBox.Controls.Add(MeanOffsetLabel);
+            //Button
+            Button applyBtn = new Button();
+            applyBtn.Text = "Apply";
+            applyBtn.Location = new System.Drawing.Point(102, 85);
+            applyBtn.Size = new System.Drawing.Size(75, 23);
+            applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveThresholdButton_Click(sender1, e1, WinSizeTxt, MeanOffsetTxt); };
+            inputGroupBox.Controls.Add(applyBtn);
+        }
+        private void AdaptiveThresholdButton_Click(object sender, EventArgs e, TextBox WinSize, TextBox MeanOffset)
+        {
+            int PicIndex = tabControl1.SelectedIndex;
+            ImageClass Image = new ImageClass();
+            Image.AdaptiveThresholding(PicturesList[PicIndex], int.Parse(WinSize.Text), int.Parse(MeanOffset.Text));
+            DisplayImage(PicturesList[PicIndex]);
+        }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

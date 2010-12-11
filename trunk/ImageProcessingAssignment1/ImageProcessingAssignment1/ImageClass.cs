@@ -20,7 +20,7 @@ namespace ImageProcessingAssignment1
             Bitmap Bmp = new Bitmap(picPath);
             int width = Bmp.Width;
             int height = Bmp.Height;
-            newPictureItem = new PictureInfo(width, height, PictureName, picBox, new byte[height, width], new byte[height, width], new byte[height, width]);
+            newPictureItem = new PictureInfo(width, height, PictureName, picPath, picBox, new byte[height, width], new byte[height, width], new byte[height, width]);
             BitmapData bmpData = Bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadOnly, Bmp.PixelFormat);
             unsafe
             {
@@ -101,9 +101,10 @@ namespace ImageProcessingAssignment1
             temp = SR.ReadLine();
             int MaxValue = int.Parse(temp);
             Size_P6 += type.Length + 1;
-            newPictureItem = new PictureInfo(width, height, PictureName, picBox, new byte[height, width], new byte[height, width], new byte[height, width]);
+            newPictureItem = new PictureInfo(width, height, PictureName, picPath, picBox, new byte[height, width], new byte[height, width], new byte[height, width]);
             if (type.ToLower() == "p3")
             {
+                newPictureItem.type = "p3";
                 string Values = SR.ReadToEnd();
                 string[] tempValues = Values.Split(new char[] { ' ' });
                 int ind = 0;
@@ -122,6 +123,7 @@ namespace ImageProcessingAssignment1
             }
             else if (type.ToLower() == "p6")
             {
+                newPictureItem.type = "p6";
                 FS.Position = Size_P6;
                 for (int i = 0; i < height; i++)
                 {
@@ -143,14 +145,14 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region Save as
-        public void SaveAsPPM(string PicturePath, PictureInfo pic, int FilterIndex)
+        public void SaveAsPPM(string PicturePath, PictureInfo pic, string type)
         {
             FileStream FS = new FileStream(PicturePath, FileMode.Create);
             StreamWriter SW = new StreamWriter(FS);
             int height = pic.height;
             int width = pic.width;
             int MaxValue = 255;
-            if (FilterIndex == 3)
+            if (type == "p3")
                 SaveAsP3(SW, height, width, MaxValue, pic);
             else
                 SaveAsP6(FS, height, width, MaxValue, pic);

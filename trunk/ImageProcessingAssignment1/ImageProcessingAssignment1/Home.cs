@@ -215,7 +215,18 @@ namespace ImageProcessingAssignment1
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            int picIndex = tabControl1.SelectedIndex;
+            string type = PicturesList[picIndex].name.Substring(PicturesList[picIndex].name.LastIndexOf('.') + 1);
+            string path=PicturesList[picIndex].path;
+            if (type.ToLower() == "bmp")
+                PicturesList[picIndex].pictureBox.Image.Save(path, ImageFormat.Bmp);
+            else if (type.ToLower() == "jpeg")
+                PicturesList[picIndex].pictureBox.Image.Save(path, ImageFormat.Jpeg);
+            else if (type.ToLower() == "ppm")
+            {
+                ImageClass Image = new ImageClass();
+                Image.SaveAsPPM(path, PicturesList[picIndex], PicturesList[picIndex].type);
+            }
         }
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -247,7 +258,7 @@ namespace ImageProcessingAssignment1
                 else if (PictureDialog.FilterIndex == 3 || PictureDialog.FilterIndex == 4)//PPM-P3-P6
                 {
                     ImageClass Image = new ImageClass();
-                    Image.SaveAsPPM(PicturePath, PicturesList[picIndex], PictureDialog.FilterIndex);
+                    Image.SaveAsPPM(PicturePath, PicturesList[picIndex], PicturesList[picIndex].type);
                 }
             }
             catch { }

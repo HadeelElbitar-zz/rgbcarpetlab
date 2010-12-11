@@ -12,6 +12,7 @@ namespace ImageProcessingAssignment1
         public int height;
         public string name;
         public string path;
+        public string type;
         public PictureBox pictureBox;
         public byte[,] redPixels;
         public byte[,] greenPixels;

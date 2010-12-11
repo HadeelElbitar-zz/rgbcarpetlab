@@ -27,7 +27,7 @@ namespace ImageProcessingAssignment1
             PictureBox pic = new PictureBox();
             pic.Location = new System.Drawing.Point(100, 100);
             pic.Size = new System.Drawing.Size(width, height);
-            picList.Add(new PictureInfo(width, height, "Untitled", pic, new byte[height, width], new byte[height, width], new byte[height, width]));
+            picList.Add(new PictureInfo(width, height, "Untitled", "C:\\Untitled", pic, new byte[height, width], new byte[height, width], new byte[height, width]));
             int index = picList.Count - 1;
 
             if (!tabControl.Visible) tabControl.Visible = true;

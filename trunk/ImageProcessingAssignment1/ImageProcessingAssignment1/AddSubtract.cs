@@ -36,7 +36,7 @@ namespace ImageProcessingAssignment1
                 comboBox2.Items.Add("AND");
                 comboBox2.Items.Add("OR");
                 int index = picList.Count - 1;
-                picList[index] = new PictureInfo(picList[0].width, picList[0].height, "Untitled", picList[index].pictureBox, picList[0].redPixels, picList[0].greenPixels, picList[0].bluePixels);
+                picList[index] = new PictureInfo(picList[0].width, picList[0].height, "Untitled","C:\\Untitled", picList[index].pictureBox, picList[0].redPixels, picList[0].greenPixels, picList[0].bluePixels);
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
                 comboBox3.SelectedIndex = 0;

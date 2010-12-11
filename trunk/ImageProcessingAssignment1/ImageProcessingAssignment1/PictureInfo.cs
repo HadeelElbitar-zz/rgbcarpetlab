@@ -11,6 +11,7 @@ namespace ImageProcessingAssignment1
         public int width;
         public int height;
         public string name;
+        public string path;
         public PictureBox pictureBox;
         public byte[,] redPixels;
         public byte[,] greenPixels;
@@ -26,11 +27,12 @@ namespace ImageProcessingAssignment1
         {
             frequency = false;
         }
-        public PictureInfo(int _width, int _height, string _name, PictureBox _picBox, byte[,] _redPixels, byte[,] _greenPixels, byte[,] _bluePixels)
+        public PictureInfo(int _width, int _height, string _name, string _path, PictureBox _picBox, byte[,] _redPixels, byte[,] _greenPixels, byte[,] _bluePixels)
         {
             width = _width;
             height = _height;
             name = _name;
+            path = _path;
             pictureBox = _picBox;
             redPixels = _redPixels;
             greenPixels = _greenPixels;

@@ -1242,7 +1242,7 @@ namespace ImageProcessingAssignment1
                 if (SigmaR[j] > MaxR)
                     MaxR = SigmaR[j];
             }
-            int FinalKr = 0, Rcount = 0;
+            double FinalKr = 0.0, Rcount = 0.0;
             for (int i = 0; i < ArraySZ; i++)
             {
                 if (SigmaR[i] == MaxR)

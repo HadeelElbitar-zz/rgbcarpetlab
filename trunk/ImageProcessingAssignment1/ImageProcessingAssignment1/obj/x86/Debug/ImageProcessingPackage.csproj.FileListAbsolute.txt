@@ -329,3 +329,6 @@ E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment
 E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
 E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
 E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb

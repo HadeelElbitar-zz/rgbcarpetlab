@@ -45,6 +45,7 @@ namespace ImageProcessingAssignment1
             width = pic.width;
             height = pic.height;
             name = pic.name;
+            path = pic.path;
             pictureBox = pic.pictureBox;
             redPixels = new byte[height, width];
             greenPixels = new byte[height, width];

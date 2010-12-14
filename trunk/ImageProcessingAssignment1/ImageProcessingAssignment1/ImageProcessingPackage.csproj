@@ -134,6 +134,7 @@
     <Compile Include="SplashScreenImage.Designer.cs">
       <DependentUpon>SplashScreenImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UndoRedo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>

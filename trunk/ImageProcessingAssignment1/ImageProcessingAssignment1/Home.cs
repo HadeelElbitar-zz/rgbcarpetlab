@@ -20,7 +20,9 @@ namespace ImageProcessingAssignment1
     {
         #region Form Related
         List<PictureInfo> PicturesList;
+        List<UndoRedo> PicUndoRedo;
         GroupBox inputGroupBox;
+        int TabPagesCount;
         public Home()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace ImageProcessingAssignment1
             t.Start();
             Thread.Sleep(2000);
             PicturesList = new List<PictureInfo>();
+            PicUndoRedo = new List<UndoRedo>();
             t.Abort();
         }
         private void SplashScreen()
@@ -48,6 +51,7 @@ namespace ImageProcessingAssignment1
             InputPanel.Controls.Add(inputGroupBox);
             inputGroupBox.Location = new System.Drawing.Point(7, 5);
             inputGroupBox.Size = new System.Drawing.Size(280, 240);
+            TabPagesCount = 0;
         }
         #endregion
 
@@ -80,7 +84,7 @@ namespace ImageProcessingAssignment1
             bmp.UnlockBits(bmpData);
             pictureInfo.pictureBox.Image = bmp;
             UpdateHistogram(pictureInfo);
-            ImageStatusLabel.Text = pictureInfo.width.ToString() + " X " + pictureInfo.height.ToString() + " || " + pictureInfo.path.ToString() ;
+            ImageStatusLabel.Text = pictureInfo.width.ToString() + " X " + pictureInfo.height.ToString() + " || " + pictureInfo.path.ToString();
         }
         private void UpdateHistogram(PictureInfo pic)
         {
@@ -144,7 +148,7 @@ namespace ImageProcessingAssignment1
         private void MouseWheelZoom(object sender, MouseEventArgs e)
         {
             MessageBox.Show("");
-            int picIndex = tabControl1.SelectedIndex;
+            int picIndex = ImageTabControl.SelectedIndex;
             PicturesList[picIndex].pictureBox.Width = (int)(PicturesList[picIndex].width * e.Delta / 1000);
             PicturesList[picIndex].pictureBox.Height = (int)(PicturesList[picIndex].height * e.Delta / 1000);
         }
@@ -153,8 +157,8 @@ namespace ImageProcessingAssignment1
             ZoomToolStripLabel.Text = "Zoom: " + ratio.ToString() + "%";
             pic.pictureBox.Width = ((ratio * pic.width) / 100);
             pic.pictureBox.Height = ((ratio * pic.height) / 100);
-            int picIndex = tabControl1.SelectedIndex;
-            PicturesList[picIndex].pictureBox.Location = new System.Drawing.Point(tabControl1.TabPages[picIndex].Width / 2 - PicturesList[picIndex].pictureBox.Width / 2, tabControl1.TabPages[picIndex].Height / 2 - PicturesList[picIndex].pictureBox.Height / 2);
+            int picIndex = ImageTabControl.SelectedIndex;
+            PicturesList[picIndex].pictureBox.Location = new System.Drawing.Point(ImageTabControl.TabPages[picIndex].Width / 2 - PicturesList[picIndex].pictureBox.Width / 2, ImageTabControl.TabPages[picIndex].Height / 2 - PicturesList[picIndex].pictureBox.Height / 2);
 
         }
         #endregion
@@ -163,9 +167,30 @@ namespace ImageProcessingAssignment1
 
         #region MDIMenuItems
 
+        private void ImageTabControl_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (TabPagesCount != ImageTabControl.TabPages.Count)
+                TabPagesCount = ImageTabControl.TabPages.Count;
+        }
+
+        private void ImageTabControl_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            if (TabPagesCount != ImageTabControl.TabPages.Count)
+                TabPagesCount = ImageTabControl.TabPages.Count;
+        }
+
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (TabPagesCount > 0)
+            {
+                int picIndex = ImageTabControl.SelectedIndex;
+                if (PicUndoRedo[picIndex].undo.Count > 0)
+                {
+                    PicUndoRedo[picIndex].redo.Push(PicUndoRedo[picIndex].undo.Pop());
+                    PicturesList[picIndex] = new PictureInfo(PicUndoRedo[picIndex].selectedPic);
+                    DisplayImage(PicturesList[picIndex]);
+                }
+            }
         }
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -175,26 +200,26 @@ namespace ImageProcessingAssignment1
         //Zooming
         private void ZoomTrackBar_ValueChanged(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
-                Zoom(PicturesList[tabControl1.SelectedIndex], ZoomTrackBar.Value);
+            if (ImageTabControl.TabPages.Count > 0)
+                Zoom(PicturesList[ImageTabControl.SelectedIndex], ZoomTrackBar.Value);
             else
                 ZoomTrackBar.Value = 5;
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)//Close
         {
-            int PicIndex = tabControl1.SelectedIndex;
-            tabControl1.TabPages.RemoveAt(PicIndex);
+            int PicIndex = ImageTabControl.SelectedIndex;
+            ImageTabControl.TabPages.RemoveAt(PicIndex);
 
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 if (PicIndex != 0)
-                    tabControl1.SelectedIndex = PicIndex - 1;
+                    ImageTabControl.SelectedIndex = PicIndex - 1;
             }
             else
             {
                 zedGraphControl1.Visible = false;
-                tabControl1.Visible = false;
+                ImageTabControl.Visible = false;
                 ImageStatusLabel.Text = "No Image..";
             }
             PicturesList.RemoveAt(PicIndex);
@@ -202,8 +227,8 @@ namespace ImageProcessingAssignment1
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)//CloseAll
         {
-            tabControl1.TabPages.Clear();
-            tabControl1.Visible = false;
+            ImageTabControl.TabPages.Clear();
+            ImageTabControl.Visible = false;
             PicturesList.Clear();
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.Visible = false;
@@ -228,7 +253,7 @@ namespace ImageProcessingAssignment1
                     picBox.SizeMode = PictureBoxSizeMode.Zoom;
                     picBox.MouseWheel += new MouseEventHandler(this.MouseWheelZoom);
                     picBox.BorderStyle = BorderStyle.FixedSingle;
-                    
+ 
                     string PictureName = PicturePath[k].Substring(PicturePath[k].LastIndexOf('\\') + 1);
                     int offset = PictureName.LastIndexOf('.') + 1;
                     string type = PictureName.Substring(offset, PictureName.Length - offset);
@@ -239,13 +264,13 @@ namespace ImageProcessingAssignment1
                         image.OpenImage(PicturePath[k], ref newPictureItem, PictureName, picBox);
                     PicturesList.Add(newPictureItem);
                     int index = PicturesList.Count - 1;
-                    if (!tabControl1.Visible) tabControl1.Visible = true;
+                    if (!ImageTabControl.Visible) ImageTabControl.Visible = true;
                     TabPage tabPage = new TabPage();
-                    tabControl1.TabPages.Add(tabPage);
+                    ImageTabControl.TabPages.Add(tabPage);
                     tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
                     tabPage.Controls.Add(PicturesList[index].pictureBox);
-                    tabControl1.TabPages[index].Text = PictureName;
-                    tabControl1.SelectedIndex = index;
+                    ImageTabControl.TabPages[index].Text = PictureName;
+                    ImageTabControl.SelectedIndex = index;
                     tabPage.AutoScroll = true;
                     tabPage.AllowDrop = true;
                     zedGraphControl1.Visible = true;
@@ -254,12 +279,16 @@ namespace ImageProcessingAssignment1
                     picBox.Location = new System.Drawing.Point(tabPage.Width / 2 - newPictureItem.width / 2, tabPage.Height / 2 - newPictureItem.height / 2);
                 }
                 ZoomTrackBar.Value = 100;
+                PicUndoRedo.Add(new UndoRedo(PicturesList[ImageTabControl.SelectedIndex]));
+                HistoryTabPage.Controls.Clear();
+                HistoryTabPage.Controls.Add(PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox);
+                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.Location = new System.Drawing.Point(5, 5);
             }
             catch { }
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int picIndex = tabControl1.SelectedIndex;
+            int picIndex = ImageTabControl.SelectedIndex;
             string type = PicturesList[picIndex].name.Substring(PicturesList[picIndex].name.LastIndexOf('.') + 1);
             string path = PicturesList[picIndex].path;
             if (type.ToLower() == "bmp")
@@ -274,7 +303,7 @@ namespace ImageProcessingAssignment1
         }
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int picIndex = tabControl1.SelectedIndex;
+            int picIndex = ImageTabControl.SelectedIndex;
             SaveFileDialog PictureDialog = new SaveFileDialog();
             PictureDialog.Filter = "BMP Files (*.bmp)|*.bmp|JPEG Files (*.jpg)|*.jpg|P3 Files (*.ppm)|*.ppm|P6 Files (*.ppm)|*.ppm";
             try
@@ -314,7 +343,7 @@ namespace ImageProcessingAssignment1
         }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewFormInput NFI = new NewFormInput(PicturesList, tabControl1);
+            NewFormInput NFI = new NewFormInput(PicturesList, ImageTabControl);
             NFI.Show();
         }
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
@@ -337,6 +366,11 @@ namespace ImageProcessingAssignment1
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             statusStrip.Visible = statusBarToolStripMenuItem.Checked;
+        }
+
+        private void HistogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            zedGraphControl1.Visible = HistogramToolStripMenuItem.Checked;
         }
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -369,7 +403,7 @@ namespace ImageProcessingAssignment1
         //Translating
         private void translateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Image Taslation";
@@ -404,16 +438,23 @@ namespace ImageProcessingAssignment1
         }
         private void TranslateButton_Click(object sender, EventArgs e, TextBox xTranslation, TextBox yTranslation)
         {
-            int PicIndex = tabControl1.SelectedIndex;
+            int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
+            PicUndoRedo[PicIndex].selectedPic = new PictureInfo(PicturesList[PicIndex]);
             Image.TranslateImage(PicturesList[PicIndex], int.Parse(xTranslation.Text), int.Parse(yTranslation.Text));
+
+            PicUndoRedo[PicIndex].done.Add("Translate");
+            PicUndoRedo[PicIndex].undo.Push("Translate");
+            PicUndoRedo[PicIndex].undoRedoListBox.Items.Add("Translate");
+            PicUndoRedo[PicIndex].undoRedoListBox.SelectedIndex = PicUndoRedo[PicIndex].undoRedoListBox.Items.Count - 1;
+
             DisplayImage(PicturesList[PicIndex]);
         }
 
         //Rotating
         private void rotateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Image Taslation";
@@ -438,7 +479,7 @@ namespace ImageProcessingAssignment1
         }
         private void RotateButton_Click(object sender, EventArgs e, TextBox Theta)
         {
-            int PicIndex = tabControl1.SelectedIndex;
+            int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
             Image.RotateImage(PicturesList[PicIndex], double.Parse(Theta.Text));
             DisplayImage(PicturesList[PicIndex]);
@@ -447,7 +488,7 @@ namespace ImageProcessingAssignment1
         //Shearing
         private void shearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Image Shearing";
@@ -472,7 +513,7 @@ namespace ImageProcessingAssignment1
         }
         private void ShearButton_Click(object sender, EventArgs e, TextBox Shear)
         {
-            int PicIndex = tabControl1.SelectedIndex;
+            int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
             Image.ShearImage(PicturesList[PicIndex], int.Parse(Shear.Text));
             DisplayImage(PicturesList[PicIndex]);
@@ -481,9 +522,9 @@ namespace ImageProcessingAssignment1
         //Flipping
         private void horizontalFlipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.FlipImage(PicturesList[picIndex], 0);
                 DisplayImage(PicturesList[picIndex]);
@@ -491,9 +532,9 @@ namespace ImageProcessingAssignment1
         }
         private void verticalFlipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.FlipImage(PicturesList[picIndex], 1);
                 DisplayImage(PicturesList[picIndex]);
@@ -535,7 +576,7 @@ namespace ImageProcessingAssignment1
         }
         private void ResizeButton_Click(object sender, EventArgs e, TextBox NewHBox, TextBox NewWBox)
         {
-            int PicIndex = tabControl1.SelectedIndex;
+            int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
             Image.ResizeImage(PicturesList[PicIndex], int.Parse(NewHBox.Text), int.Parse(NewWBox.Text));
             DisplayImage(PicturesList[PicIndex]);
@@ -544,9 +585,9 @@ namespace ImageProcessingAssignment1
         //Logical Operations -- NOT
         private void reverseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int PictureIndex = tabControl1.SelectedIndex;
+                int PictureIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.ReverseColors(PicturesList[PictureIndex]);
                 DisplayImage(PicturesList[PictureIndex]);
@@ -556,9 +597,9 @@ namespace ImageProcessingAssignment1
         //Gray Scale
         private void grayScaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int pictureIndex = tabControl1.SelectedIndex;
+                int pictureIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.GrayScale(PicturesList[pictureIndex]);
                 DisplayImage(PicturesList[pictureIndex]);
@@ -568,11 +609,11 @@ namespace ImageProcessingAssignment1
         //Equalization
         private void histogramEqualizationToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.histogramEqualization(PicturesList[picIndex], PicturesList[tabControl1.SelectedIndex]);
+                Image.histogramEqualization(PicturesList[picIndex], PicturesList[ImageTabControl.SelectedIndex]);
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -583,9 +624,9 @@ namespace ImageProcessingAssignment1
         //Brightness/Contrast
         private void brightnessContrastToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Form br = new BrightnessContrastGamma(PicturesList[picIndex]);
                 br.Show();
             }
@@ -594,14 +635,14 @@ namespace ImageProcessingAssignment1
         //Calculations
         private void arithmeticOperationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 PictureBox pic = new PictureBox();
                 pic.Size = new System.Drawing.Size(PicturesList[0].width, PicturesList[0].height);
                 pic.Location = new System.Drawing.Point(100, 100);
                 PicturesList.Add(new PictureInfo());
                 PicturesList[PicturesList.Count - 1].pictureBox = pic;
-                Form Calc = new AddSubtract(PicturesList, tabControl1);
+                Form Calc = new AddSubtract(PicturesList, ImageTabControl);
                 Calc.Show();
             }
         }
@@ -609,9 +650,9 @@ namespace ImageProcessingAssignment1
         //Quantization
         private void quantizationToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                Form br = new Quantization(PicturesList[tabControl1.SelectedIndex]);
+                Form br = new Quantization(PicturesList[ImageTabControl.SelectedIndex]);
                 br.Show();
             }
         }
@@ -619,7 +660,7 @@ namespace ImageProcessingAssignment1
         //Histogram Matching
         private void histogramMatchingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 PictureBox pic = new PictureBox();
                 pic.Location = new System.Drawing.Point(100, 100);
@@ -627,7 +668,7 @@ namespace ImageProcessingAssignment1
                 int count = PicturesList.Count - 1;
                 PicturesList[count].pictureBox = pic;
                 PicturesList[count].name = "untitled";
-                HistogramMathcing HG = new HistogramMathcing(PicturesList, tabControl1);
+                HistogramMathcing HG = new HistogramMathcing(PicturesList, ImageTabControl);
                 HG.Show();
             }
         }
@@ -635,9 +676,9 @@ namespace ImageProcessingAssignment1
         //Binarization
         private void binarizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                Form binarization = new Binarization(PicturesList[tabControl1.SelectedIndex]);
+                Form binarization = new Binarization(PicturesList[ImageTabControl.SelectedIndex]);
                 binarization.Show();
             }
         }
@@ -650,27 +691,29 @@ namespace ImageProcessingAssignment1
         {
             try
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 UpdateHistogram(PicturesList[picIndex]);
                 ImageStatusLabel.Text = PicturesList[picIndex].width.ToString() + " X " + PicturesList[picIndex].height.ToString() + " || " + PicturesList[picIndex].path.ToString();
+                HistoryTabPage.Controls.Clear();
+                HistoryTabPage.Controls.Add(PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox);
             }
             catch { }
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateHistogram(PicturesList[tabControl1.SelectedIndex]);
+            UpdateHistogram(PicturesList[ImageTabControl.SelectedIndex]);
         }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateHistogram(PicturesList[tabControl1.SelectedIndex]);
+            UpdateHistogram(PicturesList[ImageTabControl.SelectedIndex]);
         }
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateHistogram(PicturesList[tabControl1.SelectedIndex]);
+            UpdateHistogram(PicturesList[ImageTabControl.SelectedIndex]);
         }
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateHistogram(PicturesList[tabControl1.SelectedIndex]);
+            UpdateHistogram(PicturesList[ImageTabControl.SelectedIndex]);
         }
         #endregion
 
@@ -679,7 +722,7 @@ namespace ImageProcessingAssignment1
         #region Converting between Spatial & Frequency Domains
         private void convertToSpatialDomainToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int picIndex = tabControl1.SelectedIndex;
+            int picIndex = ImageTabControl.SelectedIndex;
             if (PicturesList[picIndex].frequency)
             {
                 ImageClass Image = new ImageClass();
@@ -691,7 +734,7 @@ namespace ImageProcessingAssignment1
         }
         private void convertToFrequencyDomainToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int picIndex = tabControl1.SelectedIndex;
+            int picIndex = ImageTabControl.SelectedIndex;
             if (!PicturesList[picIndex].frequency)
             {
                 ImageClass Image = new ImageClass();
@@ -710,7 +753,7 @@ namespace ImageProcessingAssignment1
         //Mean Filter
         private void meanFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Mean Filter";
@@ -741,14 +784,14 @@ namespace ImageProcessingAssignment1
             for (int i = 0; i < length; i++)
                 Mask[i] = 1.0 / length;
             Filter filter = new Filter();
-            filter.Apply1DFilter(length, Mask, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels);
-            DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+            filter.Apply1DFilter(length, Mask, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels);
+            DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
         }
 
         //Gaussian Filter
         private void gaussianFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Gaussian Filter";
@@ -773,7 +816,7 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyGaussianFilter_Click(object sender, EventArgs e, TextBox sizeText)
         {
-            int count = tabControl1.SelectedIndex;
+            int count = ImageTabControl.SelectedIndex;
             double sigma = double.Parse(sizeText.Text);
             int length = (int)(3.7 * sigma - 0.5);
             length = length * 2 + 1;
@@ -793,121 +836,121 @@ namespace ImageProcessingAssignment1
         //Sharpening Filters
         private void laplacianFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void horizontalFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { 0, 1, 0 }, { 0, 1, 0 }, { 0, -1, 0 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void verticalFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { 0, 0, 0 }, { 1, 1, -1 }, { 0, 0, 0 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void rightDiagonalFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { 0, 0, 1 }, { 0, 1, 0 }, { -1, 0, 0 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void leftDiagonalFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, -1 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         //Edge Detection Filters
         private void laplacianFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { -1, -1, -1 }, { -1, 8, -1 }, { -1, -1, -1 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void horizontalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { 1, 1, 1 }, { 1, -2, 1 }, { -1, -1, -1 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void verticalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { -1, 1, 1 }, { -1, -2, 1 }, { -1, 1, 1 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void rightDiagonalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { 1, 1, 1 }, { -1, -2, 1 }, { -1, -1, 1 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void leftDiagonalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double[,] Mask = new double[3, 3] { { 1, 1, 1 }, { 1, -2, -1 }, { 1, -1, -1 } };
                 Filter filter = new Filter();
-                int count = tabControl1.SelectedIndex;
+                int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         //Convolution
         private void customFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 CustomFilter CF = new CustomFilter(PicturesList);
                 CF.Show();
@@ -917,7 +960,7 @@ namespace ImageProcessingAssignment1
         //High-Pass & Low-Pass Filters Menu Item
         private void idealToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Ideal Low-Pass Filter";
@@ -942,7 +985,7 @@ namespace ImageProcessingAssignment1
         }
         private void butterworthFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Butterworth Low-Pass Filter";
@@ -977,7 +1020,7 @@ namespace ImageProcessingAssignment1
         }
         private void gaussianFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Gaussian Low-Pass Filter";
@@ -1002,7 +1045,7 @@ namespace ImageProcessingAssignment1
         }
         private void idealFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Ideal High-Pass Filter";
@@ -1027,7 +1070,7 @@ namespace ImageProcessingAssignment1
         }
         private void butterworthFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Butterworth High-Pass Filter";
@@ -1062,7 +1105,7 @@ namespace ImageProcessingAssignment1
         }
         private void gaussianFilterToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Gaussian High-Pass Filter";
@@ -1089,9 +1132,9 @@ namespace ImageProcessingAssignment1
         //High-Pass & Low-Pass Filters
         private void lowFilterBtn_Click(object sender, EventArgs e, TextBox dTxt, int filterType)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.LowPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), 0);
                 DisplayImage(PicturesList[picIndex]);
@@ -1099,9 +1142,9 @@ namespace ImageProcessingAssignment1
         }
         private void lowButterFilterBtn_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt, int filterType)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.LowPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), double.Parse(nTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1109,9 +1152,9 @@ namespace ImageProcessingAssignment1
         }
         private void HighFilterBtn_Click(object sender, EventArgs e, TextBox dTxt, int filterType)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.HighPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), 0);
                 DisplayImage(PicturesList[picIndex]);
@@ -1119,9 +1162,9 @@ namespace ImageProcessingAssignment1
         }
         private void HighButterFilterBtn_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt, int filterType)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.HighPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), double.Parse(nTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1131,7 +1174,7 @@ namespace ImageProcessingAssignment1
         //Noise Removing Filters
         private void geometricMeanFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Geometric Mean Filter";
@@ -1156,19 +1199,19 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyGMeanFilter_Click(object sender, EventArgs e, TextBox sizeText)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 int length = int.Parse(sizeText.Text);
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
-                filter.Apply2DGMeanFilter(length, length, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.Apply2DGMeanFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         private void medianFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Median Filter";
@@ -1193,19 +1236,19 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyMedianFilter_Click(object sender, EventArgs e, TextBox sizeText)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 int length = int.Parse(sizeText.Text);
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
-                filter.ApplyOrderStatFilter(length, length, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels, "Median");
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Median");
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         private void minimumFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Minimum Filter";
@@ -1230,19 +1273,19 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyMinimumFilter_Click(object sender, EventArgs e, TextBox sizeText)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 int length = int.Parse(sizeText.Text);
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
-                filter.ApplyOrderStatFilter(length, length, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels, "Minimum");
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Minimum");
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         private void maximumFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Maximum Filter";
@@ -1267,19 +1310,19 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyMaximumFilter_Click(object sender, EventArgs e, TextBox sizeText)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 int length = int.Parse(sizeText.Text);
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
-                filter.ApplyOrderStatFilter(length, length, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels, "Maximum");
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Maximum");
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         private void midPointFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Mid-Point Filter";
@@ -1304,19 +1347,19 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyMidPointFilter_Click(object sender, EventArgs e, TextBox sizeText)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 int length = int.Parse(sizeText.Text);
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
-                filter.ApplyOrderStatFilter(length, length, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels, "MidPoint");
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "MidPoint");
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         private void contraharmonicMeanFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Contraharmonic Mean Filter";
@@ -1351,20 +1394,20 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyContraharmonicFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 int length = int.Parse(dTxt.Text);
                 if (length % 2 == 0) length++;
                 double Q = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
-                filter.Apply2DContraharmonicFilter(length, length, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels, Q);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.Apply2DContraharmonicFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, Q);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
         private void alphaTrimmedMeanFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Contraharmonic Mean Filter";
@@ -1399,21 +1442,21 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyAlphaTrimmedFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 int length = int.Parse(dTxt.Text);
                 if (length % 2 == 0) length++;
                 double D = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
-                filter.ApplyAlphaTrimmedFilter(length, length, PicturesList[tabControl1.SelectedIndex], ref PicturesList[tabControl1.SelectedIndex].redPixels, ref PicturesList[tabControl1.SelectedIndex].greenPixels, ref PicturesList[tabControl1.SelectedIndex].bluePixels, D);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.ApplyAlphaTrimmedFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, D);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
 
 
         private void idealToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Ideal Band Reject Filter";
@@ -1448,18 +1491,18 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyIdealBandRejectFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double D = double.Parse(dTxt.Text);
                 double w = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
-                filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 0, D, w);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.BandFilters(PicturesList[ImageTabControl.SelectedIndex], 0, D, w);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void idealToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Ideal Band Reject Filter";
@@ -1494,18 +1537,18 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyIdealBandPassFilter_Click(object sender, EventArgs e, TextBox dTxt, TextBox nTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 double D = double.Parse(dTxt.Text);
                 double w = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
-                filter.BandFilters(PicturesList[tabControl1.SelectedIndex], 1, D, w);
-                DisplayImage(PicturesList[tabControl1.SelectedIndex]);
+                filter.BandFilters(PicturesList[ImageTabControl.SelectedIndex], 1, D, w);
+                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
             }
         }
         private void idealToolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Ideal Notch Reject Filter";
@@ -1552,9 +1595,9 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyIdealNotchRejectBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.NotchFilters(PicturesList[picIndex], 0, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1562,7 +1605,7 @@ namespace ImageProcessingAssignment1
         }
         private void idealToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Ideal Notch Pass Filter";
@@ -1609,9 +1652,9 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyIdealNotchPassBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.NotchFilters(PicturesList[picIndex], 1, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1620,7 +1663,7 @@ namespace ImageProcessingAssignment1
 
         private void medianFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Adaptive Median Filter";
@@ -1647,7 +1690,7 @@ namespace ImageProcessingAssignment1
         }
         private void meanFilterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Adaptive Mean Filter";
@@ -1674,9 +1717,9 @@ namespace ImageProcessingAssignment1
         }
         private void AdaptiveFilterBtn_Click(object sender, EventArgs e, TextBox MaxWinSize, int type)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.AdaptiveFilter(PicturesList[picIndex], int.Parse(MaxWinSize.Text), type);
                 DisplayImage(PicturesList[picIndex]);
@@ -1691,7 +1734,7 @@ namespace ImageProcessingAssignment1
 
         private void saltPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Salt and Pepper Noise";
@@ -1726,9 +1769,9 @@ namespace ImageProcessingAssignment1
         }
         private void ApplySaltPepperBtn_Click(object sender, EventArgs e, TextBox saltTxt, TextBox pepperTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddSaltPepperNoise(PicturesList[picIndex], double.Parse(saltTxt.Text), double.Parse(pepperTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1737,7 +1780,7 @@ namespace ImageProcessingAssignment1
 
         private void unifromNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Uniform Noise";
@@ -1784,9 +1827,9 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyUnifromNoiseBtn_Click(object sender, EventArgs e, TextBox aTxt, TextBox bTxt, TextBox NoisePercentageTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddUnifromNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1795,7 +1838,7 @@ namespace ImageProcessingAssignment1
 
         private void gaussianNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Gaussian Noise";
@@ -1842,9 +1885,9 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyGaussianNoiseBtn_Click(object sender, EventArgs e, TextBox muTxt, TextBox sigmaTxt, TextBox NoisePercentageTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddGaussianNoise(PicturesList[picIndex], int.Parse(muTxt.Text), int.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1853,7 +1896,7 @@ namespace ImageProcessingAssignment1
 
         private void rayleighNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Rayleigh Noise";
@@ -1900,9 +1943,9 @@ namespace ImageProcessingAssignment1
         }
         private void RayleighBtn_Click(object sender, EventArgs e, TextBox aTxt, TextBox bTxt, TextBox NoisePercentageTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddRayleighNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1911,7 +1954,7 @@ namespace ImageProcessingAssignment1
 
         private void gammaNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Gamma Noise";
@@ -1958,9 +2001,9 @@ namespace ImageProcessingAssignment1
         }
         private void GammaNoiseBtn_Click(object sender, EventArgs e, TextBox aTxt, TextBox bTxt, TextBox NoisePercentageTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddGammaNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -1969,7 +2012,7 @@ namespace ImageProcessingAssignment1
 
         private void exponentialNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Exponential Noise";
@@ -2006,9 +2049,9 @@ namespace ImageProcessingAssignment1
         }
         private void ExponentialNoiseBtn_Click(object sender, EventArgs e, TextBox aTxt, TextBox NoisePercentageTxt)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddExponentialNoise(PicturesList[picIndex], int.Parse(aTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 DisplayImage(PicturesList[picIndex]);
@@ -2017,10 +2060,10 @@ namespace ImageProcessingAssignment1
 
         private void periodicNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int height = PicturesList[tabControl1.SelectedIndex].height;
-                int width = PicturesList[tabControl1.SelectedIndex].width;
+                int height = PicturesList[ImageTabControl.SelectedIndex].height;
+                int width = PicturesList[ImageTabControl.SelectedIndex].width;
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Periodic Noise";
                 //Amplitude Label
@@ -2099,9 +2142,9 @@ namespace ImageProcessingAssignment1
         }
         private void AddPeriodicNoiseBtn_Click(object sender, EventArgs e, double Amp, double xFreq, double yFreq, double xPhase, double yPhase)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddPeriodicNoise(PicturesList[picIndex], Amp, xFreq, yFreq, xPhase, yPhase);
                 DisplayImage(PicturesList[picIndex]);
@@ -2116,9 +2159,9 @@ namespace ImageProcessingAssignment1
         //Otsu Thresholding
         private void otsuThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int picIndex = tabControl1.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.OtsuSegmentation(PicturesList[picIndex]);
                 DisplayImage(PicturesList[picIndex]);
@@ -2126,16 +2169,16 @@ namespace ImageProcessingAssignment1
         }
         private void basicGlobalThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int PicIndex = tabControl1.SelectedIndex;
+                int PicIndex = ImageTabControl.SelectedIndex;
                 Thresholding thresholding = new Thresholding(PicturesList[PicIndex]);
                 thresholding.Show();
             }
         }
         private void adaptiveThresholdingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Adaptive Thresholding";
@@ -2170,15 +2213,16 @@ namespace ImageProcessingAssignment1
         }
         private void AdaptiveThresholdButton_Click(object sender, EventArgs e, TextBox WinSize, TextBox MeanOffset)
         {
-            if (tabControl1.TabPages.Count > 0)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                int PicIndex = tabControl1.SelectedIndex;
+                int PicIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AdaptiveThresholding(PicturesList[PicIndex], int.Parse(WinSize.Text), int.Parse(MeanOffset.Text));
                 DisplayImage(PicturesList[PicIndex]);
             }
         }
         #endregion
+
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

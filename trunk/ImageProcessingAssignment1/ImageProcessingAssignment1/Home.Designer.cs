@@ -80,6 +80,7 @@
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -191,7 +192,6 @@
             this.HistoryTabControl = new System.Windows.Forms.TabControl();
             this.HistoryTabPage = new System.Windows.Forms.TabPage();
             this.ZoomTrackBar = new System.Windows.Forms.TrackBar();
-            this.HistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -223,7 +223,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1444, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1436, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -622,7 +622,7 @@
             this.toolBarToolStripMenuItem.CheckOnClick = true;
             this.toolBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
-            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.toolBarToolStripMenuItem.Text = "&Toolbar";
             this.toolBarToolStripMenuItem.Visible = false;
             this.toolBarToolStripMenuItem.Click += new System.EventHandler(this.ToolBarToolStripMenuItem_Click);
@@ -633,9 +633,19 @@
             this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.StatusBarToolStripMenuItem_Click);
+            // 
+            // HistogramToolStripMenuItem
+            // 
+            this.HistogramToolStripMenuItem.Checked = true;
+            this.HistogramToolStripMenuItem.CheckOnClick = true;
+            this.HistogramToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.HistogramToolStripMenuItem.Name = "HistogramToolStripMenuItem";
+            this.HistogramToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.HistogramToolStripMenuItem.Text = "Histogram";
+            this.HistogramToolStripMenuItem.Click += new System.EventHandler(this.HistogramToolStripMenuItem_Click);
             // 
             // toolsMenu
             // 
@@ -1225,7 +1235,7 @@
             this.ZoomToolStripLabel});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1444, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1436, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1595,28 +1605,18 @@
             this.ZoomTrackBar.Maximum = 500;
             this.ZoomTrackBar.Minimum = 5;
             this.ZoomTrackBar.Name = "ZoomTrackBar";
-            this.ZoomTrackBar.Size = new System.Drawing.Size(130, 24);
+            this.ZoomTrackBar.Size = new System.Drawing.Size(122, 24);
             this.ZoomTrackBar.TabIndex = 34;
             this.ZoomTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ZoomTrackBar.Value = 5;
             this.ZoomTrackBar.ValueChanged += new System.EventHandler(this.ZoomTrackBar_ValueChanged);
-            // 
-            // HistogramToolStripMenuItem
-            // 
-            this.HistogramToolStripMenuItem.Checked = true;
-            this.HistogramToolStripMenuItem.CheckOnClick = true;
-            this.HistogramToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.HistogramToolStripMenuItem.Name = "HistogramToolStripMenuItem";
-            this.HistogramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.HistogramToolStripMenuItem.Text = "Histogram";
-            this.HistogramToolStripMenuItem.Click += new System.EventHandler(this.HistogramToolStripMenuItem_Click);
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1444, 856);
+            this.ClientSize = new System.Drawing.Size(1436, 856);
             this.Controls.Add(this.ZoomTrackBar);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.InputPanel);

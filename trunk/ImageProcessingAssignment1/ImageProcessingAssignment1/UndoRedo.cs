@@ -8,13 +8,15 @@ namespace ImageProcessingAssignment1
 {
     class UndoRedo
     {
-        public PictureInfo selectedPic;
+        public List<PictureInfo> selectedPic;
         public List<string> done;
         public Stack<string> undo, redo;
         public ListBox undoRedoListBox;
+        public int Pointer;
         public UndoRedo(PictureInfo pic)
         {
-            selectedPic = new PictureInfo(pic);
+            selectedPic = new List<PictureInfo>();
+            selectedPic.Add(pic);
             done = new List<string>();
             done.Add("Open");
             undo = new Stack<string>();
@@ -25,6 +27,7 @@ namespace ImageProcessingAssignment1
             undoRedoListBox.ForeColor = System.Drawing.Color.White;
             undoRedoListBox.Items.Add("Open");
             undoRedoListBox.SelectedIndex = 0;
+            Pointer = 0;
         }
     }
 }

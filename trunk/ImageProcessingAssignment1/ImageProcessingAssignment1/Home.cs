@@ -58,7 +58,6 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region UpdateForm
-        //Display Image
         private void DisplayImage(PictureInfo pictureInfo)
         {
             int width = pictureInfo.width;
@@ -178,8 +177,24 @@ namespace ImageProcessingAssignment1
             if (TabPagesCount != ImageTabControl.TabPages.Count)
                 TabPagesCount = ImageTabControl.TabPages.Count;
         }
-
-        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        public void undoRedoListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TabPagesCount > 0)
+            {
+                int picIndex = ImageTabControl.SelectedIndex;
+                if (PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex != PicUndoRedo[picIndex].undoRedoListBox.Items.Count - 1)
+                {
+                    int count = PicUndoRedo[picIndex].Pointer - 1 - PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex;
+                    if (count >= 0)
+                        for (int i = 0; i < count + 1; i++)
+                            UndoAction();
+                    else
+                        for (int i = 0; i < Math.Abs(count + 1); i++)
+                            RedoAction();
+                }
+            }
+        }
+        private void UndoAction()
         {
             if (TabPagesCount > 0)
             {
@@ -187,14 +202,33 @@ namespace ImageProcessingAssignment1
                 if (PicUndoRedo[picIndex].undo.Count > 0)
                 {
                     PicUndoRedo[picIndex].redo.Push(PicUndoRedo[picIndex].undo.Pop());
-                    PicturesList[picIndex] = new PictureInfo(PicUndoRedo[picIndex].selectedPic);
+                    PicturesList[picIndex] = new PictureInfo(PicUndoRedo[picIndex].selectedPic[PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex]);
                     DisplayImage(PicturesList[picIndex]);
+                    PicUndoRedo[picIndex].Pointer--;
                 }
             }
         }
+        private void RedoAction()
+        {
+            if (TabPagesCount > 0)
+            {
+                int picIndex = ImageTabControl.SelectedIndex;
+                if (PicUndoRedo[picIndex].redo.Count > 0)
+                {
+                    PicUndoRedo[picIndex].undo.Push(PicUndoRedo[picIndex].redo.Pop());
+                    PicturesList[picIndex] = new PictureInfo(PicUndoRedo[picIndex].selectedPic[PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex]);
+                    DisplayImage(PicturesList[picIndex]);
+                    PicUndoRedo[picIndex].Pointer++;
+                }
+            }
+        }
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UndoAction();
+        }
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            RedoAction();
         }
 
         //Zooming
@@ -253,7 +287,7 @@ namespace ImageProcessingAssignment1
                     picBox.SizeMode = PictureBoxSizeMode.Zoom;
                     picBox.MouseWheel += new MouseEventHandler(this.MouseWheelZoom);
                     picBox.BorderStyle = BorderStyle.FixedSingle;
- 
+
                     string PictureName = PicturePath[k].Substring(PicturePath[k].LastIndexOf('\\') + 1);
                     int offset = PictureName.LastIndexOf('.') + 1;
                     string type = PictureName.Substring(offset, PictureName.Length - offset);
@@ -283,6 +317,7 @@ namespace ImageProcessingAssignment1
                 HistoryTabPage.Controls.Clear();
                 HistoryTabPage.Controls.Add(PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox);
                 PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.Location = new System.Drawing.Point(5, 5);
+                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.SelectedIndexChanged += new EventHandler(undoRedoListBox_SelectedIndexChanged);
             }
             catch { }
         }
@@ -440,14 +475,14 @@ namespace ImageProcessingAssignment1
         {
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
-            PicUndoRedo[PicIndex].selectedPic = new PictureInfo(PicturesList[PicIndex]);
             Image.TranslateImage(PicturesList[PicIndex], int.Parse(xTranslation.Text), int.Parse(yTranslation.Text));
 
+            PicUndoRedo[PicIndex].selectedPic.Add(new PictureInfo(PicturesList[PicIndex]));
             PicUndoRedo[PicIndex].done.Add("Translate");
             PicUndoRedo[PicIndex].undo.Push("Translate");
             PicUndoRedo[PicIndex].undoRedoListBox.Items.Add("Translate");
             PicUndoRedo[PicIndex].undoRedoListBox.SelectedIndex = PicUndoRedo[PicIndex].undoRedoListBox.Items.Count - 1;
-
+            PicUndoRedo[PicIndex].Pointer++;
             DisplayImage(PicturesList[PicIndex]);
         }
 
@@ -457,7 +492,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
-                inputGroupBox.Text = "Image Taslation";
+                inputGroupBox.Text = "Image Rotation";
                 //Theta Text Box
                 TextBox thetaTxt = new TextBox();
                 thetaTxt.Location = new System.Drawing.Point(15, 42);

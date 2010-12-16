@@ -1353,14 +1353,30 @@ namespace ImageProcessingAssignment1
             int firstMean = 0, secondMean = 0, firstSpace = 0, secondSpace = 0;
             GrayScale(pic);
             bool repeat = true;
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    int value = (int)pic.redPixels[i, j];
+                    firstMean += value;
+                }
+            }
+
+            Threshold = firstMean / (width * height);
+
             while (repeat)
             {
+                firstMean = 0;
+                secondMean = 0;
+                firstSpace = 0;
+                secondSpace = 0;
                 for (int i = 0; i < height; i++)
                 {
                     for (int j = 0; j < width; j++)
                     {
                         int value = (int)pic.redPixels[i, j];
-                        if ((int)value < Threshold)
+                        if ((int)value <= Threshold)
                         {
                             firstMean += value;
                             firstSpace++;

@@ -418,3 +418,6 @@ C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageP
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb

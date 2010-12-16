@@ -227,7 +227,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1436, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1370, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -1239,7 +1239,7 @@
             this.ZoomToolStripLabel});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1436, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1370, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1609,7 +1609,7 @@
             this.ZoomTrackBar.Maximum = 500;
             this.ZoomTrackBar.Minimum = 5;
             this.ZoomTrackBar.Name = "ZoomTrackBar";
-            this.ZoomTrackBar.Size = new System.Drawing.Size(122, 24);
+            this.ZoomTrackBar.Size = new System.Drawing.Size(56, 0);
             this.ZoomTrackBar.TabIndex = 34;
             this.ZoomTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ZoomTrackBar.Value = 5;
@@ -1640,7 +1640,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1436, 856);
+            this.ClientSize = new System.Drawing.Size(1370, 750);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.ZoomTrackBar);
             this.Controls.Add(this.panel3);

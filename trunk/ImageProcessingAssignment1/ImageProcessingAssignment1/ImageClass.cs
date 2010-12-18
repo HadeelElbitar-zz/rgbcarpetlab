@@ -1445,5 +1445,15 @@ namespace ImageProcessingAssignment1
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
+        #region Morphology
+        //Dilation
+        public void Dilation(PictureInfo pic)
+        {
+            ConvertToBinary(pic, 128);
+        }
+        #endregion 
+
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
     }
 }

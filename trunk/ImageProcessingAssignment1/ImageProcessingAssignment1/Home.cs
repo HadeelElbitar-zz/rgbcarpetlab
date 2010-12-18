@@ -2258,6 +2258,13 @@ namespace ImageProcessingAssignment1
         }
         #endregion
 
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+        #region Morphology
+        private void customStructureElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

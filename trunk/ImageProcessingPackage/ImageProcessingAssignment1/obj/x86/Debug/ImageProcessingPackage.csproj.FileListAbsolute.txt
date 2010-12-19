@@ -418,46 +418,9 @@ C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageP
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb

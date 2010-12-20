@@ -171,12 +171,13 @@ namespace ImageProcessingAssignment1
             if (TabPagesCount != ImageTabControl.TabPages.Count)
                 TabPagesCount = ImageTabControl.TabPages.Count;
         }
-
         private void ImageTabControl_ControlRemoved(object sender, ControlEventArgs e)
         {
             if (TabPagesCount != ImageTabControl.TabPages.Count)
                 TabPagesCount = ImageTabControl.TabPages.Count;
         }
+
+        //Undo Redo
         public void undoRedoListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TabPagesCount > 0)
@@ -189,11 +190,20 @@ namespace ImageProcessingAssignment1
                         for (int i = 0; i < count + 1; i++)
                             UndoAction();
                     else
-                        for (int i = 0; i < Math.Abs(count + 1); i++)
+                        for (int i = 0; i < Math.Abs(count - 1); i++)
                             RedoAction();
                 }
+                if (PicUndoRedo[picIndex].undo.Count == 0) undoToolStripMenuItem.Enabled = false;
+                else undoToolStripMenuItem.Enabled = true;
+                if (PicUndoRedo[picIndex].redo.Count == 0) redoToolStripMenuItem.Enabled = false;
+                else redoToolStripMenuItem.Enabled = true;
             }
+        }  
+        private void undoRedoListBox_ControlAdded(object sender, ControlEventArgs e)
+        {
+            //undoToolStripMenuItem.Enabled = true;
         }
+
         private void UndoAction()
         {
             if (TabPagesCount > 0)
@@ -224,12 +234,25 @@ namespace ImageProcessingAssignment1
         }
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UndoAction();
+            if (TabPagesCount > 0)
+            {
+                int picIndex = ImageTabControl.SelectedIndex;
+                if (PicUndoRedo[picIndex].undo.Count > 0)
+                    if (PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex > 0)
+                        PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex--;
+            }
         }
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RedoAction();
+            if (TabPagesCount > 0)
+            {
+                int picIndex = ImageTabControl.SelectedIndex;
+                if (PicUndoRedo[picIndex].redo.Count > 0)
+                    if (PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex < PicUndoRedo[picIndex].undoRedoListBox.Items.Count - 1)
+                        PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex++;
+            }
         }
+
 
         //Zooming
         private void ZoomTrackBar_ValueChanged(object sender, EventArgs e)
@@ -316,8 +339,9 @@ namespace ImageProcessingAssignment1
                 PicUndoRedo.Add(new UndoRedo(PicturesList[ImageTabControl.SelectedIndex]));
                 HistoryTabPage.Controls.Clear();
                 HistoryTabPage.Controls.Add(PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox);
-                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.Location = new System.Drawing.Point(5, 5);
+                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.Location = new System.Drawing.Point(7, 10);
                 PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.SelectedIndexChanged += new EventHandler(undoRedoListBox_SelectedIndexChanged);
+                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.ControlAdded += new ControlEventHandler(undoRedoListBox_ControlAdded);
             }
             catch { }
         }
@@ -856,10 +880,9 @@ namespace ImageProcessingAssignment1
             int length = (int)(3.7 * sigma - 0.5);
             length = length * 2 + 1;
             double[] Mask = new double[length];
-            //double x = length / 2;
-            double x = 0;
+            double x = -length / 2;
 
-            for (int i = 0; i < length; i++, x--)
+            for (int i = 0; i < length; i++, x++)
             {
                 Mask[i] = (1 / (Math.Sqrt(2 * Math.PI * sigma)) * Math.Exp(-(x * x) / (sigma * sigma)));
             }
@@ -2257,8 +2280,7 @@ namespace ImageProcessingAssignment1
             }
         }
         #endregion
-
-
+        
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
     }

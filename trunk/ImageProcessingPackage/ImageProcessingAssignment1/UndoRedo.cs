@@ -16,7 +16,7 @@ namespace ImageProcessingAssignment1
         public UndoRedo(PictureInfo pic)
         {
             selectedPic = new List<PictureInfo>();
-            selectedPic.Add(pic);
+            selectedPic.Add(new PictureInfo(pic));
             done = new List<string>();
             done.Add("Open");
             undo = new Stack<string>();

@@ -424,3 +424,47 @@ C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignm
 C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
 C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
 C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog

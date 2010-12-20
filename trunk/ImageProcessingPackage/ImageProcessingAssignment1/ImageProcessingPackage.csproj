@@ -191,7 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\untitled1.bmp" />
-    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

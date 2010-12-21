@@ -19,11 +19,13 @@ namespace ImageProcessingAssignment1
         public byte[,] tempRPixelArray;
         public byte[,] tempGPixelArray;
         public byte[,] tempBPixelArray;
+        public UndoRedo picUndoRedoItem;
 
-        public BrightnessContrastGamma(PictureInfo picInfo)
+        public BrightnessContrastGamma(PictureInfo picInfo, UndoRedo _picUndoRedoItem)
         {
             InitializeComponent();
             PicParent = picInfo;
+            picUndoRedoItem = _picUndoRedoItem;
         }
         private void BrightnessContrast_Load(object sender, EventArgs e)
         {
@@ -118,6 +120,7 @@ namespace ImageProcessingAssignment1
         private void button2_Click(object sender, EventArgs e)//Ok
         {
             ApplyChanges();
+            picUndoRedoItem.UndoRedoCommands(PicParent, "Brightness/Contrast/Gamma");
             this.Close();
         }
         private void button3_Click(object sender, EventArgs e)//Cancel

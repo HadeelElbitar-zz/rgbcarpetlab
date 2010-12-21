@@ -170,6 +170,15 @@ namespace ImageProcessingAssignment1
         {
             if (TabPagesCount != ImageTabControl.TabPages.Count)
                 TabPagesCount = ImageTabControl.TabPages.Count;
+            if (PicUndoRedo.Count != TabPagesCount)
+            {
+                PicUndoRedo.Add(new UndoRedo(PicturesList[TabPagesCount - 1], "Load"));
+                HistoryTabPage.Controls.Clear();
+                HistoryTabPage.Controls.Add(PicUndoRedo[TabPagesCount - 1].undoRedoListBox);
+                PicUndoRedo[TabPagesCount - 1].undoRedoListBox.Location = new System.Drawing.Point(7, 10);
+                PicUndoRedo[TabPagesCount - 1].undoRedoListBox.SelectedIndexChanged += new EventHandler(undoRedoListBox_SelectedIndexChanged);
+                PicUndoRedo[TabPagesCount - 1].undoRedoListBox.ControlAdded += new ControlEventHandler(undoRedoListBox_ControlAdded);
+            }
         }
         private void ImageTabControl_ControlRemoved(object sender, ControlEventArgs e)
         {
@@ -183,22 +192,19 @@ namespace ImageProcessingAssignment1
             if (TabPagesCount > 0)
             {
                 int picIndex = ImageTabControl.SelectedIndex;
-                if (PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex != PicUndoRedo[picIndex].undoRedoListBox.Items.Count - 1)
-                {
-                    int count = PicUndoRedo[picIndex].Pointer - 1 - PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex;
-                    if (count >= 0)
-                        for (int i = 0; i < count + 1; i++)
-                            UndoAction();
-                    else
-                        for (int i = 0; i < Math.Abs(count - 1); i++)
-                            RedoAction();
-                }
+                int count = PicUndoRedo[picIndex].Pointer - 1 - PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex;
+                if (count >= 0)
+                    for (int i = 0; i < count + 1; i++)
+                        UndoAction();
+                else
+                    for (int i = 0; i < Math.Abs(count + 1); i++)
+                        RedoAction();
                 if (PicUndoRedo[picIndex].undo.Count == 0) undoToolStripMenuItem.Enabled = false;
                 else undoToolStripMenuItem.Enabled = true;
                 if (PicUndoRedo[picIndex].redo.Count == 0) redoToolStripMenuItem.Enabled = false;
                 else redoToolStripMenuItem.Enabled = true;
             }
-        }  
+        }
         private void undoRedoListBox_ControlAdded(object sender, ControlEventArgs e)
         {
             //undoToolStripMenuItem.Enabled = true;
@@ -298,7 +304,6 @@ namespace ImageProcessingAssignment1
                 string[] PicturePath = new string[20];
                 OpenFileDialog Picture = new OpenFileDialog();
                 Picture.Filter = "All Files (*.*)|*.*";
-                //BMP Files (*.bmp)|*.bmp|JPEG Files (*.jpg)|*.jpg|PPM Files (*.ppm)|*.ppm";
                 Picture.Multiselect = true;
                 if (Picture.ShowDialog() == DialogResult.OK)
                     PicturePath = Picture.FileNames;
@@ -322,6 +327,7 @@ namespace ImageProcessingAssignment1
                     PicturesList.Add(newPictureItem);
                     int index = PicturesList.Count - 1;
                     if (!ImageTabControl.Visible) ImageTabControl.Visible = true;
+
                     TabPage tabPage = new TabPage();
                     ImageTabControl.TabPages.Add(tabPage);
                     tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
@@ -329,19 +335,13 @@ namespace ImageProcessingAssignment1
                     ImageTabControl.TabPages[index].Text = PictureName;
                     ImageTabControl.SelectedIndex = index;
                     tabPage.AutoScroll = true;
-                    tabPage.AllowDrop = true;
+
                     zedGraphControl1.Visible = true;
                     DisplayImage(PicturesList[index]);
                     PicturesList[index].pictureBox.Size = new System.Drawing.Size(PicturesList[index].width, PicturesList[index].height);
                     picBox.Location = new System.Drawing.Point(tabPage.Width / 2 - newPictureItem.width / 2, tabPage.Height / 2 - newPictureItem.height / 2);
                 }
                 ZoomTrackBar.Value = 100;
-                PicUndoRedo.Add(new UndoRedo(PicturesList[ImageTabControl.SelectedIndex]));
-                HistoryTabPage.Controls.Clear();
-                HistoryTabPage.Controls.Add(PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox);
-                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.Location = new System.Drawing.Point(7, 10);
-                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.SelectedIndexChanged += new EventHandler(undoRedoListBox_SelectedIndexChanged);
-                PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox.ControlAdded += new ControlEventHandler(undoRedoListBox_ControlAdded);
             }
             catch { }
         }
@@ -465,7 +465,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
-                inputGroupBox.Text = "Image Taslation";
+                inputGroupBox.Text = "Image Tanslation";
                 //X-Translation Width Text Box
                 TextBox xTxt = new TextBox();
                 xTxt.Location = new System.Drawing.Point(15, 42);
@@ -500,13 +500,7 @@ namespace ImageProcessingAssignment1
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
             Image.TranslateImage(PicturesList[PicIndex], int.Parse(xTranslation.Text), int.Parse(yTranslation.Text));
-
-            PicUndoRedo[PicIndex].selectedPic.Add(new PictureInfo(PicturesList[PicIndex]));
-            PicUndoRedo[PicIndex].done.Add("Translate");
-            PicUndoRedo[PicIndex].undo.Push("Translate");
-            PicUndoRedo[PicIndex].undoRedoListBox.Items.Add("Translate");
-            PicUndoRedo[PicIndex].undoRedoListBox.SelectedIndex = PicUndoRedo[PicIndex].undoRedoListBox.Items.Count - 1;
-            PicUndoRedo[PicIndex].Pointer++;
+            PicUndoRedo[PicIndex].UndoRedoCommands(PicturesList[PicIndex], "Translate");
             DisplayImage(PicturesList[PicIndex]);
         }
 
@@ -541,6 +535,7 @@ namespace ImageProcessingAssignment1
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
             Image.RotateImage(PicturesList[PicIndex], double.Parse(Theta.Text));
+            PicUndoRedo[PicIndex].UndoRedoCommands(PicturesList[PicIndex], "Rotate");
             DisplayImage(PicturesList[PicIndex]);
         }
 
@@ -575,6 +570,7 @@ namespace ImageProcessingAssignment1
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
             Image.ShearImage(PicturesList[PicIndex], int.Parse(Shear.Text));
+            PicUndoRedo[PicIndex].UndoRedoCommands(PicturesList[PicIndex], "Shear");
             DisplayImage(PicturesList[PicIndex]);
         }
 
@@ -586,6 +582,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.FlipImage(PicturesList[picIndex], 0);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Horizontal Flip");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -596,6 +593,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.FlipImage(PicturesList[picIndex], 1);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Vertical Flip");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -638,6 +636,7 @@ namespace ImageProcessingAssignment1
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
             Image.ResizeImage(PicturesList[PicIndex], int.Parse(NewHBox.Text), int.Parse(NewWBox.Text));
+            PicUndoRedo[PicIndex].UndoRedoCommands(PicturesList[PicIndex], "Resize");
             DisplayImage(PicturesList[PicIndex]);
         }
 
@@ -649,6 +648,7 @@ namespace ImageProcessingAssignment1
                 int PictureIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.ReverseColors(PicturesList[PictureIndex]);
+                PicUndoRedo[PictureIndex].UndoRedoCommands(PicturesList[PictureIndex], "Reverse Colors");
                 DisplayImage(PicturesList[PictureIndex]);
             }
         }
@@ -658,10 +658,11 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                int pictureIndex = ImageTabControl.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.GrayScale(PicturesList[pictureIndex]);
-                DisplayImage(PicturesList[pictureIndex]);
+                Image.GrayScale(PicturesList[picIndex]);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gray Scale");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -673,6 +674,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.histogramEqualization(PicturesList[picIndex], PicturesList[ImageTabControl.SelectedIndex]);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Histogram Equalization");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -686,7 +688,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 int picIndex = ImageTabControl.SelectedIndex;
-                Form br = new BrightnessContrastGamma(PicturesList[picIndex]);
+                Form br = new BrightnessContrastGamma(PicturesList[picIndex], PicUndoRedo[picIndex]);
                 br.Show();
             }
         }
@@ -786,6 +788,7 @@ namespace ImageProcessingAssignment1
             {
                 ImageClass Image = new ImageClass();
                 Image.ConverttoSpatialDomain(PicturesList[picIndex]);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Spatial Domain");
                 DisplayImage(PicturesList[picIndex]);
             }
             else
@@ -798,6 +801,7 @@ namespace ImageProcessingAssignment1
             {
                 ImageClass Image = new ImageClass();
                 Image.convertToFrequencyDomain(PicturesList[picIndex]);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Frequency Domain");
                 DisplayImage(PicturesList[picIndex]);
             }
             else
@@ -844,7 +848,9 @@ namespace ImageProcessingAssignment1
                 Mask[i] = 1.0 / length;
             Filter filter = new Filter();
             filter.Apply1DFilter(length, Mask, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels);
-            DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+            int picIndex = ImageTabControl.SelectedIndex;
+            PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Mean Filter");
+            DisplayImage(PicturesList[picIndex]);
         }
 
         //Gaussian Filter
@@ -888,7 +894,9 @@ namespace ImageProcessingAssignment1
             }
             Filter filter = new Filter();
             filter.Apply1DFilter(length, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-            DisplayImage(PicturesList[count]);
+            int picIndex = ImageTabControl.SelectedIndex;
+            PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gaussian Filter");
+            DisplayImage(PicturesList[picIndex]);
         }
 
         //Sharpening Filters
@@ -900,7 +908,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Laplacian Sharpening Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void horizontalFilterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -911,7 +921,8 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex; PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Horizontal Sharpening Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void verticalFilterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -922,7 +933,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Vertical Sharpening Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void rightDiagonalFilterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -933,7 +946,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Right Diagonal Sharpening Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void leftDiagonalFilterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -944,7 +959,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Left Diagonal Sharpening Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -957,7 +974,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Laplacian Edge Detection Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void horizontalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -968,7 +987,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Horizontal Edge Detection Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void verticalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -979,7 +1000,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Vetical Edge Detection Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void rightDiagonalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -990,7 +1013,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Right Diagonal Edge Detection Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void leftDiagonalFilterToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1001,7 +1026,9 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Left Diagonal Edge Detection Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1195,6 +1222,8 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.LowPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), 0);
+                if (filterType == 0) PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Ideal Low Pass Filter");
+                else PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gauusian Low Pass Filter");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1205,6 +1234,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.LowPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), double.Parse(nTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Butterworth Low Pass Filter");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1215,6 +1245,8 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.HighPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), 0);
+                if (filterType == 0) PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Ideal High Pass Filter");
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gaussian High Pass Filter");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1225,6 +1257,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.HighPassFilters(PicturesList[picIndex], filterType, double.Parse(dTxt.Text), double.Parse(nTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Butterworth High Pass Filter");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1263,7 +1296,9 @@ namespace ImageProcessingAssignment1
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
                 filter.Apply2DGMeanFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Geometric Mean Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1300,7 +1335,9 @@ namespace ImageProcessingAssignment1
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
                 filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Median");
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Median Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1337,7 +1374,9 @@ namespace ImageProcessingAssignment1
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
                 filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Minimum");
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Minimum Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1374,7 +1413,9 @@ namespace ImageProcessingAssignment1
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
                 filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Maximum");
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Maximum Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1411,7 +1452,9 @@ namespace ImageProcessingAssignment1
                 if (length % 2 == 0) length++;
                 Filter filter = new Filter();
                 filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "MidPoint");
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Mid-Point Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1459,7 +1502,9 @@ namespace ImageProcessingAssignment1
                 double Q = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
                 filter.Apply2DContraharmonicFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, Q);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Contraharmonic Mean Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1468,7 +1513,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
-                inputGroupBox.Text = "Contraharmonic Mean Filter";
+                inputGroupBox.Text = "Alpha-Trimmed Mean Filter";
                 //Size Text Box
                 TextBox dTxt = new TextBox();
                 dTxt.Location = new System.Drawing.Point(15, 42);
@@ -1507,7 +1552,9 @@ namespace ImageProcessingAssignment1
                 double D = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
                 filter.ApplyAlphaTrimmedFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, D);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Alpha-Trimmed Mean Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
 
@@ -1555,7 +1602,9 @@ namespace ImageProcessingAssignment1
                 double w = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
                 filter.BandFilters(PicturesList[ImageTabControl.SelectedIndex], 0, D, w);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Ideal Band Reject Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void idealToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -1563,7 +1612,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 inputGroupBox.Controls.Clear();
-                inputGroupBox.Text = "Ideal Band Reject Filter";
+                inputGroupBox.Text = "Ideal Band Pass Filter";
                 //D Text Box
                 TextBox dTxt = new TextBox();
                 dTxt.Location = new System.Drawing.Point(15, 42);
@@ -1601,7 +1650,9 @@ namespace ImageProcessingAssignment1
                 double w = double.Parse(nTxt.Text);
                 Filter filter = new Filter();
                 filter.BandFilters(PicturesList[ImageTabControl.SelectedIndex], 1, D, w);
-                DisplayImage(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Ideal Band Pass Filter");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         private void idealToolStripMenuItem4_Click(object sender, EventArgs e)
@@ -1658,6 +1709,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.NotchFilters(PicturesList[picIndex], 0, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Ideal Notch Reject Filter");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1715,6 +1767,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.NotchFilters(PicturesList[picIndex], 1, double.Parse(muTxt.Text), double.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Ideal Notch Pass Filter");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1780,6 +1833,8 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 filter.AdaptiveFilter(PicturesList[picIndex], int.Parse(MaxWinSize.Text), type);
+                if (type == 0) PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Adaptive Median Filter");
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Adaptive Mean Filter");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1832,6 +1887,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddSaltPepperNoise(PicturesList[picIndex], double.Parse(saltTxt.Text), double.Parse(pepperTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Salt and Pepper Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1890,6 +1946,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddUnifromNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Uniform Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -1948,6 +2005,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddGaussianNoise(PicturesList[picIndex], int.Parse(muTxt.Text), int.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gaussian Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -2006,6 +2064,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddRayleighNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Rayleigh Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -2064,6 +2123,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddGammaNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gamma Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -2112,6 +2172,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddExponentialNoise(PicturesList[picIndex], int.Parse(aTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Exponential Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -2205,6 +2266,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.AddPeriodicNoise(PicturesList[picIndex], Amp, xFreq, yFreq, xPhase, yPhase);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Periodic Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -2222,6 +2284,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
                 Image.OtsuSegmentation(PicturesList[picIndex]);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Otsu Thresholding");
                 DisplayImage(PicturesList[picIndex]);
             }
         }
@@ -2273,14 +2336,15 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                int PicIndex = ImageTabControl.SelectedIndex;
+                int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.AdaptiveThresholding(PicturesList[PicIndex], int.Parse(WinSize.Text), int.Parse(MeanOffset.Text));
-                DisplayImage(PicturesList[PicIndex]);
+                Image.AdaptiveThresholding(PicturesList[picIndex], int.Parse(WinSize.Text), int.Parse(MeanOffset.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Adaptive Thresholding");
+                DisplayImage(PicturesList[picIndex]);
             }
         }
         #endregion
-        
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
     }

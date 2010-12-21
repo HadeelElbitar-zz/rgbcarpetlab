@@ -36,7 +36,7 @@ namespace ImageProcessingAssignment1
                 comboBox2.Items.Add("AND");
                 comboBox2.Items.Add("OR");
                 int index = picList.Count - 1;
-                picList[index] = new PictureInfo(picList[0].width, picList[0].height, "Untitled","C:\\Untitled", picList[index].pictureBox, picList[0].redPixels, picList[0].greenPixels, picList[0].bluePixels);
+                picList[index] = new PictureInfo(picList[0].width, picList[0].height, "Untitled.bmp", "C:\\Untitled.bmp", picList[index].pictureBox, picList[0].redPixels, picList[0].greenPixels, picList[0].bluePixels);
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
                 comboBox3.SelectedIndex = 0;
@@ -88,12 +88,23 @@ namespace ImageProcessingAssignment1
             TabPage tabPage = new TabPage();
             tabControl.TabPages.Add(tabPage);
             int count = tabControl.TabPages.Count - 1;
-            tabControl.SelectedIndex = count;
-            tabControl.TabPages[count].Text = "Untitled";
+            tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
             tabPage.Controls.Add(picList[count].pictureBox);
+            tabControl.TabPages[count].Text = "Untitled";
             picList[count].name = "Untitled";
+            tabControl.SelectedIndex = count;
+            tabPage.AutoScroll = true;
+
             picList[count].pictureBox.Size = new System.Drawing.Size(picList[count].width, picList[count].height);
+            picList[count].pictureBox.Location = new System.Drawing.Point(tabPage.Width / 2 - picList[count].width / 2, tabPage.Height / 2 - picList[count].height / 2);
+            
             DisplayImage(picList[count].width, picList[count].height, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, picList[count].pictureBox);
+            //try
+            //{
+            //    Bitmap bmpsave = new Bitmap(picList[count].pictureBox.Image);
+            //    bmpsave.Save(picList[count].path, ImageFormat.Bmp);
+            //}
+            //catch { }
             this.Close();
         }
         private void button3_Click(object sender, EventArgs e)//Cancel
@@ -101,9 +112,9 @@ namespace ImageProcessingAssignment1
             picList.RemoveAt(picList.Count - 1);
             this.Close();
         }
-        
+
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-        
+
         //new Height and Width
         private void button1_Click(object sender, EventArgs e)
         {
@@ -122,7 +133,6 @@ namespace ImageProcessingAssignment1
             ImageClass Image = new ImageClass();
             Image.ResizeImage(picList[comboBox1.SelectedIndex], newHeight, newWidth, ref firstRed, ref firstGreen, ref firstBlue);
             Image.ResizeImage(picList[comboBox3.SelectedIndex], newHeight, newWidth, ref secondRed, ref secondGreen, ref secondBlue);
-
             int count = picList.Count - 1;
             Image.AddSubtractTwoPictures(newHeight, newWidth, firstRed, firstGreen, firstBlue, secondRed, secondGreen, secondBlue, picList[count], comboBox2.SelectedIndex);
             DisplayImage(newWidth, newHeight, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, pictureBox3);

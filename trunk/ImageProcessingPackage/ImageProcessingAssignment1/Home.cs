@@ -49,7 +49,7 @@ namespace ImageProcessingAssignment1
             }
             inputGroupBox = new GroupBox();
             InputPanel.Controls.Add(inputGroupBox);
-            inputGroupBox.Location = new System.Drawing.Point(7, 5);
+            inputGroupBox.Location = new System.Drawing.Point(5, 5);
             inputGroupBox.Size = new System.Drawing.Size(280, 240);
             TabPagesCount = 0;
         }
@@ -82,6 +82,8 @@ namespace ImageProcessingAssignment1
             }
             bmp.UnlockBits(bmpData);
             pictureInfo.pictureBox.Image = bmp;
+            pictureInfo.pictureBox.Size = new System.Drawing.Size(width, height);
+            pictureInfo.pictureBox.Location = new System.Drawing.Point(ImageTabControl.Width / 2 - pictureInfo.width / 2, ImageTabControl.Height / 2 - pictureInfo.height / 2);
             UpdateHistogram(pictureInfo);
             ImageStatusLabel.Text = pictureInfo.width.ToString() + " X " + pictureInfo.height.ToString() + " || " + pictureInfo.path.ToString();
         }
@@ -144,21 +146,20 @@ namespace ImageProcessingAssignment1
             zedGraphControl1.AxisChange();
             zedGraphControl1.Invalidate();
         }
-        private void MouseWheelZoom(object sender, MouseEventArgs e)
-        {
-            MessageBox.Show("");
-            int picIndex = ImageTabControl.SelectedIndex;
-            PicturesList[picIndex].pictureBox.Width = (int)(PicturesList[picIndex].width * e.Delta / 1000);
-            PicturesList[picIndex].pictureBox.Height = (int)(PicturesList[picIndex].height * e.Delta / 1000);
-        }
+        //private void MouseWheelZoom(object sender, MouseEventArgs e)
+        //{
+        //    MessageBox.Show("");
+        //    int picIndex = ImageTabControl.SelectedIndex;
+        //    PicturesList[picIndex].pictureBox.Width = (int)(PicturesList[picIndex].width * e.Delta / 1000);
+        //    PicturesList[picIndex].pictureBox.Height = (int)(PicturesList[picIndex].height * e.Delta / 1000);
+        //}
         private void Zoom(PictureInfo pic, int ratio)
         {
-            ZoomToolStripLabel.Text = "Zoom: " + ratio.ToString() + "%";
+            zoomLabel.Text = "Zoom: " + ratio.ToString() + "%";
             pic.pictureBox.Width = ((ratio * pic.width) / 100);
             pic.pictureBox.Height = ((ratio * pic.height) / 100);
             int picIndex = ImageTabControl.SelectedIndex;
             PicturesList[picIndex].pictureBox.Location = new System.Drawing.Point(ImageTabControl.TabPages[picIndex].Width / 2 - PicturesList[picIndex].pictureBox.Width / 2, ImageTabControl.TabPages[picIndex].Height / 2 - PicturesList[picIndex].pictureBox.Height / 2);
-
         }
         #endregion
 
@@ -203,6 +204,7 @@ namespace ImageProcessingAssignment1
                 else undoToolStripMenuItem.Enabled = true;
                 if (PicUndoRedo[picIndex].redo.Count == 0) redoToolStripMenuItem.Enabled = false;
                 else redoToolStripMenuItem.Enabled = true;
+                Zoom(PicUndoRedo[picIndex].selectedPic[PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex], ZoomTrackBar.Value);
             }
         }
         private void undoRedoListBox_ControlAdded(object sender, ControlEventArgs e)
@@ -273,7 +275,9 @@ namespace ImageProcessingAssignment1
         {
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageTabControl.TabPages.RemoveAt(PicIndex);
-
+            PicUndoRedo.RemoveAt(PicIndex);
+            HistoryTabPage.Controls.Clear();
+            PicturesList.RemoveAt(PicIndex);
             if (ImageTabControl.TabPages.Count > 0)
             {
                 if (PicIndex != 0)
@@ -285,7 +289,6 @@ namespace ImageProcessingAssignment1
                 ImageTabControl.Visible = false;
                 ImageStatusLabel.Text = "No Image..";
             }
-            PicturesList.RemoveAt(PicIndex);
 
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)//CloseAll
@@ -293,6 +296,8 @@ namespace ImageProcessingAssignment1
             ImageTabControl.TabPages.Clear();
             ImageTabControl.Visible = false;
             PicturesList.Clear();
+            PicUndoRedo.Clear();
+            HistoryTabPage.Controls.Clear();
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.Visible = false;
             ImageStatusLabel.Text = "No Image..";
@@ -313,7 +318,6 @@ namespace ImageProcessingAssignment1
                     PictureInfo newPictureItem = new PictureInfo();
                     PictureBox picBox = new PictureBox();
                     picBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    picBox.MouseWheel += new MouseEventHandler(this.MouseWheelZoom);
                     picBox.BorderStyle = BorderStyle.FixedSingle;
 
                     string PictureName = PicturePath[k].Substring(PicturePath[k].LastIndexOf('\\') + 1);
@@ -327,19 +331,18 @@ namespace ImageProcessingAssignment1
                     PicturesList.Add(newPictureItem);
                     int index = PicturesList.Count - 1;
                     if (!ImageTabControl.Visible) ImageTabControl.Visible = true;
-
                     TabPage tabPage = new TabPage();
+                    zedGraphControl1.Visible = true;
+                    DisplayImage(PicturesList[index]);
+                    PicturesList[index].pictureBox.Size = new System.Drawing.Size(PicturesList[index].width, PicturesList[index].height);
                     ImageTabControl.TabPages.Add(tabPage);
+                    picBox.Location = new System.Drawing.Point(tabPage.Width / 2 - newPictureItem.width / 2, tabPage.Height / 2 - newPictureItem.height / 2);
                     tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
                     tabPage.Controls.Add(PicturesList[index].pictureBox);
                     ImageTabControl.TabPages[index].Text = PictureName;
                     ImageTabControl.SelectedIndex = index;
                     tabPage.AutoScroll = true;
 
-                    zedGraphControl1.Visible = true;
-                    DisplayImage(PicturesList[index]);
-                    PicturesList[index].pictureBox.Size = new System.Drawing.Size(PicturesList[index].width, PicturesList[index].height);
-                    picBox.Location = new System.Drawing.Point(tabPage.Width / 2 - newPictureItem.width / 2, tabPage.Height / 2 - newPictureItem.height / 2);
                 }
                 ZoomTrackBar.Value = 100;
             }
@@ -429,8 +432,14 @@ namespace ImageProcessingAssignment1
 
         private void HistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            zedGraphControl1.Visible = HistogramToolStripMenuItem.Checked;
+            HistogramTabControl.Visible = HistogramToolStripMenuItem.Checked;
         }
+
+        private void HistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HistoryTabControl.Visible = HistoryToolStripMenuItem.Checked;
+        }
+
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.Cascade);
@@ -635,6 +644,7 @@ namespace ImageProcessingAssignment1
         {
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
+            //Zoom(PicturesList[PicIndex], 100);
             Image.ResizeImage(PicturesList[PicIndex], int.Parse(NewHBox.Text), int.Parse(NewWBox.Text));
             PicUndoRedo[PicIndex].UndoRedoCommands(PicturesList[PicIndex], "Resize");
             DisplayImage(PicturesList[PicIndex]);
@@ -757,6 +767,7 @@ namespace ImageProcessingAssignment1
                 ImageStatusLabel.Text = PicturesList[picIndex].width.ToString() + " X " + PicturesList[picIndex].height.ToString() + " || " + PicturesList[picIndex].path.ToString();
                 HistoryTabPage.Controls.Clear();
                 HistoryTabPage.Controls.Add(PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox);
+                ZoomTrackBar.Value =(int) Math.Ceiling((PicturesList[picIndex].pictureBox.Width * 100.0) / PicturesList[picIndex].width);
             }
             catch { }
         }
@@ -890,7 +901,7 @@ namespace ImageProcessingAssignment1
             double sum = 0;
             for (int i = 0; i < length; i++, x++)
             {
-                Mask[i] = (1 / (Math.Sqrt(2 * Math.PI) * sigma) * Math.Exp(-(x * x) / (2*sigma * sigma)));
+                Mask[i] = (1 / (Math.Sqrt(2 * Math.PI) * sigma) * Math.Exp(-(x * x) / (2 * sigma * sigma)));
                 sum += Mask[i];
             }
             Filter filter = new Filter();
@@ -2358,7 +2369,7 @@ namespace ImageProcessingAssignment1
                 M.Show();
             }
         }
-        #endregion 
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

@@ -676,7 +676,7 @@ namespace ImageProcessingAssignment1
             RunningSumToRound(ref RedHistogram2);
             RunningSumToRound(ref GreenHistogram2);
             RunningSumToRound(ref BlueHistogram2);
-            
+
             picList[length].redPixels = new byte[height, width];
             picList[length].greenPixels = new byte[height, width];
             picList[length].bluePixels = new byte[height, width];
@@ -1092,26 +1092,57 @@ namespace ImageProcessingAssignment1
                 Random rand = new Random();
                 int count = Size - 1;
                 int min = 0, max = 255;
-                //int OldMinR = int.MaxValue
+                double rMin = double.MaxValue, rMax = double.MinValue;
+                double gMin = double.MaxValue, gMax = double.MinValue;
+                double bMin = double.MaxValue, bMax = double.MinValue;
+                double[,] rPixels = new double[height, width];
+                double[,] gPixels = new double[height, width];
+                double[,] bPixels = new double[height, width];
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        rPixels[i, j] = pic.redPixels[i, j];
+                        rMin = Math.Min(rPixels[i, j], rMin);
+                        rMax = Math.Max(rPixels[i, j], rMax);
+                        gPixels[i, j] = pic.greenPixels[i, j];
+                        gMin = Math.Min(gPixels[i, j], gMin);
+                        gMax = Math.Max(gPixels[i, j], gMax);
+                        bPixels[i, j] = pic.bluePixels[i, j];
+                        bMin = Math.Min(bPixels[i, j], bMin);
+                        bMax = Math.Max(bPixels[i, j], bMax);
+                    }
+                }
                 for (int i = min; i <= max; i++)
                 {
                     double Const = Math.Pow(((i - mu) / sigma), 2) * (-0.5);
                     double denominator = (Math.Sqrt(2 * Math.PI) * sigma);
                     double NoiseNumber = ((1 / denominator) * (Math.Exp(Const)));
-                    NoiseNumber = NoiseNumber*Size * (NoisePercentage / 100.0);
+                    NoiseNumber = NoiseNumber * Size * (NoisePercentage / 100.0);
                     int color = i;
                     for (int j = 0; j < NoiseNumber; j++)
                     {
                         int ChosenIndex = rand.Next(0, count--);
                         int x = pointList[ChosenIndex].X;
                         int y = pointList[ChosenIndex].Y;
-                        pic.redPixels[x, y] += (byte)color;
-                        pic.greenPixels[x, y] += (byte)color;
-                        pic.bluePixels[x, y] += (byte)color;
+                        rPixels[x, y] += color;
+                        gPixels[x, y] += color;
+                        bPixels[x, y] += color;
                         pointList.RemoveAt(ChosenIndex);
                     }
                 }
-                //Normalization(height , width , 
+                Normalization(height, width, rMin, rMax,255, 0, rPixels);
+                Normalization(height, width, gMin, gMax, 255, 0, gPixels);
+                Normalization(height, width, bMin, bMax, 255, 0, bPixels);
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        pic.redPixels[i, j] = (byte)rPixels[i, j];
+                        pic.greenPixels[i, j] = (byte)gPixels[i, j];
+                        pic.bluePixels[i, j] = (byte)bPixels[i, j];
+                    }
+                }
             }
         }
         public void AddRayleighNoise(PictureInfo pic, int a, int b, double NoisePercentage)

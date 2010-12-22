@@ -82,6 +82,7 @@
             this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -163,7 +164,6 @@
             this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.ZoomToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -176,7 +176,13 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ImageTabControl = new System.Windows.Forms.TabControl();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.InputPanel = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.HistoryTabControl = new System.Windows.Forms.TabControl();
+            this.HistoryTabPage = new System.Windows.Forms.TabPage();
+            this.ZoomTrackBar = new System.Windows.Forms.TrackBar();
+            this.HistogramTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -186,23 +192,20 @@
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.InputPanel = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.HistoryTabControl = new System.Windows.Forms.TabControl();
-            this.HistoryTabPage = new System.Windows.Forms.TabPage();
-            this.ZoomTrackBar = new System.Windows.Forms.TrackBar();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.zoomLabel = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.HistoryTabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ZoomTrackBar)).BeginInit();
+            this.HistogramTabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -212,9 +215,9 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.editMenu,
+            this.viewMenu,
             this.imageToolStripMenuItem,
             this.histogramToolStripMenuItem2,
-            this.viewMenu,
             this.toolsMenu,
             this.windowsMenu,
             this.filtersToolStripMenuItem,
@@ -224,7 +227,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1370, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1444, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -625,7 +628,8 @@
             this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolBarToolStripMenuItem,
             this.statusBarToolStripMenuItem,
-            this.HistogramToolStripMenuItem});
+            this.HistogramToolStripMenuItem,
+            this.HistoryToolStripMenuItem});
             this.viewMenu.ForeColor = System.Drawing.Color.White;
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.Size = new System.Drawing.Size(41, 20);
@@ -637,9 +641,8 @@
             this.toolBarToolStripMenuItem.CheckOnClick = true;
             this.toolBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
-            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.toolBarToolStripMenuItem.Text = "&Toolbar";
-            this.toolBarToolStripMenuItem.Visible = false;
             this.toolBarToolStripMenuItem.Click += new System.EventHandler(this.ToolBarToolStripMenuItem_Click);
             // 
             // statusBarToolStripMenuItem
@@ -648,7 +651,7 @@
             this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.StatusBarToolStripMenuItem_Click);
             // 
@@ -658,9 +661,19 @@
             this.HistogramToolStripMenuItem.CheckOnClick = true;
             this.HistogramToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.HistogramToolStripMenuItem.Name = "HistogramToolStripMenuItem";
-            this.HistogramToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.HistogramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.HistogramToolStripMenuItem.Text = "Histogram";
             this.HistogramToolStripMenuItem.Click += new System.EventHandler(this.HistogramToolStripMenuItem_Click);
+            // 
+            // HistoryToolStripMenuItem
+            // 
+            this.HistoryToolStripMenuItem.Checked = true;
+            this.HistoryToolStripMenuItem.CheckOnClick = true;
+            this.HistoryToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem";
+            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.HistoryToolStripMenuItem.Text = "History";
+            this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
             // 
             // toolsMenu
             // 
@@ -1237,6 +1250,7 @@
             // 
             // toolStrip
             // 
+            this.toolStrip.AutoSize = false;
             this.toolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripButton1,
@@ -1246,11 +1260,10 @@
             this.cutToolStripButton,
             this.copyToolStripButton,
             this.pasteToolStripButton,
-            this.toolStripSeparator9,
-            this.ZoomToolStripLabel});
+            this.toolStripSeparator9});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1370, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1444, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1321,13 +1334,6 @@
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
-            // ZoomToolStripLabel
-            // 
-            this.ZoomToolStripLabel.ForeColor = System.Drawing.Color.White;
-            this.ZoomToolStripLabel.Name = "ZoomToolStripLabel";
-            this.ZoomToolStripLabel.Size = new System.Drawing.Size(61, 22);
-            this.ZoomToolStripLabel.Text = "Zoom: 0%";
-            // 
             // newToolStripButton
             // 
             this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1393,9 +1399,9 @@
             this.statusStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ImageStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(3, 741);
+            this.statusStrip.Location = new System.Drawing.Point(1, 702);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1108, 38);
+            this.statusStrip.Size = new System.Drawing.Size(1111, 27);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -1403,7 +1409,7 @@
             // 
             this.ImageStatusLabel.ForeColor = System.Drawing.Color.White;
             this.ImageStatusLabel.Name = "ImageStatusLabel";
-            this.ImageStatusLabel.Size = new System.Drawing.Size(65, 33);
+            this.ImageStatusLabel.Size = new System.Drawing.Size(65, 22);
             this.ImageStatusLabel.Text = "No Image..";
             // 
             // toolStripStatusLabel
@@ -1414,24 +1420,92 @@
             // 
             // ImageTabControl
             // 
-            this.ImageTabControl.Location = new System.Drawing.Point(106, 33);
+            this.ImageTabControl.Location = new System.Drawing.Point(106, 31);
             this.ImageTabControl.Name = "ImageTabControl";
             this.ImageTabControl.SelectedIndex = 0;
-            this.ImageTabControl.Size = new System.Drawing.Size(858, 633);
+            this.ImageTabControl.Size = new System.Drawing.Size(858, 603);
             this.ImageTabControl.TabIndex = 9;
             this.ImageTabControl.Visible = false;
             this.ImageTabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.ImageTabControl.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.ImageTabControl_ControlAdded);
             this.ImageTabControl.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.ImageTabControl_ControlRemoved);
             // 
-            // tabControl2
+            // panel4
             // 
-            this.tabControl2.Controls.Add(this.tabPage1);
-            this.tabControl2.Location = new System.Drawing.Point(7, 8);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(278, 219);
-            this.tabControl2.TabIndex = 12;
+            this.panel4.AutoScroll = true;
+            this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.ImageTabControl);
+            this.panel4.Controls.Add(this.statusStrip);
+            this.panel4.Location = new System.Drawing.Point(12, 99);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1116, 733);
+            this.panel4.TabIndex = 23;
+            // 
+            // InputPanel
+            // 
+            this.InputPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.InputPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.InputPanel.Location = new System.Drawing.Point(1128, 300);
+            this.InputPanel.Name = "InputPanel";
+            this.InputPanel.Size = new System.Drawing.Size(296, 262);
+            this.InputPanel.TabIndex = 31;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.HistoryTabControl);
+            this.panel3.Location = new System.Drawing.Point(1128, 562);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(296, 270);
+            this.panel3.TabIndex = 0;
+            // 
+            // HistoryTabControl
+            // 
+            this.HistoryTabControl.Controls.Add(this.HistoryTabPage);
+            this.HistoryTabControl.Location = new System.Drawing.Point(7, 10);
+            this.HistoryTabControl.Name = "HistoryTabControl";
+            this.HistoryTabControl.SelectedIndex = 0;
+            this.HistoryTabControl.Size = new System.Drawing.Size(278, 244);
+            this.HistoryTabControl.TabIndex = 13;
+            // 
+            // HistoryTabPage
+            // 
+            this.HistoryTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.HistoryTabPage.Location = new System.Drawing.Point(4, 22);
+            this.HistoryTabPage.Name = "HistoryTabPage";
+            this.HistoryTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.HistoryTabPage.Size = new System.Drawing.Size(270, 218);
+            this.HistoryTabPage.TabIndex = 0;
+            this.HistoryTabPage.Text = "History";
+            // 
+            // ZoomTrackBar
+            // 
+            this.ZoomTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ZoomTrackBar.AutoSize = false;
+            this.ZoomTrackBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.ZoomTrackBar.LargeChange = 1;
+            this.ZoomTrackBar.Location = new System.Drawing.Point(82, 6);
+            this.ZoomTrackBar.Maximum = 500;
+            this.ZoomTrackBar.Minimum = 5;
+            this.ZoomTrackBar.Name = "ZoomTrackBar";
+            this.ZoomTrackBar.Size = new System.Drawing.Size(131, 23);
+            this.ZoomTrackBar.TabIndex = 34;
+            this.ZoomTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ZoomTrackBar.Value = 5;
+            this.ZoomTrackBar.ValueChanged += new System.EventHandler(this.ZoomTrackBar_ValueChanged);
+            // 
+            // HistogramTabControl
+            // 
+            this.HistogramTabControl.Controls.Add(this.tabPage1);
+            this.HistogramTabControl.Location = new System.Drawing.Point(7, 8);
+            this.HistogramTabControl.Name = "HistogramTabControl";
+            this.HistogramTabControl.SelectedIndex = 0;
+            this.HistogramTabControl.Size = new System.Drawing.Size(278, 219);
+            this.HistogramTabControl.TabIndex = 12;
             // 
             // tabPage1
             // 
@@ -1550,91 +1624,45 @@
             this.rectangleShape1.Name = "rectangleShape1";
             this.rectangleShape1.Size = new System.Drawing.Size(276, 221);
             // 
-            // panel4
-            // 
-            this.panel4.AutoScroll = true;
-            this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.ImageTabControl);
-            this.panel4.Controls.Add(this.statusStrip);
-            this.panel4.Location = new System.Drawing.Point(12, 61);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1119, 771);
-            this.panel4.TabIndex = 23;
-            // 
             // panel1
             // 
             this.panel1.AutoSize = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.tabControl2);
+            this.panel1.Controls.Add(this.HistogramTabControl);
             this.panel1.Location = new System.Drawing.Point(1128, 61);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(296, 239);
             this.panel1.TabIndex = 30;
             // 
-            // InputPanel
+            // panel2
             // 
-            this.InputPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.InputPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.InputPanel.Location = new System.Drawing.Point(1128, 299);
-            this.InputPanel.Name = "InputPanel";
-            this.InputPanel.Size = new System.Drawing.Size(296, 262);
-            this.InputPanel.TabIndex = 31;
+            this.panel2.AutoSize = true;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.zoomLabel);
+            this.panel2.Controls.Add(this.ZoomTrackBar);
+            this.panel2.Location = new System.Drawing.Point(12, 61);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1116, 38);
+            this.panel2.TabIndex = 36;
             // 
-            // panel3
+            // zoomLabel
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.HistoryTabControl);
-            this.panel3.Location = new System.Drawing.Point(1128, 561);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(296, 271);
-            this.panel3.TabIndex = 0;
-            // 
-            // HistoryTabControl
-            // 
-            this.HistoryTabControl.Controls.Add(this.HistoryTabPage);
-            this.HistoryTabControl.Location = new System.Drawing.Point(7, 10);
-            this.HistoryTabControl.Name = "HistoryTabControl";
-            this.HistoryTabControl.SelectedIndex = 0;
-            this.HistoryTabControl.Size = new System.Drawing.Size(278, 244);
-            this.HistoryTabControl.TabIndex = 13;
-            // 
-            // HistoryTabPage
-            // 
-            this.HistoryTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.HistoryTabPage.Location = new System.Drawing.Point(4, 22);
-            this.HistoryTabPage.Name = "HistoryTabPage";
-            this.HistoryTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.HistoryTabPage.Size = new System.Drawing.Size(270, 218);
-            this.HistoryTabPage.TabIndex = 0;
-            this.HistoryTabPage.Text = "History";
-            // 
-            // ZoomTrackBar
-            // 
-            this.ZoomTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ZoomTrackBar.AutoSize = false;
-            this.ZoomTrackBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ZoomTrackBar.LargeChange = 1;
-            this.ZoomTrackBar.Location = new System.Drawing.Point(232, 29);
-            this.ZoomTrackBar.Maximum = 500;
-            this.ZoomTrackBar.Minimum = 5;
-            this.ZoomTrackBar.Name = "ZoomTrackBar";
-            this.ZoomTrackBar.Size = new System.Drawing.Size(56, 0);
-            this.ZoomTrackBar.TabIndex = 34;
-            this.ZoomTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ZoomTrackBar.Value = 5;
-            this.ZoomTrackBar.ValueChanged += new System.EventHandler(this.ZoomTrackBar_ValueChanged);
+            this.zoomLabel.AutoSize = true;
+            this.zoomLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.zoomLabel.ForeColor = System.Drawing.Color.White;
+            this.zoomLabel.Location = new System.Drawing.Point(6, 10);
+            this.zoomLabel.Name = "zoomLabel";
+            this.zoomLabel.Size = new System.Drawing.Size(57, 13);
+            this.zoomLabel.TabIndex = 35;
+            this.zoomLabel.Text = "Zoom: 0%";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1370, 750);
-            this.Controls.Add(this.ZoomTrackBar);
+            this.ClientSize = new System.Drawing.Size(1444, 884);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.InputPanel);
             this.Controls.Add(this.panel1);
@@ -1646,6 +1674,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Home";
             this.Text = "RGB Carpet Lab";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MDIParent1_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -1653,14 +1682,16 @@
             this.toolStrip.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.HistoryTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ZoomTrackBar)).EndInit();
+            this.HistogramTabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1764,18 +1795,7 @@
         private System.Windows.Forms.ToolStripMenuItem idealFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem butterworthFilterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gaussianFilterToolStripMenuItem2;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private ZedGraph.ZedGraphControl zedGraphControl1;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel InputPanel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolStripMenuItem translateToolStripMenuItem;
@@ -1827,9 +1847,22 @@
         private System.Windows.Forms.TabPage HistoryTabPage;
         private System.Windows.Forms.ToolStripStatusLabel ImageStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripLabel ZoomToolStripLabel;
         private System.Windows.Forms.TrackBar ZoomTrackBar;
         private System.Windows.Forms.ToolStripMenuItem HistogramToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem morphologyToolStripMenuItem;
+        private System.Windows.Forms.TabControl HistogramTabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private ZedGraph.ZedGraphControl zedGraphControl1;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label zoomLabel;
+        private System.Windows.Forms.ToolStripMenuItem HistoryToolStripMenuItem;
     }
 }

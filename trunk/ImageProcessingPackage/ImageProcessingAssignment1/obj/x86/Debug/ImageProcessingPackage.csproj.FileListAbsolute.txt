@@ -512,3 +512,4 @@ C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProce
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morpgology.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morpgology.resources

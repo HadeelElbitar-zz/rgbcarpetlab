@@ -887,10 +887,11 @@ namespace ImageProcessingAssignment1
             length = length * 2 + 1;
             double[] Mask = new double[length];
             double x = -length / 2;
-
+            double sum = 0;
             for (int i = 0; i < length; i++, x++)
             {
-                Mask[i] = (1 / (Math.Sqrt(2 * Math.PI * sigma)) * Math.Exp(-(x * x) / (sigma * sigma)));
+                Mask[i] = (1 / (Math.Sqrt(2 * Math.PI) * sigma) * Math.Exp(-(x * x) / (2*sigma * sigma)));
+                sum += Mask[i];
             }
             Filter filter = new Filter();
             filter.Apply1DFilter(length, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);

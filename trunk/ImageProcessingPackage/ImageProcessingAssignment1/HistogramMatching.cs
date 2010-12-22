@@ -105,7 +105,7 @@ namespace ImageProcessingAssignment1
             picList[count].width = picList[FirstPicIndex].width;
             picList[count].height = picList[FirstPicIndex].height;
             ImageClass Image = new ImageClass();
-            Image.HistogramMatching(pictureBox1.Height,pictureBox1.Width, picList[FirstPicIndex], picList[SecondPicIndex],picList);
+            Image.HistogramMatching(picList[FirstPicIndex].height, picList[FirstPicIndex].width, picList[FirstPicIndex], picList[SecondPicIndex], picList);
             DisplayImage(picList[FirstPicIndex].width, picList[FirstPicIndex].height, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, pictureBox3);
         }
 

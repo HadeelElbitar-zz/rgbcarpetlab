@@ -587,7 +587,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        
+
         //Brigthness
         public void ChangeBrightness(int height, int width, double lastBrightness, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
@@ -676,8 +676,7 @@ namespace ImageProcessingAssignment1
             RunningSumToRound(ref RedHistogram2);
             RunningSumToRound(ref GreenHistogram2);
             RunningSumToRound(ref BlueHistogram2);
-            height = FirstPic.height;
-            width = FirstPic.width;
+            
             picList[length].redPixels = new byte[height, width];
             picList[length].greenPixels = new byte[height, width];
             picList[length].bluePixels = new byte[height, width];
@@ -1076,7 +1075,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        public void AddGaussianNoise(PictureInfo pic, int mu, int sigma, double NoisePercentage)
+        public void AddGaussianNoise(PictureInfo pic, double mu, double sigma, double NoisePercentage)
         {
             if (NoisePercentage > 100)
                 MessageBox.Show("The percentage should be less than 100!");
@@ -1093,30 +1092,26 @@ namespace ImageProcessingAssignment1
                 Random rand = new Random();
                 int count = Size - 1;
                 int min = 0, max = 255;
-                for (int i = min; i <= max / 2; i++)
+                //int OldMinR = int.MaxValue
+                for (int i = min; i <= max; i++)
                 {
                     double Const = Math.Pow(((i - mu) / sigma), 2) * (-0.5);
                     double denominator = (Math.Sqrt(2 * Math.PI) * sigma);
-                    //double NoiseNumber = ((1 / denominator) * (Math.Pow(Math.E, (Const))));
                     double NoiseNumber = ((1 / denominator) * (Math.Exp(Const)));
-                    NoiseNumber *= (Size * (NoisePercentage / 100.0));
-                    for (int k = 0; k < 2; k++)
+                    NoiseNumber = NoiseNumber*Size * (NoisePercentage / 100.0);
+                    int color = i;
+                    for (int j = 0; j < NoiseNumber; j++)
                     {
-                        int color = i;
-                        if (k == 1)
-                            color = max - i;
-                        for (int j = 0; j < NoiseNumber; j++)
-                        {
-                            int ChosenIndex = rand.Next(0, count--);
-                            int x = pointList[ChosenIndex].X;
-                            int y = pointList[ChosenIndex].Y;
-                            pic.redPixels[x, y] = (byte)color;
-                            pic.greenPixels[x, y] = (byte)color;
-                            pic.bluePixels[x, y] = (byte)color;
-                            pointList.RemoveAt(ChosenIndex);
-                        }
+                        int ChosenIndex = rand.Next(0, count--);
+                        int x = pointList[ChosenIndex].X;
+                        int y = pointList[ChosenIndex].Y;
+                        pic.redPixels[x, y] += (byte)color;
+                        pic.greenPixels[x, y] += (byte)color;
+                        pic.bluePixels[x, y] += (byte)color;
+                        pointList.RemoveAt(ChosenIndex);
                     }
                 }
+                //Normalization(height , width , 
             }
         }
         public void AddRayleighNoise(PictureInfo pic, int a, int b, double NoisePercentage)
@@ -1355,6 +1350,19 @@ namespace ImageProcessingAssignment1
             //int[] pixFreq = new int[L];
             int firstMean = 0, secondMean = 0, firstSpace = 0, secondSpace = 0;
             GrayScale(pic);
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    int value = (int)pic.redPixels[i, j];
+
+                    firstMean += value;
+                    firstSpace++;
+
+                }
+            }
+            Threshold = firstMean / firstSpace;
+            firstMean = firstSpace = 0;
             bool repeat = true;
             while (repeat)
             {
@@ -1378,6 +1386,8 @@ namespace ImageProcessingAssignment1
                 firstMean /= firstSpace;
                 secondMean /= secondSpace;
                 TempThreshold = (firstMean + secondMean) / 2;
+                firstMean = firstSpace = 0;
+                secondMean = secondSpace = 0;
                 if (Math.Abs(TempThreshold - Threshold) <= Epsilon)
                     repeat = false;
                 Threshold = TempThreshold;
@@ -1434,7 +1444,7 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region Morphology
-        public void IMorphology(int height, int width, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray, int[,] StructerElement , int type, int IOrigin , int JOrigin, int widthSE, int heightSE)
+        public void IMorphology(int height, int width, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray, int[,] StructerElement, int type, int IOrigin, int JOrigin, int widthSE, int heightSE)
         {
             if (type == 0) //Dilation
             {

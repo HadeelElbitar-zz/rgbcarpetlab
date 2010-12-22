@@ -676,6 +676,8 @@ namespace ImageProcessingAssignment1
             RunningSumToRound(ref RedHistogram2);
             RunningSumToRound(ref GreenHistogram2);
             RunningSumToRound(ref BlueHistogram2);
+            height = FirstPic.height;
+            width = FirstPic.width;
             picList[length].redPixels = new byte[height, width];
             picList[length].greenPixels = new byte[height, width];
             picList[length].bluePixels = new byte[height, width];
@@ -683,6 +685,7 @@ namespace ImageProcessingAssignment1
             {
                 for (int j = 0; j < width; j++)
                 {
+                    //hena fe moshkela :S
                     picList[length].redPixels[i, j] = (byte)GetClose(RedHistogram1[FirstPic.redPixels[i, j]], RedHistogram2);
                     picList[length].greenPixels[i, j] = (byte)GetClose(GreenHistogram1[FirstPic.greenPixels[i, j]], GreenHistogram2);
                     picList[length].bluePixels[i, j] = (byte)GetClose(BlueHistogram1[FirstPic.bluePixels[i, j]], BlueHistogram2);
@@ -697,7 +700,6 @@ namespace ImageProcessingAssignment1
                     return i;
             return Value;
         }
-
         public void ApplyQuantization(int height, int width, int binary, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray, PictureInfo PicParent)
         {
             for (int i = 0; i < height; i++)
@@ -1095,7 +1097,8 @@ namespace ImageProcessingAssignment1
                 {
                     double Const = Math.Pow(((i - mu) / sigma), 2) * (-0.5);
                     double denominator = (Math.Sqrt(2 * Math.PI) * sigma);
-                    double NoiseNumber = ((1 / denominator) * (Math.Pow(Math.E, (Const))));
+                    //double NoiseNumber = ((1 / denominator) * (Math.Pow(Math.E, (Const))));
+                    double NoiseNumber = ((1 / denominator) * (Math.Exp(Const)));
                     NoiseNumber *= (Size * (NoisePercentage / 100.0));
                     for (int k = 0; k < 2; k++)
                     {
@@ -1425,6 +1428,22 @@ namespace ImageProcessingAssignment1
             pic.redPixels = filter.unreplicateImage(WinSize, WinSize, height, width, NewPicR);
             pic.greenPixels = filter.unreplicateImage(WinSize, WinSize, height, width, NewPicG);
             pic.bluePixels = filter.unreplicateImage(WinSize, WinSize, height, width, NewPicB);
+        }
+        #endregion
+
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
+        #region Morphology
+        public void IMorphology(int height, int width, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray, int[,] StructerElement , int type, int IOrigin , int JOrigin, int widthSE, int heightSE)
+        {
+            if (type == 0) //Dilation
+            {
+
+            }
+            else //Erosion
+            {
+
+            }
         }
         #endregion
 

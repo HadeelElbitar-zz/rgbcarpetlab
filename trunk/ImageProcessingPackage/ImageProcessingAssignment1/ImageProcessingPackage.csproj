@@ -80,6 +80,13 @@
     <Compile Include="Binarization.Designer.cs">
       <DependentUpon>Binarization.cs</DependentUpon>
     </Compile>
+    <Compile Include="NumberError.cs" />
+    <Compile Include="Morpgology.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Morpgology.Designer.cs">
+      <DependentUpon>Morpgology.cs</DependentUpon>
+    </Compile>
     <Compile Include="Thresholding.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +154,9 @@
     <EmbeddedResource Include="Binarization.resx">
       <DependentUpon>Binarization.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Morpgology.resx">
+      <DependentUpon>Morpgology.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Thresholding.resx">
       <DependentUpon>Thresholding.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +200,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\checkmark.jpg" />
+    <EmbeddedResource Include="Resources\delete_icon.bmp" />
     <Content Include="Resources\untitled1.bmp" />
   </ItemGroup>
   <ItemGroup />

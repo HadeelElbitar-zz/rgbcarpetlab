@@ -74,6 +74,7 @@
             this.basicGlobalThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otsuThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adaptiveThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramMatchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramEqualizationToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -223,7 +224,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1436, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1370, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -423,7 +424,8 @@
             this.toolStripSeparator11,
             this.arithmeticOperationsToolStripMenuItem,
             this.quantizationToolStripMenuItem,
-            this.segmentationToolStripMenuItem});
+            this.segmentationToolStripMenuItem,
+            this.morphologyToolStripMenuItem});
             this.imageToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             this.imageToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
@@ -437,7 +439,7 @@
             this.grayScaleToolStripMenuItem,
             this.binarizationToolStripMenuItem});
             this.adjustmentToolStripMenuItem1.Name = "adjustmentToolStripMenuItem1";
-            this.adjustmentToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
+            this.adjustmentToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.adjustmentToolStripMenuItem1.Text = "Adjustment";
             // 
             // brightnessContrastToolStripMenuItem
@@ -469,33 +471,33 @@
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(149, 6);
             // 
             // reverseToolStripMenuItem
             // 
             this.reverseToolStripMenuItem.Name = "reverseToolStripMenuItem";
-            this.reverseToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.reverseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.reverseToolStripMenuItem.Text = "Reverse Colors";
             this.reverseToolStripMenuItem.Click += new System.EventHandler(this.reverseToolStripMenuItem_Click);
             // 
             // translateToolStripMenuItem
             // 
             this.translateToolStripMenuItem.Name = "translateToolStripMenuItem";
-            this.translateToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.translateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.translateToolStripMenuItem.Text = "Translate";
             this.translateToolStripMenuItem.Click += new System.EventHandler(this.translateToolStripMenuItem_Click);
             // 
             // rotateToolStripMenuItem
             // 
             this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rotateToolStripMenuItem.Text = "Rotate";
             this.rotateToolStripMenuItem.Click += new System.EventHandler(this.rotateToolStripMenuItem_Click);
             // 
             // shearToolStripMenuItem
             // 
             this.shearToolStripMenuItem.Name = "shearToolStripMenuItem";
-            this.shearToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.shearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.shearToolStripMenuItem.Text = "Shear";
             this.shearToolStripMenuItem.Click += new System.EventHandler(this.shearToolStripMenuItem_Click);
             // 
@@ -505,7 +507,7 @@
             this.horizontalFlipToolStripMenuItem,
             this.verticalFlipToolStripMenuItem});
             this.flipToolStripMenuItem.Name = "flipToolStripMenuItem";
-            this.flipToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.flipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.flipToolStripMenuItem.Text = "Flip";
             // 
             // horizontalFlipToolStripMenuItem
@@ -527,7 +529,7 @@
             this.resizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bilinearToolStripMenuItem});
             this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
-            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.resizeToolStripMenuItem.Text = "Resize";
             // 
             // bilinearToolStripMenuItem
@@ -540,19 +542,19 @@
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(149, 6);
             // 
             // arithmeticOperationsToolStripMenuItem
             // 
             this.arithmeticOperationsToolStripMenuItem.Name = "arithmeticOperationsToolStripMenuItem";
-            this.arithmeticOperationsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.arithmeticOperationsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.arithmeticOperationsToolStripMenuItem.Text = "Calculations";
             this.arithmeticOperationsToolStripMenuItem.Click += new System.EventHandler(this.arithmeticOperationsToolStripMenuItem_Click);
             // 
             // quantizationToolStripMenuItem
             // 
             this.quantizationToolStripMenuItem.Name = "quantizationToolStripMenuItem";
-            this.quantizationToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.quantizationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.quantizationToolStripMenuItem.Text = "Quantization";
             this.quantizationToolStripMenuItem.Click += new System.EventHandler(this.quantizationToolStripMenuItem_Click_1);
             // 
@@ -563,7 +565,7 @@
             this.otsuThresholdingToolStripMenuItem,
             this.adaptiveThresholdingToolStripMenuItem});
             this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
-            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.segmentationToolStripMenuItem.Text = "Segmentation";
             // 
             // basicGlobalThresholdingToolStripMenuItem
@@ -586,6 +588,13 @@
             this.adaptiveThresholdingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.adaptiveThresholdingToolStripMenuItem.Text = "Adaptive Thresholding";
             this.adaptiveThresholdingToolStripMenuItem.Click += new System.EventHandler(this.adaptiveThresholdingToolStripMenuItem_Click);
+            // 
+            // morphologyToolStripMenuItem
+            // 
+            this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.morphologyToolStripMenuItem.Text = "Morphology";
+            this.morphologyToolStripMenuItem.Click += new System.EventHandler(this.morphologyToolStripMenuItem_Click);
             // 
             // histogramToolStripMenuItem2
             // 
@@ -1241,7 +1250,7 @@
             this.ZoomToolStripLabel});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1436, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1370, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1613,7 +1622,7 @@
             this.ZoomTrackBar.Maximum = 500;
             this.ZoomTrackBar.Minimum = 5;
             this.ZoomTrackBar.Name = "ZoomTrackBar";
-            this.ZoomTrackBar.Size = new System.Drawing.Size(122, 24);
+            this.ZoomTrackBar.Size = new System.Drawing.Size(56, 0);
             this.ZoomTrackBar.TabIndex = 34;
             this.ZoomTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ZoomTrackBar.Value = 5;
@@ -1624,7 +1633,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1436, 856);
+            this.ClientSize = new System.Drawing.Size(1370, 750);
             this.Controls.Add(this.ZoomTrackBar);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.InputPanel);
@@ -1822,5 +1831,6 @@
         private System.Windows.Forms.ToolStripLabel ZoomToolStripLabel;
         private System.Windows.Forms.TrackBar ZoomTrackBar;
         private System.Windows.Forms.ToolStripMenuItem HistogramToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem morphologyToolStripMenuItem;
     }
 }

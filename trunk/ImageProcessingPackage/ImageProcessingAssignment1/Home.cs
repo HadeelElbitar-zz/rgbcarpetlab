@@ -2347,5 +2347,19 @@ namespace ImageProcessingAssignment1
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
+        #region Morphology
+        private void morphologyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                int picIndex = ImageTabControl.SelectedIndex;
+                Morpgology M = new Morpgology(PicturesList[picIndex]);
+                M.Show();
+            }
+        }
+        #endregion 
+
+        //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
     }
 }

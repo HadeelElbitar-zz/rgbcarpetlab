@@ -186,6 +186,7 @@ namespace ImageProcessingAssignment1
                 SortedArray[ArrayAux[Array[i]] - 1] = Array[i];
                 ArrayAux[Array[i]]--;
             }
+            
             Array = SortedArray;
             R = rSorted;
             G = gSorted;
@@ -1042,6 +1043,7 @@ namespace ImageProcessingAssignment1
                         byte[] B = new byte[FSize];
                         int[] intPixel = new int[FSize];
                         int F = 0, MaxPixel = int.MinValue, MinPixel = int.MaxValue;
+                        Dictionary<int, int> bits = new Dictionary<int, int>();
                         for (int c = 0; c < h; c++)
                         {
                             for (int k = 0; k < h; k++)
@@ -1050,13 +1052,33 @@ namespace ImageProcessingAssignment1
                                 G[F] = repGPixels[i + c, j + k];
                                 B[F] = repBPixels[i + c, j + k];
                                 intPixel[F] = BitMixed(R[F], G[F], B[F]);
+                                bits.Add(F, intPixel[F]);
                                 MaxPixel = Math.Max(MaxPixel, intPixel[F]);
                                 MinPixel = Math.Min(MinPixel, intPixel[F]);
                                 F++;
                             }
                         }
                         int Center = intPixel[FSize / 2];
-                        CountingSort(intPixel, R, G, B, FSize, MaxPixel);
+                        //CountingSort(intPixel, R, G, B, FSize, MaxPixel);
+                        List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(bits);
+                        result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
+                        {
+                            return second.Value.CompareTo(first.Value);
+                        });
+                        byte[] RTemp = new byte[FSize];
+                        byte[] GTemp = new byte[FSize];
+                        byte[] BTemp = new byte[FSize];
+                        int d = 0;
+                        foreach (KeyValuePair<int, int> item in result)
+                        {
+                            RTemp[d] = R[item.Key];
+                            GTemp[d] = G[item.Key];
+                            BTemp[d] = B[item.Key];
+                            d++;
+                        }
+                        R = RTemp;
+                        G = GTemp;
+                        B = BTemp;
                         if (intPixel[FSize / 2] > MinPixel && intPixel[FSize / 2] < MaxPixel)
                         {
                             if (!(Center > MinPixel && Center < MaxPixel))
@@ -1065,6 +1087,7 @@ namespace ImageProcessingAssignment1
                                 NewPicG[i + M, j + N] = G[FSize / 2];
                                 NewPicB[i + M, j + N] = B[FSize / 2];
                             }
+                            repeat = false;
                         }
                         else
                         {

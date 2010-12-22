@@ -15,13 +15,6 @@ namespace ImageProcessingAssignment1
         List<PictureInfo> picList;
         DataTable FilterValue;
         static bool W, H;
-        class EvenNumber : ApplicationException
-        {
-            public EvenNumber() : base() { }
-            public EvenNumber(string s) : base(s) { }
-            public EvenNumber(string s, Exception ex)
-                : base(s, ex) { }
-        }
         public CustomFilter()
         {
             InitializeComponent();
@@ -77,7 +70,7 @@ namespace ImageProcessingAssignment1
             try
             {
                 if (int.Parse(textBox1.Text) % 2 == 0)
-                    throw new EvenNumber("Width mush be odd value !");
+                    throw new NumberError("Width mush be odd value !");
                 else
                 {
                     W = true;
@@ -94,7 +87,7 @@ namespace ImageProcessingAssignment1
                     }
                 }
             }
-            catch (EvenNumber ex)
+            catch (NumberError ex)
             {
                 MessageBox.Show(ex.Message);
                 W = false;
@@ -107,7 +100,7 @@ namespace ImageProcessingAssignment1
             try
             {
                 if (int.Parse(textBox2.Text) % 2 == 0)
-                    throw new EvenNumber("Height mush be odd value !");
+                    throw new NumberError("Height mush be odd value !");
                 else
                 {
                     H = true;
@@ -124,7 +117,7 @@ namespace ImageProcessingAssignment1
                     }
                 }
             }
-            catch (EvenNumber ex)
+            catch (NumberError ex)
             {
                 MessageBox.Show(ex.Message);
                 H = false;

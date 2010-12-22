@@ -66,5 +66,7 @@ namespace ImageProcessingAssignment1.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        public static System.Drawing.Image delete_icon { get; set; }
     }
 }

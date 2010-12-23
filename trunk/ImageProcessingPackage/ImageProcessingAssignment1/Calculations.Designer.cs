@@ -1,6 +1,6 @@
 ﻿namespace ImageProcessingAssignment1
 {
-    partial class AddSubtract
+    partial class Calculations
     {
         /// <summary>
         /// Required designer variable.

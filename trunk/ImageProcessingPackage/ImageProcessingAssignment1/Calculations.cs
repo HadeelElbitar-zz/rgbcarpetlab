@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ImageProcessingAssignment1
 {
-    public partial class AddSubtract : Form
+    public partial class Calculations : Form
     {
         List<PictureInfo> picList;
         TabControl tabControl;
-        public AddSubtract(List<PictureInfo> PicturesList, TabControl _tabControl)
+        public Calculations(List<PictureInfo> PicturesList, TabControl _tabControl)
         {
             picList = PicturesList;
             tabControl = _tabControl;
@@ -90,14 +90,12 @@ namespace ImageProcessingAssignment1
             int count = tabControl.TabPages.Count - 1;
             tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
             tabPage.Controls.Add(picList[count].pictureBox);
-            tabControl.TabPages[count].Text = "Untitled";
-            picList[count].name = "Untitled";
+            tabControl.TabPages[count].Text = "Untitled.bmp";
+            picList[count].name = "Untitled.bmp";
             tabControl.SelectedIndex = count;
             tabPage.AutoScroll = true;
-
             picList[count].pictureBox.Size = new System.Drawing.Size(picList[count].width, picList[count].height);
             picList[count].pictureBox.Location = new System.Drawing.Point(tabPage.Width / 2 - picList[count].width / 2, tabPage.Height / 2 - picList[count].height / 2);
-            
             DisplayImage(picList[count].width, picList[count].height, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, picList[count].pictureBox);
             //try
             //{

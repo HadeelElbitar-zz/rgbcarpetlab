@@ -68,11 +68,11 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddSubtract.cs">
+    <Compile Include="Calculations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddSubtract.Designer.cs">
-      <DependentUpon>AddSubtract.cs</DependentUpon>
+    <Compile Include="Calculations.Designer.cs">
+      <DependentUpon>Calculations.cs</DependentUpon>
     </Compile>
     <Compile Include="Binarization.cs">
       <SubType>Form</SubType>
@@ -81,11 +81,11 @@
       <DependentUpon>Binarization.cs</DependentUpon>
     </Compile>
     <Compile Include="NumberError.cs" />
-    <Compile Include="Morpgology.cs">
+    <Compile Include="Morphology.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Morpgology.Designer.cs">
-      <DependentUpon>Morpgology.cs</DependentUpon>
+    <Compile Include="Morphology.Designer.cs">
+      <DependentUpon>Morphology.cs</DependentUpon>
     </Compile>
     <Compile Include="Thresholding.cs">
       <SubType>Form</SubType>
@@ -145,8 +145,8 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddSubtract.resx">
-      <DependentUpon>AddSubtract.cs</DependentUpon>
+    <EmbeddedResource Include="Calculations.resx">
+      <DependentUpon>Calculations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BrightnessContrastGamma.resx">
       <DependentUpon>BrightnessContrastGamma.cs</DependentUpon>
@@ -154,8 +154,8 @@
     <EmbeddedResource Include="Binarization.resx">
       <DependentUpon>Binarization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Morpgology.resx">
-      <DependentUpon>Morpgology.cs</DependentUpon>
+    <EmbeddedResource Include="Morphology.resx">
+      <DependentUpon>Morphology.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Thresholding.resx">
       <DependentUpon>Thresholding.cs</DependentUpon>

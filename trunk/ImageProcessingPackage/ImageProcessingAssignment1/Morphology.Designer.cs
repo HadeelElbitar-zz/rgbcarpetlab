@@ -1,6 +1,6 @@
 ﻿namespace ImageProcessingAssignment1
 {
-    partial class Morpgology
+    partial class Morphology
     {
         /// <summary>
         /// Required designer variable.
@@ -43,19 +43,23 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.DilationRBTN = new System.Windows.Forms.RadioButton();
             this.ErosionRBTN = new System.Windows.Forms.RadioButton();
+            this.DilationRBTN = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 29);
+            this.label1.Location = new System.Drawing.Point(7, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -64,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 57);
+            this.label2.Location = new System.Drawing.Point(7, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 1;
@@ -72,7 +76,7 @@
             // 
             // wTBOX
             // 
-            this.wTBOX.Location = new System.Drawing.Point(54, 26);
+            this.wTBOX.Location = new System.Drawing.Point(48, 14);
             this.wTBOX.Name = "wTBOX";
             this.wTBOX.Size = new System.Drawing.Size(100, 20);
             this.wTBOX.TabIndex = 2;
@@ -80,7 +84,7 @@
             // 
             // hTBOX
             // 
-            this.hTBOX.Location = new System.Drawing.Point(54, 54);
+            this.hTBOX.Location = new System.Drawing.Point(48, 39);
             this.hTBOX.Name = "hTBOX";
             this.hTBOX.Size = new System.Drawing.Size(100, 20);
             this.hTBOX.TabIndex = 3;
@@ -89,7 +93,7 @@
             // SetBTN
             // 
             this.SetBTN.Enabled = false;
-            this.SetBTN.Location = new System.Drawing.Point(16, 338);
+            this.SetBTN.Location = new System.Drawing.Point(22, 356);
             this.SetBTN.Name = "SetBTN";
             this.SetBTN.Size = new System.Drawing.Size(75, 23);
             this.SetBTN.TabIndex = 4;
@@ -100,7 +104,7 @@
             // ResetBTN
             // 
             this.ResetBTN.Enabled = false;
-            this.ResetBTN.Location = new System.Drawing.Point(16, 309);
+            this.ResetBTN.Location = new System.Drawing.Point(22, 327);
             this.ResetBTN.Name = "ResetBTN";
             this.ResetBTN.Size = new System.Drawing.Size(75, 23);
             this.ResetBTN.TabIndex = 5;
@@ -111,7 +115,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.pictureBox2);
-            this.groupBox2.ForeColor = System.Drawing.Color.Black;
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(292, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(250, 200);
@@ -145,7 +149,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.ForeColor = System.Drawing.Color.Black;
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(16, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 200);
@@ -204,24 +208,31 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.ErosionRBTN);
-            this.groupBox3.Controls.Add(this.DilationRBTN);
-            this.groupBox3.Controls.Add(this.hTBOX);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.wTBOX);
+            this.groupBox3.Controls.Add(this.groupBox5);
+            this.groupBox3.Controls.Add(this.groupBox4);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(16, 218);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(250, 85);
+            this.groupBox3.Size = new System.Drawing.Size(250, 92);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "User Input";
+            // 
+            // ErosionRBTN
+            // 
+            this.ErosionRBTN.AutoSize = true;
+            this.ErosionRBTN.Location = new System.Drawing.Point(9, 39);
+            this.ErosionRBTN.Name = "ErosionRBTN";
+            this.ErosionRBTN.Size = new System.Drawing.Size(60, 17);
+            this.ErosionRBTN.TabIndex = 5;
+            this.ErosionRBTN.Text = "Erosion";
+            this.ErosionRBTN.UseVisualStyleBackColor = true;
             // 
             // DilationRBTN
             // 
             this.DilationRBTN.AutoSize = true;
             this.DilationRBTN.Checked = true;
-            this.DilationRBTN.Location = new System.Drawing.Point(177, 27);
+            this.DilationRBTN.Location = new System.Drawing.Point(9, 15);
             this.DilationRBTN.Name = "DilationRBTN";
             this.DilationRBTN.Size = new System.Drawing.Size(60, 17);
             this.DilationRBTN.TabIndex = 4;
@@ -230,21 +241,36 @@
             this.DilationRBTN.UseVisualStyleBackColor = true;
             this.DilationRBTN.CheckedChanged += new System.EventHandler(this.DilationRBTN_CheckedChanged);
             // 
-            // ErosionRBTN
+            // groupBox4
             // 
-            this.ErosionRBTN.AutoSize = true;
-            this.ErosionRBTN.Location = new System.Drawing.Point(177, 55);
-            this.ErosionRBTN.Name = "ErosionRBTN";
-            this.ErosionRBTN.Size = new System.Drawing.Size(60, 17);
-            this.ErosionRBTN.TabIndex = 5;
-            this.ErosionRBTN.Text = "Erosion";
-            this.ErosionRBTN.UseVisualStyleBackColor = true;
+            this.groupBox4.Controls.Add(this.ErosionRBTN);
+            this.groupBox4.Controls.Add(this.DilationRBTN);
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
+            this.groupBox4.Location = new System.Drawing.Point(166, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(78, 69);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
             // 
-            // Morpgology
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.hTBOX);
+            this.groupBox5.Controls.Add(this.wTBOX);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.ForeColor = System.Drawing.Color.White;
+            this.groupBox5.Location = new System.Drawing.Point(6, 13);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(156, 68);
+            this.groupBox5.TabIndex = 14;
+            this.groupBox5.TabStop = false;
+            // 
+            // Morphology
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 374);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.ClientSize = new System.Drawing.Size(715, 398);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -254,7 +280,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ResetBTN);
             this.Controls.Add(this.SetBTN);
-            this.Name = "Morpgology";
+            this.Name = "Morphology";
             this.Text = "StructureElement";
             this.Load += new System.EventHandler(this.StructureElement_Load);
             this.groupBox2.ResumeLayout(false);
@@ -262,7 +288,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,5 +316,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton ErosionRBTN;
         private System.Windows.Forms.RadioButton DilationRBTN;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }

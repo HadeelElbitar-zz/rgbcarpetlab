@@ -12,7 +12,7 @@ using System.Drawing.Imaging;
 namespace ImageProcessingAssignment1
 {
     //Note: Press Enter to set origin while focase :D
-    public partial class Morpgology : Form
+    public partial class Morphology : Form
     {
         #region initializations
         Button[,] ArrBtn;
@@ -29,7 +29,7 @@ namespace ImageProcessingAssignment1
         int[,] SE;
         #endregion
 
-        public Morpgology(PictureInfo pic)
+        public Morphology(PictureInfo pic)
         {
             InitializeComponent();
             PicParent = pic;

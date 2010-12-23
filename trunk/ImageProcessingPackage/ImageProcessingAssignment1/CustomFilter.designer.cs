@@ -39,6 +39,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.ApplyBTN = new System.Windows.Forms.Button();
             this.FilterGrid = new System.Windows.Forms.DataGridView();
+            this.OkBtn = new System.Windows.Forms.Button();
+            this.CancelBtn = new System.Windows.Forms.Button();
             this.OriginalBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox1)).BeginInit();
             this.ModifiedBox.SuspendLayout();
@@ -151,12 +153,34 @@
             this.FilterGrid.Size = new System.Drawing.Size(264, 163);
             this.FilterGrid.TabIndex = 7;
             // 
+            // OkBtn
+            // 
+            this.OkBtn.Location = new System.Drawing.Point(514, 386);
+            this.OkBtn.Name = "OkBtn";
+            this.OkBtn.Size = new System.Drawing.Size(75, 23);
+            this.OkBtn.TabIndex = 8;
+            this.OkBtn.Text = "Ok";
+            this.OkBtn.UseVisualStyleBackColor = true;
+            this.OkBtn.Click += new System.EventHandler(this.OkBtn_Click);
+            // 
+            // CancelBtn
+            // 
+            this.CancelBtn.Location = new System.Drawing.Point(514, 415);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.CancelBtn.TabIndex = 9;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
             // CustomFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(652, 465);
+            this.Controls.Add(this.CancelBtn);
+            this.Controls.Add(this.OkBtn);
             this.Controls.Add(this.FilterGrid);
             this.Controls.Add(this.ApplyBTN);
             this.Controls.Add(this.textBox2);
@@ -191,5 +215,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button ApplyBTN;
         private System.Windows.Forms.DataGridView FilterGrid;
+        private System.Windows.Forms.Button OkBtn;
+        private System.Windows.Forms.Button CancelBtn;
     }
 }

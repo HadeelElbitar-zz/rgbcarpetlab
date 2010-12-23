@@ -51,6 +51,7 @@ namespace ImageProcessingAssignment1
             InputPanel.Controls.Add(inputGroupBox);
             inputGroupBox.Location = new System.Drawing.Point(5, 5);
             inputGroupBox.Size = new System.Drawing.Size(280, 240);
+            inputGroupBox.ForeColor = Color.White;
             TabPagesCount = 0;
         }
         #endregion
@@ -146,13 +147,6 @@ namespace ImageProcessingAssignment1
             zedGraphControl1.AxisChange();
             zedGraphControl1.Invalidate();
         }
-        //private void MouseWheelZoom(object sender, MouseEventArgs e)
-        //{
-        //    MessageBox.Show("");
-        //    int picIndex = ImageTabControl.SelectedIndex;
-        //    PicturesList[picIndex].pictureBox.Width = (int)(PicturesList[picIndex].width * e.Delta / 1000);
-        //    PicturesList[picIndex].pictureBox.Height = (int)(PicturesList[picIndex].height * e.Delta / 1000);
-        //}
         private void Zoom(PictureInfo pic, int ratio)
         {
             zoomLabel.Text = "Zoom: " + ratio.ToString() + "%";
@@ -178,7 +172,6 @@ namespace ImageProcessingAssignment1
                 HistoryTabPage.Controls.Add(PicUndoRedo[TabPagesCount - 1].undoRedoListBox);
                 PicUndoRedo[TabPagesCount - 1].undoRedoListBox.Location = new System.Drawing.Point(7, 10);
                 PicUndoRedo[TabPagesCount - 1].undoRedoListBox.SelectedIndexChanged += new EventHandler(undoRedoListBox_SelectedIndexChanged);
-                PicUndoRedo[TabPagesCount - 1].undoRedoListBox.ControlAdded += new ControlEventHandler(undoRedoListBox_ControlAdded);
             }
         }
         private void ImageTabControl_ControlRemoved(object sender, ControlEventArgs e)
@@ -206,10 +199,6 @@ namespace ImageProcessingAssignment1
                 else redoToolStripMenuItem.Enabled = true;
                 Zoom(PicUndoRedo[picIndex].selectedPic[PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex], ZoomTrackBar.Value);
             }
-        }
-        private void undoRedoListBox_ControlAdded(object sender, ControlEventArgs e)
-        {
-            //undoToolStripMenuItem.Enabled = true;
         }
 
         private void UndoAction()
@@ -568,7 +557,7 @@ namespace ImageProcessingAssignment1
                 //Button
                 Button ShearBtn = new Button();
                 ShearBtn.Text = "Shear";
-                ShearBtn.Location = new System.Drawing.Point(102, 165);
+                ShearBtn.Location = new System.Drawing.Point(102, 85);
                 ShearBtn.Size = new System.Drawing.Size(75, 23);
                 ShearBtn.Click += delegate(object sender1, EventArgs e1) { ShearButton_Click(sender1, e1, shearTxt); };
                 inputGroupBox.Controls.Add(ShearBtn);
@@ -713,7 +702,7 @@ namespace ImageProcessingAssignment1
                 pic.Location = new System.Drawing.Point(100, 100);
                 PicturesList.Add(new PictureInfo());
                 PicturesList[PicturesList.Count - 1].pictureBox = pic;
-                Form Calc = new AddSubtract(PicturesList, ImageTabControl);
+                Form Calc = new Calculations(PicturesList, ImageTabControl);
                 Calc.Show();
             }
         }
@@ -723,8 +712,9 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                Form br = new Quantization(PicturesList[ImageTabControl.SelectedIndex]);
-                br.Show();
+                int picIndex = ImageTabControl.SelectedIndex;
+                Form Quantize = new Quantization(PicturesList[picIndex], PicUndoRedo[picIndex]);
+                Quantize.Show();
             }
         }
 
@@ -738,7 +728,6 @@ namespace ImageProcessingAssignment1
                 PicturesList.Add(new PictureInfo());
                 int count = PicturesList.Count - 1;
                 PicturesList[count].pictureBox = pic;
-                PicturesList[count].name = "untitled";
                 HistogramMathcing HG = new HistogramMathcing(PicturesList, ImageTabControl);
                 HG.Show();
             }
@@ -749,7 +738,8 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                Form binarization = new Binarization(PicturesList[ImageTabControl.SelectedIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                Form binarization = new Binarization(PicturesList[picIndex], PicUndoRedo[picIndex]);
                 binarization.Show();
             }
         }
@@ -767,7 +757,7 @@ namespace ImageProcessingAssignment1
                 ImageStatusLabel.Text = PicturesList[picIndex].width.ToString() + " X " + PicturesList[picIndex].height.ToString() + " || " + PicturesList[picIndex].path.ToString();
                 HistoryTabPage.Controls.Clear();
                 HistoryTabPage.Controls.Add(PicUndoRedo[ImageTabControl.SelectedIndex].undoRedoListBox);
-                ZoomTrackBar.Value =(int) Math.Ceiling((PicturesList[picIndex].pictureBox.Width * 100.0) / PicturesList[picIndex].width);
+                ZoomTrackBar.Value = (int)Math.Ceiling((PicturesList[picIndex].pictureBox.Width * 100.0) / PicturesList[picIndex].width);
             }
             catch { }
         }
@@ -1049,7 +1039,7 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                CustomFilter CF = new CustomFilter(PicturesList);
+                CustomFilter CF = new CustomFilter(PicturesList, PicUndoRedo);
                 CF.Show();
             }
         }
@@ -1957,7 +1947,7 @@ namespace ImageProcessingAssignment1
             {
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.AddUnifromNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                Image.AddAdditiveNoise(PicturesList[picIndex], "Uniform", int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Uniform Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
@@ -2016,7 +2006,7 @@ namespace ImageProcessingAssignment1
             {
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.AddGaussianNoise(PicturesList[picIndex], int.Parse(muTxt.Text), int.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                Image.AddAdditiveNoise(PicturesList[picIndex], "Gaussian", int.Parse(muTxt.Text), int.Parse(sigmaTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gaussian Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
@@ -2075,7 +2065,7 @@ namespace ImageProcessingAssignment1
             {
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.AddRayleighNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                Image.AddAdditiveNoise(PicturesList[picIndex], "Rayleigh", int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Rayleigh Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
@@ -2134,7 +2124,7 @@ namespace ImageProcessingAssignment1
             {
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.AddGammaNoise(PicturesList[picIndex], int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                Image.AddAdditiveNoise(PicturesList[picIndex], "Gamma", int.Parse(aTxt.Text), int.Parse(bTxt.Text), double.Parse(NoisePercentageTxt.Text));
                 PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Gamma Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
@@ -2183,7 +2173,7 @@ namespace ImageProcessingAssignment1
             {
                 int picIndex = ImageTabControl.SelectedIndex;
                 ImageClass Image = new ImageClass();
-                Image.AddExponentialNoise(PicturesList[picIndex], int.Parse(aTxt.Text), double.Parse(NoisePercentageTxt.Text));
+                Image.AddAdditiveNoise(PicturesList[picIndex], "Exponential", double.Parse(aTxt.Text), 0, double.Parse(NoisePercentageTxt.Text));
                 PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Exponential Noise");
                 DisplayImage(PicturesList[picIndex]);
             }
@@ -2305,7 +2295,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 int PicIndex = ImageTabControl.SelectedIndex;
-                Thresholding thresholding = new Thresholding(PicturesList[PicIndex]);
+                Thresholding thresholding = new Thresholding(PicturesList[PicIndex], PicUndoRedo[PicIndex]);
                 thresholding.Show();
             }
         }
@@ -2365,7 +2355,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 int picIndex = ImageTabControl.SelectedIndex;
-                Morpgology M = new Morpgology(PicturesList[picIndex]);
+                Morphology M = new Morphology(PicturesList[picIndex]);
                 M.Show();
             }
         }

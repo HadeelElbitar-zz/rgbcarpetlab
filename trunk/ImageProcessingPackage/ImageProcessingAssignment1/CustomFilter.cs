@@ -13,15 +13,17 @@ namespace ImageProcessingAssignment1
     public partial class CustomFilter : Form
     {
         List<PictureInfo> picList;
+        List<UndoRedo> picUndoRedo;
         DataTable FilterValue;
         static bool W, H;
         public CustomFilter()
         {
             InitializeComponent();
         }
-        public CustomFilter(List<PictureInfo> PicturesList)
+        public CustomFilter(List<PictureInfo> PicturesList, List<UndoRedo> _picUndoRedo)
         {
             picList = PicturesList;
+            picUndoRedo = _picUndoRedo;
             FilterValue = new DataTable();
             InitializeComponent();
         }
@@ -33,6 +35,8 @@ namespace ImageProcessingAssignment1
                 for (int i = 0; i < Size; i++)
                     comboBox1.Items.Add(picList[i].name);
                 comboBox1.SelectedIndex = 0;
+                textBox1.Text = "3";
+                textBox2.Text = "3";
             }
             catch { }
         }
@@ -82,7 +86,8 @@ namespace ImageProcessingAssignment1
                         for (int i = 0; i < FilterW; i++)
                             FilterValue.Columns.Add("", typeof(int));
                         for (int i = 0; i < FilterH; i++)
-                            FilterValue.Rows.Add(0);
+                            FilterValue.Rows.Add(1);
+                        FilterValue.Rows.Add(1);
                         FilterGrid.DataSource = FilterValue;
                     }
                 }
@@ -110,9 +115,17 @@ namespace ImageProcessingAssignment1
                         int FilterW = int.Parse(textBox1.Text);
                         int FilterH = int.Parse(textBox2.Text);
                         for (int i = 0; i < FilterW; i++)
+                        {
                             FilterValue.Columns.Add("", typeof(int));
+                        }
                         for (int i = 0; i < FilterH; i++)
-                            FilterValue.Rows.Add(0);
+                            FilterValue.Rows.Add();
+
+
+                        for (int i = 0; i < FilterH; i++)
+                            for (int j = 0; j < FilterW; j++)
+                                FilterValue.Rows[i][j] = 1;
+
                         FilterGrid.DataSource = FilterValue;
                     }
                 }
@@ -126,22 +139,35 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyBTN_Click(object sender, EventArgs e)
         {
+            ApplyChanges();
+        }
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void OkBtn_Click(object sender, EventArgs e)
+        {
+            ApplyChanges();
+            int picIndex = comboBox1.SelectedIndex;
+            picUndoRedo[picIndex].UndoRedoCommands(picList[picIndex], "Custom Filter");
+            this.Close();
+        }
+        private void ApplyChanges()
+        {
             try
             {
                 int FilterW = int.Parse(textBox1.Text);
                 int FilterH = int.Parse(textBox2.Text);
-                PictureInfo OldPic = picList[comboBox1.SelectedIndex];
-                int height = OldPic.height, width = OldPic.width;
+                int picIndex = comboBox1.SelectedIndex;
+                int height = picList[picIndex].height, width = picList[picIndex].width;
                 double[,] CustomFilter = new double[FilterH, FilterW];
                 for (int i = 0; i < FilterH; i++)
                     for (int j = 0; j < FilterW; j++)
                         CustomFilter[i, j] = double.Parse(FilterGrid[j, i].Value.ToString());
-                byte[,] Red = new byte[height, width];
-                byte[,] Green = new byte[height, width];
-                byte[,] Blue = new byte[height, width];
                 Filter filter = new Filter();
-                filter.Apply2DFilter(FilterW, FilterH, CustomFilter, OldPic, ref Red, ref Green, ref Blue);
-                DisplayImage(width, height, Red, Green, Blue, PicBox2);
+                filter.Apply2DCustomFilter(FilterW, FilterH, CustomFilter, picList[picIndex], ref picList[picIndex].redPixels, ref picList[picIndex].greenPixels, ref picList[picIndex].bluePixels);
+                DisplayImage(width, height, picList[picIndex].redPixels, picList[picIndex].greenPixels, picList[picIndex].bluePixels, PicBox2);
+                DisplayImage(width, height, picList[picIndex].redPixels, picList[picIndex].greenPixels, picList[picIndex].bluePixels, picList[picIndex].pictureBox);
             }
             catch { }
         }

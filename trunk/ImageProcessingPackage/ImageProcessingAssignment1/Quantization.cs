@@ -17,10 +17,12 @@ namespace ImageProcessingAssignment1
         byte[,] modifiedGPixelArray;
         byte[,] modifiedBPixelArray;
         int[] BinaryCode;
-        public Quantization(PictureInfo picInfo)
+        UndoRedo picUndoRedoItem;
+        public Quantization(PictureInfo picInfo, UndoRedo _picUndoRedoItem)
         {
             InitializeComponent();
             PicParent = picInfo;
+            picUndoRedoItem = _picUndoRedoItem;
         }
         private void Quantization_Load(object sender, EventArgs e)
         {
@@ -67,6 +69,7 @@ namespace ImageProcessingAssignment1
         private void button2_Click(object sender, EventArgs e)//Ok
         {
             ApplyChanges();
+            picUndoRedoItem.UndoRedoCommands(PicParent, "Quantization");
             this.Close();
         }
         private void button3_Click(object sender, EventArgs e)//Cancel

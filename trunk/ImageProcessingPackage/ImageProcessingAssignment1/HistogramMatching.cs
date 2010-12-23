@@ -56,14 +56,19 @@ namespace ImageProcessingAssignment1
         {
             TabPage tabPage = new TabPage();
             tabControl.TabPages.Add(tabPage);
-            int index = tabControl.TabPages.Count - 1;
-            tabControl.SelectedIndex = index;
-            tabPage.Controls.Add(picList[index].pictureBox);
-            tabControl.TabPages[index].Text = "Untitled";
-            picList[index].name = "Untitled";
-            picList[index].pictureBox.Size = new System.Drawing.Size(picList[index].width, picList[index].height);
-            DisplayImage(picList[index].width, picList[index].height, picList[index].redPixels, picList[index].greenPixels, picList[index].bluePixels, picList[index].pictureBox);
+            int count = tabControl.TabPages.Count - 1;
+            tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
+            tabPage.Controls.Add(picList[count].pictureBox);
+            tabControl.TabPages[count].Text = "Untitled.bmp";
+            picList[count].name = "Untitled.bmp";
+            picList[count].path = "C:\\Untitled.bmp";
+            tabControl.SelectedIndex = count;
+            tabPage.AutoScroll = true;
+            picList[count].pictureBox.Size = new System.Drawing.Size(picList[count].width, picList[count].height);
+            picList[count].pictureBox.Location = new System.Drawing.Point(tabPage.Width / 2 - picList[count].width / 2, tabPage.Height / 2 - picList[count].height / 2);
+            DisplayImage(picList[count].width, picList[count].height, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, picList[count].pictureBox);
             this.Close();
+
         }
         private void button3_Click(object sender, EventArgs e)//Cancel
         {

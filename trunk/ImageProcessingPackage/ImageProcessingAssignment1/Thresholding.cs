@@ -13,10 +13,12 @@ namespace ImageProcessingAssignment1
     public partial class Thresholding : Form
     {
         private PictureInfo PicParent, pic;
-        public Thresholding(PictureInfo picInfo)
+        private UndoRedo picUndoRedoItem;
+        public Thresholding(PictureInfo picInfo, UndoRedo _picUndoRedoItem)
         {
             InitializeComponent();
             PicParent = picInfo;
+            picUndoRedoItem = _picUndoRedoItem;
         }
         private void Thresholding_Load(object sender, EventArgs e)
         {
@@ -50,6 +52,7 @@ namespace ImageProcessingAssignment1
         private void okbtn_Click(object sender, EventArgs e)
         {
             ApplyChanges();
+            picUndoRedoItem.UndoRedoCommands(PicParent, "Basic Global Thresholding");
             this.Close();
         }
         private void cancelBtn_Click(object sender, EventArgs e)

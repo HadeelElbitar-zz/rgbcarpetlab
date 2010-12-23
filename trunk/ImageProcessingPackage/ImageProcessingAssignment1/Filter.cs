@@ -186,7 +186,7 @@ namespace ImageProcessingAssignment1
                 SortedArray[ArrayAux[Array[i]] - 1] = Array[i];
                 ArrayAux[Array[i]]--;
             }
-            
+
             Array = SortedArray;
             R = rSorted;
             G = gSorted;
@@ -306,6 +306,68 @@ namespace ImageProcessingAssignment1
                 }
             }
             if (SumOfFilter == 0)
+            {
+                NewPicR = Normalize(TNewPicR, newHeight, newWidth);
+                NewPicG = Normalize(TNewPicG, newHeight, newWidth);
+                NewPicB = Normalize(TNewPicB, newHeight, newWidth);
+            }
+            Red = unreplicateImage(Fheight, Fwidth, height, width, NewPicR);
+            Green = unreplicateImage(Fheight, Fwidth, height, width, NewPicG);
+            Blue = unreplicateImage(Fheight, Fwidth, height, width, NewPicB);
+        }
+        public void Apply2DCustomFilter(int Fwidth, int Fheight, double[,] Filter, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue)
+        {
+            int height = OldPic.height, width = OldPic.width;
+            double SumOfFilter = Summation(Filter, Fwidth, Fheight);
+            int newHeight = height + Fheight;
+            int newWidth = width + Fwidth;
+            byte[,] repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
+            byte[,] repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
+            byte[,] repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
+            byte[,] NewPicR = new byte[newHeight, newWidth];
+            byte[,] NewPicG = new byte[newHeight, newWidth];
+            byte[,] NewPicB = new byte[newHeight, newWidth];
+            double[,] TNewPicR = new double[newHeight, newWidth];
+            double[,] TNewPicG = new double[newHeight, newWidth];
+            double[,] TNewPicB = new double[newHeight, newWidth];
+            int M = (Fheight - 1) / 2, N = (Fwidth - 1) / 2, Fsize = Fheight * Fwidth;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    double Rsum = 0;
+                    double Gsum = 0;
+                    double Bsum = 0;
+                    for (int c = 0; c < Fheight; c++)
+                    {
+                        for (int k = 0; k < Fwidth; k++)
+                        {
+                            Rsum += (Filter[c, k] * (double)repRPixels[i + c, j + k]);
+                            Gsum += (Filter[c, k] * (double)repGPixels[i + c, j + k]);
+                            Bsum += (Filter[c, k] * (double)repBPixels[i + c, j + k]);
+                        }
+                    }
+                    Rsum /= Fsize;
+                    Gsum /= Fsize;
+                    Bsum /= Fsize;
+                    if ((int)(SumOfFilter) == (Fheight * Fwidth))
+                    {
+                        Rsum = CutOff(Rsum);
+                        Gsum = CutOff(Gsum);
+                        Bsum = CutOff(Bsum);
+                        NewPicR[i + M, j + N] = (byte)Rsum;
+                        NewPicG[i + M, j + N] = (byte)Gsum;
+                        NewPicB[i + M, j + N] = (byte)Bsum;
+                    }
+                    else
+                    {
+                        TNewPicR[i + M, j + N] = Rsum;
+                        TNewPicG[i + M, j + N] = Gsum;
+                        TNewPicB[i + M, j + N] = Bsum;
+                    }
+                }
+            }
+            if ((int)(SumOfFilter) != (Fheight * Fwidth))
             {
                 NewPicR = Normalize(TNewPicR, newHeight, newWidth);
                 NewPicG = Normalize(TNewPicG, newHeight, newWidth);

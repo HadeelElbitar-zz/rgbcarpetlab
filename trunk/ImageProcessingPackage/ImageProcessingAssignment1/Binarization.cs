@@ -13,10 +13,12 @@ namespace ImageProcessingAssignment1
     public partial class Binarization : Form
     {
         private PictureInfo PicParent, pic;
-        public Binarization(PictureInfo picInfo)
+        public UndoRedo picUndoRedoItem;
+        public Binarization(PictureInfo picInfo, UndoRedo _picUndoRedoItem)
         {
             InitializeComponent();
             PicParent = picInfo;
+            picUndoRedoItem = _picUndoRedoItem;
         }
         private void Binarization_Load(object sender, EventArgs e)
         {
@@ -49,6 +51,7 @@ namespace ImageProcessingAssignment1
         private void okbtn_Click(object sender, EventArgs e)
         {
             ApplyChanges();
+            picUndoRedoItem.UndoRedoCommands(PicParent, "Binarization");
             this.Close();
         }
         private void cancelBtn_Click(object sender, EventArgs e)

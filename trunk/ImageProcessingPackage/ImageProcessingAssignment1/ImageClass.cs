@@ -560,6 +560,32 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        public PictureInfo ConvertToBinary(PictureInfo pic)
+        {
+            GrayScale(pic);
+            int width = pic.width;
+            int height = pic.height;
+            PictureInfo NewPic = pic;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (pic.redPixels[i, j] < 128)
+                    {
+                        NewPic.redPixels[i, j] = 0;
+                        NewPic.greenPixels[i, j] = 0;
+                        NewPic.bluePixels[i, j] = 0;
+                    }
+                    else
+                    {
+                        NewPic.redPixels[i, j] = 255;
+                        NewPic.greenPixels[i, j] = 255;
+                        NewPic.bluePixels[i, j] = 255;
+                    }
+                }
+            }
+            return NewPic;
+        }
         public void ConvertToBinary(int height, int width, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray, double Threshold)
         {
             for (int i = 0; i < height; i++)
@@ -859,6 +885,24 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region Helping Functions
+        private int[,] ReflectSE(int[,] SE , int width , int height, ref int IOrigin , ref int JOrigin)
+        {
+            int[,] Temp = new int[height, width];
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                    Temp[i, width - j - 1] = SE[i, j];
+            }
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                    Temp[height - i - 1, j] = SE[i, j];
+            }
+            //Find New Origin
+            IOrigin = height - (IOrigin + 1); 
+            JOrigin = width - (JOrigin + 1);
+            return Temp;
+        }
         private void Normalization(int height, int width, double oldMin, double oldMax, double newMax, double newMin, double[,] Array)
         {
             for (int i = 0; i < height; i++)
@@ -1698,14 +1742,88 @@ namespace ImageProcessingAssignment1
         #region Morphology
         public void IMorphology(int height, int width, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray, int[,] StructerElement, int type, int IOrigin, int JOrigin, int widthSE, int heightSE)
         {
+            #region Pre-processing 
+            Filter Replecation = new Filter(); //da 3ashan el padding :D
+            //pad the image
+            byte[,] TempR = Replecation.ReplicateImage(heightSE, widthSE, height, width, tempRPixelArray);
+            byte[,] TempG = Replecation.ReplicateImage(heightSE, widthSE, height, width, tempGPixelArray);
+            byte[,] TempB = Replecation.ReplicateImage(heightSE, widthSE, height, width, tempBPixelArray);
+            int newHeight = height + heightSE;
+            int newWidth = width + widthSE;
+            byte[,] NewPicR = new byte[newHeight, newWidth];
+            byte[,] NewPicG = new byte[newHeight, newWidth];
+            byte[,] NewPicB = new byte[newHeight, newWidth];
+            #endregion
+
+            #region Dilation
             if (type == 0) //Dilation
             {
-
+                //reflect SE and find the new origin :D
+                StructerElement = ReflectSE(StructerElement, widthSE, heightSE, ref IOrigin, ref JOrigin);
+                //convolut with SE   
+                bool flag = false;
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        flag = false;
+                        for (int c = 0; c < heightSE; c++)
+                        {
+                            for (int k = 0; k < widthSE; k++)
+                            {
+                                if (StructerElement[c, k] == 1 && TempR[i + c, j + k] == 255)
+                                {
+                                    NewPicR[i + IOrigin, j + JOrigin] = 255;
+                                    NewPicG[i + IOrigin, j + JOrigin] = 255;
+                                    NewPicB[i + IOrigin, j + JOrigin] = 255;
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                            if (flag)
+                                break;
+                        }
+                    }
+                }
             }
+            #endregion 
+
+            #region Erosion
             else //Erosion
             {
-
+                bool flag = false;
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        flag = false;
+                        for (int c = 0; c < heightSE; c++)
+                        {
+                            for (int k = 0; k < widthSE; k++)
+                            {
+                                if (StructerElement[c, k] == 1 && TempR[i + c, j + k] == 0)
+                                {
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                            if (flag)
+                                break;
+                            NewPicR[i + IOrigin, j + JOrigin] = 255;
+                            NewPicG[i + IOrigin, j + JOrigin] = 255;
+                            NewPicB[i + IOrigin, j + JOrigin] = 255;
+                        }
+                    }
+                }
             }
+            #endregion
+
+            #region post-processing
+            //un-pad it :D
+            modifiedRPixelArray = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicR);
+            modifiedGPixelArray = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicG);
+            modifiedBPixelArray = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicB);
+            #endregion
         }
         #endregion
 

@@ -472,7 +472,6 @@ C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProce
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
@@ -510,6 +509,7 @@ C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProce
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morpgology.resources
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources

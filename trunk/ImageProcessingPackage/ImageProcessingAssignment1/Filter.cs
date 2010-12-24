@@ -15,6 +15,8 @@ namespace ImageProcessingAssignment1
         public byte[,] ReplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] Array)
         {
             int N = (Fheight - 1) / 2, M = (Fwidth - 1) / 2;
+            int mEven = (Fwidth % 2); M += mEven; mEven = M + 1;
+            int nEven = (Fheight % 2); N += nEven; nEven = N + 1;
             int newHeight = height + Fheight - 1;
             int newWidth = width + Fwidth - 1;
             byte[,] returnArray = new byte[newHeight, newWidth];
@@ -24,20 +26,20 @@ namespace ImageProcessingAssignment1
                 {
                     if (i <= N)
                     {
-                        if (j <= M) returnArray[i, j] = Array[0, 0];
-                        else if (j < newWidth - M) returnArray[i, j] = Array[0, j - M];
+                        if (j <= mEven) returnArray[i, j] = Array[0, 0];
+                        else if (j < newWidth - mEven) returnArray[i, j] = Array[0, j - M];
                         else if (j < newWidth) returnArray[i, j] = Array[0, width - 1];
                     }
-                    else if (i < newHeight - N)
+                    else if (i < newHeight - nEven)
                     {
-                        if (j <= M) returnArray[i, j] = Array[i - N, 0];
-                        else if (j < newWidth - M) returnArray[i, j] = Array[i - N, j - M];
+                        if (j <= mEven) returnArray[i, j] = Array[i - N, 0];
+                        else if (j < newWidth - mEven) returnArray[i, j] = Array[i - N, j - M];
                         else if (j < newWidth) returnArray[i, j] = Array[i - N, width - 1];
                     }
                     else if (i < newHeight)
                     {
-                        if (j <= M) returnArray[i, j] = Array[height - 1, 0];
-                        else if (j < newWidth - M) returnArray[i, j] = Array[height - 1, j - M];
+                        if (j <= mEven) returnArray[i, j] = Array[height - 1, 0];
+                        else if (j < newWidth - mEven) returnArray[i, j] = Array[height - 1, j - M];
                         else if (j < newWidth) returnArray[i, j] = Array[height - 1, width - 1];
                     }
                 }
@@ -48,6 +50,9 @@ namespace ImageProcessingAssignment1
         {
             byte[,] unrepArray = new byte[height, width];
             int N = (Fheight - 1) / 2, M = (Fwidth - 1) / 2;
+
+            int mEven = (Fwidth % 2); M += mEven; mEven = M + 1;
+            int nEven = (Fheight % 2); N += nEven; nEven = N + 1;
             for (int i = N; i < N + height; i++)
             {
                 for (int j = M; j < M + width; j++)

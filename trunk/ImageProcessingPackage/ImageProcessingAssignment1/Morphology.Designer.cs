@@ -43,10 +43,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.RadiusTBOX = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.ErosionRBTN = new System.Windows.Forms.RadioButton();
             this.DilationRBTN = new System.Windows.Forms.RadioButton();
@@ -54,15 +54,22 @@
             this.builtinStructureElementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.circularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.triangleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TriHeiBOX = new System.Windows.Forms.TextBox();
+            this.TriWBOX = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -217,8 +224,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.groupBox6);
+            this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox5);
+            this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(16, 233);
@@ -228,25 +236,12 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "User Input";
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.hTBOX);
-            this.groupBox5.Controls.Add(this.wTBOX);
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.ForeColor = System.Drawing.Color.White;
-            this.groupBox5.Location = new System.Drawing.Point(6, 13);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(156, 68);
-            this.groupBox5.TabIndex = 14;
-            this.groupBox5.TabStop = false;
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.RadiusTBOX);
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(4, 12);
+            this.groupBox6.Location = new System.Drawing.Point(4, 13);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(156, 68);
             this.groupBox6.TabIndex = 15;
@@ -269,6 +264,19 @@
             this.RadiusTBOX.Size = new System.Drawing.Size(100, 20);
             this.RadiusTBOX.TabIndex = 2;
             this.RadiusTBOX.TextChanged += new System.EventHandler(this.RadiusTBOX_TextChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.hTBOX);
+            this.groupBox5.Controls.Add(this.wTBOX);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.ForeColor = System.Drawing.Color.White;
+            this.groupBox5.Location = new System.Drawing.Point(6, 13);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(156, 68);
+            this.groupBox5.TabIndex = 14;
+            this.groupBox5.TabStop = false;
             // 
             // groupBox4
             // 
@@ -319,7 +327,8 @@
             // 
             this.builtinStructureElementsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.circularToolStripMenuItem,
-            this.customToolStripMenuItem});
+            this.customToolStripMenuItem,
+            this.triangleToolStripMenuItem});
             this.builtinStructureElementsToolStripMenuItem.Name = "builtinStructureElementsToolStripMenuItem";
             this.builtinStructureElementsToolStripMenuItem.Size = new System.Drawing.Size(160, 20);
             this.builtinStructureElementsToolStripMenuItem.Text = "Built-in Structure Elements";
@@ -327,7 +336,7 @@
             // circularToolStripMenuItem
             // 
             this.circularToolStripMenuItem.Name = "circularToolStripMenuItem";
-            this.circularToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.circularToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.circularToolStripMenuItem.Text = "Circular";
             this.circularToolStripMenuItem.Click += new System.EventHandler(this.circularToolStripMenuItem_Click);
             // 
@@ -337,6 +346,61 @@
             this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.customToolStripMenuItem.Text = "Custom";
             this.customToolStripMenuItem.Click += new System.EventHandler(this.customToolStripMenuItem_Click);
+            // 
+            // triangleToolStripMenuItem
+            // 
+            this.triangleToolStripMenuItem.Name = "triangleToolStripMenuItem";
+            this.triangleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.triangleToolStripMenuItem.Text = "Triangle";
+            this.triangleToolStripMenuItem.Click += new System.EventHandler(this.triangleToolStripMenuItem_Click);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label4);
+            this.groupBox7.Controls.Add(this.TriHeiBOX);
+            this.groupBox7.Controls.Add(this.TriWBOX);
+            this.groupBox7.Controls.Add(this.label5);
+            this.groupBox7.ForeColor = System.Drawing.Color.White;
+            this.groupBox7.Location = new System.Drawing.Point(4, 13);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(156, 68);
+            this.groupBox7.TabIndex = 15;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 17);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Width";
+            // 
+            // TriHeiBOX
+            // 
+            this.TriHeiBOX.Location = new System.Drawing.Point(48, 39);
+            this.TriHeiBOX.Name = "TriHeiBOX";
+            this.TriHeiBOX.Size = new System.Drawing.Size(100, 20);
+            this.TriHeiBOX.TabIndex = 3;
+            this.TriHeiBOX.TextChanged += new System.EventHandler(this.TriHeiBOX_TextChanged);
+            // 
+            // TriWBOX
+            // 
+            this.TriWBOX.Location = new System.Drawing.Point(48, 14);
+            this.TriWBOX.Name = "TriWBOX";
+            this.TriWBOX.Size = new System.Drawing.Size(100, 20);
+            this.TriWBOX.TabIndex = 2;
+            this.TriWBOX.TextChanged += new System.EventHandler(this.TriWBOX_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Height";
             // 
             // Morphology
             // 
@@ -363,14 +427,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,5 +470,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox RadiusTBOX;
         private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem triangleToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TriHeiBOX;
+        private System.Windows.Forms.TextBox TriWBOX;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -275,6 +275,53 @@ namespace ImageProcessingAssignment1
                     this.Controls.Add(this.ArrBtn[i, j]);
                 }
         }
+        private void TriangleSE(int w, int h)
+        {
+            SE = new int[h, w];
+            int[] A = { 0, w / 2 };
+            int[] B = { h - 1, 0 };
+            int[] C = { h - 1, w - 1 };
+            double AllArea = CalcArea(A, B, C);
+            double SmallArea1, SmallArea2, SmallArea3;
+            int[] P = new int[2];
+            for (int i = 0; i < h; i++)
+            {
+                for (int j = 0; j < w; j++)
+                {
+                    P[0] = i;
+                    P[1] = j;
+                    SmallArea1 = CalcArea(P, B, C);
+                    SmallArea2 = CalcArea(P, A, B);
+                    SmallArea3 = CalcArea(P, A, C);
+                    if (SmallArea1 + SmallArea2 + SmallArea3 == AllArea)
+                        SE[i, j] = 1;
+                }
+            }
+            AddCircularBTNs();
+        }
+        private int[] Subtract(int[] V1, int[] V2)
+        {
+            int[] res = new int[2];
+            res[0] = V1[0] - V2[0];
+            res[1] = V1[1] - V2[1];
+            return res;
+        }
+        private double DotProduct(int[] V1, int[] V2)
+        {
+            double res;
+            res = ((double)V1[0] * (double)V2[0]) + (double)(V1[1] * (double)V2[1]);
+            return res;
+        }
+        private double CalcArea(int[] A, int[] B, int[] C)
+        {
+            double res , a , b , c , d;
+            a = A[0] - C[0];
+            b = B[1] - A[1];
+            c = A[0] - B[0];
+            d = C[1] - A[1];
+            res = 0.5 * (Math.Abs((a * b) - (d * c)));
+            return res;
+        }
         #endregion
 
         #region Controls Changes
@@ -359,6 +406,46 @@ namespace ImageProcessingAssignment1
             }
             catch { }
         }
+        private void TriWBOX_TextChanged(object sender, EventArgs e)
+        {
+            WC = false;
+            try
+            {
+                OldW = W;
+                OldH = H;
+                W = int.Parse(TriWBOX.Text);
+                WC = true;
+                if (HC)
+                {
+                    H = int.Parse(TriHeiBOX.Text);
+                    TriangleSE(W, H);
+                }
+            }
+            catch
+            {
+                WC = false;
+            }
+        }
+        private void TriHeiBOX_TextChanged(object sender, EventArgs e)
+        {
+            HC = false;
+            try
+            {
+                OldH = H;
+                OldW = W;
+                H = int.Parse(TriHeiBOX.Text);
+                HC = true;
+                if (WC)
+                {
+                    W = int.Parse(TriWBOX.Text);
+                    TriangleSE(W, H);
+                }
+            }
+            catch
+            {
+                HC = false;
+            }
+        }
         #endregion
 
         #region functions
@@ -430,6 +517,7 @@ namespace ImageProcessingAssignment1
             OldH = H; OldW = W;
             ClearBTNs();
             groupBox5.Visible = false;
+            groupBox7.Visible = false;
             groupBox6.Visible = true;
         }
         private void customToolStripMenuItem_Click(object sender, EventArgs e)
@@ -437,6 +525,18 @@ namespace ImageProcessingAssignment1
             OldH = H; OldW = W;
             ClearBTNs();
             groupBox5.Visible = true;
+            groupBox7.Visible = false;
+            groupBox6.Visible = false;
+            wTBOX.Text = "";
+            hTBOX.Text = "";
+        }
+        private void triangleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HC = WC = false;
+            OldH = H; OldW = W;
+            ClearBTNs();
+            groupBox5.Visible = false;
+            groupBox7.Visible = true;
             groupBox6.Visible = false;
             wTBOX.Text = "";
             hTBOX.Text = "";

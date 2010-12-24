@@ -2355,7 +2355,7 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 int picIndex = ImageTabControl.SelectedIndex;
-                Morphology M = new Morphology(PicturesList[picIndex]);
+                Morphology M = new Morphology(PicturesList[picIndex],PicUndoRedo[picIndex]);
                 M.Show();
             }
         }

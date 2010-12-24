@@ -27,13 +27,15 @@ namespace ImageProcessingAssignment1
         public byte[,] tempGPixelArray;
         public byte[,] tempBPixelArray;
         int[,] SE;
+        UndoRedo PicUndoRedo;
         #endregion
 
-        public Morphology(PictureInfo pic)
+        public Morphology(PictureInfo pic,UndoRedo _PicUndoRedo)
         {
             InitializeComponent();
             ImageClass IM = new ImageClass();
             PicParent = IM.ConvertToBinary(pic);
+            PicUndoRedo = _PicUndoRedo;
         }
 
         #region Structure Element
@@ -45,15 +47,15 @@ namespace ImageProcessingAssignment1
                 OldW = W;
                 OldH = H;
                 W = int.Parse(wTBOX.Text);
-                WC = true;
-                if (HC)
-                {
+                //WC = true;
+                //if (HC)
+                //{
                     H = int.Parse(hTBOX.Text);
                     AddBTNs();
                     SetBTN.Enabled = true;
                     ResetBTN.Enabled = true;
                    // OkBTN.Enabled = true;
-                }
+                //}
             }
             catch 
             {
@@ -70,15 +72,15 @@ namespace ImageProcessingAssignment1
                 OldH = H;
                 OldW = W;
                 H = int.Parse(hTBOX.Text);
-                HC = true;
-                if (WC)
-                {
+                //HC = true;
+                //if (WC)
+                //{
                     W = int.Parse(wTBOX.Text);
                     AddBTNs();
                     SetBTN.Enabled = true;
                     ResetBTN.Enabled = true;
                     //OkBTN.Enabled = true;
-                }
+                //}
             }
             catch
             {
@@ -347,6 +349,10 @@ namespace ImageProcessingAssignment1
             }
             DisplayImage(width, height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox1);
             DisplayImage(width, height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox2);
+            wTBOX.Text = "3";
+            hTBOX.Text = "3";
+
+            hTBOX.Text = "3";
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -374,6 +380,7 @@ namespace ImageProcessingAssignment1
         private void button2_Click(object sender, EventArgs e)
         {
             ApplyChanges();
+            PicUndoRedo.UndoRedoCommands(PicParent, "Morphology");
             this.Close();
         }
         private void DilationRBTN_CheckedChanged(object sender, EventArgs e)
@@ -564,7 +571,8 @@ namespace ImageProcessingAssignment1
                     }
                 }
                 DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox2);
-                DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
+                if(checkBox1.Checked)
+                    DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
             }
             catch (Exception ex)
             {

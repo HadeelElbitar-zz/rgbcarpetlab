@@ -1803,6 +1803,9 @@ namespace ImageProcessingAssignment1
                             {
                                 if (StructerElement[c, k] == 1 && TempR[i + c, j + k] == 0)
                                 {
+                                    NewPicR[i + IOrigin, j + JOrigin] = 0;
+                                    NewPicG[i + IOrigin, j + JOrigin] = 0;
+                                    NewPicB[i + IOrigin, j + JOrigin] = 0;
                                     flag = true;
                                     break;
                                 }

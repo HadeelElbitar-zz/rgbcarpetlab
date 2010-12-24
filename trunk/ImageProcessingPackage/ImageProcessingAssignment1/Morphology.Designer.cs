@@ -43,10 +43,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TriHeiBOX = new System.Windows.Forms.TextBox();
+            this.TriWBOX = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.RadiusTBOX = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.ErosionRBTN = new System.Windows.Forms.RadioButton();
             this.DilationRBTN = new System.Windows.Forms.RadioButton();
@@ -55,21 +60,19 @@
             this.circularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.triangleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TriHeiBOX = new System.Windows.Forms.TextBox();
-            this.TriWBOX = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.OpeningRBTN = new System.Windows.Forms.RadioButton();
+            this.ClosingRBTN = new System.Windows.Forms.RadioButton();
+            this.BoundExtrRBTN = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -109,7 +112,7 @@
             // SetBTN
             // 
             this.SetBTN.Enabled = false;
-            this.SetBTN.Location = new System.Drawing.Point(22, 371);
+            this.SetBTN.Location = new System.Drawing.Point(587, 174);
             this.SetBTN.Name = "SetBTN";
             this.SetBTN.Size = new System.Drawing.Size(75, 23);
             this.SetBTN.TabIndex = 4;
@@ -120,7 +123,7 @@
             // ResetBTN
             // 
             this.ResetBTN.Enabled = false;
-            this.ResetBTN.Location = new System.Drawing.Point(22, 342);
+            this.ResetBTN.Location = new System.Drawing.Point(587, 203);
             this.ResetBTN.Name = "ResetBTN";
             this.ResetBTN.Size = new System.Drawing.Size(75, 23);
             this.ResetBTN.TabIndex = 5;
@@ -212,7 +215,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.ForeColor = System.Drawing.Color.Black;
+            this.checkBox1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.checkBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.checkBox1.Location = new System.Drawing.Point(587, 44);
             this.checkBox1.Name = "checkBox1";
@@ -224,28 +227,92 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox5);
-            this.groupBox3.Controls.Add(this.groupBox6);
+            this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox4);
+            this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(16, 233);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(250, 92);
+            this.groupBox3.Size = new System.Drawing.Size(250, 181);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "User Input";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label4);
+            this.groupBox7.Controls.Add(this.TriHeiBOX);
+            this.groupBox7.Controls.Add(this.TriWBOX);
+            this.groupBox7.Controls.Add(this.label5);
+            this.groupBox7.ForeColor = System.Drawing.Color.White;
+            this.groupBox7.Location = new System.Drawing.Point(6, 13);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(238, 68);
+            this.groupBox7.TabIndex = 15;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Triangular";
+            this.groupBox7.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 17);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Base";
+            // 
+            // TriHeiBOX
+            // 
+            this.TriHeiBOX.Location = new System.Drawing.Point(48, 39);
+            this.TriHeiBOX.Name = "TriHeiBOX";
+            this.TriHeiBOX.Size = new System.Drawing.Size(100, 20);
+            this.TriHeiBOX.TabIndex = 3;
+            this.TriHeiBOX.TextChanged += new System.EventHandler(this.TriHeiBOX_TextChanged);
+            // 
+            // TriWBOX
+            // 
+            this.TriWBOX.Location = new System.Drawing.Point(48, 14);
+            this.TriWBOX.Name = "TriWBOX";
+            this.TriWBOX.Size = new System.Drawing.Size(100, 20);
+            this.TriWBOX.TabIndex = 2;
+            this.TriWBOX.TextChanged += new System.EventHandler(this.TriWBOX_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Height";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.hTBOX);
+            this.groupBox5.Controls.Add(this.wTBOX);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.ForeColor = System.Drawing.Color.White;
+            this.groupBox5.Location = new System.Drawing.Point(6, 13);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(238, 68);
+            this.groupBox5.TabIndex = 14;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Custom";
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.RadiusTBOX);
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(4, 13);
+            this.groupBox6.Location = new System.Drawing.Point(6, 13);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(156, 68);
+            this.groupBox6.Size = new System.Drawing.Size(238, 68);
             this.groupBox6.TabIndex = 15;
             this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Circular";
             this.groupBox6.Visible = false;
             // 
             // label3
@@ -265,29 +332,20 @@
             this.RadiusTBOX.TabIndex = 2;
             this.RadiusTBOX.TextChanged += new System.EventHandler(this.RadiusTBOX_TextChanged);
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.hTBOX);
-            this.groupBox5.Controls.Add(this.wTBOX);
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.ForeColor = System.Drawing.Color.White;
-            this.groupBox5.Location = new System.Drawing.Point(6, 13);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(156, 68);
-            this.groupBox5.TabIndex = 14;
-            this.groupBox5.TabStop = false;
-            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.BoundExtrRBTN);
+            this.groupBox4.Controls.Add(this.ClosingRBTN);
+            this.groupBox4.Controls.Add(this.OpeningRBTN);
             this.groupBox4.Controls.Add(this.ErosionRBTN);
             this.groupBox4.Controls.Add(this.DilationRBTN);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(166, 12);
+            this.groupBox4.Location = new System.Drawing.Point(4, 83);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(78, 69);
+            this.groupBox4.Size = new System.Drawing.Size(240, 87);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Operation Type";
             // 
             // ErosionRBTN
             // 
@@ -298,6 +356,7 @@
             this.ErosionRBTN.TabIndex = 5;
             this.ErosionRBTN.Text = "Erosion";
             this.ErosionRBTN.UseVisualStyleBackColor = true;
+            this.ErosionRBTN.CheckedChanged += new System.EventHandler(this.ErosionRBTN_CheckedChanged);
             // 
             // DilationRBTN
             // 
@@ -336,78 +395,66 @@
             // circularToolStripMenuItem
             // 
             this.circularToolStripMenuItem.Name = "circularToolStripMenuItem";
-            this.circularToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.circularToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.circularToolStripMenuItem.Text = "Circular";
             this.circularToolStripMenuItem.Click += new System.EventHandler(this.circularToolStripMenuItem_Click);
             // 
             // customToolStripMenuItem
             // 
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.customToolStripMenuItem.Text = "Custom";
             this.customToolStripMenuItem.Click += new System.EventHandler(this.customToolStripMenuItem_Click);
             // 
             // triangleToolStripMenuItem
             // 
             this.triangleToolStripMenuItem.Name = "triangleToolStripMenuItem";
-            this.triangleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.triangleToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.triangleToolStripMenuItem.Text = "Triangle";
             this.triangleToolStripMenuItem.Click += new System.EventHandler(this.triangleToolStripMenuItem_Click);
             // 
-            // groupBox7
+            // OpeningRBTN
             // 
-            this.groupBox7.Controls.Add(this.label4);
-            this.groupBox7.Controls.Add(this.TriHeiBOX);
-            this.groupBox7.Controls.Add(this.TriWBOX);
-            this.groupBox7.Controls.Add(this.label5);
-            this.groupBox7.ForeColor = System.Drawing.Color.White;
-            this.groupBox7.Location = new System.Drawing.Point(4, 13);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(156, 68);
-            this.groupBox7.TabIndex = 15;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Visible = false;
+            this.OpeningRBTN.AutoSize = true;
+            this.OpeningRBTN.Location = new System.Drawing.Point(84, 15);
+            this.OpeningRBTN.Name = "OpeningRBTN";
+            this.OpeningRBTN.Size = new System.Drawing.Size(65, 17);
+            this.OpeningRBTN.TabIndex = 15;
+            this.OpeningRBTN.TabStop = true;
+            this.OpeningRBTN.Text = "Opening";
+            this.OpeningRBTN.UseVisualStyleBackColor = true;
+            this.OpeningRBTN.CheckedChanged += new System.EventHandler(this.OpeningRBTN_CheckedChanged);
             // 
-            // label4
+            // ClosingRBTN
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 17);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Width";
+            this.ClosingRBTN.AutoSize = true;
+            this.ClosingRBTN.Location = new System.Drawing.Point(84, 38);
+            this.ClosingRBTN.Name = "ClosingRBTN";
+            this.ClosingRBTN.Size = new System.Drawing.Size(59, 17);
+            this.ClosingRBTN.TabIndex = 16;
+            this.ClosingRBTN.TabStop = true;
+            this.ClosingRBTN.Text = "Closing";
+            this.ClosingRBTN.UseVisualStyleBackColor = true;
+            this.ClosingRBTN.CheckedChanged += new System.EventHandler(this.ClosingRBTN_CheckedChanged);
             // 
-            // TriHeiBOX
+            // BoundExtrRBTN
             // 
-            this.TriHeiBOX.Location = new System.Drawing.Point(48, 39);
-            this.TriHeiBOX.Name = "TriHeiBOX";
-            this.TriHeiBOX.Size = new System.Drawing.Size(100, 20);
-            this.TriHeiBOX.TabIndex = 3;
-            this.TriHeiBOX.TextChanged += new System.EventHandler(this.TriHeiBOX_TextChanged);
-            // 
-            // TriWBOX
-            // 
-            this.TriWBOX.Location = new System.Drawing.Point(48, 14);
-            this.TriWBOX.Name = "TriWBOX";
-            this.TriWBOX.Size = new System.Drawing.Size(100, 20);
-            this.TriWBOX.TabIndex = 2;
-            this.TriWBOX.TextChanged += new System.EventHandler(this.TriWBOX_TextChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 42);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Height";
+            this.BoundExtrRBTN.AutoSize = true;
+            this.BoundExtrRBTN.Location = new System.Drawing.Point(9, 62);
+            this.BoundExtrRBTN.Name = "BoundExtrRBTN";
+            this.BoundExtrRBTN.Size = new System.Drawing.Size(123, 17);
+            this.BoundExtrRBTN.TabIndex = 17;
+            this.BoundExtrRBTN.TabStop = true;
+            this.BoundExtrRBTN.Text = "Boundary Extraction";
+            this.BoundExtrRBTN.UseVisualStyleBackColor = true;
+            this.BoundExtrRBTN.CheckedChanged += new System.EventHandler(this.BoundExtrRBTN_CheckedChanged);
             // 
             // Morphology
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(715, 398);
+            this.ClientSize = new System.Drawing.Size(715, 438);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -427,16 +474,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -476,5 +523,8 @@
         private System.Windows.Forms.TextBox TriHeiBOX;
         private System.Windows.Forms.TextBox TriWBOX;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton BoundExtrRBTN;
+        private System.Windows.Forms.RadioButton ClosingRBTN;
+        private System.Windows.Forms.RadioButton OpeningRBTN;
     }
 }

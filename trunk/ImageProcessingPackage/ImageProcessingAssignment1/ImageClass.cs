@@ -1789,7 +1789,7 @@ namespace ImageProcessingAssignment1
             #endregion 
 
             #region Erosion
-            else //Erosion
+            else if(type == 1) //Erosion
             {
                 bool flag = false;
                 for (int i = 0; i < height; i++)
@@ -1818,6 +1818,187 @@ namespace ImageProcessingAssignment1
                         }
                     }
                 }
+            }
+            #endregion
+
+            #region Opening
+            else if (type == 2)
+            {
+                bool flag = false;
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        flag = false;
+                        for (int c = 0; c < heightSE; c++)
+                        {
+                            for (int k = 0; k < widthSE; k++)
+                            {
+                                if (StructerElement[c, k] == 1 && TempR[i + c, j + k] == 0)
+                                {
+                                    NewPicR[i + IOrigin, j + JOrigin] = 0;
+                                    NewPicG[i + IOrigin, j + JOrigin] = 0;
+                                    NewPicB[i + IOrigin, j + JOrigin] = 0;
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                            if (flag)
+                                break;
+                            NewPicR[i + IOrigin, j + JOrigin] = 255;
+                            NewPicG[i + IOrigin, j + JOrigin] = 255;
+                            NewPicB[i + IOrigin, j + JOrigin] = 255;
+                        }
+                    }
+                }
+                //un-replicate
+                byte[,] TNewPicR = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicR);
+                byte[,] TNewPicG = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicG);
+                byte[,] TNewPicB = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicB);
+                TNewPicR = Replecation.ReplicateImage(heightSE, widthSE, height, width, TNewPicR);
+                TNewPicG = Replecation.ReplicateImage(heightSE, widthSE, height, width, TNewPicG);
+                TNewPicB = Replecation.ReplicateImage(heightSE, widthSE, height, width, TNewPicB);
+                //byte[,] TNewPicR = NewPicR;
+                //byte[,] TNewPicG = NewPicG;
+                //byte[,] TNewPicB = NewPicB;
+                //dilate
+                StructerElement = ReflectSE(StructerElement, widthSE, heightSE, ref IOrigin, ref JOrigin);   
+                flag = false;
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        flag = false;
+                        for (int c = 0; c < heightSE; c++)
+                        {
+                            for (int k = 0; k < widthSE; k++)
+                            {
+                                if (StructerElement[c, k] == 1 && TNewPicR[i + c, j + k] == 255)
+                                {
+                                    NewPicR[i + IOrigin, j + JOrigin] = 255;
+                                    NewPicG[i + IOrigin, j + JOrigin] = 255;
+                                    NewPicB[i + IOrigin, j + JOrigin] = 255;
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                            if (flag)
+                                break;
+                        }
+                    }
+                }
+            }
+            #endregion
+
+            #region Closing
+            else if (type == 3) 
+            {
+                //dilate
+                int NewI = IOrigin, NewJ = JOrigin;
+                int[,] NewSE = ReflectSE(StructerElement, widthSE, heightSE, ref IOrigin, ref JOrigin);
+                bool flag = false;
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        flag = false;
+                        for (int c = 0; c < heightSE; c++)
+                        {
+                            for (int k = 0; k < widthSE; k++)
+                            {
+                                if (NewSE[c, k] == 1 && TempR[i + c, j + k] == 255)
+                                {
+                                    NewPicR[i + IOrigin, j + JOrigin] = 255;
+                                    NewPicG[i + IOrigin, j + JOrigin] = 255;
+                                    NewPicB[i + IOrigin, j + JOrigin] = 255;
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                            if (flag)
+                                break;
+                        }
+                    }
+                }
+                //un-replicate
+                byte[,] TNewPicR = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicR);
+                byte[,] TNewPicG = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicG);
+                byte[,] TNewPicB = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicB);
+                TNewPicR = Replecation.ReplicateImage(heightSE, widthSE, height, width, TNewPicR);
+                TNewPicG = Replecation.ReplicateImage(heightSE, widthSE, height, width, TNewPicG);
+                TNewPicB = Replecation.ReplicateImage(heightSE, widthSE, height, width, TNewPicB);
+                //erosion
+                flag = false;
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        flag = false;
+                        for (int c = 0; c < heightSE; c++)
+                        {
+                            for (int k = 0; k < widthSE; k++)
+                            {
+                                if (StructerElement[c, k] == 1 && TNewPicR[i + c, j + k] == 0)
+                                {
+                                    NewPicR[i + NewI, j + NewJ] = 0;
+                                    NewPicG[i + NewI, j + NewJ] = 0;
+                                    NewPicB[i + NewI, j + NewJ] = 0;
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                            if (flag)
+                                break;
+                            NewPicR[i + NewI, j + NewJ] = 255;
+                            NewPicG[i + NewI, j + NewJ] = 255;
+                            NewPicB[i + NewI, j + NewJ] = 255;
+                        }
+                    }
+                }                
+            }
+            #endregion
+
+            #region Boundary Extraction
+            else if (type == 4)
+            {
+                bool flag = false;
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        flag = false;
+                        for (int c = 0; c < heightSE; c++)
+                        {
+                            for (int k = 0; k < widthSE; k++)
+                            {
+                                if (StructerElement[c, k] == 1 && TempR[i + c, j + k] == 0)
+                                {
+                                    NewPicR[i + IOrigin, j + JOrigin] = 0;
+                                    NewPicG[i + IOrigin, j + JOrigin] = 0;
+                                    NewPicB[i + IOrigin, j + JOrigin] = 0;
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                            if (flag)
+                                break;
+                            NewPicR[i + IOrigin, j + JOrigin] = 255;
+                            NewPicG[i + IOrigin, j + JOrigin] = 255;
+                            NewPicB[i + IOrigin, j + JOrigin] = 255;
+                        }
+                    }
+                }
+                modifiedRPixelArray = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicR);
+                modifiedGPixelArray = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicG);
+                modifiedBPixelArray = Replecation.unreplicateImage(heightSE, widthSE, height, width, NewPicB);
+                for (int i = 0; i < height; i++)
+                    for (int j = 0; j < width; j++)
+                    {
+                        modifiedRPixelArray[i, j] = (byte)(tempRPixelArray[i, j] - modifiedRPixelArray[i, j]);
+                        modifiedGPixelArray[i, j] = (byte)(tempGPixelArray[i, j] - modifiedGPixelArray[i, j]);
+                        modifiedBPixelArray[i, j] = (byte)(tempBPixelArray[i, j] - modifiedBPixelArray[i, j]);
+                    }
+                return;
             }
             #endregion
 

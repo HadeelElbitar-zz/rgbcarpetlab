@@ -380,8 +380,70 @@ namespace ImageProcessingAssignment1
         {
             if (DilationRBTN.Checked)
                 MorphologyType = 0; //dilation
-            else
+            else if (ErosionRBTN.Checked)
                 MorphologyType = 1; //erosion
+            else if (OpeningRBTN.Checked)
+                MorphologyType = 2; //opening
+            else if (ClosingRBTN.Checked)
+                MorphologyType = 3; //closing
+            else if (BoundExtrRBTN.Checked)
+                MorphologyType = 4; //boundary extractuib
+            ApplyChanges();
+        }
+        private void OpeningRBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DilationRBTN.Checked)
+                MorphologyType = 0; //dilation
+            else if (ErosionRBTN.Checked)
+                MorphologyType = 1; //erosion
+            else if (OpeningRBTN.Checked)
+                MorphologyType = 2; //opening
+            else if (ClosingRBTN.Checked)
+                MorphologyType = 3; //closing
+            else if (BoundExtrRBTN.Checked)
+                MorphologyType = 4; //boundary extractuib
+            ApplyChanges();
+        }
+        private void ErosionRBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DilationRBTN.Checked)
+                MorphologyType = 0; //dilation
+            else if (ErosionRBTN.Checked)
+                MorphologyType = 1; //erosion
+            else if (OpeningRBTN.Checked)
+                MorphologyType = 2; //opening
+            else if (ClosingRBTN.Checked)
+                MorphologyType = 3; //closing
+            else if (BoundExtrRBTN.Checked)
+                MorphologyType = 4; //boundary extractuib
+            ApplyChanges();
+        }
+        private void ClosingRBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DilationRBTN.Checked)
+                MorphologyType = 0; //dilation
+            else if (ErosionRBTN.Checked)
+                MorphologyType = 1; //erosion
+            else if (OpeningRBTN.Checked)
+                MorphologyType = 2; //opening
+            else if (ClosingRBTN.Checked)
+                MorphologyType = 3; //closing
+            else if (BoundExtrRBTN.Checked)
+                MorphologyType = 4; //boundary extractuib
+            ApplyChanges();
+        }
+        private void BoundExtrRBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DilationRBTN.Checked)
+                MorphologyType = 0; //dilation
+            else if (ErosionRBTN.Checked)
+                MorphologyType = 1; //erosion
+            else if (OpeningRBTN.Checked)
+                MorphologyType = 2; //opening
+            else if (ClosingRBTN.Checked)
+                MorphologyType = 3; //closing
+            else if (BoundExtrRBTN.Checked)
+                MorphologyType = 4; //boundary extractuib
             ApplyChanges();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -541,6 +603,6 @@ namespace ImageProcessingAssignment1
             wTBOX.Text = "";
             hTBOX.Text = "";
         }
-        #endregion 
+        #endregion        
     }
 }

@@ -468,6 +468,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Morphology";
             this.Text = "StructureElement";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Morphology_FormClosed);
             this.Load += new System.EventHandler(this.StructureElement_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

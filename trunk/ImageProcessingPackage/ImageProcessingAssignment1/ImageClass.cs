@@ -611,7 +611,7 @@ namespace ImageProcessingAssignment1
             GrayScale(pic);
             int width = pic.width;
             int height = pic.height;
-            PictureInfo NewPic = pic;
+            PictureInfo NewPic = new PictureInfo(pic);
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -704,7 +704,7 @@ namespace ImageProcessingAssignment1
         }
 
         //Gamma Correction
-        public void GammaCorrection(int height, int width, double Gamma,ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
+        public void GammaCorrection(int height, int width, double Gamma, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
             modifiedRPixelArray = GammaHelp(height, width, Gamma, modifiedRPixelArray);
             modifiedGPixelArray = GammaHelp(height, width, Gamma, modifiedGPixelArray);
@@ -1141,8 +1141,6 @@ namespace ImageProcessingAssignment1
                 MessageBox.Show("The percentage should be less than 100!");
             else
             {
-                if (NoisePercentage == 100)
-                    NoisePercentage--;
                 int height = pic.height;
                 int width = pic.width;
                 List<Point> pointList = new List<Point>();
@@ -1170,17 +1168,13 @@ namespace ImageProcessingAssignment1
                 }
                 if (type == "Uniform")
                 {
-                    int NoiseNumber = (int)((double)(1.0 / (b - a)) * Size * (NoisePercentage / 100.0));
+                    int NoiseNumber = (int)((Size * NoisePercentage) / (100.0 * (b - a + 1)));
                     for (int j = (int)a; j <= b; j++)
                     {
                         for (int i = 0; i < NoiseNumber; i++)
                         {
                             int ChosenIndex = 0;
-                            try
-                            {
-                                ChosenIndex = rand.Next(0, count--);
-                            }
-                            catch { }
+                            ChosenIndex = rand.Next(0, count--);
                             int x = pointList[ChosenIndex].X;
                             int y = pointList[ChosenIndex].Y;
                             rPixels[x, y] += j;
@@ -1200,14 +1194,10 @@ namespace ImageProcessingAssignment1
                         double NoiseNumber = ((1 / denominator) * (Math.Exp(Const)));
                         NoiseNumber = NoiseNumber * Size * (NoisePercentage / 100.0);
                         int color = i;
-                        for (int j = 0; j < NoiseNumber; j++)
+                        for (int j = 0; j < (int)NoiseNumber; j++)
                         {
                             int ChosenIndex = 0;
-                            try
-                            {
-                                ChosenIndex = rand.Next(0, count--);
-                            }
-                            catch { }
+                            ChosenIndex = rand.Next(0, count--);
                             int x = pointList[ChosenIndex].X;
                             int y = pointList[ChosenIndex].Y;
                             rPixels[x, y] += color;
@@ -1226,11 +1216,7 @@ namespace ImageProcessingAssignment1
                         for (int i = 0; i < NoiseNumber; i++)
                         {
                             int ChosenIndex = 0;
-                            try
-                            {
-                                ChosenIndex = rand.Next(0, count--);
-                            }
-                            catch { }
+                            ChosenIndex = rand.Next(0, count--);
                             int x = pointList[ChosenIndex].X;
                             int y = pointList[ChosenIndex].Y;
                             rPixels[x, y] += j;
@@ -1252,11 +1238,7 @@ namespace ImageProcessingAssignment1
                         for (int i = 0; i < NoiseNumber; i++)
                         {
                             int ChosenIndex = 0;
-                            try
-                            {
-                                ChosenIndex = rand.Next(0, count--);
-                            }
-                            catch { }
+                            ChosenIndex = rand.Next(0, count--);
                             int x = pointList[ChosenIndex].X;
                             int y = pointList[ChosenIndex].Y;
                             rPixels[x, y] += j;
@@ -1275,11 +1257,7 @@ namespace ImageProcessingAssignment1
                         for (int i = 0; i < NoiseNumber; i++)
                         {
                             int ChosenIndex = 0;
-                            try
-                            {
-                                ChosenIndex = rand.Next(0, count--);
-                            }
-                            catch { }
+                            ChosenIndex = rand.Next(0, count--);
                             int x = pointList[ChosenIndex].X;
                             int y = pointList[ChosenIndex].Y;
                             rPixels[x, y] += j;
@@ -1302,9 +1280,9 @@ namespace ImageProcessingAssignment1
                         bMax = Math.Max(bPixels[i, j], bMax);
                     }
                 }
-                Normalization(height, width, rMin, rMax, 255, 0, rPixels);
-                Normalization(height, width, gMin, gMax, 255, 0, gPixels);
-                Normalization(height, width, bMin, bMax, 255, 0, bPixels);
+                if (rMax > 255 || rMin < 0) Normalization(height, width, rMin, rMax, 255, 0, rPixels);
+                if (gMax > 255 || gMin < 0) Normalization(height, width, gMin, gMax, 255, 0, gPixels);
+                if (bMax > 255 || bMin < 0) Normalization(height, width, bMin, bMax, 255, 0, bPixels);
                 for (int i = 0; i < height; i++)
                 {
                     for (int j = 0; j < width; j++)
@@ -1356,9 +1334,9 @@ namespace ImageProcessingAssignment1
                     bMax = Math.Max(bMax, Red[i, j]);
                 }
             }
-            Normalization(height, width, rMin, rMax, 255, 0, Red);
-            Normalization(height, width, gMin, gMax, 255, 0, Green);
-            Normalization(height, width, bMin, bMax, 255, 0, Blue);
+            if (rMin < 0 || rMax > 255) Normalization(height, width, rMin, rMax, 255, 0, Red);
+            if (gMin < 0 || gMax > 255) Normalization(height, width, gMin, gMax, 255, 0, Green);
+            if (bMin < 0 || bMax > 255) Normalization(height, width, bMin, bMax, 255, 0, Blue);
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -1680,13 +1658,12 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        public void BasicGlobalThresholding(PictureInfo pic, int Epsilon)
+        public void BasicGlobalThresholding(PictureInfo pic, int Epsilon, byte[,] Red, byte[,] Green, byte[,] Blue)
         {
             int height = pic.height;
             int width = pic.width;
             int L = 256;
             int Threshold = L / 2, TempThreshold = 0;
-            //int[] pixFreq = new int[L];
             int firstMean = 0, secondMean = 0, firstSpace = 0, secondSpace = 0;
             GrayScale(pic);
             for (int i = 0; i < height; i++)
@@ -1694,10 +1671,8 @@ namespace ImageProcessingAssignment1
                 for (int j = 0; j < width; j++)
                 {
                     int value = (int)pic.redPixels[i, j];
-
                     firstMean += value;
                     firstSpace++;
-
                 }
             }
             Threshold = firstMean / firstSpace;
@@ -1734,9 +1709,9 @@ namespace ImageProcessingAssignment1
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
                     if (pic.redPixels[i, j] > TempThreshold)
-                        pic.redPixels[i, j] = pic.greenPixels[i, j] = pic.bluePixels[i, j] = 255;
+                        Red[i, j] = Green[i, j] = Blue[i, j] = 255;
                     else
-                        pic.redPixels[i, j] = pic.greenPixels[i, j] = pic.bluePixels[i, j] = 0;
+                        Red[i, j] = Green[i, j] = Blue[i, j] = 0;
         }
         public void AdaptiveThresholding(PictureInfo pic, int WinSize, int meanOffset)
         {

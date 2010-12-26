@@ -59,10 +59,10 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region UpdateForm
-        private void DisplayImage(PictureInfo pictureInfo)
+        private void DisplayImage(PictureInfo pic)
         {
-            int width = pictureInfo.width;
-            int height = pictureInfo.height;
+            int width = pic.width;
+            int height = pic.height;
             Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
             BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, bmp.PixelFormat);
             unsafe
@@ -73,21 +73,20 @@ namespace ImageProcessingAssignment1
                 {
                     for (int j = 0; j < width; j++)
                     {
-                        p[0] = pictureInfo.bluePixels[i, j];
-                        p[1] = pictureInfo.greenPixels[i, j];
-                        p[2] = pictureInfo.redPixels[i, j];
+                        p[0] = pic.bluePixels[i, j];
+                        p[1] = pic.greenPixels[i, j];
+                        p[2] = pic.redPixels[i, j];
                         p += 3;
                     }
                     p += space;
                 }
             }
             bmp.UnlockBits(bmpData);
-            ImageStatusLabel.Text = pictureInfo.width.ToString() + " X " + pictureInfo.height.ToString() + " || " + pictureInfo.path.ToString();
-            pictureInfo.pictureBox.Size = new System.Drawing.Size(width, height);
-            int picIndex = ImageTabControl.SelectedIndex;
-            pictureInfo.pictureBox.Location = new System.Drawing.Point(ImageTabControl.TabPages[picIndex].Width / 2 - pictureInfo.width / 2, ImageTabControl.TabPages[picIndex].Height / 2 - pictureInfo.height / 2);
-            pictureInfo.pictureBox.Image = bmp;
-            UpdateHistogram(pictureInfo);
+            ImageStatusLabel.Text = pic.width.ToString() + " X " + pic.height.ToString() + " || " + pic.path.ToString();
+            pic.pictureBox.Size = new System.Drawing.Size(width, height);
+            pic.pictureBox.Image = bmp;
+            UpdatePictureBoxLocation();
+            UpdateHistogram(pic);
         }
         private void UpdateHistogram(PictureInfo pic)
         {
@@ -154,7 +153,21 @@ namespace ImageProcessingAssignment1
             pic.pictureBox.Width = ((ratio * pic.width) / 100);
             pic.pictureBox.Height = ((ratio * pic.height) / 100);
             int picIndex = ImageTabControl.SelectedIndex;
-            PicturesList[picIndex].pictureBox.Location = new System.Drawing.Point(ImageTabControl.TabPages[picIndex].Width / 2 - PicturesList[picIndex].pictureBox.Width / 2, ImageTabControl.TabPages[picIndex].Height / 2 - PicturesList[picIndex].pictureBox.Height / 2);
+            UpdatePictureBoxLocation();
+        }
+
+        private void UpdatePictureBoxLocation()
+        {
+            int picIndex = ImageTabControl.SelectedIndex;
+            int picBoxWidth = PicturesList[picIndex].pictureBox.Width;
+            int picBoxHeight = PicturesList[picIndex].pictureBox.Height;
+            int tabPageWidth = ImageTabControl.TabPages[picIndex].Width;
+            int tabPageHeight = ImageTabControl.TabPages[picIndex].Height;
+            int widthDim = tabPageWidth / 2 - picBoxWidth / 2;
+            int heightDim = tabPageHeight / 2 - picBoxHeight / 2;
+            if (widthDim < 0)widthDim = 0;
+            if (heightDim < 0)heightDim = 0;
+            PicturesList[picIndex].pictureBox.Location = new System.Drawing.Point(widthDim, heightDim);
         }
         #endregion
 
@@ -198,7 +211,6 @@ namespace ImageProcessingAssignment1
                 Zoom(PicUndoRedo[picIndex].selectedPic[PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex], ZoomTrackBar.Value);
                 UpdateHistogram(PicturesList[picIndex]);
             }
-
         }
 
         private void UndoAction()
@@ -249,7 +261,6 @@ namespace ImageProcessingAssignment1
                         PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex++;
             }
         }
-
 
         //Zooming
         private void ZoomTrackBar_ValueChanged(object sender, EventArgs e)
@@ -315,8 +326,6 @@ namespace ImageProcessingAssignment1
                     PictureInfo newPictureItem = new PictureInfo();
                     PictureBox picBox = new PictureBox();
                     picBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    //picBox.BorderStyle = BorderStyle.FixedSingle;
-                    //picBox.BackColorChanged += new EventHandler(pictureBox_BackColorChanged);
                     string PictureName = PicturePath[k].Substring(PicturePath[k].LastIndexOf('\\') + 1);
                     int offset = PictureName.LastIndexOf('.') + 1;
                     string type = PictureName.Substring(offset, PictureName.Length - offset);
@@ -332,7 +341,6 @@ namespace ImageProcessingAssignment1
                     zedGraphControl1.Visible = true;
                     PicturesList[index].pictureBox.Size = new System.Drawing.Size(PicturesList[index].width, PicturesList[index].height);
                     ImageTabControl.TabPages.Add(tabPage);
-                    picBox.Location = new System.Drawing.Point(tabPage.Width / 2 - newPictureItem.width / 2, tabPage.Height / 2 - newPictureItem.height / 2);
                     tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
                     ImageTabControl.TabPages[index].Text = PictureName;
                     ImageTabControl.SelectedIndex = index;
@@ -344,10 +352,6 @@ namespace ImageProcessingAssignment1
             }
             catch { }
         }
-        //private void pictureBox_BackColorChanged(object sender, EventArgs e)
-        //{
-        //    UpdateHistogram(PicturesList[ImageTabControl.SelectedIndex]);
-        //}
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int picIndex = ImageTabControl.SelectedIndex;

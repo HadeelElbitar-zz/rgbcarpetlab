@@ -14,9 +14,11 @@ namespace ImageProcessingAssignment1
         #region Replicate & Unreplicate
         public byte[,] ReplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] Array)
         {
-            int N = (Fheight - 1) / 2, M = (Fwidth - 1) / 2;
-            int mEven = (Fwidth % 2); M += mEven; mEven = M + 1;
-            int nEven = (Fheight % 2); N += nEven; nEven = N + 1;
+            int N = ((Fheight - 1) / 2), M = ((Fwidth - 1) / 2);
+            int mEven = M;
+            if ((Fwidth % 2) == 0) mEven++;
+            int nEven = N;
+            if ((Fheight % 2) == 0) nEven++;
             int newHeight = height + Fheight - 1;
             int newWidth = width + Fwidth - 1;
             byte[,] returnArray = new byte[newHeight, newWidth];
@@ -49,10 +51,7 @@ namespace ImageProcessingAssignment1
         public byte[,] unreplicateImage(int Fheight, int Fwidth, int height, int width, byte[,] repArray)
         {
             byte[,] unrepArray = new byte[height, width];
-            int N = (Fheight - 1) / 2, M = (Fwidth - 1) / 2;
-
-            int mEven = (Fwidth % 2); M += mEven; mEven = M + 1;
-            int nEven = (Fheight % 2); N += nEven; nEven = N + 1;
+            int N = ((Fheight - 1) / 2), M = ((Fwidth - 1) / 2);
             for (int i = N; i < N + height; i++)
             {
                 for (int j = M; j < M + width; j++)
@@ -710,7 +709,9 @@ namespace ImageProcessingAssignment1
                     // G = GTemp;
                     // B = BTemp;
                     #endregion
+
                     ParallelSort(ref R, ref G, ref B);
+
                     byte Rval = 0, Gval = 0, Bval = 0;
                     int index;
                     switch (Filter)

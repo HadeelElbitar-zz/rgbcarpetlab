@@ -12,8 +12,11 @@ namespace ImageProcessingAssignment1
 {
     public partial class Thresholding : Form
     {
-        private PictureInfo PicParent, pic;
+        private PictureInfo PicParent;
         private UndoRedo picUndoRedoItem;
+        byte[,] Red;
+        byte[,] Green;
+        byte[,] Blue;
         public Thresholding(PictureInfo picInfo, UndoRedo _picUndoRedoItem)
         {
             InitializeComponent();
@@ -25,6 +28,18 @@ namespace ImageProcessingAssignment1
             pictureBox1.Image = PicParent.pictureBox.Image;
             int height = PicParent.height;
             int width = PicParent.width;
+            Red = new byte[height, width];
+            Green = new byte[height, width];
+            Blue = new byte[height, width];
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    Red[i, j] = PicParent.redPixels[i, j];
+                    Green[i, j] = PicParent.greenPixels[i, j];
+                    Blue[i, j] = PicParent.bluePixels[i, j];
+                }
+            }
             DisplayImage(width, height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox1);
             DisplayImage(width, height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox2);
         }
@@ -34,19 +49,14 @@ namespace ImageProcessingAssignment1
         private void EpsilonTrackBar_Scroll(object sender, EventArgs e)
         {
             EpsilonUpDown.Value = EpsilonTrackBar.Value;
-            int Epsilon = (int)EpsilonUpDown.Value;
-            ImageClass Image = new ImageClass();
-            pic = new PictureInfo(PicParent);
-            Image.BasicGlobalThresholding(pic, Epsilon);
-            UpdateForm();
         }
         private void EpsilonUpDown_ValueChanged(object sender, EventArgs e)
         {
-            EpsilonTrackBar.Value = (int)EpsilonUpDown.Value;
+            if( EpsilonTrackBar.Value != (int)EpsilonUpDown.Value)
+                EpsilonTrackBar.Value = (int)EpsilonUpDown.Value;
             int Epsilon = (int)EpsilonUpDown.Value;
             ImageClass Image = new ImageClass();
-            pic = new PictureInfo(PicParent);
-            Image.BasicGlobalThresholding(pic, Epsilon);
+            Image.BasicGlobalThresholding(PicParent, Epsilon, Red, Green, Blue);
             UpdateForm();
         }
         private void okbtn_Click(object sender, EventArgs e)
@@ -73,9 +83,9 @@ namespace ImageProcessingAssignment1
             {
                 for (int j = 0; j < width; j++)
                 {
-                    PicParent.redPixels[i, j] = pic.redPixels[i, j];
-                    PicParent.greenPixels[i, j] = pic.greenPixels[i, j];
-                    PicParent.bluePixels[i, j] = pic.bluePixels[i, j];
+                    PicParent.redPixels[i, j] = Red[i, j];
+                    PicParent.greenPixels[i, j] = Green[i, j];
+                    PicParent.bluePixels[i, j] = Blue[i, j];
                 }
             }
             DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox1);
@@ -107,7 +117,7 @@ namespace ImageProcessingAssignment1
         }
         private void UpdateForm()
         {
-            DisplayImage(PicParent.width, PicParent.height, pic.redPixels, pic.greenPixels, pic.bluePixels, pictureBox2);
+            DisplayImage(PicParent.width, PicParent.height, Red, Green, Blue, pictureBox2);
         }
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*

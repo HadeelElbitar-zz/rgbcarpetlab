@@ -11,15 +11,15 @@ using System.Drawing.Imaging;
 
 namespace ImageProcessingAssignment1
 {
-    //Note: Press Enter to set origin while focase :D
     public partial class Morphology : Form
     {
         #region initializations
         Button[,] ArrBtn;
+        bool Changes;
         Size BtnSize = new Size(50, 23);
         static bool WC, HC;
         int W, H, OldW, OldH, MorphologyType = 0, IOrigin, JOrigin, Radius;
-        public PictureInfo PicParent;
+        public PictureInfo PicParent,OriginalPic;
         public byte[,] modifiedRPixelArray;
         public byte[,] modifiedGPixelArray;
         public byte[,] modifiedBPixelArray;
@@ -30,10 +30,11 @@ namespace ImageProcessingAssignment1
         UndoRedo PicUndoRedo;
         #endregion
 
-        public Morphology(PictureInfo pic,UndoRedo _PicUndoRedo)
+        public Morphology(PictureInfo pic, UndoRedo _PicUndoRedo)
         {
             InitializeComponent();
             ImageClass IM = new ImageClass();
+            OriginalPic = pic;
             PicParent = IM.ConvertToBinary(pic);
             PicUndoRedo = _PicUndoRedo;
         }
@@ -47,17 +48,12 @@ namespace ImageProcessingAssignment1
                 OldW = W;
                 OldH = H;
                 W = int.Parse(wTBOX.Text);
-                //WC = true;
-                //if (HC)
-                //{
-                    H = int.Parse(hTBOX.Text);
-                    AddBTNs();
-                    SetBTN.Enabled = true;
-                    ResetBTN.Enabled = true;
-                   // OkBTN.Enabled = true;
-                //}
+                H = int.Parse(hTBOX.Text);
+                AddBTNs();
+                SetBTN.Enabled = true;
+                ResetBTN.Enabled = true;
             }
-            catch 
+            catch
             {
                 WC = false;
                 SetBTN.Enabled = false;
@@ -72,15 +68,10 @@ namespace ImageProcessingAssignment1
                 OldH = H;
                 OldW = W;
                 H = int.Parse(hTBOX.Text);
-                //HC = true;
-                //if (WC)
-                //{
-                    W = int.Parse(wTBOX.Text);
-                    AddBTNs();
-                    SetBTN.Enabled = true;
-                    ResetBTN.Enabled = true;
-                    //OkBTN.Enabled = true;
-                //}
+                W = int.Parse(wTBOX.Text);
+                AddBTNs();
+                SetBTN.Enabled = true;
+                ResetBTN.Enabled = true;
             }
             catch
             {
@@ -150,7 +141,7 @@ namespace ImageProcessingAssignment1
             }
             catch { }
         }
-        private void ClearBTNs(int Wid , int Hei)
+        private void ClearBTNs(int Wid, int Hei)
         {
             try
             {
@@ -265,7 +256,7 @@ namespace ImageProcessingAssignment1
                         this.ArrBtn[i, j].Text = "0";
                         this.ArrBtn[i, j].BackColor = Color.FromArgb(255, 192, 128);
                     }
-                    
+
                     this.ArrBtn[i, j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                     this.ArrBtn[i, j].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                     this.ArrBtn[i, j].TabStop = false;
@@ -316,7 +307,7 @@ namespace ImageProcessingAssignment1
         }
         private double CalcArea(int[] A, int[] B, int[] C)
         {
-            double res , a , b , c , d;
+            double res, a, b, c, d;
             a = A[0] - C[0];
             b = B[1] - A[1];
             c = A[0] - B[0];
@@ -327,8 +318,10 @@ namespace ImageProcessingAssignment1
         #endregion
 
         #region Controls Changes
+        
         private void StructureElement_Load(object sender, EventArgs e)
         {
+            Changes = false;
             pictureBox1.Image = PicParent.pictureBox.Image;
             int height = PicParent.height;
             int width = PicParent.width;
@@ -351,7 +344,6 @@ namespace ImageProcessingAssignment1
             DisplayImage(width, height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox2);
             wTBOX.Text = "3";
             hTBOX.Text = "3";
-
             hTBOX.Text = "3";
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -361,85 +353,42 @@ namespace ImageProcessingAssignment1
             else
                 DisplayImage(PicParent.width, PicParent.height, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray, PicParent.pictureBox);
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            int height = PicParent.height;
-            int width = PicParent.width;
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    PicParent.redPixels[i, j] = tempRPixelArray[i, j];
-                    PicParent.greenPixels[i, j] = tempGPixelArray[i, j];
-                    PicParent.bluePixels[i, j] = tempBPixelArray[i, j];
-                }
-            }
-            DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
-            this.Close();
+            ApplyChanges();
         }
         private void button2_Click(object sender, EventArgs e)
         {
             ApplyChanges();
             this.Close();
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DisplayImage(OriginalPic.width, OriginalPic.height, OriginalPic.redPixels, OriginalPic.greenPixels, OriginalPic.bluePixels, OriginalPic.pictureBox);
+            this.Close();
+        }
         private void DilationRBTN_CheckedChanged(object sender, EventArgs e)
         {
-            if (DilationRBTN.Checked)
-                MorphologyType = 0; //dilation
-            else if (ErosionRBTN.Checked)
-                MorphologyType = 1; //erosion
-            else if (OpeningRBTN.Checked)
-                MorphologyType = 2; //opening
-            else if (ClosingRBTN.Checked)
-                MorphologyType = 3; //closing
-            else if (BoundExtrRBTN.Checked)
-                MorphologyType = 4; //boundary extractuib
-            ApplyChanges();
+            CheckBoxChanged();
         }
         private void OpeningRBTN_CheckedChanged(object sender, EventArgs e)
         {
-            if (DilationRBTN.Checked)
-                MorphologyType = 0; //dilation
-            else if (ErosionRBTN.Checked)
-                MorphologyType = 1; //erosion
-            else if (OpeningRBTN.Checked)
-                MorphologyType = 2; //opening
-            else if (ClosingRBTN.Checked)
-                MorphologyType = 3; //closing
-            else if (BoundExtrRBTN.Checked)
-                MorphologyType = 4; //boundary extractuib
-            ApplyChanges();
+            CheckBoxChanged();
         }
         private void ErosionRBTN_CheckedChanged(object sender, EventArgs e)
         {
-            if (DilationRBTN.Checked)
-                MorphologyType = 0; //dilation
-            else if (ErosionRBTN.Checked)
-                MorphologyType = 1; //erosion
-            else if (OpeningRBTN.Checked)
-                MorphologyType = 2; //opening
-            else if (ClosingRBTN.Checked)
-                MorphologyType = 3; //closing
-            else if (BoundExtrRBTN.Checked)
-                MorphologyType = 4; //boundary extractuib
-            ApplyChanges();
+            CheckBoxChanged();
         }
         private void ClosingRBTN_CheckedChanged(object sender, EventArgs e)
         {
-            if (DilationRBTN.Checked)
-                MorphologyType = 0; //dilation
-            else if (ErosionRBTN.Checked)
-                MorphologyType = 1; //erosion
-            else if (OpeningRBTN.Checked)
-                MorphologyType = 2; //opening
-            else if (ClosingRBTN.Checked)
-                MorphologyType = 3; //closing
-            else if (BoundExtrRBTN.Checked)
-                MorphologyType = 4; //boundary extractuib
-            ApplyChanges();
+            CheckBoxChanged();
         }
         private void BoundExtrRBTN_CheckedChanged(object sender, EventArgs e)
         {
+            CheckBoxChanged();
+        }
+        private void CheckBoxChanged()
+        {
             if (DilationRBTN.Checked)
                 MorphologyType = 0; //dilation
             else if (ErosionRBTN.Checked)
@@ -449,12 +398,8 @@ namespace ImageProcessingAssignment1
             else if (ClosingRBTN.Checked)
                 MorphologyType = 3; //closing
             else if (BoundExtrRBTN.Checked)
-                MorphologyType = 4; //boundary extractuib
-            ApplyChanges();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ApplyChanges();
+                MorphologyType = 4; //boundary extraction
+            ApplyInChanges();
         }
         private void RadiusTBOX_TextChanged(object sender, EventArgs e)
         {
@@ -514,6 +459,11 @@ namespace ImageProcessingAssignment1
                 HC = false;
             }
         }
+        private void Morphology_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!Changes)
+                DisplayImage(OriginalPic.width, OriginalPic.height, OriginalPic.redPixels, OriginalPic.greenPixels, OriginalPic.bluePixels, OriginalPic.pictureBox);
+        }
         #endregion
 
         #region functions
@@ -551,6 +501,7 @@ namespace ImageProcessingAssignment1
         }
         private void ApplyChanges()
         {
+            Changes = true;
             int height = PicParent.height;
             int width = PicParent.width;
             ImageClass Image = new ImageClass();
@@ -571,9 +522,28 @@ namespace ImageProcessingAssignment1
                     }
                 }
                 DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox2);
-                if(checkBox1.Checked)
+                if (checkBox1.Checked)
                     DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
                 PicUndoRedo.UndoRedoCommands(PicParent, "Morphology");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void ApplyInChanges()
+        {
+            int height = PicParent.height;
+            int width = PicParent.width;
+            ImageClass Image = new ImageClass();
+            try
+            {
+                if (IOrigin == 0 && JOrigin == 0 && SE[0, 0] != 1)
+                    throw new Exception("Please Choose a valid Origin !");
+                Image.IMorphology(height, width, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray, SE, MorphologyType, IOrigin, JOrigin, W, H);
+                DisplayImage(PicParent.width, PicParent.height, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray, pictureBox2);
+                if (checkBox1.Checked)
+                    DisplayImage(PicParent.width, PicParent.height, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray, PicParent.pictureBox);
             }
             catch (Exception ex)
             {
@@ -612,6 +582,9 @@ namespace ImageProcessingAssignment1
             wTBOX.Text = "";
             hTBOX.Text = "";
         }
-        #endregion        
+        #endregion
+
+        
+
     }
 }

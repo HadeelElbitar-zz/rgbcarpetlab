@@ -1399,9 +1399,9 @@
             this.statusStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ImageStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(1, 702);
+            this.statusStrip.Location = new System.Drawing.Point(1, 695);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1111, 27);
+            this.statusStrip.Size = new System.Drawing.Size(1111, 34);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -1409,7 +1409,7 @@
             // 
             this.ImageStatusLabel.ForeColor = System.Drawing.Color.White;
             this.ImageStatusLabel.Name = "ImageStatusLabel";
-            this.ImageStatusLabel.Size = new System.Drawing.Size(65, 22);
+            this.ImageStatusLabel.Size = new System.Drawing.Size(65, 17);
             this.ImageStatusLabel.Text = "No Image..";
             // 
             // toolStripStatusLabel

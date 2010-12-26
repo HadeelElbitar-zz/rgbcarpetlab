@@ -184,17 +184,7 @@ namespace ImageProcessingAssignment1
                 {
                     int newWidth = picList[FirstPicIndex].width;
                     int newHeight = picList[FirstPicIndex].height;
-                    if (radioButton2.Checked)
-                    {
-                        byte[,] firstRed = new byte[newHeight, newWidth];
-                        byte[,] firstGreen = new byte[newHeight, newWidth];
-                        byte[,] firstBlue = new byte[newHeight, newWidth];
-                        ImageClass Image = new ImageClass();
-                        Image.ResizeImage(picList[comboBox1.SelectedIndex], newHeight, newWidth, ref firstRed, ref firstGreen, ref firstBlue);
-                        Image.AddSubtractTwoPictures(newHeight, newWidth, firstRed, firstGreen, firstBlue, picList[SecondPicIndex].redPixels, picList[SecondPicIndex].greenPixels, picList[SecondPicIndex].bluePixels, picList[count], Operation);
-                        DisplayImage(newWidth, newHeight, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, pictureBox3);
-                    }
-                    else if (radioButton1.Checked)
+                    if (radioButton1.Checked)
                     {
                         byte[,] secondRed = new byte[newHeight, newWidth];
                         byte[,] secondGreen = new byte[newHeight, newWidth];
@@ -202,6 +192,18 @@ namespace ImageProcessingAssignment1
                         ImageClass Image = new ImageClass();
                         Image.ResizeImage(picList[comboBox3.SelectedIndex], newHeight, newWidth, ref secondRed, ref secondGreen, ref secondBlue);
                         Image.AddSubtractTwoPictures(newHeight, newWidth, picList[FirstPicIndex].redPixels, picList[FirstPicIndex].greenPixels, picList[FirstPicIndex].bluePixels, secondRed, secondGreen, secondBlue, picList[count], comboBox2.SelectedIndex);
+                        DisplayImage(newWidth, newHeight, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, pictureBox3);
+                    }
+                    else if (radioButton2.Checked)
+                    {
+                        newWidth = picList[SecondPicIndex].width;
+                        newHeight = picList[SecondPicIndex].height;
+                        byte[,] firstRed = new byte[newHeight, newWidth];
+                        byte[,] firstGreen = new byte[newHeight, newWidth];
+                        byte[,] firstBlue = new byte[newHeight, newWidth];
+                        ImageClass Image = new ImageClass();
+                        Image.ResizeImage(picList[comboBox1.SelectedIndex], newHeight, newWidth, ref firstRed, ref firstGreen, ref firstBlue);
+                        Image.AddSubtractTwoPictures(newHeight, newWidth, firstRed, firstGreen, firstBlue, picList[SecondPicIndex].redPixels, picList[SecondPicIndex].greenPixels, picList[SecondPicIndex].bluePixels, picList[count], Operation);
                         DisplayImage(newWidth, newHeight, picList[count].redPixels, picList[count].greenPixels, picList[count].bluePixels, pictureBox3);
                     }
                     picList[count].width = newWidth;

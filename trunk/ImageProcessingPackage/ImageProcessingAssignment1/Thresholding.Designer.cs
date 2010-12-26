@@ -132,7 +132,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Thresholding";
-            this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Thresholding_FormClosed);
             this.Load += new System.EventHandler(this.Thresholding_Load);
             this.groupBox1.ResumeLayout(false);

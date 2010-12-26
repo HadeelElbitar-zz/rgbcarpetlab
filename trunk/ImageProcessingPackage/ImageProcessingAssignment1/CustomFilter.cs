@@ -148,8 +148,6 @@ namespace ImageProcessingAssignment1
         private void OkBtn_Click(object sender, EventArgs e)
         {
             ApplyChanges();
-            int picIndex = comboBox1.SelectedIndex;
-            picUndoRedo[picIndex].UndoRedoCommands(picList[picIndex], "Custom Filter");
             this.Close();
         }
         private void ApplyChanges()
@@ -168,6 +166,7 @@ namespace ImageProcessingAssignment1
                 filter.Apply2DCustomFilter(FilterW, FilterH, CustomFilter, picList[picIndex], ref picList[picIndex].redPixels, ref picList[picIndex].greenPixels, ref picList[picIndex].bluePixels);
                 DisplayImage(width, height, picList[picIndex].redPixels, picList[picIndex].greenPixels, picList[picIndex].bluePixels, PicBox2);
                 DisplayImage(width, height, picList[picIndex].redPixels, picList[picIndex].greenPixels, picList[picIndex].bluePixels, picList[picIndex].pictureBox);
+                picUndoRedo[picIndex].UndoRedoCommands(picList[picIndex], "Custom Filter");
             }
             catch { }
         }

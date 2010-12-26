@@ -22,25 +22,30 @@ namespace ImageProcessingAssignment1
         }
         private void GoBtn_Click(object sender, EventArgs e)
         {
-            int width = int.Parse(Widthtext.Text);
-            int height = int.Parse(HeightText.Text);
-            PictureBox pic = new PictureBox();
-            pic.Location = new System.Drawing.Point(100, 100);
-            pic.Size = new System.Drawing.Size(width, height);
-            picList.Add(new PictureInfo(width, height, "Untitled", "C:\\Untitled", pic, new byte[height, width], new byte[height, width], new byte[height, width]));
-            int index = picList.Count - 1;
+            try
+            {
+                int width = 0, height = 0;
+                int.TryParse(Widthtext.Text, out width);
+                int.TryParse(HeightText.Text, out height);
+                PictureBox pic = new PictureBox();
+                pic.Location = new System.Drawing.Point(100, 100);
+                pic.Size = new System.Drawing.Size(width, height);
+                picList.Add(new PictureInfo(width, height, "Untitled", "C:\\Untitled", pic, new byte[height, width], new byte[height, width], new byte[height, width]));
+                int index = picList.Count - 1;
 
-            if (!tabControl.Visible) tabControl.Visible = true;
-            TabPage tabPage = new TabPage();
+                if (!tabControl.Visible) tabControl.Visible = true;
+                TabPage tabPage = new TabPage();
 
-            tabControl.TabPages.Add(tabPage);
-            tabPage.Controls.Add(picList[index].pictureBox);
+                tabControl.TabPages.Add(tabPage);
+                tabPage.Controls.Add(picList[index].pictureBox);
 
-            tabControl.TabPages[index].Text = picList[index].name;
-            tabControl.SelectedIndex = index;
-            tabPage.AutoScroll = true;
-            DisplayImage(picList[index]);
-            this.Close();
+                tabControl.TabPages[index].Text = picList[index].name;
+                tabControl.SelectedIndex = index;
+                tabPage.AutoScroll = true;
+                DisplayImage(picList[index]);
+                this.Close();
+            }
+            catch { }
         }
         private void DisplayImage(PictureInfo pictureInfo)
         {

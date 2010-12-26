@@ -69,7 +69,6 @@ namespace ImageProcessingAssignment1
         private void button2_Click(object sender, EventArgs e)//Ok
         {
             ApplyChanges();
-            picUndoRedoItem.UndoRedoCommands(PicParent, "Quantization");
             this.Close();
         }
         private void button3_Click(object sender, EventArgs e)//Cancel
@@ -92,6 +91,7 @@ namespace ImageProcessingAssignment1
             }
             DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox1);
             DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
+            picUndoRedoItem.UndoRedoCommands(PicParent, "Quantization");
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

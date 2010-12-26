@@ -52,7 +52,6 @@ namespace ImageProcessingAssignment1
         private void okbtn_Click(object sender, EventArgs e)
         {
             ApplyChanges();
-            picUndoRedoItem.UndoRedoCommands(PicParent, "Basic Global Thresholding");
             this.Close();
         }
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -81,6 +80,7 @@ namespace ImageProcessingAssignment1
             }
             DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox1);
             DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
+            picUndoRedoItem.UndoRedoCommands(PicParent, "Basic Global Thresholding");
         }
         private void DisplayImage(int width, int height, byte[,] Red, byte[,] Green, byte[,] Blue, PictureBox picBox)
         {

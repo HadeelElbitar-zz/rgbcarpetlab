@@ -82,11 +82,12 @@ namespace ImageProcessingAssignment1
                 }
             }
             bmp.UnlockBits(bmpData);
-            pictureInfo.pictureBox.Image = bmp;
-            pictureInfo.pictureBox.Size = new System.Drawing.Size(width, height);
-            pictureInfo.pictureBox.Location = new System.Drawing.Point(ImageTabControl.Width / 2 - pictureInfo.width / 2, ImageTabControl.Height / 2 - pictureInfo.height / 2);
-            UpdateHistogram(pictureInfo);
             ImageStatusLabel.Text = pictureInfo.width.ToString() + " X " + pictureInfo.height.ToString() + " || " + pictureInfo.path.ToString();
+            pictureInfo.pictureBox.Size = new System.Drawing.Size(width, height);
+            int picIndex = ImageTabControl.SelectedIndex;
+            pictureInfo.pictureBox.Location = new System.Drawing.Point(ImageTabControl.TabPages[picIndex].Width / 2 - pictureInfo.width / 2, ImageTabControl.TabPages[picIndex].Height / 2 - pictureInfo.height / 2);
+            pictureInfo.pictureBox.Image = bmp;
+            UpdateHistogram(pictureInfo);
         }
         private void UpdateHistogram(PictureInfo pic)
         {
@@ -160,7 +161,6 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region MDIMenuItems
-
         private void ImageTabControl_ControlAdded(object sender, ControlEventArgs e)
         {
             if (TabPagesCount != ImageTabControl.TabPages.Count)
@@ -174,13 +174,11 @@ namespace ImageProcessingAssignment1
                 PicUndoRedo[TabPagesCount - 1].undoRedoListBox.SelectedIndexChanged += new EventHandler(undoRedoListBox_SelectedIndexChanged);
             }
         }
-        private void ImageTabControl_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            if (TabPagesCount != ImageTabControl.TabPages.Count)
-                TabPagesCount = ImageTabControl.TabPages.Count;
-        }
-
         //Undo Redo
+        public void undoRedoListBox_ControlAdded(object sender, EventArgs e)
+        {
+            UpdateHistogram(PicturesList[ImageTabControl.SelectedIndex]);
+        }
         public void undoRedoListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TabPagesCount > 0)
@@ -198,7 +196,9 @@ namespace ImageProcessingAssignment1
                 if (PicUndoRedo[picIndex].redo.Count == 0) redoToolStripMenuItem.Enabled = false;
                 else redoToolStripMenuItem.Enabled = true;
                 Zoom(PicUndoRedo[picIndex].selectedPic[PicUndoRedo[picIndex].undoRedoListBox.SelectedIndex], ZoomTrackBar.Value);
+                UpdateHistogram(PicturesList[picIndex]);
             }
+
         }
 
         private void UndoAction()
@@ -275,6 +275,10 @@ namespace ImageProcessingAssignment1
             else
             {
                 zedGraphControl1.Visible = false;
+                checkBox1.Visible = false;
+                checkBox2.Visible = false;
+                checkBox3.Visible = false;
+                checkBox4.Visible = false;
                 ImageTabControl.Visible = false;
                 ImageStatusLabel.Text = "No Image..";
             }
@@ -289,6 +293,10 @@ namespace ImageProcessingAssignment1
             HistoryTabPage.Controls.Clear();
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.Visible = false;
+            checkBox1.Visible = false;
+            checkBox2.Visible = false;
+            checkBox3.Visible = false;
+            checkBox4.Visible = false;
             ImageStatusLabel.Text = "No Image..";
         }
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,8 +315,8 @@ namespace ImageProcessingAssignment1
                     PictureInfo newPictureItem = new PictureInfo();
                     PictureBox picBox = new PictureBox();
                     picBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    picBox.BorderStyle = BorderStyle.FixedSingle;
-
+                    //picBox.BorderStyle = BorderStyle.FixedSingle;
+                    //picBox.BackColorChanged += new EventHandler(pictureBox_BackColorChanged);
                     string PictureName = PicturePath[k].Substring(PicturePath[k].LastIndexOf('\\') + 1);
                     int offset = PictureName.LastIndexOf('.') + 1;
                     string type = PictureName.Substring(offset, PictureName.Length - offset);
@@ -322,21 +330,24 @@ namespace ImageProcessingAssignment1
                     if (!ImageTabControl.Visible) ImageTabControl.Visible = true;
                     TabPage tabPage = new TabPage();
                     zedGraphControl1.Visible = true;
-                    DisplayImage(PicturesList[index]);
                     PicturesList[index].pictureBox.Size = new System.Drawing.Size(PicturesList[index].width, PicturesList[index].height);
                     ImageTabControl.TabPages.Add(tabPage);
                     picBox.Location = new System.Drawing.Point(tabPage.Width / 2 - newPictureItem.width / 2, tabPage.Height / 2 - newPictureItem.height / 2);
                     tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
-                    tabPage.Controls.Add(PicturesList[index].pictureBox);
                     ImageTabControl.TabPages[index].Text = PictureName;
                     ImageTabControl.SelectedIndex = index;
                     tabPage.AutoScroll = true;
-
+                    tabPage.Controls.Add(PicturesList[index].pictureBox);
+                    DisplayImage(PicturesList[index]);
                 }
                 ZoomTrackBar.Value = 100;
             }
             catch { }
         }
+        //private void pictureBox_BackColorChanged(object sender, EventArgs e)
+        //{
+        //    UpdateHistogram(PicturesList[ImageTabControl.SelectedIndex]);
+        //}
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int picIndex = ImageTabControl.SelectedIndex;
@@ -599,41 +610,44 @@ namespace ImageProcessingAssignment1
         //Resizing
         private void bilinearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            inputGroupBox.Controls.Clear();
-            inputGroupBox.Text = "Image Resizing";
-            //Width Text Box
-            TextBox wTxt = new TextBox();
-            wTxt.Location = new System.Drawing.Point(15, 42);
-            wTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(wTxt);
-            //Width Label
-            System.Windows.Forms.Label wLabel = new System.Windows.Forms.Label();
-            wLabel.Location = new System.Drawing.Point(12, 26);
-            wLabel.Text = "New Width";
-            inputGroupBox.Controls.Add(wLabel);
-            //Hight Text Box
-            TextBox hTxt = new TextBox();
-            hTxt.Location = new System.Drawing.Point(158, 42);
-            hTxt.Size = new System.Drawing.Size(100, 20);
-            inputGroupBox.Controls.Add(hTxt);
-            //Height Label
-            System.Windows.Forms.Label hLabel = new System.Windows.Forms.Label();
-            hLabel.Location = new System.Drawing.Point(155, 26);
-            hLabel.Text = "New Height";
-            inputGroupBox.Controls.Add(hLabel);
-            //Button
-            Button ResizeBtn = new Button();
-            ResizeBtn.Text = "Resize";
-            ResizeBtn.Location = new System.Drawing.Point(102, 85);
-            ResizeBtn.Size = new System.Drawing.Size(75, 23);
-            ResizeBtn.Click += delegate(object sender1, EventArgs e1) { ResizeButton_Click(sender1, e1, wTxt, hTxt); };
-            inputGroupBox.Controls.Add(ResizeBtn);
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                inputGroupBox.Controls.Clear();
+                inputGroupBox.Text = "Image Resizing";
+                //Width Text Box
+                TextBox wTxt = new TextBox();
+                wTxt.Location = new System.Drawing.Point(15, 42);
+                wTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(wTxt);
+                //Width Label
+                System.Windows.Forms.Label wLabel = new System.Windows.Forms.Label();
+                wLabel.Location = new System.Drawing.Point(12, 26);
+                wLabel.Text = "New Width";
+                inputGroupBox.Controls.Add(wLabel);
+                //Hight Text Box
+                TextBox hTxt = new TextBox();
+                hTxt.Location = new System.Drawing.Point(158, 42);
+                hTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(hTxt);
+                //Height Label
+                System.Windows.Forms.Label hLabel = new System.Windows.Forms.Label();
+                hLabel.Location = new System.Drawing.Point(155, 26);
+                hLabel.Text = "New Height";
+                inputGroupBox.Controls.Add(hLabel);
+                //Button
+                Button ResizeBtn = new Button();
+                ResizeBtn.Text = "Resize";
+                ResizeBtn.Location = new System.Drawing.Point(102, 85);
+                ResizeBtn.Size = new System.Drawing.Size(75, 23);
+                ResizeBtn.Click += delegate(object sender1, EventArgs e1) { ResizeButton_Click(sender1, e1, wTxt, hTxt); };
+                inputGroupBox.Controls.Add(ResizeBtn);
+            }
         }
         private void ResizeButton_Click(object sender, EventArgs e, TextBox NewHBox, TextBox NewWBox)
         {
             int PicIndex = ImageTabControl.SelectedIndex;
             ImageClass Image = new ImageClass();
-            //Zoom(PicturesList[PicIndex], 100);
+            Zoom(PicturesList[PicIndex], 100);
             Image.ResizeImage(PicturesList[PicIndex], int.Parse(NewHBox.Text), int.Parse(NewWBox.Text));
             PicUndoRedo[PicIndex].UndoRedoCommands(PicturesList[PicIndex], "Resize");
             DisplayImage(PicturesList[PicIndex]);
@@ -784,29 +798,35 @@ namespace ImageProcessingAssignment1
         #region Converting between Spatial & Frequency Domains
         private void convertToSpatialDomainToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int picIndex = ImageTabControl.SelectedIndex;
-            if (PicturesList[picIndex].frequency)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                ImageClass Image = new ImageClass();
-                Image.ConverttoSpatialDomain(PicturesList[picIndex]);
-                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Spatial Domain");
-                DisplayImage(PicturesList[picIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                if (PicturesList[picIndex].frequency)
+                {
+                    ImageClass Image = new ImageClass();
+                    Image.ConverttoSpatialDomain(PicturesList[picIndex]);
+                    PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Spatial Domain");
+                    DisplayImage(PicturesList[picIndex]);
+                }
+                else
+                    MessageBox.Show("Image must be in frequency domain..");
             }
-            else
-                MessageBox.Show("Image must be in frequency domain..");
         }
         private void convertToFrequencyDomainToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int picIndex = ImageTabControl.SelectedIndex;
-            if (!PicturesList[picIndex].frequency)
+            if (ImageTabControl.TabPages.Count > 0)
             {
-                ImageClass Image = new ImageClass();
-                Image.convertToFrequencyDomain(PicturesList[picIndex]);
-                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Frequency Domain");
-                DisplayImage(PicturesList[picIndex]);
+                int picIndex = ImageTabControl.SelectedIndex;
+                if (!PicturesList[picIndex].frequency)
+                {
+                    ImageClass Image = new ImageClass();
+                    Image.convertToFrequencyDomain(PicturesList[picIndex]);
+                    PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Frequency Domain");
+                    DisplayImage(PicturesList[picIndex]);
+                }
+                else
+                    MessageBox.Show("Image must be in spatial domain..");
             }
-            else
-                MessageBox.Show("Image must be in spatial domain..");
         }
         #endregion
 
@@ -2355,11 +2375,16 @@ namespace ImageProcessingAssignment1
             if (ImageTabControl.TabPages.Count > 0)
             {
                 int picIndex = ImageTabControl.SelectedIndex;
-                Morphology M = new Morphology(PicturesList[picIndex],PicUndoRedo[picIndex]);
+                Morphology M = new Morphology(PicturesList[picIndex], PicUndoRedo[picIndex]);
                 M.Show();
             }
         }
         #endregion
+
+        private void pictureBox1_BackColorChanged(object sender, EventArgs e)
+        {
+
+        }
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

@@ -25,7 +25,37 @@ namespace ImageProcessingAssignment1
             unsafe
             {
                 byte* p = (byte*)bmpData.Scan0;
-                if (Bmp.PixelFormat == PixelFormat.Format24bppRgb)
+                if (Bmp.PixelFormat == PixelFormat.Format64bppArgb || Bmp.PixelFormat == PixelFormat.Format64bppPArgb)
+                {
+                    int space = bmpData.Stride - width * 8;
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < width; j++)
+                        {
+                            newPictureItem.bluePixels[i, j] = p[0];
+                            newPictureItem.greenPixels[i, j] = p[1];
+                            newPictureItem.redPixels[i, j] = p[2];
+                            p += 8;
+                        }
+                        p += space;
+                    }
+                }
+                if (Bmp.PixelFormat == PixelFormat.Format32bppArgb || Bmp.PixelFormat == PixelFormat.Format32bppRgb)
+                {
+                    int space = bmpData.Stride - width * 4;
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < width; j++)
+                        {
+                            newPictureItem.bluePixels[i, j] = p[0];
+                            newPictureItem.greenPixels[i, j] = p[1];
+                            newPictureItem.redPixels[i, j] = p[2];
+                            p += 4;
+                        }
+                        p += space;
+                    }
+                }
+                else if (Bmp.PixelFormat == PixelFormat.Format24bppRgb)
                 {
                     int space = bmpData.Stride - width * 3;
                     for (int i = 0; i < height; i++)
@@ -40,9 +70,9 @@ namespace ImageProcessingAssignment1
                         p += space;
                     }
                 }
-                else if (Bmp.PixelFormat == PixelFormat.Format32bppArgb || Bmp.PixelFormat == PixelFormat.Format32bppRgb)
+                else if (Bmp.PixelFormat == PixelFormat.Format16bppRgb555)
                 {
-                    int space = bmpData.Stride - width * 4;
+                    int space = bmpData.Stride - width * 2;
                     for (int i = 0; i < height; i++)
                     {
                         for (int j = 0; j < width; j++)
@@ -50,7 +80,7 @@ namespace ImageProcessingAssignment1
                             newPictureItem.bluePixels[i, j] = p[0];
                             newPictureItem.greenPixels[i, j] = p[1];
                             newPictureItem.redPixels[i, j] = p[2];
-                            p += 4;
+                            p += 2;
                         }
                         p += space;
                     }
@@ -80,6 +110,22 @@ namespace ImageProcessingAssignment1
                             p += ((j + 1) % 2);
                         }
                         p += space;
+                    }
+                }
+                else if (Bmp.PixelFormat == PixelFormat.Format1bppIndexed)
+                {
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < width; j++)
+                        {
+                            byte* ptr = (byte*)bmpData.Scan0 + (i * bmpData.Stride) + (j / 8);
+                            byte b = *ptr;
+                            byte mask = Convert.ToByte(0x80 >> (j % 8));
+                            if ((b & mask) != 0)
+                                newPictureItem.bluePixels[i, j] = newPictureItem.greenPixels[i, j] = newPictureItem.redPixels[i, j] = 255;
+                            else
+                                newPictureItem.bluePixels[i, j] = newPictureItem.greenPixels[i, j] = newPictureItem.redPixels[i, j] = 0;
+                        }
                     }
                 }
             }
@@ -619,74 +665,65 @@ namespace ImageProcessingAssignment1
         }
 
         //Brigthness
-        public void ChangeBrightness(int height, int width, double lastBrightness, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
+        public void ChangeBrightness(int height, int width, double lastBrightness, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
-            modifiedRPixelArray = BrightnessHelp(height, width, lastBrightness, tempRPixelArray);
-            modifiedGPixelArray = BrightnessHelp(height, width, lastBrightness, tempGPixelArray);
-            modifiedBPixelArray = BrightnessHelp(height, width, lastBrightness, tempBPixelArray);
+            modifiedRPixelArray = BrightnessHelp(height, width, lastBrightness, modifiedRPixelArray);
+            modifiedGPixelArray = BrightnessHelp(height, width, lastBrightness, modifiedGPixelArray);
+            modifiedBPixelArray = BrightnessHelp(height, width, lastBrightness, modifiedBPixelArray);
         }
-        private byte[,] BrightnessHelp(int height, int width, double lastBrightness, byte[,] tempPixelArray)
+        private byte[,] BrightnessHelp(int height, int width, double lastBrightness, byte[,] modifiedPixelArray)
         {
-            double BrightnessTemp = 0;
-            byte[,] modifiedPixelArray = new byte[height, width];
             for (int i = 0; i < height; i++)
-            {
                 for (int j = 0; j < width; j++)
-                {
-                    BrightnessTemp = ((double)tempPixelArray[i, j] + lastBrightness);
-                    modifiedPixelArray[i, j] = (byte)(CutOffValue(BrightnessTemp));
-                }
-            }
+                    modifiedPixelArray[i, j] = (byte)(CutOffValue((double)modifiedPixelArray[i, j] + lastBrightness));
             return modifiedPixelArray;
         }
 
         //Contrast
-        public void ChangeContrast(int height, int width, double lastContrast, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
+        public void ChangeContrast(int height, int width, double lastContrast, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
-            modifiedRPixelArray = ContrastHelp(height, width, lastContrast, tempRPixelArray);
-            modifiedGPixelArray = ContrastHelp(height, width, lastContrast, tempGPixelArray);
-            modifiedBPixelArray = ContrastHelp(height, width, lastContrast, tempBPixelArray);
+            modifiedRPixelArray = ContrastHelp(height, width, lastContrast, modifiedRPixelArray);
+            modifiedGPixelArray = ContrastHelp(height, width, lastContrast, modifiedGPixelArray);
+            modifiedBPixelArray = ContrastHelp(height, width, lastContrast, modifiedBPixelArray);
         }
-        private byte[,] ContrastHelp(int height, int width, double lastContrast, byte[,] tempPixelArray)
+        private byte[,] ContrastHelp(int height, int width, double lastContrast, byte[,] PixelArray)
         {
             double oldMin = double.MaxValue, oldMax = double.MinValue;
             double[,] Contrast = new double[height, width];
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
-                    Contrast[i, j] = (double)tempPixelArray[i, j];
+                    Contrast[i, j] = (double)PixelArray[i, j];
             getMaxAndMin(height, width, ref oldMin, ref oldMax, Contrast);
             double newMin = oldMin - lastContrast, newMax = oldMax + lastContrast;
-            byte[,] modifiedPixelArray = new byte[height, width];
             Normalization(height, width, oldMin, oldMax, newMax, newMin, Contrast);
             CutOff(height, width, 255, 0, Contrast);
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
-                    modifiedPixelArray[i, j] = (byte)Contrast[i, j];
-            return modifiedPixelArray;
+                    PixelArray[i, j] = (byte)Contrast[i, j];
+            return PixelArray;
         }
 
         //Gamma Correction
-        public void GammaCorrection(int height, int width, double Gamma, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
+        public void GammaCorrection(int height, int width, double Gamma,ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
-            modifiedRPixelArray = GammaHelp(height, width, Gamma, tempRPixelArray);
-            modifiedGPixelArray = GammaHelp(height, width, Gamma, tempGPixelArray);
-            modifiedBPixelArray = GammaHelp(height, width, Gamma, tempBPixelArray);
+            modifiedRPixelArray = GammaHelp(height, width, Gamma, modifiedRPixelArray);
+            modifiedGPixelArray = GammaHelp(height, width, Gamma, modifiedGPixelArray);
+            modifiedBPixelArray = GammaHelp(height, width, Gamma, modifiedBPixelArray);
         }
-        private byte[,] GammaHelp(int height, int width, double lastGamma, byte[,] tempPixelArray)
+        private byte[,] GammaHelp(int height, int width, double lastGamma, byte[,] PixelArray)
         {
             double oldMin = double.MaxValue, oldMax = double.MinValue;
             double newMin = 0, newMax = 255;
             double[,] Gamma = new double[height, width];
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
-                    Gamma[i, j] = Math.Pow((double)tempPixelArray[i, j], 1 / lastGamma);
+                    Gamma[i, j] = Math.Pow((double)PixelArray[i, j], 1 / lastGamma);
             getMaxAndMin(height, width, ref oldMin, ref oldMax, Gamma);
-            byte[,] modifiedPixelArray = new byte[height, width];
             Normalization(height, width, oldMin, oldMax, newMax, newMin, Gamma);
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
-                    modifiedPixelArray[i, j] = (byte)Gamma[i, j];
-            return modifiedPixelArray;
+                    PixelArray[i, j] = (byte)Gamma[i, j];
+            return PixelArray;
         }
 
         public void HistogramMatching(int height, int width, PictureInfo FirstPic, PictureInfo SecondPic, List<PictureInfo> picList)
@@ -748,6 +785,12 @@ namespace ImageProcessingAssignment1
         #region Arithmetic Operations
         public void AddSubtractTwoPictures(int height, int width, byte[,] fRed, byte[,] fGreen, byte[,] fBlue, byte[,] sRed, byte[,] sGreen, byte[,] sBlue, PictureInfo pic, int operation)
         {
+            pic.height = height;
+            pic.width = width;
+            pic.redPixels = new byte[height, width];
+            pic.greenPixels = new byte[height, width];
+            pic.bluePixels = new byte[height, width];
+
             double rMin = double.MaxValue, rMax = double.MinValue, newMin = 0, newMax = 255;
             double gMin = double.MaxValue, gMax = double.MinValue;
             double bMin = double.MaxValue, bMax = double.MinValue;
@@ -885,7 +928,7 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region Helping Functions
-        private int[,] ReflectSE(int[,] SE , int width , int height, ref int IOrigin , ref int JOrigin)
+        private int[,] ReflectSE(int[,] SE, int width, int height, ref int IOrigin, ref int JOrigin)
         {
             int[,] Temp = new int[height, width];
             for (int i = 0; i < height; i++)
@@ -899,7 +942,7 @@ namespace ImageProcessingAssignment1
                     Temp[height - i - 1, j] = SE[i, j];
             }
             //Find New Origin
-            IOrigin = height - (IOrigin + 1); 
+            IOrigin = height - (IOrigin + 1);
             JOrigin = width - (JOrigin + 1);
             return Temp;
         }
@@ -1225,7 +1268,7 @@ namespace ImageProcessingAssignment1
                 }
                 else if (type == "Exponential")
                 {
-                    for (int j = 0; j <=255; j++)
+                    for (int j = 0; j <= 255; j++)
                     {
                         double t1 = Math.Pow(Math.E, (-a * j));
                         int NoiseNumber = (int)(((a * t1) * Size * (NoisePercentage / 100.0)));
@@ -1742,7 +1785,7 @@ namespace ImageProcessingAssignment1
         #region Morphology
         public void IMorphology(int height, int width, byte[,] tempRPixelArray, byte[,] tempGPixelArray, byte[,] tempBPixelArray, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray, int[,] StructerElement, int type, int IOrigin, int JOrigin, int widthSE, int heightSE)
         {
-            #region Pre-processing 
+            #region Pre-processing
             Filter Replecation = new Filter(); //da 3ashan el padding :D
             //pad the image
             byte[,] TempR = Replecation.ReplicateImage(heightSE, widthSE, height, width, tempRPixelArray);
@@ -1786,10 +1829,10 @@ namespace ImageProcessingAssignment1
                     }
                 }
             }
-            #endregion 
+            #endregion
 
             #region Erosion
-            else if(type == 1) //Erosion
+            else if (type == 1) //Erosion
             {
                 bool flag = false;
                 for (int i = 0; i < height; i++)
@@ -1862,7 +1905,7 @@ namespace ImageProcessingAssignment1
                 //byte[,] TNewPicG = NewPicG;
                 //byte[,] TNewPicB = NewPicB;
                 //dilate
-                StructerElement = ReflectSE(StructerElement, widthSE, heightSE, ref IOrigin, ref JOrigin);   
+                StructerElement = ReflectSE(StructerElement, widthSE, heightSE, ref IOrigin, ref JOrigin);
                 flag = false;
                 for (int i = 0; i < height; i++)
                 {
@@ -1891,7 +1934,7 @@ namespace ImageProcessingAssignment1
             #endregion
 
             #region Closing
-            else if (type == 3) 
+            else if (type == 3)
             {
                 //dilate
                 int NewI = IOrigin, NewJ = JOrigin;
@@ -1954,7 +1997,7 @@ namespace ImageProcessingAssignment1
                             NewPicB[i + NewI, j + NewJ] = 255;
                         }
                     }
-                }                
+                }
             }
             #endregion
 

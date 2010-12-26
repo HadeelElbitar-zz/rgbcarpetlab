@@ -16,10 +16,12 @@ namespace ImageProcessingAssignment1
         public byte[,] modifiedRPixelArray;
         public byte[,] modifiedGPixelArray;
         public byte[,] modifiedBPixelArray;
-        public byte[,] tempRPixelArray;
-        public byte[,] tempGPixelArray;
-        public byte[,] tempBPixelArray;
+        //public byte[,] tempRPixelArray;
+        //public byte[,] tempGPixelArray;
+        //public byte[,] tempBPixelArray;
         public UndoRedo picUndoRedoItem;
+        bool Changes;
+        double firstBrightness, firstContrast, firstGamma;
 
         public BrightnessContrastGamma(PictureInfo picInfo, UndoRedo _picUndoRedoItem)
         {
@@ -35,20 +37,19 @@ namespace ImageProcessingAssignment1
             modifiedRPixelArray = new byte[height, width];
             modifiedGPixelArray = new byte[height, width];
             modifiedBPixelArray = new byte[height, width];
-            tempRPixelArray = new byte[height, width];
-            tempGPixelArray = new byte[height, width];
-            tempBPixelArray = new byte[height, width];
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    tempRPixelArray[i, j] = modifiedRPixelArray[i, j] = PicParent.redPixels[i, j];
-                    tempGPixelArray[i, j] = modifiedGPixelArray[i, j] = PicParent.greenPixels[i, j];
-                    tempBPixelArray[i, j] = modifiedBPixelArray[i, j] = PicParent.bluePixels[i, j];
+                    modifiedRPixelArray[i, j] = PicParent.redPixels[i, j];
+                    modifiedGPixelArray[i, j] = PicParent.greenPixels[i, j];
+                    modifiedBPixelArray[i, j] = PicParent.bluePixels[i, j];
                 }
             }
             DisplayImage(width, height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox1);
             DisplayImage(width, height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox2);
+            Changes = false;
+            firstBrightness = firstContrast = firstGamma = 0;
         }
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
@@ -56,18 +57,17 @@ namespace ImageProcessingAssignment1
         //Brightness
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            numericUpDown1.Value = trackBar1.Value;
-            double lastBrightness = (double)numericUpDown1.Value;
-            ImageClass Image = new ImageClass();
-            Image.ChangeBrightness(PicParent.height, PicParent.width, lastBrightness, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
-            UpdateForm();
+            if (numericUpDown1.Value != trackBar1.Value)
+                numericUpDown1.Value = trackBar1.Value;
         }
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            trackBar1.Value = (int)numericUpDown1.Value;
+            if (trackBar1.Value != (int)numericUpDown1.Value)
+                trackBar1.Value = (int)numericUpDown1.Value;
             double lastBrightness = (double)numericUpDown1.Value;
             ImageClass Image = new ImageClass();
-            Image.ChangeBrightness(PicParent.height, PicParent.width, lastBrightness, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
+            Image.ChangeBrightness(PicParent.height, PicParent.width, lastBrightness - firstBrightness, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
+            firstBrightness = lastBrightness;
             UpdateForm();
         }
 
@@ -76,18 +76,17 @@ namespace ImageProcessingAssignment1
         //Contrast
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
-            numericUpDown2.Value = trackBar2.Value;
-            double lastContrast = (double)numericUpDown2.Value;
-            ImageClass Image = new ImageClass();
-            Image.ChangeContrast(PicParent.height, PicParent.width, lastContrast, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
-            UpdateForm();
+            if (numericUpDown2.Value != trackBar2.Value)
+                numericUpDown2.Value = trackBar2.Value;
         }
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            trackBar2.Value = (int)numericUpDown2.Value;
+            if (trackBar2.Value != (int)numericUpDown2.Value)
+                trackBar2.Value = (int)numericUpDown2.Value;
             double lastContrast = (double)numericUpDown2.Value;
             ImageClass Image = new ImageClass();
-            Image.ChangeContrast(PicParent.height, PicParent.width, lastContrast, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
+            Image.ChangeContrast(PicParent.height, PicParent.width, lastContrast - firstContrast, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
+            firstContrast = lastContrast;
             UpdateForm();
         }
 
@@ -98,15 +97,15 @@ namespace ImageProcessingAssignment1
         {
             if (trackBar3.Value == 0) numericUpDown3.Value = 0.1M;
             else numericUpDown3.Value = trackBar3.Value;
-            ImageClass Image = new ImageClass();
-            Image.GammaCorrection(PicParent.height, PicParent.width, (double)numericUpDown3.Value, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
-            UpdateForm();
         }
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
-            trackBar3.Value = (int)numericUpDown3.Value;
+            if (trackBar3.Value != (int)numericUpDown3.Value)
+                trackBar3.Value = (int)numericUpDown3.Value; ;
             ImageClass Image = new ImageClass();
-            Image.GammaCorrection(PicParent.height, PicParent.width, (double)numericUpDown3.Value, tempRPixelArray, tempGPixelArray, tempBPixelArray, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
+            double lastGamma = (double)numericUpDown3.Value;
+            Image.GammaCorrection(PicParent.height, PicParent.width, lastGamma - firstGamma, ref modifiedRPixelArray, ref modifiedGPixelArray, ref modifiedBPixelArray);
+            firstGamma = lastGamma;
             UpdateForm();
         }
 
@@ -119,8 +118,8 @@ namespace ImageProcessingAssignment1
         }
         private void button2_Click(object sender, EventArgs e)//Ok
         {
-            ApplyChanges();
-            picUndoRedoItem.UndoRedoCommands(PicParent, "Brightness/Contrast/Gamma");
+            if (Changes)
+                ApplyChanges();
             this.Close();
         }
         private void button3_Click(object sender, EventArgs e)//Cancel
@@ -145,6 +144,8 @@ namespace ImageProcessingAssignment1
             }
             DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox1);
             DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
+            picUndoRedoItem.UndoRedoCommands(PicParent, "Brightness/Contrast/Gamma");
+            Changes = false;
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

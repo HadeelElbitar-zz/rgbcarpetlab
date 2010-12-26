@@ -161,7 +161,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "HistogramMathcing";
             this.Text = "Histogram Matching";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.HistogramMathcing_Load_1);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

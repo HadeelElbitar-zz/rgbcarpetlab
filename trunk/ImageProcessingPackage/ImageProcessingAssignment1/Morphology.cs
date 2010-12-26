@@ -380,7 +380,6 @@ namespace ImageProcessingAssignment1
         private void button2_Click(object sender, EventArgs e)
         {
             ApplyChanges();
-            PicUndoRedo.UndoRedoCommands(PicParent, "Morphology");
             this.Close();
         }
         private void DilationRBTN_CheckedChanged(object sender, EventArgs e)
@@ -540,6 +539,7 @@ namespace ImageProcessingAssignment1
             }
             bmp.UnlockBits(bmpData);
             picBox.Image = bmp;
+            picBox.BackColor = Color.White;
         }
         private void UpdateForm()
         {
@@ -573,6 +573,7 @@ namespace ImageProcessingAssignment1
                 DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, pictureBox2);
                 if(checkBox1.Checked)
                     DisplayImage(PicParent.width, PicParent.height, PicParent.redPixels, PicParent.greenPixels, PicParent.bluePixels, PicParent.pictureBox);
+                PicUndoRedo.UndoRedoCommands(PicParent, "Morphology");
             }
             catch (Exception ex)
             {

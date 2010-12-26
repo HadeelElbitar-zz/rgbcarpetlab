@@ -51,6 +51,11 @@
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adjustmentToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.brightnessContrastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,11 +83,6 @@
             this.histogramToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramMatchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramEqualizationToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.HistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.HistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -413,6 +413,58 @@
             this.selectAllToolStripMenuItem.Text = "Select &All";
             this.selectAllToolStripMenuItem.Visible = false;
             // 
+            // viewMenu
+            // 
+            this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolBarToolStripMenuItem,
+            this.statusBarToolStripMenuItem,
+            this.HistogramToolStripMenuItem,
+            this.HistoryToolStripMenuItem});
+            this.viewMenu.ForeColor = System.Drawing.Color.White;
+            this.viewMenu.Name = "viewMenu";
+            this.viewMenu.Size = new System.Drawing.Size(41, 20);
+            this.viewMenu.Text = "&View";
+            // 
+            // toolBarToolStripMenuItem
+            // 
+            this.toolBarToolStripMenuItem.Checked = true;
+            this.toolBarToolStripMenuItem.CheckOnClick = true;
+            this.toolBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
+            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.toolBarToolStripMenuItem.Text = "&Toolbar";
+            this.toolBarToolStripMenuItem.Click += new System.EventHandler(this.ToolBarToolStripMenuItem_Click);
+            // 
+            // statusBarToolStripMenuItem
+            // 
+            this.statusBarToolStripMenuItem.Checked = true;
+            this.statusBarToolStripMenuItem.CheckOnClick = true;
+            this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.statusBarToolStripMenuItem.Text = "&Status Bar";
+            this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.StatusBarToolStripMenuItem_Click);
+            // 
+            // HistogramToolStripMenuItem
+            // 
+            this.HistogramToolStripMenuItem.Checked = true;
+            this.HistogramToolStripMenuItem.CheckOnClick = true;
+            this.HistogramToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.HistogramToolStripMenuItem.Name = "HistogramToolStripMenuItem";
+            this.HistogramToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.HistogramToolStripMenuItem.Text = "Histogram";
+            this.HistogramToolStripMenuItem.Click += new System.EventHandler(this.HistogramToolStripMenuItem_Click);
+            // 
+            // HistoryToolStripMenuItem
+            // 
+            this.HistoryToolStripMenuItem.Checked = true;
+            this.HistoryToolStripMenuItem.CheckOnClick = true;
+            this.HistoryToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem";
+            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.HistoryToolStripMenuItem.Text = "History";
+            this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
+            // 
             // imageToolStripMenuItem
             // 
             this.imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -622,58 +674,6 @@
             this.histogramEqualizationToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
             this.histogramEqualizationToolStripMenuItem1.Text = "Histogram Equalization";
             this.histogramEqualizationToolStripMenuItem1.Click += new System.EventHandler(this.histogramEqualizationToolStripMenuItem1_Click);
-            // 
-            // viewMenu
-            // 
-            this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolBarToolStripMenuItem,
-            this.statusBarToolStripMenuItem,
-            this.HistogramToolStripMenuItem,
-            this.HistoryToolStripMenuItem});
-            this.viewMenu.ForeColor = System.Drawing.Color.White;
-            this.viewMenu.Name = "viewMenu";
-            this.viewMenu.Size = new System.Drawing.Size(41, 20);
-            this.viewMenu.Text = "&View";
-            // 
-            // toolBarToolStripMenuItem
-            // 
-            this.toolBarToolStripMenuItem.Checked = true;
-            this.toolBarToolStripMenuItem.CheckOnClick = true;
-            this.toolBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
-            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.toolBarToolStripMenuItem.Text = "&Toolbar";
-            this.toolBarToolStripMenuItem.Click += new System.EventHandler(this.ToolBarToolStripMenuItem_Click);
-            // 
-            // statusBarToolStripMenuItem
-            // 
-            this.statusBarToolStripMenuItem.Checked = true;
-            this.statusBarToolStripMenuItem.CheckOnClick = true;
-            this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.statusBarToolStripMenuItem.Text = "&Status Bar";
-            this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.StatusBarToolStripMenuItem_Click);
-            // 
-            // HistogramToolStripMenuItem
-            // 
-            this.HistogramToolStripMenuItem.Checked = true;
-            this.HistogramToolStripMenuItem.CheckOnClick = true;
-            this.HistogramToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.HistogramToolStripMenuItem.Name = "HistogramToolStripMenuItem";
-            this.HistogramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.HistogramToolStripMenuItem.Text = "Histogram";
-            this.HistogramToolStripMenuItem.Click += new System.EventHandler(this.HistogramToolStripMenuItem_Click);
-            // 
-            // HistoryToolStripMenuItem
-            // 
-            this.HistoryToolStripMenuItem.Checked = true;
-            this.HistoryToolStripMenuItem.CheckOnClick = true;
-            this.HistoryToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.HistoryToolStripMenuItem.Name = "HistoryToolStripMenuItem";
-            this.HistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.HistoryToolStripMenuItem.Text = "History";
-            this.HistoryToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
             // 
             // toolsMenu
             // 
@@ -1428,7 +1428,6 @@
             this.ImageTabControl.Visible = false;
             this.ImageTabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.ImageTabControl.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.ImageTabControl_ControlAdded);
-            this.ImageTabControl.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.ImageTabControl_ControlRemoved);
             // 
             // panel4
             // 

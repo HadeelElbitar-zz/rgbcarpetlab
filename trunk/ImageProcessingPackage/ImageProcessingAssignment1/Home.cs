@@ -968,7 +968,7 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                double[,] Mask = new double[3, 3] { { 0, 0, 1 }, { 0, 1, 0 }, { -1, 0, 0 } };
+                double[,] Mask = new double[3, 3] { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, -1 } };
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
@@ -981,7 +981,7 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                double[,] Mask = new double[3, 3] { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, -1 } };
+                double[,] Mask = new double[3, 3] { { 0, 0, 1 }, { 0, 1, 0 }, { -1, 0, 0 } };
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
@@ -1035,7 +1035,7 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                double[,] Mask = new double[3, 3] { { 1, 1, 1 }, { -1, -2, 1 }, { -1, -1, 1 } };
+                double[,] Mask = new double[3, 3] { { 1, 1, 1 }, { 1, -2, -1 }, { 1, -1, -1 } };
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
@@ -1048,7 +1048,7 @@ namespace ImageProcessingAssignment1
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
-                double[,] Mask = new double[3, 3] { { 1, 1, 1 }, { 1, -2, -1 }, { 1, -1, -1 } };
+                double[,] Mask = new double[3, 3] { { 1, 1, 1 }, { -1, -2, 1 }, { -1, -1, 1 } };
                 Filter filter = new Filter();
                 int count = ImageTabControl.SelectedIndex;
                 filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);

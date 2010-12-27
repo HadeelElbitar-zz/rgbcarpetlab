@@ -449,8 +449,8 @@ namespace ImageProcessingAssignment1
                     int Y_2 = Math.Min((int)Math.Ceiling(OldY), height - 1);
 
                     Pixel Point_1 = new Pixel(PicInfo.redPixels[Y_1, X_1], PicInfo.greenPixels[Y_1, X_1], PicInfo.bluePixels[Y_1, X_1]);
-                    Pixel Point_3 = new Pixel(PicInfo.redPixels[Y_1, X_2], PicInfo.greenPixels[Y_1, X_2], PicInfo.bluePixels[Y_1, X_2]);
-                    Pixel Point_2 = new Pixel(PicInfo.redPixels[Y_2, X_1], PicInfo.greenPixels[Y_2, X_1], PicInfo.bluePixels[Y_2, X_1]);
+                    Pixel Point_2 = new Pixel(PicInfo.redPixels[Y_1, X_2], PicInfo.greenPixels[Y_1, X_2], PicInfo.bluePixels[Y_1, X_2]);
+                    Pixel Point_3 = new Pixel(PicInfo.redPixels[Y_2, X_1], PicInfo.greenPixels[Y_2, X_1], PicInfo.bluePixels[Y_2, X_1]);
                     Pixel Point_4 = new Pixel(PicInfo.redPixels[Y_2, X_2], PicInfo.greenPixels[Y_2, X_2], PicInfo.bluePixels[Y_2, X_2]);
 
                     //Calculate X, Y fractions
@@ -503,8 +503,8 @@ namespace ImageProcessingAssignment1
                     int Y_2 = Math.Min((int)Math.Ceiling(OldY), height - 1);
 
                     Pixel Point_1 = new Pixel(PicInfo.redPixels[Y_1, X_1], PicInfo.greenPixels[Y_1, X_1], PicInfo.bluePixels[Y_1, X_1]);
-                    Pixel Point_3 = new Pixel(PicInfo.redPixels[Y_1, X_2], PicInfo.greenPixels[Y_1, X_2], PicInfo.bluePixels[Y_1, X_2]);
-                    Pixel Point_2 = new Pixel(PicInfo.redPixels[Y_2, X_1], PicInfo.greenPixels[Y_2, X_1], PicInfo.bluePixels[Y_2, X_1]);
+                    Pixel Point_2 = new Pixel(PicInfo.redPixels[Y_1, X_2], PicInfo.greenPixels[Y_1, X_2], PicInfo.bluePixels[Y_1, X_2]);
+                    Pixel Point_3 = new Pixel(PicInfo.redPixels[Y_2, X_1], PicInfo.greenPixels[Y_2, X_1], PicInfo.bluePixels[Y_2, X_1]);
                     Pixel Point_4 = new Pixel(PicInfo.redPixels[Y_2, X_2], PicInfo.greenPixels[Y_2, X_2], PicInfo.bluePixels[Y_2, X_2]);
 
                     //Calculate X, Y fractions
@@ -1143,11 +1143,18 @@ namespace ImageProcessingAssignment1
             {
                 int height = pic.height;
                 int width = pic.width;
-                List<Point> pointList = new List<Point>();
+                //List<Point> pointList = new List<Point>();
+                int Size = width * height;
+                Point[] pointList = new Point[Size];
+                bool[] pointTaken = new bool[Size];
+                int index = 0;
                 for (int i = 0; i < height; i++)
                     for (int j = 0; j < width; j++)
-                        pointList.Add(new Point(i, j));
-                int Size = width * height;
+                    {
+                        pointList[index] = new Point(i, j);
+                        pointTaken[index++] = false;
+                        //pointList.Add(new Point(i, j));
+                    }
                 Random rand = new Random();
                 int count = Size - 1;
 
@@ -1173,14 +1180,16 @@ namespace ImageProcessingAssignment1
                     {
                         for (int i = 0; i < NoiseNumber; i++)
                         {
-                            int ChosenIndex = 0;
-                            ChosenIndex = rand.Next(0, count--);
+                            int ChosenIndex = rand.Next(0, count);
+                            while (pointTaken[ChosenIndex])
+                                ChosenIndex = rand.Next(0, count);
+                            pointTaken[ChosenIndex] = true;
+                            count--;
                             int x = pointList[ChosenIndex].X;
                             int y = pointList[ChosenIndex].Y;
                             rPixels[x, y] += j;
                             gPixels[x, y] += j;
                             bPixels[x, y] += j;
-                            pointList.RemoveAt(ChosenIndex);
                         }
                     }
                 }
@@ -1203,7 +1212,7 @@ namespace ImageProcessingAssignment1
                             rPixels[x, y] += color;
                             gPixels[x, y] += color;
                             bPixels[x, y] += color;
-                            pointList.RemoveAt(ChosenIndex);
+                            //pointList.RemoveAt(ChosenIndex);
                         }
                     }
                 }
@@ -1222,7 +1231,7 @@ namespace ImageProcessingAssignment1
                             rPixels[x, y] += j;
                             gPixels[x, y] += j;
                             bPixels[x, y] += j;
-                            pointList.RemoveAt(ChosenIndex);
+                            //pointList.RemoveAt(ChosenIndex);
                         }
                     }
                 }
@@ -1244,7 +1253,7 @@ namespace ImageProcessingAssignment1
                             rPixels[x, y] += j;
                             gPixels[x, y] += j;
                             bPixels[x, y] += j;
-                            pointList.RemoveAt(ChosenIndex);
+                            //pointList.RemoveAt(ChosenIndex);
                         }
                     }
                 }
@@ -1263,7 +1272,7 @@ namespace ImageProcessingAssignment1
                             rPixels[x, y] += j;
                             gPixels[x, y] += j;
                             bPixels[x, y] += j;
-                            pointList.RemoveAt(ChosenIndex);
+                            //pointList.RemoveAt(ChosenIndex);
                         }
                     }
                 }
@@ -1347,245 +1356,6 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-
-        //public void AddUnifromNoise(PictureInfo pic, int a, int b, double NoisePercentage)
-        //{
-        //    if (NoisePercentage > 100)
-        //        MessageBox.Show("The percentage should be less than 100!");
-        //    else
-        //    {
-        //        int height = pic.height;
-        //        int width = pic.width;
-        //        List<Point> pointList = new List<Point>();
-        //        for (int i = 0; i < height; i++)
-        //            for (int j = 0; j < width; j++)
-        //                pointList.Add(new Point(i, j));
-
-        //        int Size = width * height;
-        //        int NoiseNumber = (int)((double)(1.0 / (b - a)) * Size * (NoisePercentage / 100.0));
-        //        Random rand = new Random();
-        //        int count = Size - 1;
-        //        double rMin = double.MaxValue, rMax = double.MinValue;
-        //        double gMin = double.MaxValue, gMax = double.MinValue;
-        //        double bMin = double.MaxValue, bMax = double.MinValue;
-        //        double[,] rPixels = new double[height, width];
-        //        double[,] gPixels = new double[height, width];
-        //        double[,] bPixels = new double[height, width];
-        //        for (int i = 0; i < height; i++)
-        //        {
-        //            for (int j = 0; j < width; j++)
-        //            {
-        //                rPixels[i, j] = pic.redPixels[i, j];
-        //                rMin = Math.Min(rPixels[i, j], rMin);
-        //                rMax = Math.Max(rPixels[i, j], rMax);
-        //                gPixels[i, j] = pic.greenPixels[i, j];
-        //                gMin = Math.Min(gPixels[i, j], gMin);
-        //                gMax = Math.Max(gPixels[i, j], gMax);
-        //                bPixels[i, j] = pic.bluePixels[i, j];
-        //                bMin = Math.Min(bPixels[i, j], bMin);
-        //                bMax = Math.Max(bPixels[i, j], bMax);
-        //            }
-        //        }
-        //        for (int j = a; j <= b; j++)
-        //        {
-        //            for (int i = 0; i < NoiseNumber; i++)
-        //            {
-        //                int ChosenIndex = rand.Next(0, count--);
-        //                int x = pointList[ChosenIndex].X;
-        //                int y = pointList[ChosenIndex].Y;
-        //                rPixels[x, y] += j;
-        //                gPixels[x, y] += j;
-        //                bPixels[x, y] += j;
-        //                pointList.RemoveAt(ChosenIndex);
-        //            }
-        //        }
-        //        Normalization(height, width, rMin, rMax, 255, 0, rPixels);
-        //        Normalization(height, width, gMin, gMax, 255, 0, gPixels);
-        //        Normalization(height, width, bMin, bMax, 255, 0, bPixels);
-        //        for (int i = 0; i < height; i++)
-        //        {
-        //            for (int j = 0; j < width; j++)
-        //            {
-        //                pic.redPixels[i, j] = (byte)rPixels[i, j];
-        //                pic.greenPixels[i, j] = (byte)gPixels[i, j];
-        //                pic.bluePixels[i, j] = (byte)bPixels[i, j];
-        //            }
-        //        }
-        //    }
-        //}
-        //public void AddGaussianNoise(PictureInfo pic, double mu, double sigma, double NoisePercentage)
-        //{
-        //    if (NoisePercentage > 100)
-        //        MessageBox.Show("The percentage should be less than 100!");
-        //    else
-        //    {
-        //        int height = pic.height;
-        //        int width = pic.width;
-        //        List<Point> pointList = new List<Point>();
-        //        for (int i = 0; i < height; i++)
-        //            for (int j = 0; j < width; j++)
-        //                pointList.Add(new Point(i, j));
-
-        //        int Size = width * height;
-        //        Random rand = new Random();
-        //        int count = Size - 1;
-        //        int min = 0, max = 255;
-        //        double rMin = double.MaxValue, rMax = double.MinValue;
-        //        double gMin = double.MaxValue, gMax = double.MinValue;
-        //        double bMin = double.MaxValue, bMax = double.MinValue;
-        //        double[,] rPixels = new double[height, width];
-        //        double[,] gPixels = new double[height, width];
-        //        double[,] bPixels = new double[height, width];
-        //        for (int i = 0; i < height; i++)
-        //        {
-        //            for (int j = 0; j < width; j++)
-        //            {
-        //                rPixels[i, j] = pic.redPixels[i, j];
-        //                rMin = Math.Min(rPixels[i, j], rMin);
-        //                rMax = Math.Max(rPixels[i, j], rMax);
-        //                gPixels[i, j] = pic.greenPixels[i, j];
-        //                gMin = Math.Min(gPixels[i, j], gMin);
-        //                gMax = Math.Max(gPixels[i, j], gMax);
-        //                bPixels[i, j] = pic.bluePixels[i, j];
-        //                bMin = Math.Min(bPixels[i, j], bMin);
-        //                bMax = Math.Max(bPixels[i, j], bMax);
-        //            }
-        //        }
-        //        for (int i = min; i <= max; i++)
-        //        {
-        //            double Const = Math.Pow(((i - mu) / sigma), 2) * (-0.5);
-        //            double denominator = (Math.Sqrt(2 * Math.PI) * sigma);
-        //            double NoiseNumber = ((1 / denominator) * (Math.Exp(Const)));
-        //            NoiseNumber = NoiseNumber * Size * (NoisePercentage / 100.0);
-        //            int color = i;
-        //            for (int j = 0; j < NoiseNumber; j++)
-        //            {
-        //                int ChosenIndex = rand.Next(0, count--);
-        //                int x = pointList[ChosenIndex].X;
-        //                int y = pointList[ChosenIndex].Y;
-        //                rPixels[x, y] += color;
-        //                gPixels[x, y] += color;
-        //                bPixels[x, y] += color;
-        //                pointList.RemoveAt(ChosenIndex);
-        //            }
-        //        }
-        //        Normalization(height, width, rMin, rMax, 255, 0, rPixels);
-        //        Normalization(height, width, gMin, gMax, 255, 0, gPixels);
-        //        Normalization(height, width, bMin, bMax, 255, 0, bPixels);
-        //        for (int i = 0; i < height; i++)
-        //        {
-        //            for (int j = 0; j < width; j++)
-        //            {
-        //                pic.redPixels[i, j] = (byte)rPixels[i, j];
-        //                pic.greenPixels[i, j] = (byte)gPixels[i, j];
-        //                pic.bluePixels[i, j] = (byte)bPixels[i, j];
-        //            }
-        //        }
-        //    }
-        //}
-        //public void AddRayleighNoise(PictureInfo pic, int a, int b, double NoisePercentage)
-        //{
-        //    if (NoisePercentage > 100)
-        //        MessageBox.Show("The percentage should be less than 100!");
-        //    else
-        //    {
-        //        int height = pic.height;
-        //        int width = pic.width;
-        //        List<Point> pointList = new List<Point>();
-        //        for (int i = 0; i < height; i++)
-        //            for (int j = 0; j < width; j++)
-        //                pointList.Add(new Point(i, j));
-
-        //        int Size = width * height;
-        //        Random rand = new Random();
-        //        int count = Size - 1;
-        //        for (int j = a; j <= 255; j++)
-        //        {
-        //            double Const = (-(j - a) * (j - a)) / b;
-        //            int NoiseNumber = (int)(((2.0 / b) * (j - a) * (Math.Pow(Math.E, Const)) * Size * (NoisePercentage / 100.0)));
-        //            for (int i = 0; i < NoiseNumber; i++)
-        //            {
-        //                int ChosenIndex = rand.Next(0, count--);
-        //                int x = pointList[ChosenIndex].X;
-        //                int y = pointList[ChosenIndex].Y;
-        //                pic.redPixels[x, y] = (byte)j;
-        //                pic.greenPixels[x, y] = (byte)j;
-        //                pic.bluePixels[x, y] = (byte)j;
-        //                pointList.RemoveAt(ChosenIndex);
-        //            }
-        //        }
-        //    }
-        //}
-        //public void AddGammaNoise(PictureInfo pic, int a, int b, double NoisePercentage)
-        //{
-        //    if (NoisePercentage > 100)
-        //        MessageBox.Show("The percentage should be less than 100!");
-        //    else
-        //    {
-        //        int height = pic.height;
-        //        int width = pic.width;
-        //        List<Point> pointList = new List<Point>();
-        //        for (int i = 0; i < height; i++)
-        //            for (int j = 0; j < width; j++)
-        //                pointList.Add(new Point(i, j));
-
-        //        int Size = width * height;
-        //        Random rand = new Random();
-        //        int count = Size - 1;
-        //        for (int j = a; j <= 255; j++)
-        //        {
-        //            double t1 = Math.Pow(a, b);
-        //            double t2 = Math.Pow(j, b - 1);
-        //            double t3 = Factorial(b - 1);
-        //            double t4 = Math.Pow(Math.E, (-a * j));
-        //            int NoiseNumber = (int)((((t1 * t2 * t4) / t3) * Size * (NoisePercentage / 100.0)));
-        //            for (int i = 0; i < NoiseNumber; i++)
-        //            {
-        //                int ChosenIndex = rand.Next(0, count--);
-        //                int x = pointList[ChosenIndex].X;
-        //                int y = pointList[ChosenIndex].Y;
-        //                pic.redPixels[x, y] = (byte)j;
-        //                pic.greenPixels[x, y] = (byte)j;
-        //                pic.bluePixels[x, y] = (byte)j;
-        //                pointList.RemoveAt(ChosenIndex);
-        //            }
-        //        }
-        //    }
-        //}
-        //public void AddExponentialNoise(PictureInfo pic, int a, double NoisePercentage)
-        //{
-        //    if (NoisePercentage > 100)
-        //        MessageBox.Show("The percentage should be less than 100!");
-        //    else
-        //    {
-        //        int height = pic.height;
-        //        int width = pic.width;
-        //        List<Point> pointList = new List<Point>();
-        //        for (int i = 0; i < height; i++)
-        //            for (int j = 0; j < width; j++)
-        //                pointList.Add(new Point(i, j));
-
-        //        int Size = width * height;
-        //        Random rand = new Random();
-        //        int count = Size - 1;
-        //        for (int j = 0; j <= 255; j++)
-        //        {
-        //            double t1 = Math.Pow(Math.E, (-a * j));
-        //            int NoiseNumber = (int)(((a * t1) * Size * (NoisePercentage / 100.0)));
-        //            for (int i = 0; i < NoiseNumber; i++)
-        //            {
-        //                int ChosenIndex = rand.Next(0, count--);
-        //                int x = pointList[ChosenIndex].X;
-        //                int y = pointList[ChosenIndex].Y;
-        //                pic.redPixels[x, y] = (byte)j;
-        //                pic.greenPixels[x, y] = (byte)j;
-        //                pic.bluePixels[x, y] = (byte)j;
-        //                pointList.RemoveAt(ChosenIndex);
-        //            }
-        //        }
-        //    }
-        //}
-
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*

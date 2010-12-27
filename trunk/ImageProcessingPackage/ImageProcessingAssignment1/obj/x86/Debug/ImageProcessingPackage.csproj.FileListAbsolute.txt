@@ -513,3 +513,4 @@ E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssig
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatLabFunction.dll

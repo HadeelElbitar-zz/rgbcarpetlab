@@ -684,7 +684,8 @@ namespace ImageProcessingAssignment1
         }
 
         //Equalization
-        private void histogramEqualizationToolStripMenuItem1_Click(object sender, EventArgs e)
+        //Global
+        private void globalEqualizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
@@ -695,7 +696,44 @@ namespace ImageProcessingAssignment1
                 DisplayImage(PicturesList[picIndex]);
             }
         }
-
+        //Local using Matlab...
+        private void localEqualizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                inputGroupBox.Controls.Clear();
+                inputGroupBox.Text = "Local Histogram Equalization";
+                //Window Size Text Box
+                TextBox sizeTxt = new TextBox();
+                sizeTxt.Location = new System.Drawing.Point(15, 42);
+                sizeTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(sizeTxt);
+                //Size Label
+                System.Windows.Forms.Label sizeLabel = new System.Windows.Forms.Label();
+                sizeLabel.Location = new System.Drawing.Point(12, 26);
+                sizeLabel.Text = "Window Size";
+                inputGroupBox.Controls.Add(sizeLabel);
+                //Button
+                Button applyBtn = new Button();
+                applyBtn.Text = "Apply";
+                applyBtn.Location = new System.Drawing.Point(102, 85);
+                applyBtn.Size = new System.Drawing.Size(75, 23);
+                applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplyLocalHE_Click(sender1, e1, sizeTxt); };
+                inputGroupBox.Controls.Add(applyBtn);
+            }
+        }
+        private void ApplyLocalHE_Click(object sender, EventArgs e, TextBox sizeText)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                int length = int.Parse(sizeText.Text);
+                if (length % 2 == 0) length++;
+                ImageClass Image = new ImageClass();
+                int picIndex = ImageTabControl.SelectedIndex;
+                Image.LocalHE(PicturesList[picIndex], length);                
+                DisplayImage(PicturesList[picIndex]);
+            }
+        }
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         //In Other Forms
@@ -2389,6 +2427,8 @@ namespace ImageProcessingAssignment1
         {
 
         }
+
+        
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

@@ -195,6 +195,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.zoomLabel = new System.Windows.Forms.Label();
+            this.globalEqualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localEqualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -227,7 +229,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1444, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1370, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -670,10 +672,12 @@
             // 
             // histogramEqualizationToolStripMenuItem1
             // 
+            this.histogramEqualizationToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.globalEqualizationToolStripMenuItem,
+            this.localEqualizationToolStripMenuItem});
             this.histogramEqualizationToolStripMenuItem1.Name = "histogramEqualizationToolStripMenuItem1";
             this.histogramEqualizationToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
             this.histogramEqualizationToolStripMenuItem1.Text = "Histogram Equalization";
-            this.histogramEqualizationToolStripMenuItem1.Click += new System.EventHandler(this.histogramEqualizationToolStripMenuItem1_Click);
             // 
             // toolsMenu
             // 
@@ -1263,7 +1267,7 @@
             this.toolStripSeparator9});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1444, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1370, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1409,7 +1413,7 @@
             // 
             this.ImageStatusLabel.ForeColor = System.Drawing.Color.White;
             this.ImageStatusLabel.Name = "ImageStatusLabel";
-            this.ImageStatusLabel.Size = new System.Drawing.Size(65, 17);
+            this.ImageStatusLabel.Size = new System.Drawing.Size(65, 29);
             this.ImageStatusLabel.Text = "No Image..";
             // 
             // toolStripStatusLabel
@@ -1655,12 +1659,26 @@
             this.zoomLabel.TabIndex = 35;
             this.zoomLabel.Text = "Zoom: 0%";
             // 
+            // globalEqualizationToolStripMenuItem
+            // 
+            this.globalEqualizationToolStripMenuItem.Name = "globalEqualizationToolStripMenuItem";
+            this.globalEqualizationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.globalEqualizationToolStripMenuItem.Text = "Global Equalization";
+            this.globalEqualizationToolStripMenuItem.Click += new System.EventHandler(this.globalEqualizationToolStripMenuItem_Click);
+            // 
+            // localEqualizationToolStripMenuItem
+            // 
+            this.localEqualizationToolStripMenuItem.Name = "localEqualizationToolStripMenuItem";
+            this.localEqualizationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.localEqualizationToolStripMenuItem.Text = "Local Equalization";
+            this.localEqualizationToolStripMenuItem.Click += new System.EventHandler(this.localEqualizationToolStripMenuItem_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1444, 884);
+            this.ClientSize = new System.Drawing.Size(1370, 750);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.InputPanel);
@@ -1863,5 +1881,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label zoomLabel;
         private System.Windows.Forms.ToolStripMenuItem HistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem globalEqualizationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem localEqualizationToolStripMenuItem;
     }
 }

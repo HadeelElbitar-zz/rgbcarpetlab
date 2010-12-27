@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MathWorks.MATLAB.NET.Utility;
 using MathWorks.MATLAB.NET.Arrays;
 using MatlabProject;
+using MatLabFunction;
 
 namespace ImageProcessingAssignment1
 {
@@ -894,6 +895,19 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        private void GetLocalHistogram(ref double[] R, ref double[] G, ref double[] B, byte[,] LocalWindowR, byte[,] LocalWindowG, byte[,] LocalWindowB, int WinSize)
+        {
+            int NR, NG, NB;
+            for (int i = 0; i < WinSize; i++)
+            {
+                for (int j = 0; j < WinSize; j++)
+                {
+                    NR = (int)++R[LocalWindowR[i, j]];
+                    NG = (int)++G[LocalWindowG[i, j]];
+                    NB = (int)++B[LocalWindowB[i, j]];
+                }
+            }
+        }
         public int GetMin(double[] A)
         {
             for (int i = 0; i < 256; i++)
@@ -922,6 +936,67 @@ namespace ImageProcessingAssignment1
                 G[i] /= W_H;
                 B[i] /= W_H;
             }
+        }
+        public void LocalHE(PictureInfo pic, int WinSize)
+        {
+            //MFunctions MatLabFn = new MFunctions();
+            //MWArray[] NewR = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.redPixels, WinSize));
+            //MWArray[] NewG = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.greenPixels, WinSize));
+            //MWArray[] NewB = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.bluePixels, WinSize));
+            //pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
+            //pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
+            //pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+
+            int height = pic.height;
+            int width = pic.width;
+            int HalfWinSize = WinSize / 2;
+            byte[,] NewR = new byte[height, width];
+            byte[,] NewG = new byte[height, width];
+            byte[,] NewB = new byte[height, width];
+            byte[,] LocalWindowR = new byte[WinSize, WinSize];
+            byte[,] LocalWindowG = new byte[WinSize, WinSize];
+            byte[,] LocalWindowB = new byte[WinSize, WinSize];
+            for (int i = HalfWinSize; i < height - HalfWinSize - 1; i++)
+            {
+                for (int j = HalfWinSize; j < width - HalfWinSize - 1; j++)
+                {
+                    int indexJ = j - HalfWinSize;
+                    int indexI = i - HalfWinSize;
+                    for (int c = 0; c < WinSize; c++)
+                    {
+                        for (int k = 0; k < WinSize; k++)
+                        {
+                            LocalWindowR[c, k] = pic.redPixels[indexI, indexJ];
+                            LocalWindowG[c, k] = pic.greenPixels[indexI, indexJ];
+                            LocalWindowB[c, k] = pic.bluePixels[indexI, indexJ++];
+                        }
+                        indexI++;
+                        indexJ = j - HalfWinSize;
+                    }
+                    double[] RedHistogram = new double[256];
+                    double[] GreenHistogram = new double[256];
+                    double[] BlueHistogram = new double[256];
+                    GetLocalHistogram(ref RedHistogram, ref GreenHistogram, ref BlueHistogram, LocalWindowR, LocalWindowG, LocalWindowB, WinSize);
+                    RunningSumToRound(ref RedHistogram);
+                    RunningSumToRound(ref GreenHistogram);
+                    RunningSumToRound(ref BlueHistogram);
+                    for (int c = 0; c < WinSize; c++)
+                    {
+                        for (int k = 0; k < WinSize; k++)
+                        {
+                            LocalWindowR[c, k] = (byte)RedHistogram[LocalWindowR[c, k]];
+                            LocalWindowG[c, k] = (byte)GreenHistogram[LocalWindowG[c, k]];
+                            LocalWindowB[c, k] = (byte)BlueHistogram[LocalWindowB[c, k]];
+                        }
+                    }
+                    NewR[i, j] = LocalWindowR[HalfWinSize + 1, HalfWinSize + 1];
+                    NewG[i, j] = LocalWindowG[HalfWinSize + 1, HalfWinSize + 1];
+                    NewB[i, j] = LocalWindowB[HalfWinSize + 1, HalfWinSize + 1];
+                }
+            }
+            pic.redPixels = NewR;
+            pic.greenPixels = NewG;
+            pic.bluePixels = NewB;
         }
         #endregion
 

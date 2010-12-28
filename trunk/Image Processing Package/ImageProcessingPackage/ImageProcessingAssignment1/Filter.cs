@@ -145,54 +145,49 @@ namespace ImageProcessingAssignment1
             return res;
         }
         #region Sorting
-        private void ParallelSort(ref byte[] R, ref byte[] G, ref byte[] B, int size)
+        private int[,] CalcBitMixed(PictureInfo pic)
+        {
+            int W = pic.width;
+            int H = pic.height;
+            int[,] BitMixed = new int[H, W];
+            int[] ArrBits = { 128, 64, 32, 16, 8, 4, 2, 1 };
+            int res;
+            for (int i = 0; i < H; i++)
+            {
+                for (int j = 0; j < W; j++)
+                {
+                    res = 0;
+                    for (int k = 7, c = 0; k >= 0; k--)
+                    {
+                        if ((pic.redPixels[i,j] & ArrBits[k]) == ArrBits[k])
+                            res += (int)Math.Pow(2, c++);
+                        else
+                            c++;
+                        if ((pic.greenPixels[i, j] & ArrBits[k]) == ArrBits[k])
+                            res += (int)Math.Pow(2, c++);
+                        else
+                            c++;
+                        if ((pic.bluePixels[i, j] & ArrBits[k]) == ArrBits[k])
+                            res += (int)Math.Pow(2, c++);
+                        else
+                            c++;
+                    }
+                    BitMixed[i, j] = res;
+                }
+            }
+            return BitMixed;
+        }
+        private void ParallelSort(ref byte[] R, ref byte[] G, ref byte[] B, int Fw, int Fh , int indexI , int indexJ, int[,] BitMixedArray)
         {
             // int size = R.Length;
             Dictionary<int, int> L = new Dictionary<int, int>();
             int[] ArrBits = { 128, 64, 32, 16, 8, 4, 2, 1 };
-            int res;
-            for (int i = 0; i < size; i++)
+            int index = 0;
+            for (int i = 0; i < Fh; i++)
             {
-                res = 0;
-                if (i == 0)
+                for (int j = 0; j < Fw; j++)
                 {
-                    for (int k = 7, j = 0; k >= 0; k--)
-                    {
-                        if ((R[i] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, j++);
-                        else
-                            j++;
-                        if ((G[i] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, j++);
-                        else
-                            j++;
-                        if ((B[i] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, j++);
-                        else
-                            j++;
-                    }
-                    L.Add(i, res);
-                }
-                else if (R[i - 1] == R[i] && G[i - 1] == G[i] && B[i - 1] == B[i])
-                    L.Add(i, L[i - 1]);
-                else
-                {
-                    for (int k = 7, j = 0; k >= 0; k--)
-                    {
-                        if ((R[i] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, j++);
-                        else
-                            j++;
-                        if ((G[i] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, j++);
-                        else
-                            j++;
-                        if ((B[i] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, j++);
-                        else
-                            j++;
-                    }
-                    L.Add(i, res);
+                    L.Add(index++, BitMixedArray[indexI + i, indexJ + j]);
                 }
             }
             List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
@@ -200,6 +195,7 @@ namespace ImageProcessingAssignment1
             {
                 return second.Value.CompareTo(first.Value);
             });
+            int size = Fw * Fh;
             byte[] RTemp = new byte[size];
             byte[] GTemp = new byte[size];
             byte[] BTemp = new byte[size];
@@ -668,15 +664,18 @@ namespace ImageProcessingAssignment1
         }
         public void ApplyOrderStatFilter(int Fwidth, int Fheight, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue, string Filter)
         {
+            //int[,] BitMixed = CalcBitMixed(OldPic);
             int height = OldPic.height, width = OldPic.width;
             int newHeight = height + Fheight;
             int newWidth = width + Fwidth;
             byte[,] repRPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.redPixels);
             byte[,] repGPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.greenPixels);
             byte[,] repBPixels = ReplicateImage(Fheight, Fwidth, height, width, OldPic.bluePixels);
+            PictureInfo ReplectPic = new PictureInfo(newWidth-1, newHeight-1, "ay7aga", "", null, repRPixels, repGPixels, repBPixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
+            int[,] BitMixed = CalcBitMixed(ReplectPic);
 
             int M = (Fheight - 1) / 2, N = (Fwidth - 1) / 2, FSize = Fheight * Fwidth;
 
@@ -756,7 +755,7 @@ namespace ImageProcessingAssignment1
                     // B = BTemp;
                     #endregion
 
-                    ParallelSort(ref R, ref G, ref B, FSize);
+                    ParallelSort(ref R, ref G, ref B,Fwidth, Fheight, i, j, BitMixed);
 
                     byte Rval = 0, Gval = 0, Bval = 0;
                     int index;

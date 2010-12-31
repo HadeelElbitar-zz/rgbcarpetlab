@@ -80,3 +80,44 @@ C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProce
 C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.TimeForm.resources
 C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.read.1.tlog
 C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.write.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MatLabFunction.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MatlabProject.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MWArray.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ZedGraph.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ZedGraph.xml
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\de\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\es\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\fr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\hu\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\it\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ja\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\pt\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ru\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\sk\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\sv\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\tr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\zh-cn\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\zh-tw\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ManagedCPPAPI.netmodule
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ResolveAssemblyReference.cache
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.AboutBox.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.Calculations.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.Binarization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.Morphology.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.Thresholding.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.CustomFilter.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.NewFormInput.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.Quantization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.Home.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.Properties.Resources.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.TimeForm.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.read.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.write.1.tlog

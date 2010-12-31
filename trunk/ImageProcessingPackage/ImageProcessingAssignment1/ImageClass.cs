@@ -931,7 +931,7 @@ namespace ImageProcessingAssignment1
         }
         private void NormalizeHistogram(ref double[] R, ref double[] G, ref double[] B, int W_H)
         {
-            for (int i = 0; i < 255; i++)
+            for (int i = 0; i < 256; i++)
             {
                 R[i] /= W_H;
                 G[i] /= W_H;
@@ -1477,12 +1477,11 @@ namespace ImageProcessingAssignment1
             {
                 CummulateR[i] = CummulateR[i - 1] + R[i];
             }
-            double[] CummulateMeanR = new double[256], CummulateMeanG = new double[256], CummulateMeanB = new double[256];
+            double[] CummulateMeanR = new double[257], CummulateMeanG = new double[256], CummulateMeanB = new double[256];
             CummulateMeanR[0] = 0;
-            for (int i = 1; i <= 255; i++)
+            for (int i = 0, j = 1; i <= 255; i++, j++)
             {
-                CummulateMeanR[i] = CummulateMeanR[i - 1] + R[i] * i;
-
+                CummulateMeanR[j] = CummulateMeanR[j - 1] + R[i] * i;
             }
             // get K 
             double MaxR = int.MinValue;
@@ -1505,7 +1504,7 @@ namespace ImageProcessingAssignment1
                     FinalKr += item.Key;
                 }
             }
-
+            //177 , 178
             FinalKr /= Rcount;
             for (int i = 0; i < pic.height; i++)
             {

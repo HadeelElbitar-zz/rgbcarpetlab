@@ -331,9 +331,6 @@ namespace ImageProcessingAssignment1
                             Bsum += (Filter[c, k] * (double)repBPixels[i + c, j + k]);
                         }
                     }
-                    //Rsum /= Fsize;
-                    //Gsum /= Fsize;
-                    //Bsum /= Fsize;
                     if ((int)(SumOfFilter) == 1)
                     {
                         Rsum = CutOff(Rsum);

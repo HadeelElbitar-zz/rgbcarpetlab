@@ -165,8 +165,8 @@ namespace ImageProcessingAssignment1
             int tabPageHeight = ImageTabControl.TabPages[picIndex].Height;
             int widthDim = tabPageWidth / 2 - picBoxWidth / 2;
             int heightDim = tabPageHeight / 2 - picBoxHeight / 2;
-            if (widthDim < 0)widthDim = 0;
-            if (heightDim < 0)heightDim = 0;
+            if (widthDim < 0) widthDim = 0;
+            if (heightDim < 0) heightDim = 0;
             PicturesList[picIndex].pictureBox.Location = new System.Drawing.Point(widthDim, heightDim);
         }
         #endregion
@@ -320,7 +320,7 @@ namespace ImageProcessingAssignment1
                 Picture.Multiselect = true;
                 if (Picture.ShowDialog() == DialogResult.OK)
                     PicturePath = Picture.FileNames;
-                
+
                 int count = PicturePath.Count();
                 for (int k = 0; k < count; k++)
                 {
@@ -357,7 +357,7 @@ namespace ImageProcessingAssignment1
                     TimeForm Time = new TimeForm("Open Image", (TimeTaken + TimeTaken2).ToString());
                     Time.Show();
                 }
-               
+
                 ZoomTrackBar.Value = 100;
             }
             catch { }
@@ -999,7 +999,7 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 DateTime BeginTime = DateTime.Now;
                 double[,] Mask = new double[3, 3] { { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 } };
-                filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels); 
+                filter.Apply2DFilter(3, 3, Mask, PicturesList[count], ref PicturesList[count].redPixels, ref PicturesList[count].greenPixels, ref PicturesList[count].bluePixels);
                 DisplayImage(PicturesList[picIndex]);
                 DateTime EndTime = DateTime.Now;
                 TimeSpan TimeTaken = EndTime - BeginTime;
@@ -1402,6 +1402,23 @@ namespace ImageProcessingAssignment1
             }
         }
 
+        private void weightedFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                int length = 3;
+                Filter filter = new Filter();
+                int picIndex = ImageTabControl.SelectedIndex;
+                DateTime BeginTime = DateTime.Now;
+
+                double x = 1.0 / 4.0, y = 1.0 / 8.0, z = 1.0 / 16.0;
+                double[,] Mask = new double[3, 3] { { z, y, z }, { y, x, y }, { z, y, z } };
+                filter.Apply2DFilter(length, length, Mask, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels);
+                DisplayImage(PicturesList[picIndex]);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Weighted Mean Filter");
+            }
+        }
+
         private void medianFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ImageTabControl.TabPages.Count > 0)
@@ -1480,7 +1497,7 @@ namespace ImageProcessingAssignment1
                 Filter filter = new Filter();
                 int picIndex = ImageTabControl.SelectedIndex;
                 DateTime BeginTime = DateTime.Now;
-                filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Minimum"); 
+                filter.ApplyOrderStatFilter(length, length, PicturesList[ImageTabControl.SelectedIndex], ref PicturesList[ImageTabControl.SelectedIndex].redPixels, ref PicturesList[ImageTabControl.SelectedIndex].greenPixels, ref PicturesList[ImageTabControl.SelectedIndex].bluePixels, "Minimum");
                 DisplayImage(PicturesList[picIndex]);
                 DateTime EndTime = DateTime.Now;
                 TimeSpan TimeTaken = EndTime - BeginTime;

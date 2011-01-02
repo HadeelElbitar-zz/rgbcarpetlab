@@ -129,7 +129,6 @@
             this.geometricMeanFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geometricMeanFilterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contraharmonicMeanFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.weightMeanFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orderStatisticsFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medianFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minimumFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -203,6 +202,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.zoomLabel = new System.Windows.Forms.Label();
+            this.histogramSlicingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.singleScaleRetinexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -497,7 +498,8 @@
             this.quantizationToolStripMenuItem,
             this.segmentationToolStripMenuItem,
             this.morphologyToolStripMenuItem,
-            this.localStatisticsToolStripMenuItem});
+            this.localStatisticsToolStripMenuItem,
+            this.singleScaleRetinexToolStripMenuItem});
             this.imageToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             this.imageToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
@@ -679,7 +681,8 @@
             // 
             this.histogramToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.histogramMatchingToolStripMenuItem,
-            this.histogramEqualizationToolStripMenuItem1});
+            this.histogramEqualizationToolStripMenuItem1,
+            this.histogramSlicingToolStripMenuItem});
             this.histogramToolStripMenuItem2.ForeColor = System.Drawing.Color.Black;
             this.histogramToolStripMenuItem2.Name = "histogramToolStripMenuItem2";
             this.histogramToolStripMenuItem2.Size = new System.Drawing.Size(67, 20);
@@ -1036,8 +1039,7 @@
             // 
             this.geometricMeanFilterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.geometricMeanFilterToolStripMenuItem1,
-            this.contraharmonicMeanFilterToolStripMenuItem,
-            this.weightMeanFilterToolStripMenuItem});
+            this.contraharmonicMeanFilterToolStripMenuItem});
             this.geometricMeanFilterToolStripMenuItem.Name = "geometricMeanFilterToolStripMenuItem";
             this.geometricMeanFilterToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.geometricMeanFilterToolStripMenuItem.Text = "Mean Filters";
@@ -1055,12 +1057,6 @@
             this.contraharmonicMeanFilterToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.contraharmonicMeanFilterToolStripMenuItem.Text = "Contraharmonic Mean Filter";
             this.contraharmonicMeanFilterToolStripMenuItem.Click += new System.EventHandler(this.contraharmonicMeanFilterToolStripMenuItem_Click);
-            // 
-            // weightMeanFilterToolStripMenuItem
-            // 
-            this.weightMeanFilterToolStripMenuItem.Name = "weightMeanFilterToolStripMenuItem";
-            this.weightMeanFilterToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.weightMeanFilterToolStripMenuItem.Text = "Weight Mean Filter";
             // 
             // orderStatisticsFiltersToolStripMenuItem
             // 
@@ -1727,6 +1723,20 @@
             this.zoomLabel.TabIndex = 35;
             this.zoomLabel.Text = "Zoom: 0%";
             // 
+            // histogramSlicingToolStripMenuItem
+            // 
+            this.histogramSlicingToolStripMenuItem.Name = "histogramSlicingToolStripMenuItem";
+            this.histogramSlicingToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.histogramSlicingToolStripMenuItem.Text = "Histogram Slicing";
+            this.histogramSlicingToolStripMenuItem.Click += new System.EventHandler(this.histogramSlicingToolStripMenuItem_Click);
+            // 
+            // singleScaleRetinexToolStripMenuItem
+            // 
+            this.singleScaleRetinexToolStripMenuItem.Name = "singleScaleRetinexToolStripMenuItem";
+            this.singleScaleRetinexToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.singleScaleRetinexToolStripMenuItem.Text = "Single Scale Retinex";
+            this.singleScaleRetinexToolStripMenuItem.Click += new System.EventHandler(this.singleScaleRetinexToolStripMenuItem_Click);
+            // 
             // Home
             // 
             this.AllowDrop = true;
@@ -1938,11 +1948,12 @@
         private System.Windows.Forms.ToolStripMenuItem globalEqualizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem localEqualizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem localStatisticsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem weightMeanFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem weightedFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restoreOriginalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sobelFilterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem verticalFilterToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem horizontalFilterToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem histogramSlicingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem singleScaleRetinexToolStripMenuItem;
     }
 }

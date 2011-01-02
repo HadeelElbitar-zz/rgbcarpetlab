@@ -126,7 +126,6 @@ E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssig
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.pdb
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.exe
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.pdb
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MatLabFunction.dll
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ZedGraph.dll
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ZedGraph.xml
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\de\ZedGraph.resources.dll

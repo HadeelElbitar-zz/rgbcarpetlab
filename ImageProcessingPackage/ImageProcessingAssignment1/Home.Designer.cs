@@ -252,7 +252,7 @@
             this.closeAToolStripMenuItem,
             this.toolStripSeparator4,
             this.exitToolStripMenuItem});
-            this.fileMenu.ForeColor = System.Drawing.Color.White;
+            this.fileMenu.ForeColor = System.Drawing.Color.Black;
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(35, 20);
             this.fileMenu.Text = "&File";
@@ -344,7 +344,7 @@
             this.toolStripSeparator7,
             this.selectAllToolStripMenuItem,
             this.restoreOriginalToolStripMenuItem});
-            this.editMenu.ForeColor = System.Drawing.Color.White;
+            this.editMenu.ForeColor = System.Drawing.Color.Black;
             this.editMenu.Name = "editMenu";
             this.editMenu.Size = new System.Drawing.Size(37, 20);
             this.editMenu.Text = "&Edit";
@@ -436,7 +436,7 @@
             this.statusBarToolStripMenuItem,
             this.HistogramToolStripMenuItem,
             this.HistoryToolStripMenuItem});
-            this.viewMenu.ForeColor = System.Drawing.Color.White;
+            this.viewMenu.ForeColor = System.Drawing.Color.Black;
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.Size = new System.Drawing.Size(41, 20);
             this.viewMenu.Text = "&View";
@@ -498,7 +498,7 @@
             this.segmentationToolStripMenuItem,
             this.morphologyToolStripMenuItem,
             this.localStatisticsToolStripMenuItem});
-            this.imageToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.imageToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             this.imageToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.imageToolStripMenuItem.Text = "Image";
@@ -680,7 +680,7 @@
             this.histogramToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.histogramMatchingToolStripMenuItem,
             this.histogramEqualizationToolStripMenuItem1});
-            this.histogramToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.histogramToolStripMenuItem2.ForeColor = System.Drawing.Color.Black;
             this.histogramToolStripMenuItem2.Name = "histogramToolStripMenuItem2";
             this.histogramToolStripMenuItem2.Size = new System.Drawing.Size(67, 20);
             this.histogramToolStripMenuItem2.Text = "Histogram";
@@ -719,7 +719,7 @@
             // 
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem});
-            this.toolsMenu.ForeColor = System.Drawing.Color.White;
+            this.toolsMenu.ForeColor = System.Drawing.Color.Black;
             this.toolsMenu.Name = "toolsMenu";
             this.toolsMenu.Size = new System.Drawing.Size(44, 20);
             this.toolsMenu.Text = "&Tools";
@@ -740,7 +740,7 @@
             this.tileHorizontalToolStripMenuItem,
             this.closeAllToolStripMenuItem,
             this.arrangeIconsToolStripMenuItem});
-            this.windowsMenu.ForeColor = System.Drawing.Color.White;
+            this.windowsMenu.ForeColor = System.Drawing.Color.Black;
             this.windowsMenu.Name = "windowsMenu";
             this.windowsMenu.Size = new System.Drawing.Size(62, 20);
             this.windowsMenu.Text = "&Windows";
@@ -797,7 +797,7 @@
             this.lowPassToolStripMenuItem,
             this.highPassToolStripMenuItem,
             this.removingNoiseToolStripMenuItem});
-            this.filtersToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.filtersToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
             this.filtersToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.filtersToolStripMenuItem.Text = "Filters";
@@ -1215,7 +1215,7 @@
             this.matlabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.convertToFrequencyDomainToolStripMenuItem,
             this.convertToSpatialDomainToolStripMenuItem});
-            this.matlabToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.matlabToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.matlabToolStripMenuItem.Name = "matlabToolStripMenuItem";
             this.matlabToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.matlabToolStripMenuItem.Text = "Matlab";
@@ -1244,7 +1244,7 @@
             this.gammaNoiseToolStripMenuItem,
             this.exponentialNoiseToolStripMenuItem,
             this.periodicNoiseToolStripMenuItem});
-            this.addNoiseToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.addNoiseToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.addNoiseToolStripMenuItem.Name = "addNoiseToolStripMenuItem";
             this.addNoiseToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.addNoiseToolStripMenuItem.Text = "Add Noise";
@@ -1303,7 +1303,7 @@
             this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator8,
             this.aboutToolStripMenuItem});
-            this.helpMenu.ForeColor = System.Drawing.Color.White;
+            this.helpMenu.ForeColor = System.Drawing.Color.Black;
             this.helpMenu.Name = "helpMenu";
             this.helpMenu.Size = new System.Drawing.Size(40, 20);
             this.helpMenu.Text = "&Help";

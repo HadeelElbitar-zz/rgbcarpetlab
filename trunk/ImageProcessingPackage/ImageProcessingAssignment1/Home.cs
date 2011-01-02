@@ -2584,11 +2584,9 @@ namespace ImageProcessingAssignment1
                 K0Label.Text = "K0";
                 inputGroupBox.Controls.Add(K0Label);
                 //K0 NumericUpDown
-                NumericUpDown K0NumericUpDown = new NumericUpDown();
+                TextBox K0NumericUpDown = new TextBox();
                 K0NumericUpDown.Location = new System.Drawing.Point(110, 24);
-                K0NumericUpDown.DecimalPlaces = 2;
-                K0NumericUpDown.Minimum = 0;
-                K0NumericUpDown.Maximum = 1;
+                K0NumericUpDown.Size = new System.Drawing.Size(100, 20);
                 inputGroupBox.Controls.Add(K0NumericUpDown);
 
                 //K1 Label
@@ -2598,11 +2596,9 @@ namespace ImageProcessingAssignment1
                 K1Label.Text = "K1";
                 inputGroupBox.Controls.Add(K1Label);
                 //K1 NumericUpDown
-                NumericUpDown K1NumericUpDown = new NumericUpDown();
+                TextBox K1NumericUpDown = new TextBox();
                 K1NumericUpDown.Location = new System.Drawing.Point(110, 54);
-                K1NumericUpDown.DecimalPlaces = 2;
-                K1NumericUpDown.Minimum = 0;
-                K1NumericUpDown.Maximum = 10;
+                K1NumericUpDown.Size = new System.Drawing.Size(100, 20);
                 inputGroupBox.Controls.Add(K1NumericUpDown);
 
                 //K2 Label
@@ -2612,11 +2608,9 @@ namespace ImageProcessingAssignment1
                 K2Label.Text = "K2";
                 inputGroupBox.Controls.Add(K2Label);
                 //K2 NumericUpDown
-                NumericUpDown K2NumericUpDown = new NumericUpDown();
+                TextBox K2NumericUpDown = new TextBox();
                 K2NumericUpDown.Location = new System.Drawing.Point(110, 84);
-                K2NumericUpDown.DecimalPlaces = 2;
-                K2NumericUpDown.Minimum = 0;
-                K2NumericUpDown.Maximum = 10;
+                K2NumericUpDown.Size = new System.Drawing.Size(100, 20);
                 inputGroupBox.Controls.Add(K2NumericUpDown);
 
                 //E Label
@@ -2626,11 +2620,9 @@ namespace ImageProcessingAssignment1
                 ELabel.Text = "E";
                 inputGroupBox.Controls.Add(ELabel);
                 //E NumericUpDown
-                NumericUpDown ENumericUpDown = new NumericUpDown();
+                TextBox ENumericUpDown = new TextBox();
                 ENumericUpDown.Location = new System.Drawing.Point(110, 114);
-                ENumericUpDown.DecimalPlaces = 2;
-                ENumericUpDown.Minimum = 0;
-                ENumericUpDown.Maximum = 255;
+                ENumericUpDown.Size = new System.Drawing.Size(100, 20);
                 inputGroupBox.Controls.Add(ENumericUpDown);
 
                 //WinSize Label
@@ -2640,11 +2632,9 @@ namespace ImageProcessingAssignment1
                 WinSizeLabel.Text = "Window Size";
                 inputGroupBox.Controls.Add(WinSizeLabel);
                 //WinSize NumericUpDown
-                NumericUpDown WinSizeNumericUpDown = new NumericUpDown();
+                TextBox WinSizeNumericUpDown = new TextBox();
                 WinSizeNumericUpDown.Location = new System.Drawing.Point(110, 144);
-                WinSizeNumericUpDown.DecimalPlaces = 2;
-                WinSizeNumericUpDown.Minimum = 3;
-                WinSizeNumericUpDown.Maximum = 255;
+
                 inputGroupBox.Controls.Add(WinSizeNumericUpDown);
 
                 //Button
@@ -2652,7 +2642,7 @@ namespace ImageProcessingAssignment1
                 applyBtn.Text = "Apply";
                 applyBtn.Location = new System.Drawing.Point(102, 180);
                 applyBtn.Size = new System.Drawing.Size(75, 23);
-                applyBtn.Click += delegate(object sender1, EventArgs e1) { LocalStatBtn_Click(sender1, e1, (double)K0NumericUpDown.Value, (double)K1NumericUpDown.Value, (double)K2NumericUpDown.Value, (double)ENumericUpDown.Value, (int)WinSizeNumericUpDown.Value); };
+                applyBtn.Click += delegate(object sender1, EventArgs e1) { LocalStatBtn_Click(sender1, e1, double.Parse(K0NumericUpDown.Text), double.Parse(K1NumericUpDown.Text), double.Parse(K2NumericUpDown.Text), double.Parse(ENumericUpDown.Text), int.Parse(WinSizeNumericUpDown.Text)); };
                 inputGroupBox.Controls.Add(applyBtn);
             }
         }

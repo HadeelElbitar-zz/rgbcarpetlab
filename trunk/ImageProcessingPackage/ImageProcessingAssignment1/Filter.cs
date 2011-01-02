@@ -144,6 +144,10 @@ namespace ImageProcessingAssignment1
             }
             return res;
         }
+        
+
+        #endregion
+
         #region Sorting
         private int[,] CalcBitMixed(PictureInfo pic)
         {
@@ -182,34 +186,80 @@ namespace ImageProcessingAssignment1
             // int size = R.Length;
             Dictionary<int, int> L = new Dictionary<int, int>();
             //int[] ArrBits = { 128, 64, 32, 16, 8, 4, 2, 1 };
-            int index = 0;
+            //int index = 0;
+            int[] BitMixedHistogram = new int[16777216];
             for (int i = 0; i < Fh; i++)
             {
                 for (int j = 0; j < Fw; j++)
                 {
-                    L.Add(index++, BitMixedArray[indexI + i, indexJ + j]);
+                    //L.Add(index++, BitMixedArray[indexI + i, indexJ + j]);
+                    BitMixedHistogram[BitMixedArray[indexI + i, indexJ + j]]++;
                 }
             }
-            List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
-            result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
-            {
-                return second.Value.CompareTo(first.Value);
-            });
+            //List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
+            //result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
+            //{
+            //    return second.Value.CompareTo(first.Value);
+            //});
             int size = Fw * Fh;
             byte[] RTemp = new byte[size];
             byte[] GTemp = new byte[size];
             byte[] BTemp = new byte[size];
+            int MinIndex, MaxIndex, MedianIndix;
             int c = 0;
-            foreach (KeyValuePair<int, int> item in result)
+            while (true)
             {
-                RTemp[c] = R[item.Key];
-                GTemp[c] = G[item.Key];
-                BTemp[c] = B[item.Key];
-                c++;
+                if (BitMixedHistogram[c] == 0)
+                    c++;
+                else
+                {
+                    MinIndex = BitMixedHistogram[c];
+                    break;
+                }
             }
+            c = 16777215;
+            while (true)
+            {
+                if (BitMixedHistogram[c] == 0)
+                    c--;
+                else
+                {
+                    MaxIndex = BitMixedHistogram[c];
+                    break;
+                }
+            }
+            c = 0; int MedValue = size / 2 + 1; int count = 0;
+            while (count < MedValue)
+            {
+                count += BitMixedHistogram[c++];
+            }
+            //foreach (KeyValuePair<int, int> item in result)
+            //{
+            //    RTemp[c] = R[item.Key];
+            //    GTemp[c] = G[item.Key];
+            //    BTemp[c] = B[item.Key];
+            //    c++;
+            //}
             R = RTemp;
             G = GTemp;
             B = BTemp;
+        }
+        private void GetRGBfromBitMixed(int BitMixedValue, ref byte R, ref byte G, ref byte B)
+        {
+            R = 0; G = 0; B = 0;
+            int[] ArrBits = { 8388608, 4194304, 2097152, 1048576, 524288, 262144, 131072, 65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
+            for (int i = 23, j = 0; i >= 0; j++)
+            {
+                if ((BitMixedValue & ArrBits[i]) == ArrBits[i])
+                    R += (byte)ArrBits[23 - j];
+                i--;
+                if ((BitMixedValue & ArrBits[i]) == ArrBits[i])
+                    G += (byte)ArrBits[23 - j];
+                i--;
+                if ((BitMixedValue & ArrBits[i]) == ArrBits[i])
+                    B += (byte)ArrBits[23 - j];
+                i--;
+            }
         }
         private void CountingSort(int[] Array, byte[] R, byte[] G, byte[] B, int ArrayLength, int Max)
         {
@@ -238,8 +288,105 @@ namespace ImageProcessingAssignment1
             G = gSorted;
             B = bSorted;
         }
-        #endregion
-
+        private int QuickSelect(int[] arr, int n)
+        {
+            int low, high, temp;
+            int median;
+            int middle, ll, hh;
+            low = 0; high = n - 1; median = (low + high) / 2;
+            while (true)
+            {
+                if (high <= low) /* One element only */
+                    return arr[median];
+                if (high == low + 1)
+                { /* Two elements only */
+                    if (arr[low] > arr[high])
+                    {
+                        temp = arr[low];
+                        arr[low] = arr[high];
+                        arr[high] = temp;
+                    }
+                    return arr[median];
+                }
+                /* Find median of low, middle and high items; swap into position low */
+                middle = (low + high) / 2;
+                if (arr[middle] > arr[high])
+                {
+                    //swap(arr[middle], arr[high]);
+                    temp = arr[middle];
+                    arr[middle] = arr[high];
+                    arr[high] = temp;
+                }
+                if (arr[low] > arr[high])
+                {
+                    //swap(arr[low], arr[high]);
+                    temp = arr[low];
+                    arr[low] = arr[high];
+                    arr[high] = temp;
+                }
+                if (arr[middle] > arr[low])
+                {
+                    //swap(arr[middle], arr[low]);
+                    temp = arr[middle];
+                    arr[middle] = arr[low];
+                    arr[low] = temp;
+                }
+                /* Swap low item (now in position middle) into position (low+1) */
+                //swap(arr[middle], arr[low + 1]);
+                temp = arr[middle];
+                arr[middle] = arr[low + 1];
+                arr[low + 1] = temp;
+                /* Nibble from each end towards middle, swapping items when stuck */
+                ll = low + 1;
+                hh = high;
+                while (true)
+                {
+                    do ll++; while (arr[low] > arr[ll]);
+                    do hh--; while (arr[hh] > arr[low]);
+                    if (hh < ll)
+                        break;
+                    temp = arr[ll];
+                    arr[ll] = arr[hh];
+                    arr[hh] = temp;
+                    //swap(arr[ll], arr[hh]);
+                }
+                /* Swap middle item (in position low) back into correct position */
+                //swap(arr[low], arr[hh]);
+                temp = arr[low];
+                arr[low] = arr[hh];
+                arr[hh] = temp;
+                /* Re-set active partition */
+                if (hh <= median)
+                    low = ll;
+                if (hh >= median)
+                    high = hh - 1;
+            }
+        }
+        private void QuickSort(ref int[] Arr, int start, int end)
+        {
+            if (start == end || start > end)
+                return;
+            int i = start, temp, pivot = Arr[start];
+            for (int j = start + 1; j <= end; j++)
+            {
+                if (Arr[j] <= pivot)
+                {
+                    i++;
+                    if (i != j)
+                    {
+                        temp = Arr[i];
+                        Arr[i] = Arr[j];
+                        Arr[j] = temp;
+                    }
+                }
+            }
+            temp = Arr[start];
+            Arr[start] = Arr[i];
+            //Arr[i] = Arr[start];// <------------- swap 3'alt :P :P :P :P :P
+            Arr[i] = temp;
+            QuickSort(ref Arr, start, i - 1);
+            QuickSort(ref Arr, i + 1, end);
+        }
         #endregion
 
         #region Apply 1D & 2D Filter
@@ -666,9 +813,12 @@ namespace ImageProcessingAssignment1
                     {
                         for (int k = 0; k < Fwidth; k++)
                         {
-                            Rmul *= (double)repRPixels[i + c, j + k];
-                            Gmul *= (double)repGPixels[i + c, j + k];
-                            Bmul *= (double)repBPixels[i + c, j + k];
+                            if (repRPixels[i + c, j + k] != 0)
+                                Rmul *= (double)repRPixels[i + c, j + k];
+                            if (repGPixels[i + c, j + k] != 0)
+                                Gmul *= (double)repGPixels[i + c, j + k];
+                            if (repBPixels[i + c, j + k] != 0)
+                                Bmul *= (double)repBPixels[i + c, j + k];
                         }
                     }
 
@@ -684,7 +834,6 @@ namespace ImageProcessingAssignment1
         }
         public void ApplyOrderStatFilter(int Fwidth, int Fheight, PictureInfo OldPic, ref byte[,] Red, ref byte[,] Green, ref byte[,] Blue, string Filter)
         {
-            //int[,] BitMixed = CalcBitMixed(OldPic);
             int height = OldPic.height, width = OldPic.width;
             int newHeight = height + Fheight;
             int newWidth = width + Fwidth;
@@ -696,69 +845,115 @@ namespace ImageProcessingAssignment1
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
             int[,] BitMixed = CalcBitMixed(ReplectPic);
-            //int[,] BitMixed = new int[newHeight, newWidth];
             int M = (Fheight - 1) / 2, N = (Fwidth - 1) / 2, FSize = Fheight * Fwidth;
-
-            for (int i = 0; i < height; i++)
+            int[] SortedArray = new int[FSize];
+            byte Rval = 0, Gval = 0, Bval = 0;
+            switch (Filter)
             {
-                for (int j = 0; j < width; j++)
-                {
-                    byte[] R = new byte[FSize];
-                    byte[] G = new byte[FSize];
-                    byte[] B = new byte[FSize];
-                    int F = 0;
-                    for (int c = 0; c < Fheight; c++)
+                #region MedianFilter
+                case "Median":
                     {
-                        for (int k = 0; k < Fwidth; k++)
+                        for (int i = 0; i < height; i++)
                         {
-                            R[F] = repRPixels[i + c, j + k];
-                            G[F] = repGPixels[i + c, j + k];
-                            B[F++] = repBPixels[i + c, j + k];
+                            for (int j = 0; j < width; j++)
+                            {
+                                int F = 0;
+                                for (int c = 0; c < Fheight; c++)
+                                {
+                                    for (int k = 0; k < Fwidth; k++)
+                                    {
+                                        SortedArray[F++] = BitMixed[i + c, j + k];
+                                    }
+                                }
+                                int BitMixedMedian = QuickSelect(SortedArray, FSize);
+                                GetRGBfromBitMixed(BitMixedMedian, ref Rval, ref Gval, ref Bval);
+                                NewPicR[i + M, j + N] = Rval;
+                                NewPicG[i + M, j + N] = Gval;
+                                NewPicB[i + M, j + N] = Bval;
+                            }
                         }
+                        break;
                     }
-                    ParallelSort(ref R, ref G, ref B, Fwidth, Fheight, i, j, BitMixed);
-                    byte Rval = 0, Gval = 0, Bval = 0;
-                    int index;
-                    switch (Filter)
+                #endregion
+                #region Maximum
+                case "Maximum":
                     {
-                        case "Median":
+                        for (int i = 0; i < height; i++)
+                        {
+                            for (int j = 0; j < width; j++)
                             {
-                                index = FSize / 2;
-                                Rval = R[index];
-                                Gval = G[index];
-                                Bval = B[index];
-                                break;
+                                int F = 0;
+                                for (int c = 0; c < Fheight; c++)
+                                {
+                                    for (int k = 0; k < Fwidth; k++)
+                                    {
+                                        SortedArray[F++] = BitMixed[i + c, j + k];
+                                    }
+                                }
+                                QuickSort(ref SortedArray, 0, FSize - 1);
+                                int BitMixedMedian = SortedArray[FSize - 1];
+                                GetRGBfromBitMixed(BitMixedMedian, ref Rval, ref Gval, ref Bval);
+                                NewPicR[i + M, j + N] = Rval;
+                                NewPicG[i + M, j + N] = Gval;
+                                NewPicB[i + M, j + N] = Bval;
                             }
-                        case "Maximum":
-                            {
-                                index = 0;
-                                Rval = R[index];
-                                Gval = G[index];
-                                Bval = B[index];
-                                break;
-                            }
-                        case "Minimum":
-                            {
-                                index = FSize - 1;
-                                Rval = R[index];
-                                Gval = G[index];
-                                Bval = B[index];
-                                break;
-                            }
-                        case "MidPoint":
-                            {
-                                Rval = (byte)(((double)R[0] + (double)R[FSize - 1]) / 2);
-                                Gval = (byte)(((double)G[0] + (double)G[FSize - 1]) / 2);
-                                Bval = (byte)(((double)B[0] + (double)B[FSize - 1]) / 2);
-                                break;
-                            }
+                        }
+                        break;
                     }
-                    NewPicR[i + M, j + N] = Rval;
-                    NewPicG[i + M, j + N] = Gval;
-                    NewPicB[i + M, j + N] = Bval;
-                }
+                #endregion
+                #region Minimum
+                case "Minimum":
+                    {
+                        for (int i = 0; i < height; i++)
+                        {
+                            for (int j = 0; j < width; j++)
+                            {
+                                int F = 0;
+                                for (int c = 0; c < Fheight; c++)
+                                {
+                                    for (int k = 0; k < Fwidth; k++)
+                                    {
+                                        SortedArray[F++] = BitMixed[i + c, j + k];
+                                    }
+                                }
+                                QuickSort(ref SortedArray, 0, FSize - 1);
+                                int BitMixedMedian = SortedArray[0];
+                                GetRGBfromBitMixed(BitMixedMedian, ref Rval, ref Gval, ref Bval);
+                                NewPicR[i + M, j + N] = Rval;
+                                NewPicG[i + M, j + N] = Gval;
+                                NewPicB[i + M, j + N] = Bval;
+                            }
+                        }
+                        break;
+                    }
+                #endregion
+                #region MidPoint
+                case "MidPoint":
+                    {
+                        for (int i = 0; i < height; i++)
+                        {
+                            for (int j = 0; j < width; j++)
+                            {
+                                int F = 0;
+                                for (int c = 0; c < Fheight; c++)
+                                {
+                                    for (int k = 0; k < Fwidth; k++)
+                                    {
+                                        SortedArray[F++] = BitMixed[i + c, j + k];
+                                    }
+                                }
+                                QuickSort(ref SortedArray, 0, FSize - 1);
+                                int BitMixedMedian = (SortedArray[FSize - 1] + SortedArray[0]) / 2;
+                                GetRGBfromBitMixed(BitMixedMedian, ref Rval, ref Gval, ref Bval);
+                                NewPicR[i + M, j + N] = Rval;
+                                NewPicG[i + M, j + N] = Gval;
+                                NewPicB[i + M, j + N] = Bval;
+                            }
+                        }
+                        break;
+                    }
+                #endregion
             }
-
             Red = unreplicateImage(Fheight, Fwidth, height, width, NewPicR);
             Green = unreplicateImage(Fheight, Fwidth, height, width, NewPicG);
             Blue = unreplicateImage(Fheight, Fwidth, height, width, NewPicB);
@@ -820,92 +1015,43 @@ namespace ImageProcessingAssignment1
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
-
+            PictureInfo ReplectPic = new PictureInfo(newWidth - 1, newHeight - 1, "ay7aga", "", null, repRPixels, repGPixels, repBPixels);
+            int[,] BitMixed = CalcBitMixed(ReplectPic);
             int M = (Fheight - 1) / 2, N = (Fwidth - 1) / 2, FSize = Fheight * Fwidth;
-
+            int[] SortedArray = new int[FSize];
+            int BitMixedMedian;
+            int index = (int)Math.Ceiling(D / 2);
+            byte R = 0, G = 0, B = 0;
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    byte[] R = new byte[FSize];
-                    byte[] G = new byte[FSize];
-                    byte[] B = new byte[FSize];
+                    //byte[] R = new byte[FSize];
+                    //byte[] G = new byte[FSize];
+                    //byte[] B = new byte[FSize];
                     int F = 0;
                     for (int c = 0; c < Fheight; c++)
                     {
                         for (int k = 0; k < Fwidth; k++)
                         {
-                            R[F] = repRPixels[i + c, j + k];
-                            G[F] = repGPixels[i + c, j + k];
-                            B[F++] = repBPixels[i + c, j + k];
+                            //R[F] = repRPixels[i + c, j + k];
+                            //G[F] = repGPixels[i + c, j + k];
+                            //B[F++] = repBPixels[i + c, j + k];
+                            SortedArray[F++] = BitMixed[i + c, j + k];
                         }
                     }
-                    #region sorting
-                    // int size = R.Length;
-                    Dictionary<int, int> L = new Dictionary<int, int>();
-                    for (int T = 0; T < FSize; T++)
-                    {
-                        int res;
-                        string RT = Convert.ToString((int)R[T], 2), GT = Convert.ToString((int)G[T], 2), BT = Convert.ToString((int)B[T], 2);
-                        string t = "";
-                        for (int O = 0; O < 8; O++)
-                        {
-                            try
-                            {
-                                t += RT[O].ToString();
-                            }
-                            catch
-                            {
-                                t += "0";
-                            }
-                            try
-                            {
-                                t += GT[O].ToString();
-                            }
-                            catch
-                            {
-                                t += "0";
-                            }
-                            try
-                            {
-                                t += BT[O].ToString();
-                            }
-                            catch
-                            {
-                                t += "0";
-                            }
-                        }
-                        res = Convert.ToInt32(t, 2);
-                        L.Add(T, res);
-                    }
-                    List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
-                    result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
-                    {
-                        return second.Value.CompareTo(first.Value);
-                    });
-                    byte[] RTemp = new byte[FSize];
-                    byte[] GTemp = new byte[FSize];
-                    byte[] BTemp = new byte[FSize];
-                    int S = 0;
-                    foreach (KeyValuePair<int, int> item in result)
-                    {
-                        RTemp[S] = R[item.Key];
-                        GTemp[S] = G[item.Key];
-                        BTemp[S] = B[item.Key];
-                        S++;
-                    }
-                    R = RTemp;
-                    G = GTemp;
-                    B = BTemp;
-                    #endregion
-                    //ParallelSort(R, G, B);
+
                     double Rval = 0, Gval = 0, Bval = 0;
-                    int index = (int)Math.Ceiling(D / 2);
+
+                    QuickSort(ref SortedArray, 0, FSize - 1);
+
                     for (int H = index; H < FSize - index; H++)
                     {
-                        Rval += R[H];
-                        Gval += G[H];
-                        Bval += B[H];
+                        BitMixedMedian = SortedArray[H];
+                        GetRGBfromBitMixed(BitMixedMedian, ref R, ref G, ref B);
+                        Rval += R;
+                        Gval += G;
+                        Bval += B;
                     }
                     NewPicR[i + M, j + N] = (byte)(Rval / ((double)FSize - D));
                     NewPicG[i + M, j + N] = (byte)(Gval / ((double)FSize - D));
@@ -1084,101 +1230,88 @@ namespace ImageProcessingAssignment1
         public void AdaptiveFilter(PictureInfo OldPic, int MaxWinSize, int type)
         {
             int height = OldPic.height, width = OldPic.width;
-
-            int newHeight = height + MaxWinSize - 1;
-            int newWidth = width + MaxWinSize - 1;
+            int newHeight = height + MaxWinSize;
+            int newWidth = width + MaxWinSize;
             byte[,] repRPixels = ReplicateImage(MaxWinSize, MaxWinSize, height, width, OldPic.redPixels);
             byte[,] repGPixels = ReplicateImage(MaxWinSize, MaxWinSize, height, width, OldPic.greenPixels);
             byte[,] repBPixels = ReplicateImage(MaxWinSize, MaxWinSize, height, width, OldPic.bluePixels);
-            PictureInfo ReplectPic = new PictureInfo(newWidth, newHeight, "ay7aga", "", null, repRPixels, repGPixels, repBPixels);
+            PictureInfo ReplectPic = new PictureInfo(newWidth - 1, newHeight - 1, "ay7aga", "", null, repRPixels, repGPixels, repBPixels);
             byte[,] NewPicR = new byte[newHeight, newWidth];
             byte[,] NewPicG = new byte[newHeight, newWidth];
             byte[,] NewPicB = new byte[newHeight, newWidth];
-            for (int i = 0; i < newHeight; i++)
-            {
-                for (int j = 0; j < newWidth; j++)
-                {
-                    NewPicR[i, j] = repRPixels[i, j];
-                    NewPicG[i, j] = repGPixels[i, j];
-                    NewPicB[i, j] = repBPixels[i, j];
-                }
-
-            }
             int[,] BitMixed = CalcBitMixed(ReplectPic);
-            if (type == 0) AdaptiveMedianFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, NewPicR, NewPicG, NewPicB, BitMixed);
+            if (type == 0) AdaptiveMedianFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, ref NewPicR, ref NewPicG, ref NewPicB, BitMixed);
             else AdaptiveMeanFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, NewPicR, NewPicG, NewPicB, BitMixed);
             OldPic.redPixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicR);
             OldPic.greenPixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicG);
             OldPic.bluePixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicB);
         }
-        private void AdaptiveMedianFilter(int height, int width, int MaxWinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, byte[,] NewPicR, byte[,] NewPicG, byte[,] NewPicB, int[,] BitMixed)
+        private void AdaptiveMedianFilter(int height, int width, int MaxWinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, ref byte[,] NewPicR, ref byte[,] NewPicG, ref byte[,] NewPicB, int[,] BitMixed)
         {
+            byte Rval = 0, Gval = 0, Bval = 0;
+            int BitMixedMedian = 0;
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    bool repeat = false;
-                    for (int h = 3; h <= MaxWinSize; h += 2)
+                    int h = 3;
+                    while (true)
                     {
                         int M = (h - 1) / 2, N = (h - 1) / 2, FSize = h * h;
-                        NewPicR[i + M, j + N] = repRPixels[i + M, j + N];
-                        NewPicG[i + M, j + N] = repGPixels[i + M, j + N];
-                        NewPicB[i + M, j + N] = repBPixels[i + M, j + N];
-                        byte[] R = new byte[FSize];
-                        byte[] G = new byte[FSize];
-                        byte[] B = new byte[FSize];
-                        int F = 0, MaxPixel = int.MinValue, MinPixel = int.MaxValue;
-                        Dictionary<int, int> bits = new Dictionary<int, int>();
+                        int[] SortedArray = new int[FSize];
+                        int MaxPixel = int.MinValue, MinPixel = int.MaxValue;
+                        int F = 0;
                         for (int c = 0; c < h; c++)
                         {
                             for (int k = 0; k < h; k++)
                             {
-                                R[F] = repRPixels[i + c, j + k];
-                                G[F] = repGPixels[i + c, j + k];
-                                B[F] = repBPixels[i + c, j + k];
-                                bits.Add(F, BitMixed[i + c, j + k]);
+                                SortedArray[F++] = BitMixed[i + c, j + k];
                                 MaxPixel = Math.Max(MaxPixel, BitMixed[i + c, j + k]);
                                 MinPixel = Math.Min(MinPixel, BitMixed[i + c, j + k]);
-                                F++;
                             }
                         }
-                        int Center = BitMixed[i + (h / 2), j + (h / 2)]; //before sorting
-                        List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(bits);
-                        result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
+                        int Center = BitMixed[i + M, j + N]; //before sorting
+                        BitMixedMedian = QuickSelect(SortedArray, FSize);
+                        if (BitMixedMedian > MinPixel && BitMixedMedian < MaxPixel) //sorted center not noise
                         {
-                            return second.Value.CompareTo(first.Value);
-                        });
-                        byte[] RTemp = new byte[FSize];
-                        byte[] GTemp = new byte[FSize];
-                        byte[] BTemp = new byte[FSize];
-                        int d = 0;
-                        foreach (KeyValuePair<int, int> item in result)
-                        {
-                            RTemp[d] = R[item.Key];
-                            GTemp[d] = G[item.Key];
-                            BTemp[d] = B[item.Key];
-                            d++;
-                        }
-                        R = RTemp;
-                        G = GTemp;
-                        B = BTemp;
-
-                        if (result[h / 2].Value > MinPixel && result[h / 2].Value < MaxPixel) //sorted center not noise
-                        {
-                            if (!(Center > MinPixel && Center < MaxPixel))
+                            if (Center > MinPixel && Center < MaxPixel) //old center is not noise
                             {
-                                NewPicR[i + M, j + N] = R[FSize / 2];
-                                NewPicG[i + M, j + N] = G[FSize / 2];
-                                NewPicB[i + M, j + N] = B[FSize / 2];
+                                NewPicR[i + M, j + N] = repRPixels[i + M, j + N];
+                                NewPicG[i + M, j + N] = repGPixels[i + M, j + N];
+                                NewPicB[i + M, j + N] = repBPixels[i + M, j + N];
+                                break;
                             }
-                            repeat = false;
+                            else //old center noise ... 
+                            {
+                                GetRGBfromBitMixed(BitMixedMedian, ref Rval, ref Gval, ref Bval);
+                                NewPicR[i + M, j + N] = Rval;
+                                NewPicG[i + M, j + N] = Gval;
+                                NewPicB[i + M, j + N] = Bval;
+                                break;
+                            }
                         }
-                        else
+                        else //sorted center is noise 
                         {
-                            repeat = true;
+                            if (!(Center > MinPixel) || !(Center < MaxPixel)) //old center is noise--get another median
+                            {
+                                h += 2;
+                                if (h > MaxWinSize)
+                                {
+                                    GetRGBfromBitMixed(BitMixedMedian, ref Rval, ref Gval, ref Bval);
+                                    NewPicR[i + M, j + N] = Rval;
+                                    NewPicG[i + M, j + N] = Gval;
+                                    NewPicB[i + M, j + N] = Bval;
+                                    break;
+                                }
+                            }
+                            else //old center not noise .. don't replace
+                            {
+                                NewPicR[i + M, j + N] = repRPixels[i + M, j + N];
+                                NewPicG[i + M, j + N] = repGPixels[i + M, j + N];
+                                NewPicB[i + M, j + N] = repBPixels[i + M, j + N];
+                                break;
+                            }
                         }
-                        if (repeat == false)
-                            break;
                     }
                 }
             }

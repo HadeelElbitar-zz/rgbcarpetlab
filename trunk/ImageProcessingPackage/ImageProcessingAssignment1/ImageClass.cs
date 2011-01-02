@@ -727,47 +727,7 @@ namespace ImageProcessingAssignment1
                     PixelArray[i, j] = (byte)Gamma[i, j];
             return PixelArray;
         }
-
-        public void HistogramMatching(int height, int width, PictureInfo FirstPic, PictureInfo SecondPic, List<PictureInfo> picList)
-        {
-            double[] RedHistogram1 = new double[256];
-            double[] GreenHistogram1 = new double[256];
-            double[] BlueHistogram1 = new double[256];
-            double[] RedHistogram2 = new double[256];
-            double[] GreenHistogram2 = new double[256];
-            double[] BlueHistogram2 = new double[256];
-            int length = picList.Count - 1;
-            GetHistogram(ref RedHistogram1, ref GreenHistogram1, ref BlueHistogram1, FirstPic);
-            GetHistogram(ref RedHistogram2, ref GreenHistogram2, ref BlueHistogram2, SecondPic);
-            RunningSumToRound(ref RedHistogram1);
-            RunningSumToRound(ref GreenHistogram1);
-            RunningSumToRound(ref BlueHistogram1);
-            RunningSumToRound(ref RedHistogram2);
-            RunningSumToRound(ref GreenHistogram2);
-            RunningSumToRound(ref BlueHistogram2);
-
-            picList[length].redPixels = new byte[height, width];
-            picList[length].greenPixels = new byte[height, width];
-            picList[length].bluePixels = new byte[height, width];
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    //hena fe moshkela :S
-                    picList[length].redPixels[i, j] = (byte)GetClose(RedHistogram1[FirstPic.redPixels[i, j]], RedHistogram2);
-                    picList[length].greenPixels[i, j] = (byte)GetClose(GreenHistogram1[FirstPic.greenPixels[i, j]], GreenHistogram2);
-                    picList[length].bluePixels[i, j] = (byte)GetClose(BlueHistogram1[FirstPic.bluePixels[i, j]], BlueHistogram2);
-                }
-            }
-        }
-        private double GetClose(double Value, double[] Array)
-        {
-            int count = Array.Count();
-            for (int i = 0; i < count; i++)
-                if (Array[i] == Value || Array[i] == Value - 1 || Array[i] == Value + 1)
-                    return i;
-            return Value;
-        }
+        
         public void ApplyQuantization(int height, int width, int binary, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray, PictureInfo PicParent)
         {
             for (int i = 0; i < height; i++)
@@ -896,6 +856,19 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
+        public void GetHistogram(ref double[] R, PictureInfo pic)
+        {
+            int NR;
+            int width = pic.width;
+            int height = pic.height;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    NR = (int)++R[pic.redPixels[i, j]];
+                }
+            }
+        }
         private void GetLocalHistogram(ref double[] R, ref double[] G, ref double[] B, byte[,] LocalWindowR, byte[,] LocalWindowG, byte[,] LocalWindowB, int WinSize)
         {
             int NR, NG, NB;
@@ -929,13 +902,11 @@ namespace ImageProcessingAssignment1
             for (int i = 0; i < length; i++)
                 Array[i] = Math.Round((Array[i] / Array[length - 1]) * 255);
         }
-        private void NormalizeHistogram(ref double[] R, ref double[] G, ref double[] B, int W_H)
+        private void NormalizeHistogram(ref double[] R, int W_H)
         {
             for (int i = 0; i < 256; i++)
             {
                 R[i] /= W_H;
-                G[i] /= W_H;
-                B[i] /= W_H;
             }
         }
         public void LocalHE(PictureInfo pic, int WinSize)
@@ -999,12 +970,78 @@ namespace ImageProcessingAssignment1
             pic.greenPixels = NewG;
             pic.bluePixels = NewB;
         }
+        public void HistogramMatching(int height, int width, PictureInfo FirstPic, PictureInfo SecondPic, List<PictureInfo> picList)
+        {
+            double[] RedHistogram1 = new double[256];
+            double[] GreenHistogram1 = new double[256];
+            double[] BlueHistogram1 = new double[256];
+            double[] RedHistogram2 = new double[256];
+            double[] GreenHistogram2 = new double[256];
+            double[] BlueHistogram2 = new double[256];
+            int length = picList.Count - 1;
+            GetHistogram(ref RedHistogram1, ref GreenHistogram1, ref BlueHistogram1, FirstPic);
+            GetHistogram(ref RedHistogram2, ref GreenHistogram2, ref BlueHistogram2, SecondPic);
+            RunningSumToRound(ref RedHistogram1);
+            RunningSumToRound(ref GreenHistogram1);
+            RunningSumToRound(ref BlueHistogram1);
+            RunningSumToRound(ref RedHistogram2);
+            RunningSumToRound(ref GreenHistogram2);
+            RunningSumToRound(ref BlueHistogram2);
 
+            picList[length].redPixels = new byte[height, width];
+            picList[length].greenPixels = new byte[height, width];
+            picList[length].bluePixels = new byte[height, width];
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    picList[length].redPixels[i, j] = (byte)GetClose(RedHistogram1[FirstPic.redPixels[i, j]], RedHistogram2);
+                    picList[length].greenPixels[i, j] = (byte)GetClose(GreenHistogram1[FirstPic.greenPixels[i, j]], GreenHistogram2);
+                    picList[length].bluePixels[i, j] = (byte)GetClose(BlueHistogram1[FirstPic.bluePixels[i, j]], BlueHistogram2);
+                }
+            }
+        }
+        private double GetClose(double Value, double[] Array)
+        {
+            int Min = int.MaxValue, Diff = 0;
+            for (int i = 0; i < 256; i++)
+            {
+                Diff = (int)(Value - Array[i]);
+                if (Diff >= 0 && Diff < Min)
+                {
+                    Min = Diff;
+                    if (Min == 0)
+                        break;
+                }
+            }
+            double reternedVal = Value - Min;
+            return reternedVal;
+        }
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region Helping Functions
+        private void getNonZeroIndex(double[] R, ref int S, ref int F)
+        {
+            //int first , last;
+            for (int i = 0; i < 256; i++)
+            {
+                if (R[i] != 0)
+                {
+                    S = i;
+                    break;
+                }
+            }
+            for (int i = 255; i >= 0; i--)
+            {
+                if (R[i] != 0)
+                {
+                    F = i;
+                    break;
+                }
+            }
+        }
         private int[,] ReflectSE(int[,] SE, int width, int height, ref int IOrigin, ref int JOrigin)
         {
             int[,] Temp = new int[height, width];
@@ -1057,26 +1094,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        private void getNonZeroIndex(double[] R, double[] G, double[] B, ref int S, ref int F)
-        {
-            //int first , last;
-            for (int i = 0; i < 255; i++)
-            {
-                if (R[i] != 0 || G[i] != 0 || B[i] != 0)
-                {
-                    S = i;
-                    break;
-                }
-            }
-            for (int i = 254; i >= 0; i--)
-            {
-                if (R[i] != 0 || G[i] != 0 || B[i] != 0)
-                {
-                    F = i;
-                    break;
-                }
-            }
-        }
+        
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
@@ -1459,33 +1477,33 @@ namespace ImageProcessingAssignment1
             //convert to gray scale
             GrayScale(pic);
             //Get Histogram
-            double[] R = new double[256], G = new double[256], B = new double[256];
-            GetHistogram(ref R, ref G, ref B, pic);
+            double[] R = new double[256];
+            GetHistogram(ref R, pic);
             int Start = 0, End = 0;
-            getNonZeroIndex(R, G, B, ref Start, ref End); //get start and end points for iterating on K
+            getNonZeroIndex(R, ref Start, ref End); //get start and end points for iterating on K
             //Normalize el Histogram
             int size = pic.width * pic.height;
-            NormalizeHistogram(ref R, ref G, ref B, size); //P(i)
-            double[] CummulateR = new double[256], CummulateG = new double[256], CummulateB = new double[256];
+            NormalizeHistogram(ref R, size); //P(i) now R has el probabilities
+            double[] CummulateR = new double[257];
             CummulateR[0] = R[0];
-            for (int i = 1; i <= 255; i++)
+            for (int i = 1; i < 257; i++)
             {
-                CummulateR[i] = CummulateR[i - 1] + R[i];
+                CummulateR[i] = CummulateR[i - 1] + R[i - 1];
             }
-            double[] CummulateMeanR = new double[257], CummulateMeanG = new double[256], CummulateMeanB = new double[256];
+            double[] CummulateMeanR = new double[257];
             CummulateMeanR[0] = 0;
-            for (int i = 0, j = 1; i <= 255; i++, j++)
+            for (int i = 1; i < 257; i++)
             {
-                CummulateMeanR[j] = CummulateMeanR[j - 1] + R[i] * i;
+                CummulateMeanR[i] = CummulateMeanR[i - 1] + (R[i - 1] * (i - 1));
             }
             // get K 
             double MaxR = int.MinValue;
             int ArraySZ = End - Start + 1;
-            double[] SigmaR = new double[ArraySZ], SigmaG = new double[ArraySZ], SigmaB = new double[ArraySZ];
+            double[] SigmaR = new double[ArraySZ];
             Dictionary<int, double> Sigma = new Dictionary<int, double>();
-            for (int i = Start + 1, j = 0; i < End; i++, j++)
+            for (int i = Start + 1, j = 0; i <= End; i++, j++)
             {
-                SigmaR[j] = Math.Pow((CummulateMeanR[254] * CummulateR[i] - CummulateMeanR[i]), 2) / (CummulateR[i] * (1 - CummulateR[i]));
+                SigmaR[j] = Math.Pow((CummulateMeanR[256] * CummulateR[i] - CummulateMeanR[i]), 2) / (CummulateR[i] * (1 - CummulateR[i]));
                 Sigma.Add(i, SigmaR[j]);
                 if (SigmaR[j] > MaxR)
                     MaxR = SigmaR[j];
@@ -1499,7 +1517,7 @@ namespace ImageProcessingAssignment1
                     FinalKr += item.Key;
                 }
             }
-            //177 , 178
+            //177 , 178 ana bytla3 3andi 179 :D
             FinalKr /= Rcount;
             for (int i = 0; i < pic.height; i++)
             {
@@ -1519,6 +1537,7 @@ namespace ImageProcessingAssignment1
                     }
                 }
             }
+            //MessageBox.Show(FinalKr.ToString());
         }
         public void BasicGlobalThresholding(PictureInfo pic, int Epsilon, byte[,] Red, byte[,] Green, byte[,] Blue)
         {

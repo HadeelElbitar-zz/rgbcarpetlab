@@ -84,7 +84,7 @@ namespace ImageProcessingAssignment1
                         int FilterW = int.Parse(textBox1.Text);
                         int FilterH = int.Parse(textBox2.Text);
                         for (int i = 0; i < FilterW; i++)
-                            FilterValue.Columns.Add("", typeof(double));
+                            FilterValue.Columns.Add("", typeof(string));
                         for (int i = 0; i < FilterH; i++)
                             FilterValue.Rows.Add(1);
                         FilterValue.Rows.Add(1);
@@ -116,7 +116,7 @@ namespace ImageProcessingAssignment1
                         int FilterH = int.Parse(textBox2.Text);
                         for (int i = 0; i < FilterW; i++)
                         {
-                            FilterValue.Columns.Add("", typeof(double));
+                            FilterValue.Columns.Add("", typeof(string));
                         }
                         for (int i = 0; i < FilterH; i++)
                             FilterValue.Rows.Add();
@@ -161,7 +161,21 @@ namespace ImageProcessingAssignment1
                 double[,] CustomFilter = new double[FilterH, FilterW];
                 for (int i = 0; i < FilterH; i++)
                     for (int j = 0; j < FilterW; j++)
-                        CustomFilter[i, j] = double.Parse(FilterGrid[j, i].Value.ToString());
+                    {
+                        try
+                        {
+                            CustomFilter[i, j] = double.Parse(FilterGrid[j, i].Value.ToString());
+                        }
+                        catch
+                        {
+                            int DivIndex = FilterGrid[j, i].Value.ToString().IndexOf('/');
+                            string F = FilterGrid[j, i].Value.ToString().Substring(0, DivIndex);
+                            double FirstOp = double.Parse(F);
+                            string S = FilterGrid[j, i].Value.ToString().Remove(0, DivIndex + 1);
+                            double SecondOp = double.Parse(S);
+                            CustomFilter[i, j] = FirstOp / SecondOp;
+                        }
+                    }
                 Filter filter = new Filter();
                 filter.Apply2DCustomFilter(FilterW, FilterH, CustomFilter, picList[picIndex], ref picList[picIndex].redPixels, ref picList[picIndex].greenPixels, ref picList[picIndex].bluePixels);
                 DisplayImage(width, height, picList[picIndex].redPixels, picList[picIndex].greenPixels, picList[picIndex].bluePixels, PicBox2);

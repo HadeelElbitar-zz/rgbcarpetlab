@@ -2650,7 +2650,6 @@ namespace ImageProcessingAssignment1
                 inputGroupBox.Controls.Add(applyBtn);
             }
         }
-
         private void LocalStatBtn_Click(object sender, EventArgs e, double K0, double K1, double K2, double E, int WinSize)
         {
             if (ImageTabControl.TabPages.Count > 0)
@@ -2662,8 +2661,102 @@ namespace ImageProcessingAssignment1
                 PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Local Statistics");
             }
         }
-        #endregion
+        private void histogramSlicingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                inputGroupBox.Controls.Clear();
+                inputGroupBox.Text = "Histogram Slicing";
+                //Min Text Box
+                TextBox MinTxt = new TextBox();
+                MinTxt.Location = new System.Drawing.Point(15, 42);
+                MinTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(MinTxt);
+                //Min Label
+                System.Windows.Forms.Label MinLabel = new System.Windows.Forms.Label();
+                MinLabel.Location = new System.Drawing.Point(12, 26);
+                MinLabel.Text = "Minimum Color";
+                inputGroupBox.Controls.Add(MinLabel);
+                //Max Text Box
+                TextBox MaxTxt = new TextBox();
+                MaxTxt.Location = new System.Drawing.Point(158, 42);
+                MaxTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(MaxTxt);
+                //Max Label
+                System.Windows.Forms.Label MaxLabel = new System.Windows.Forms.Label();
+                MaxLabel.Location = new System.Drawing.Point(155, 26);
+                MaxLabel.Text = "Maximum Color";
+                inputGroupBox.Controls.Add(MaxLabel);
 
+                //NewRange Text Box
+                TextBox NewRangeTxt = new TextBox();
+                NewRangeTxt.Location = new System.Drawing.Point(90, 91);
+                NewRangeTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(NewRangeTxt);
+                //NewRange Label
+                System.Windows.Forms.Label NewRangeLabel = new System.Windows.Forms.Label();
+                NewRangeLabel.Location = new System.Drawing.Point(87, 75);
+                NewRangeLabel.Text = "New Range";
+                inputGroupBox.Controls.Add(NewRangeLabel);
+
+                //Button
+                Button applyBtn = new Button();
+                applyBtn.Text = "Apply";
+                applyBtn.Location = new System.Drawing.Point(102, 130);
+                applyBtn.Size = new System.Drawing.Size(75, 23);
+                applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplySlicingBtn_Click(sender1, e1, MinTxt, MaxTxt, NewRangeTxt); };
+                inputGroupBox.Controls.Add(applyBtn);
+            }
+        }
+        private void ApplySlicingBtn_Click(object sender, EventArgs e, TextBox MinTxt, TextBox MaxTxt, TextBox NewRangeTxt)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                int picIndex = ImageTabControl.SelectedIndex;
+                ImageClass Image = new ImageClass();
+                Image.Slicing(PicturesList[picIndex], int.Parse(MinTxt.Text), int.Parse(MaxTxt.Text), int.Parse(NewRangeTxt.Text));
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Histogram Slicing");
+                DisplayImage(PicturesList[picIndex]);
+            }
+        }
+        private void singleScaleRetinexToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                inputGroupBox.Controls.Clear();
+                inputGroupBox.Text = "Single Scale Retinex";
+                //Sigma Text Box
+                TextBox SigmaTxt = new TextBox();
+                SigmaTxt.Location = new System.Drawing.Point(15, 42);
+                SigmaTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(SigmaTxt);
+                //Sigma Label
+                System.Windows.Forms.Label SigmaLabel = new System.Windows.Forms.Label();
+                SigmaLabel.Location = new System.Drawing.Point(12, 26);
+                SigmaLabel.Text = "Sigma";
+                inputGroupBox.Controls.Add(SigmaLabel);
+                //Button
+                Button applyBtn = new Button();
+                applyBtn.Text = "Apply";
+                applyBtn.Location = new System.Drawing.Point(102, 85);
+                applyBtn.Size = new System.Drawing.Size(75, 23);
+                applyBtn.Click += delegate(object sender1, EventArgs e1) { ApplySSR_Click(sender1, e1, SigmaTxt); };
+                inputGroupBox.Controls.Add(applyBtn);
+            }
+        }
+        private void ApplySSR_Click(object sender, EventArgs e, TextBox SigmaTxt)
+        {
+            if (ImageTabControl.TabPages.Count > 0)
+            {
+                double Sigma = double.Parse(SigmaTxt.Text);
+                ImageClass Image = new ImageClass();
+                int picIndex = ImageTabControl.SelectedIndex;
+                Image.SSR(PicturesList[picIndex], Sigma);
+                DisplayImage(PicturesList[picIndex]);
+                PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Single Scale Retinex");
+            }
+        }
+        #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

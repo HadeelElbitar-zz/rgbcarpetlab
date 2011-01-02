@@ -1922,6 +1922,26 @@ namespace ImageProcessingAssignment1
             pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
             pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
         }
+        public void Slicing(PictureInfo pic, int Min, int Max, int NewRange)
+        {
+            MFunctions MatLabFn = new MFunctions();
+            MWArray[] NewR = (MWArray[])(MatLabFn.MHistogramSlicing(1, (MWNumericArray)pic.redPixels, Min, Max, NewRange));
+            MWArray[] NewG = (MWArray[])(MatLabFn.MHistogramSlicing(1, (MWNumericArray)pic.greenPixels, Min, Max, NewRange));
+            MWArray[] NewB = (MWArray[])(MatLabFn.MHistogramSlicing(1, (MWNumericArray)pic.bluePixels, Min, Max, NewRange));
+            pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
+            pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
+            pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+        }
+        public void SSR(PictureInfo pic, double Sigma) //Single Scale Retinex
+        {
+            MFunctions MatLabFn = new MFunctions();
+            MWArray[] NewR = (MWArray[])(MatLabFn.MSSR(1, (MWNumericArray)pic.redPixels, Sigma));
+            MWArray[] NewG = (MWArray[])(MatLabFn.MSSR(1, (MWNumericArray)pic.greenPixels, Sigma));
+            MWArray[] NewB = (MWArray[])(MatLabFn.MSSR(1, (MWNumericArray)pic.bluePixels, Sigma));
+            pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
+            pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
+            pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+        }
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*

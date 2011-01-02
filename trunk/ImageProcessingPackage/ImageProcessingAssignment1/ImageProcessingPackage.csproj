@@ -36,8 +36,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MatLabFunction">
-      <HintPath>bin\Debug\MatLabFunction.dll</HintPath>
+    <Reference Include="MatLabFunction, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Task # 4\MatLabFunction\distrib\MatLabFunction.dll</HintPath>
     </Reference>
     <Reference Include="MatlabProject">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\dydy\Documents\MATLAB\MatlabProject\distrib\MatlabProject.dll</HintPath>

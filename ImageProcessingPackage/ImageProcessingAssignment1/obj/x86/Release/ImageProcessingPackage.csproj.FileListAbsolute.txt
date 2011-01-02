@@ -238,3 +238,5 @@ C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\Imag
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.TimeForm.resources
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.read.1.tlog
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.write.1.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MWArray.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ManagedCPPAPI.netmodule

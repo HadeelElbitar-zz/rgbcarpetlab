@@ -727,7 +727,7 @@ namespace ImageProcessingAssignment1
                     PixelArray[i, j] = (byte)Gamma[i, j];
             return PixelArray;
         }
-        
+
         public void ApplyQuantization(int height, int width, int binary, byte[,] modifiedRPixelArray, byte[,] modifiedGPixelArray, byte[,] modifiedBPixelArray, PictureInfo PicParent)
         {
             for (int i = 0; i < height; i++)
@@ -1094,7 +1094,7 @@ namespace ImageProcessingAssignment1
                 }
             }
         }
-        
+
         #endregion
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
@@ -1367,7 +1367,7 @@ namespace ImageProcessingAssignment1
                     {
                         double t1 = Math.Exp(-a * j);
                         int NoiseNumber = (int)(((a * t1) * Size * (NoisePercentage / 100.0)));
-                        if (index< NoiseNumber)
+                        if (index < NoiseNumber)
                             break;
                         for (int i = 0; i < NoiseNumber; i++)
                         {
@@ -1543,16 +1543,15 @@ namespace ImageProcessingAssignment1
         {
             int height = pic.height;
             int width = pic.width;
-            int L = 256;
-            int Threshold = L / 2, TempThreshold = 0;
-            int firstMean = 0, secondMean = 0, firstSpace = 0, secondSpace = 0;
+            long L = 256;
+            long Threshold = L / 2, TempThreshold = 0;
+            long firstMean = 0, secondMean = 0, firstSpace = 0, secondSpace = 0;
             GrayScale(pic);
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    int value = (int)pic.redPixels[i, j];
-                    firstMean += value;
+                    firstMean += pic.redPixels[i, j];
                     firstSpace++;
                 }
             }
@@ -1565,15 +1564,14 @@ namespace ImageProcessingAssignment1
                 {
                     for (int j = 0; j < width; j++)
                     {
-                        int value = (int)pic.redPixels[i, j];
-                        if ((int)value < Threshold)
+                        if (pic.redPixels[i, j] > Threshold)
                         {
-                            firstMean += value;
+                            firstMean += pic.redPixels[i, j];
                             firstSpace++;
                         }
                         else
                         {
-                            secondMean += value;
+                            secondMean += pic.redPixels[i, j];
                             secondSpace++;
                         }
                     }
@@ -1581,8 +1579,7 @@ namespace ImageProcessingAssignment1
                 firstMean /= firstSpace;
                 secondMean /= secondSpace;
                 TempThreshold = (firstMean + secondMean) / 2;
-                firstMean = firstSpace = 0;
-                secondMean = secondSpace = 0;
+                firstMean = firstSpace = secondMean = secondSpace = 0;
 
                 if (Math.Abs(TempThreshold - Threshold) <= Epsilon)
                     repeat = false;
@@ -1594,6 +1591,7 @@ namespace ImageProcessingAssignment1
                         Red[i, j] = Green[i, j] = Blue[i, j] = 255;
                     else
                         Red[i, j] = Green[i, j] = Blue[i, j] = 0;
+            //MessageBox.Show(Threshold.ToString());
         }
         public void AdaptiveThresholding(PictureInfo pic, int WinSize, int meanOffset)
         {

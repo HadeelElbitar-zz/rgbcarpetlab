@@ -2587,6 +2587,7 @@ namespace ImageProcessingAssignment1
                 TextBox K0NumericUpDown = new TextBox();
                 K0NumericUpDown.Location = new System.Drawing.Point(110, 24);
                 K0NumericUpDown.Size = new System.Drawing.Size(100, 20);
+                K0NumericUpDown.Text = "0.4";
                 inputGroupBox.Controls.Add(K0NumericUpDown);
 
                 //K1 Label
@@ -2599,6 +2600,7 @@ namespace ImageProcessingAssignment1
                 TextBox K1NumericUpDown = new TextBox();
                 K1NumericUpDown.Location = new System.Drawing.Point(110, 54);
                 K1NumericUpDown.Size = new System.Drawing.Size(100, 20);
+                K1NumericUpDown.Text = "0.02";
                 inputGroupBox.Controls.Add(K1NumericUpDown);
 
                 //K2 Label
@@ -2611,6 +2613,7 @@ namespace ImageProcessingAssignment1
                 TextBox K2NumericUpDown = new TextBox();
                 K2NumericUpDown.Location = new System.Drawing.Point(110, 84);
                 K2NumericUpDown.Size = new System.Drawing.Size(100, 20);
+                K2NumericUpDown.Text = "0.4";
                 inputGroupBox.Controls.Add(K2NumericUpDown);
 
                 //E Label
@@ -2623,6 +2626,7 @@ namespace ImageProcessingAssignment1
                 TextBox ENumericUpDown = new TextBox();
                 ENumericUpDown.Location = new System.Drawing.Point(110, 114);
                 ENumericUpDown.Size = new System.Drawing.Size(100, 20);
+                ENumericUpDown.Text = "4";
                 inputGroupBox.Controls.Add(ENumericUpDown);
 
                 //WinSize Label
@@ -2634,7 +2638,7 @@ namespace ImageProcessingAssignment1
                 //WinSize NumericUpDown
                 TextBox WinSizeNumericUpDown = new TextBox();
                 WinSizeNumericUpDown.Location = new System.Drawing.Point(110, 144);
-
+                WinSizeNumericUpDown.Text = "3";
                 inputGroupBox.Controls.Add(WinSizeNumericUpDown);
 
                 //Button

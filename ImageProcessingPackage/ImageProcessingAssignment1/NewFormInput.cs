@@ -35,13 +35,26 @@ namespace ImageProcessingAssignment1
 
                 if (!tabControl.Visible) tabControl.Visible = true;
                 TabPage tabPage = new TabPage();
-
                 tabControl.TabPages.Add(tabPage);
                 tabPage.Controls.Add(picList[index].pictureBox);
+                picList[index].pictureBox.Size = new System.Drawing.Size(picList[index].width, picList[index].height);
 
                 tabControl.TabPages[index].Text = picList[index].name;
+                tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
                 tabControl.SelectedIndex = index;
                 tabPage.AutoScroll = true;
+
+                int picIndex = tabControl.SelectedIndex;
+                int picBoxWidth = picList[picIndex].pictureBox.Width;
+                int picBoxHeight = picList[picIndex].pictureBox.Height;
+                int tabPageWidth = tabControl.TabPages[picIndex].Width;
+                int tabPageHeight = tabControl.TabPages[picIndex].Height;
+                int widthDim = tabPageWidth / 2 - picBoxWidth / 2;
+                int heightDim = tabPageHeight / 2 - picBoxHeight / 2;
+                if (widthDim < 0) widthDim = 0;
+                if (heightDim < 0) heightDim = 0;
+                picList[picIndex].pictureBox.Location = new System.Drawing.Point(widthDim, heightDim);
+
                 DisplayImage(picList[index]);
                 this.Close();
             }

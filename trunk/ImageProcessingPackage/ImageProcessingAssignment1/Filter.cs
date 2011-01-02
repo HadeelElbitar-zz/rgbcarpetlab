@@ -183,29 +183,20 @@ namespace ImageProcessingAssignment1
         }
         private void ParallelSort(ref byte[] R, ref byte[] G, ref byte[] B, int Fw, int Fh, int indexI, int indexJ, int[,] BitMixedArray)
         {
-            // int size = R.Length;
             Dictionary<int, int> L = new Dictionary<int, int>();
-            //int[] ArrBits = { 128, 64, 32, 16, 8, 4, 2, 1 };
-            //int index = 0;
             int[] BitMixedHistogram = new int[16777216];
             for (int i = 0; i < Fh; i++)
             {
                 for (int j = 0; j < Fw; j++)
                 {
-                    //L.Add(index++, BitMixedArray[indexI + i, indexJ + j]);
                     BitMixedHistogram[BitMixedArray[indexI + i, indexJ + j]]++;
                 }
             }
-            //List<KeyValuePair<int, int>> result = new List<KeyValuePair<int, int>>(L);
-            //result.Sort(delegate(KeyValuePair<int, int> first, KeyValuePair<int, int> second)
-            //{
-            //    return second.Value.CompareTo(first.Value);
-            //});
             int size = Fw * Fh;
             byte[] RTemp = new byte[size];
             byte[] GTemp = new byte[size];
             byte[] BTemp = new byte[size];
-            int MinIndex, MaxIndex, MedianIndix;
+            int MinIndex, MaxIndex;
             int c = 0;
             while (true)
             {
@@ -232,14 +223,7 @@ namespace ImageProcessingAssignment1
             while (count < MedValue)
             {
                 count += BitMixedHistogram[c++];
-            }
-            //foreach (KeyValuePair<int, int> item in result)
-            //{
-            //    RTemp[c] = R[item.Key];
-            //    GTemp[c] = G[item.Key];
-            //    BTemp[c] = B[item.Key];
-            //    c++;
-            //}
+            }          
             R = RTemp;
             G = GTemp;
             B = BTemp;

@@ -48,7 +48,7 @@ namespace ImageProcessingAssignment1
             for (int i = 0; i < 8; i++)
             {
                 BinaryCode[i] = BinaryTemp - (int)Math.Pow(2.0, i);
-                comboBox1.Items.Add(Math.Pow(2, 8 - i).ToString());
+                comboBox1.Items.Add((8-i).ToString());
             }
             comboBox1.SelectedIndex = 0;
         }
@@ -57,13 +57,9 @@ namespace ImageProcessingAssignment1
             int height = PicParent.height;
             int width = PicParent.width;
             ImageClass Image = new ImageClass();
-            DateTime BeginTime = DateTime.Now;
             Image.ApplyQuantization(height, width, BinaryCode[comboBox1.SelectedIndex],modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray,PicParent);
             DisplayImage(width, height, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray, pictureBox2);
-            DateTime EndTime = DateTime.Now;
-            TimeSpan TimeTaken = EndTime - BeginTime;
-            TimeForm Time = new TimeForm("Quantization", TimeTaken.ToString());
-            Time.Show();
+            //Time.Show();
             if (checkBox1.Checked == true)
                 DisplayImage(width, height, modifiedRPixelArray, modifiedGPixelArray, modifiedBPixelArray, PicParent.pictureBox);
         }

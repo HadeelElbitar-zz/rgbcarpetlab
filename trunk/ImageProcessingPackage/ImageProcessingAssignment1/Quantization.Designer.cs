@@ -151,7 +151,7 @@
             this.groupBox3.Size = new System.Drawing.Size(159, 69);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Mask";
+            this.groupBox3.Text = "Bits/Color";
             // 
             // Quantization
             // 

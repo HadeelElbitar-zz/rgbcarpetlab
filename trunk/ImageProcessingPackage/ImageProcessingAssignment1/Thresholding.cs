@@ -56,13 +56,13 @@ namespace ImageProcessingAssignment1
                 EpsilonTrackBar.Value = (int)EpsilonUpDown.Value;
             int Epsilon = (int)EpsilonUpDown.Value;
             ImageClass Image = new ImageClass();
-            DateTime BeginTime = DateTime.Now;
+            //DateTime BeginTime = DateTime.Now;
             Image.BasicGlobalThresholding(PicParent, Epsilon, Red, Green, Blue);
             UpdateForm();
-            DateTime EndTime = DateTime.Now;
-            TimeSpan TimeTaken = EndTime - BeginTime;
-            TimeForm Time = new TimeForm("Basic Global Thresholding", TimeTaken.ToString());
-            Time.Show();
+            //DateTime EndTime = DateTime.Now;
+            //TimeSpan TimeTaken = EndTime - BeginTime;
+            //TimeForm Time = new TimeForm("Basic Global Thresholding", TimeTaken.ToString());
+            //Time.Show();
         }
         private void okbtn_Click(object sender, EventArgs e)
         {

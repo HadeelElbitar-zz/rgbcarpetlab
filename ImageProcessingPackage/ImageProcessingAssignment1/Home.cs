@@ -116,41 +116,48 @@ namespace ImageProcessingAssignment1
                 X_axis[j] = (double)j;
             }
             //Draw
-            zedGraphControl1.GraphPane.CurveList.Clear();
-            GraphPane HistogramPane = zedGraphControl1.GraphPane;
+            HistogramZedGraphControl.GraphPane.CurveList.Clear();
+            GraphPane HistogramPane = HistogramZedGraphControl.GraphPane;
             if (checkBox2.Checked)
             {
                 PointPairList RedPoints = new PointPairList(X_axis, R);
-                LineItem RedLine = HistogramPane.AddCurve("Red", RedPoints, Color.Red, SymbolType.None);
+                LineItem RedLine = HistogramPane.AddCurve("", RedPoints, Color.Red, SymbolType.None);
                 RedLine.Line.Fill = new Fill(Color.White, Color.Red, 45F);
                 RedLine.Line.Width = 1.0F;
             }
             if (checkBox3.Checked)
             {
                 PointPairList GreenPoints = new PointPairList(X_axis, G);
-                LineItem GreenLine = HistogramPane.AddCurve("Green", GreenPoints, Color.Green, SymbolType.None);
+                LineItem GreenLine = HistogramPane.AddCurve("", GreenPoints, Color.Green, SymbolType.None);
                 GreenLine.Line.Fill = new Fill(Color.White, Color.Green, 45F);
                 GreenLine.Line.Width = 1.0F;
             }
             if (checkBox4.Checked)
             {
                 PointPairList BluePoints = new PointPairList(X_axis, B);
-                LineItem BlueLine = HistogramPane.AddCurve("Blue", BluePoints, Color.Blue, SymbolType.None);
+                LineItem BlueLine = HistogramPane.AddCurve("", BluePoints, Color.Blue, SymbolType.None);
                 BlueLine.Line.Fill = new Fill(Color.White, Color.Blue, 45F);
                 BlueLine.Line.Width = 1.0F;
             }
             if (checkBox1.Checked)
             {
                 PointPairList GrayPoints = new PointPairList(X_axis, Gray);
-                LineItem GrayLine = HistogramPane.AddCurve("Gray", GrayPoints, Color.Gray, SymbolType.None);
+                LineItem GrayLine = HistogramPane.AddCurve("", GrayPoints, Color.Gray, SymbolType.None);
                 GrayLine.Line.Fill = new Fill(Color.White, Color.Gray, 45F);
                 GrayLine.Line.Width = 1.0F;
             }
-            HistogramPane.Title.Text = "Histogram";
-            zedGraphControl1.Refresh();
-            zedGraphControl1.AxisChange();
-            zedGraphControl1.Invalidate();
+
+            HistogramPane.Title.Text = "";
+            HistogramZedGraphControl.Refresh();
+            HistogramZedGraphControl.AxisChange();
+            HistogramZedGraphControl.Invalidate();
+            HistogramPane.XAxis.IsVisible = false;
+            HistogramPane.YAxis.IsVisible = false;
+            HistogramPictureBox.Image = HistogramZedGraphControl.GetImage();
+            //Bitmap bmp = new Bitmap(HistogramPictureBox.Image);
+            //HistogramPictureBox.Image = bmp.Clone(new Rectangle(20, 20, 100, 100), bmp.PixelFormat);
         }
+
         private void Zoom(PictureInfo pic, int ratio)
         {
             zoomLabel.Text = "Zoom: " + ratio.ToString() + "%";
@@ -310,7 +317,7 @@ namespace ImageProcessingAssignment1
             }
             else
             {
-                zedGraphControl1.Visible = false;
+                HistogramPictureBox.Visible = false;
                 checkBox1.Visible = false;
                 checkBox2.Visible = false;
                 checkBox3.Visible = false;
@@ -327,8 +334,8 @@ namespace ImageProcessingAssignment1
             PicturesList.Clear();
             PicUndoRedo.Clear();
             HistoryTabPage.Controls.Clear();
-            zedGraphControl1.GraphPane.CurveList.Clear();
-            zedGraphControl1.Visible = false;
+            HistogramZedGraphControl.GraphPane.CurveList.Clear();
+            HistogramPictureBox.Visible = false;
             checkBox1.Visible = false;
             checkBox2.Visible = false;
             checkBox3.Visible = false;
@@ -349,7 +356,6 @@ namespace ImageProcessingAssignment1
                 int count = PicturePath.Count();
                 for (int k = 0; k < count; k++)
                 {
-                    //DateTime BeginTime = DateTime.Now;
                     PictureInfo newPictureItem = new PictureInfo();
                     PictureBox picBox = new PictureBox();
                     picBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -361,13 +367,11 @@ namespace ImageProcessingAssignment1
                         image.openPPM(PicturePath[k], ref newPictureItem, PictureName, picBox);
                     else
                         image.OpenImage(PicturePath[k], ref newPictureItem, PictureName, picBox);
-                    //DateTime EndTime = DateTime.Now;
-                    //TimeSpan TimeTaken = EndTime - BeginTime;
                     PicturesList.Add(newPictureItem);
                     int index = PicturesList.Count - 1;
                     if (!ImageTabControl.Visible) ImageTabControl.Visible = true;
                     TabPage tabPage = new TabPage();
-                    zedGraphControl1.Visible = true;
+                    HistogramPictureBox.Visible = true;
                     PicturesList[index].pictureBox.Size = new System.Drawing.Size(PicturesList[index].width, PicturesList[index].height);
                     ImageTabControl.TabPages.Add(tabPage);
                     tabPage.BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
@@ -375,12 +379,7 @@ namespace ImageProcessingAssignment1
                     ImageTabControl.SelectedIndex = index;
                     tabPage.AutoScroll = true;
                     tabPage.Controls.Add(PicturesList[index].pictureBox);
-                    //DateTime BeginTime2 = DateTime.Now;
                     DisplayImage(PicturesList[index]);
-                    //DateTime EndTime2 = DateTime.Now;
-                    //TimeSpan TimeTaken2 = EndTime2 - BeginTime2;
-                    //TimeForm Time = new TimeForm("Open Image", (TimeTaken + TimeTaken2).ToString());
-                    //Time.Show();
                 }
                 ZoomTrackBar.Value = 100;
             }

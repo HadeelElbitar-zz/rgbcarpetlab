@@ -82,11 +82,13 @@
             this.adaptiveThresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.singleScaleRetinexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramMatchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramEqualizationToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.globalEqualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localEqualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramSlicingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -166,11 +168,6 @@
             this.openToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.newToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -185,6 +182,7 @@
             this.ImageTabControl = new System.Windows.Forms.TabControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.InputPanel = new System.Windows.Forms.Panel();
+            this.HistogramPictureBox = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.HistoryTabControl = new System.Windows.Forms.TabControl();
             this.HistoryTabPage = new System.Windows.Forms.TabPage();
@@ -195,19 +193,18 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.HistogramZedGraphControl = new ZedGraph.ZedGraphControl();
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.zoomLabel = new System.Windows.Forms.Label();
-            this.histogramSlicingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.singleScaleRetinexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.HistogramPictureBox)).BeginInit();
             this.panel3.SuspendLayout();
             this.HistoryTabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ZoomTrackBar)).BeginInit();
@@ -220,7 +217,7 @@
             // menuStrip
             // 
             this.menuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.menuStrip.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.menuStrip.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.editMenu,
@@ -236,7 +233,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1370, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1444, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -427,7 +424,7 @@
             // 
             this.restoreOriginalToolStripMenuItem.Name = "restoreOriginalToolStripMenuItem";
             this.restoreOriginalToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.restoreOriginalToolStripMenuItem.Text = "Restore Original";
+            this.restoreOriginalToolStripMenuItem.Text = "Reload";
             this.restoreOriginalToolStripMenuItem.Click += new System.EventHandler(this.restoreOriginalToolStripMenuItem_Click);
             // 
             // viewMenu
@@ -513,7 +510,7 @@
             this.grayScaleToolStripMenuItem,
             this.binarizationToolStripMenuItem});
             this.adjustmentToolStripMenuItem1.Name = "adjustmentToolStripMenuItem1";
-            this.adjustmentToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
+            this.adjustmentToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
             this.adjustmentToolStripMenuItem1.Text = "Adjustment";
             // 
             // brightnessContrastToolStripMenuItem
@@ -545,33 +542,33 @@
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(167, 6);
             // 
             // reverseToolStripMenuItem
             // 
             this.reverseToolStripMenuItem.Name = "reverseToolStripMenuItem";
-            this.reverseToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.reverseToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.reverseToolStripMenuItem.Text = "Reverse Colors";
             this.reverseToolStripMenuItem.Click += new System.EventHandler(this.reverseToolStripMenuItem_Click);
             // 
             // translateToolStripMenuItem
             // 
             this.translateToolStripMenuItem.Name = "translateToolStripMenuItem";
-            this.translateToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.translateToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.translateToolStripMenuItem.Text = "Translate";
             this.translateToolStripMenuItem.Click += new System.EventHandler(this.translateToolStripMenuItem_Click);
             // 
             // rotateToolStripMenuItem
             // 
             this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.rotateToolStripMenuItem.Text = "Rotate";
             this.rotateToolStripMenuItem.Click += new System.EventHandler(this.rotateToolStripMenuItem_Click);
             // 
             // shearToolStripMenuItem
             // 
             this.shearToolStripMenuItem.Name = "shearToolStripMenuItem";
-            this.shearToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.shearToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.shearToolStripMenuItem.Text = "Shear";
             this.shearToolStripMenuItem.Click += new System.EventHandler(this.shearToolStripMenuItem_Click);
             // 
@@ -581,7 +578,7 @@
             this.horizontalFlipToolStripMenuItem,
             this.verticalFlipToolStripMenuItem});
             this.flipToolStripMenuItem.Name = "flipToolStripMenuItem";
-            this.flipToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.flipToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.flipToolStripMenuItem.Text = "Flip";
             // 
             // horizontalFlipToolStripMenuItem
@@ -603,7 +600,7 @@
             this.resizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bilinearToolStripMenuItem});
             this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
-            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.resizeToolStripMenuItem.Text = "Resize";
             // 
             // bilinearToolStripMenuItem
@@ -616,19 +613,19 @@
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(167, 6);
             // 
             // arithmeticOperationsToolStripMenuItem
             // 
             this.arithmeticOperationsToolStripMenuItem.Name = "arithmeticOperationsToolStripMenuItem";
-            this.arithmeticOperationsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.arithmeticOperationsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.arithmeticOperationsToolStripMenuItem.Text = "Calculations";
             this.arithmeticOperationsToolStripMenuItem.Click += new System.EventHandler(this.arithmeticOperationsToolStripMenuItem_Click);
             // 
             // quantizationToolStripMenuItem
             // 
             this.quantizationToolStripMenuItem.Name = "quantizationToolStripMenuItem";
-            this.quantizationToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.quantizationToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.quantizationToolStripMenuItem.Text = "Quantization";
             this.quantizationToolStripMenuItem.Click += new System.EventHandler(this.quantizationToolStripMenuItem_Click_1);
             // 
@@ -639,7 +636,7 @@
             this.otsuThresholdingToolStripMenuItem,
             this.adaptiveThresholdingToolStripMenuItem});
             this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
-            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.segmentationToolStripMenuItem.Text = "Segmentation";
             // 
             // basicGlobalThresholdingToolStripMenuItem
@@ -666,16 +663,23 @@
             // morphologyToolStripMenuItem
             // 
             this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
-            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.morphologyToolStripMenuItem.Text = "Morphology";
             this.morphologyToolStripMenuItem.Click += new System.EventHandler(this.morphologyToolStripMenuItem_Click);
             // 
             // localStatisticsToolStripMenuItem
             // 
             this.localStatisticsToolStripMenuItem.Name = "localStatisticsToolStripMenuItem";
-            this.localStatisticsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.localStatisticsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.localStatisticsToolStripMenuItem.Text = "Local Statistics";
             this.localStatisticsToolStripMenuItem.Click += new System.EventHandler(this.localStatisticsToolStripMenuItem_Click);
+            // 
+            // singleScaleRetinexToolStripMenuItem
+            // 
+            this.singleScaleRetinexToolStripMenuItem.Name = "singleScaleRetinexToolStripMenuItem";
+            this.singleScaleRetinexToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.singleScaleRetinexToolStripMenuItem.Text = "Single Scale Retinex";
+            this.singleScaleRetinexToolStripMenuItem.Click += new System.EventHandler(this.singleScaleRetinexToolStripMenuItem_Click);
             // 
             // histogramToolStripMenuItem2
             // 
@@ -717,6 +721,13 @@
             this.localEqualizationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.localEqualizationToolStripMenuItem.Text = "Local Equalization";
             this.localEqualizationToolStripMenuItem.Click += new System.EventHandler(this.localEqualizationToolStripMenuItem_Click);
+            // 
+            // histogramSlicingToolStripMenuItem
+            // 
+            this.histogramSlicingToolStripMenuItem.Name = "histogramSlicingToolStripMenuItem";
+            this.histogramSlicingToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.histogramSlicingToolStripMenuItem.Text = "Histogram Slicing";
+            this.histogramSlicingToolStripMenuItem.Click += new System.EventHandler(this.histogramSlicingToolStripMenuItem_Click);
             // 
             // toolsMenu
             // 
@@ -1323,15 +1334,10 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripButton1,
             this.newToolStripButton1,
-            this.saveToolStripButton1,
-            this.toolStripSeparator,
-            this.cutToolStripButton,
-            this.copyToolStripButton,
-            this.pasteToolStripButton,
-            this.toolStripSeparator9});
+            this.saveToolStripButton1});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1370, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1444, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1364,43 +1370,6 @@
             this.saveToolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.saveToolStripButton1.Text = "&Save";
             this.saveToolStripButton1.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cutToolStripButton
-            // 
-            this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
-            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton.Text = "C&ut";
-            // 
-            // copyToolStripButton
-            // 
-            this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
-            this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.copyToolStripButton.Text = "&Copy";
-            // 
-            // pasteToolStripButton
-            // 
-            this.pasteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
-            this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripButton.Name = "pasteToolStripButton";
-            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.pasteToolStripButton.Text = "&Paste";
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
             // newToolStripButton
             // 
@@ -1514,18 +1483,29 @@
             // 
             this.InputPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.InputPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.InputPanel.Location = new System.Drawing.Point(1128, 300);
+            this.InputPanel.Location = new System.Drawing.Point(1128, 233);
             this.InputPanel.Name = "InputPanel";
             this.InputPanel.Size = new System.Drawing.Size(296, 262);
             this.InputPanel.TabIndex = 31;
+            // 
+            // HistogramPictureBox
+            // 
+            this.HistogramPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.HistogramPictureBox.Location = new System.Drawing.Point(13, 9);
+            this.HistogramPictureBox.Name = "HistogramPictureBox";
+            this.HistogramPictureBox.Size = new System.Drawing.Size(248, 85);
+            this.HistogramPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.HistogramPictureBox.TabIndex = 38;
+            this.HistogramPictureBox.TabStop = false;
+            this.HistogramPictureBox.Visible = false;
             // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.HistoryTabControl);
-            this.panel3.Location = new System.Drawing.Point(1128, 562);
+            this.panel3.Location = new System.Drawing.Point(1128, 494);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(296, 270);
+            this.panel3.Size = new System.Drawing.Size(296, 338);
             this.panel3.TabIndex = 0;
             // 
             // HistoryTabControl
@@ -1534,7 +1514,7 @@
             this.HistoryTabControl.Location = new System.Drawing.Point(7, 10);
             this.HistoryTabControl.Name = "HistoryTabControl";
             this.HistoryTabControl.SelectedIndex = 0;
-            this.HistoryTabControl.Size = new System.Drawing.Size(278, 244);
+            this.HistoryTabControl.Size = new System.Drawing.Size(278, 310);
             this.HistoryTabControl.TabIndex = 13;
             // 
             // HistoryTabPage
@@ -1543,7 +1523,7 @@
             this.HistoryTabPage.Location = new System.Drawing.Point(4, 22);
             this.HistoryTabPage.Name = "HistoryTabPage";
             this.HistoryTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.HistoryTabPage.Size = new System.Drawing.Size(270, 218);
+            this.HistoryTabPage.Size = new System.Drawing.Size(270, 284);
             this.HistoryTabPage.TabIndex = 0;
             this.HistoryTabPage.Text = "History";
             // 
@@ -1571,22 +1551,23 @@
             this.HistogramTabControl.Location = new System.Drawing.Point(7, 8);
             this.HistogramTabControl.Name = "HistogramTabControl";
             this.HistogramTabControl.SelectedIndex = 0;
-            this.HistogramTabControl.Size = new System.Drawing.Size(278, 219);
+            this.HistogramTabControl.Size = new System.Drawing.Size(278, 152);
             this.HistogramTabControl.TabIndex = 12;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabPage1.Controls.Add(this.HistogramPictureBox);
             this.tabPage1.Controls.Add(this.checkBox4);
             this.tabPage1.Controls.Add(this.checkBox3);
             this.tabPage1.Controls.Add(this.checkBox2);
             this.tabPage1.Controls.Add(this.checkBox1);
-            this.tabPage1.Controls.Add(this.zedGraphControl1);
+            this.tabPage1.Controls.Add(this.HistogramZedGraphControl);
             this.tabPage1.Controls.Add(this.shapeContainer2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(270, 193);
+            this.tabPage1.Size = new System.Drawing.Size(270, 126);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Histogram";
             // 
@@ -1596,7 +1577,7 @@
             this.checkBox4.Checked = true;
             this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.checkBox4.Location = new System.Drawing.Point(216, 166);
+            this.checkBox4.Location = new System.Drawing.Point(222, 98);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(46, 17);
             this.checkBox4.TabIndex = 15;
@@ -1611,7 +1592,7 @@
             this.checkBox3.Checked = true;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.checkBox3.Location = new System.Drawing.Point(155, 166);
+            this.checkBox3.Location = new System.Drawing.Point(165, 98);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(55, 17);
             this.checkBox3.TabIndex = 14;
@@ -1626,7 +1607,7 @@
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.checkBox2.Location = new System.Drawing.Point(104, 166);
+            this.checkBox2.Location = new System.Drawing.Point(110, 98);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(45, 17);
             this.checkBox2.TabIndex = 13;
@@ -1641,7 +1622,7 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.checkBox1.Location = new System.Drawing.Point(9, 166);
+            this.checkBox1.Location = new System.Drawing.Point(14, 98);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(49, 17);
             this.checkBox1.TabIndex = 12;
@@ -1650,22 +1631,22 @@
             this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // zedGraphControl1
+            // HistogramZedGraphControl
             // 
-            this.zedGraphControl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.zedGraphControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zedGraphControl1.Location = new System.Drawing.Point(9, 6);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.ScrollGrace = 0D;
-            this.zedGraphControl1.ScrollMaxX = 0D;
-            this.zedGraphControl1.ScrollMaxY = 0D;
-            this.zedGraphControl1.ScrollMaxY2 = 0D;
-            this.zedGraphControl1.ScrollMinX = 0D;
-            this.zedGraphControl1.ScrollMinY = 0D;
-            this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(250, 150);
-            this.zedGraphControl1.TabIndex = 11;
-            this.zedGraphControl1.Visible = false;
+            this.HistogramZedGraphControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.HistogramZedGraphControl.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HistogramZedGraphControl.Location = new System.Drawing.Point(9, 6);
+            this.HistogramZedGraphControl.Name = "HistogramZedGraphControl";
+            this.HistogramZedGraphControl.ScrollGrace = 0D;
+            this.HistogramZedGraphControl.ScrollMaxX = 0D;
+            this.HistogramZedGraphControl.ScrollMaxY = 0D;
+            this.HistogramZedGraphControl.ScrollMaxY2 = 0D;
+            this.HistogramZedGraphControl.ScrollMinX = 0D;
+            this.HistogramZedGraphControl.ScrollMinY = 0D;
+            this.HistogramZedGraphControl.ScrollMinY2 = 0D;
+            this.HistogramZedGraphControl.Size = new System.Drawing.Size(253, 95);
+            this.HistogramZedGraphControl.TabIndex = 11;
+            this.HistogramZedGraphControl.Visible = false;
             // 
             // shapeContainer2
             // 
@@ -1675,7 +1656,7 @@
             this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape3,
             this.rectangleShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(264, 187);
+            this.shapeContainer2.Size = new System.Drawing.Size(264, 120);
             this.shapeContainer2.TabIndex = 16;
             this.shapeContainer2.TabStop = false;
             // 
@@ -1698,7 +1679,7 @@
             this.panel1.Controls.Add(this.HistogramTabControl);
             this.panel1.Location = new System.Drawing.Point(1128, 61);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(296, 239);
+            this.panel1.Size = new System.Drawing.Size(296, 173);
             this.panel1.TabIndex = 30;
             // 
             // panel2
@@ -1723,27 +1704,13 @@
             this.zoomLabel.TabIndex = 35;
             this.zoomLabel.Text = "Zoom: 0%";
             // 
-            // histogramSlicingToolStripMenuItem
-            // 
-            this.histogramSlicingToolStripMenuItem.Name = "histogramSlicingToolStripMenuItem";
-            this.histogramSlicingToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.histogramSlicingToolStripMenuItem.Text = "Histogram Slicing";
-            this.histogramSlicingToolStripMenuItem.Click += new System.EventHandler(this.histogramSlicingToolStripMenuItem_Click);
-            // 
-            // singleScaleRetinexToolStripMenuItem
-            // 
-            this.singleScaleRetinexToolStripMenuItem.Name = "singleScaleRetinexToolStripMenuItem";
-            this.singleScaleRetinexToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.singleScaleRetinexToolStripMenuItem.Text = "Single Scale Retinex";
-            this.singleScaleRetinexToolStripMenuItem.Click += new System.EventHandler(this.singleScaleRetinexToolStripMenuItem_Click);
-            // 
             // Home
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1370, 750);
+            this.ClientSize = new System.Drawing.Size(1444, 884);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.InputPanel);
@@ -1765,6 +1732,7 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.HistogramPictureBox)).EndInit();
             this.panel3.ResumeLayout(false);
             this.HistoryTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ZoomTrackBar)).EndInit();
@@ -1835,11 +1803,6 @@
         private System.Windows.Forms.ToolStripButton newToolStripButton1;
         private System.Windows.Forms.ToolStripButton openToolStripButton1;
         private System.Windows.Forms.ToolStripButton saveToolStripButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton cutToolStripButton;
-        private System.Windows.Forms.ToolStripButton copyToolStripButton;
-        private System.Windows.Forms.ToolStripButton pasteToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem grayScaleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reverseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramToolStripMenuItem2;
@@ -1937,7 +1900,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private ZedGraph.ZedGraphControl zedGraphControl1;
+        private ZedGraph.ZedGraphControl HistogramZedGraphControl;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
@@ -1955,5 +1918,6 @@
         private System.Windows.Forms.ToolStripMenuItem horizontalFilterToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem histogramSlicingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem singleScaleRetinexToolStripMenuItem;
+        private System.Windows.Forms.PictureBox HistogramPictureBox;
     }
 }

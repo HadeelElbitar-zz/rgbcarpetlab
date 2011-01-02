@@ -22,7 +22,7 @@ namespace ImageProcessingAssignment1
             undo = new Stack<string>();
             redo = new Stack<string>();
             undoRedoListBox = new ListBox();
-            undoRedoListBox.Size = new System.Drawing.Size(257, 199);
+            undoRedoListBox.Size = new System.Drawing.Size(256, 270);
             undoRedoListBox.BackColor = System.Drawing.Color.FromArgb(50, 50, 50);
             undoRedoListBox.ForeColor = System.Drawing.Color.White;
             undoRedoListBox.Items.Add(command);

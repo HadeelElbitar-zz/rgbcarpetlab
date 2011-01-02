@@ -136,7 +136,6 @@
             this.maximumFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.midPointFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alphaTrimmedMeanFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adaptiveMedianFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandRejectFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idealToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,12 +203,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.zoomLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.InputPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.HistoryTabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ZoomTrackBar)).BeginInit();
@@ -217,7 +214,6 @@
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -1073,8 +1069,7 @@
             this.minimumFilterToolStripMenuItem,
             this.maximumFilterToolStripMenuItem,
             this.midPointFilterToolStripMenuItem,
-            this.alphaTrimmedMeanFilterToolStripMenuItem,
-            this.adaptiveMedianFilterToolStripMenuItem});
+            this.alphaTrimmedMeanFilterToolStripMenuItem});
             this.orderStatisticsFiltersToolStripMenuItem.Name = "orderStatisticsFiltersToolStripMenuItem";
             this.orderStatisticsFiltersToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.orderStatisticsFiltersToolStripMenuItem.Text = "Order Statistics Filters ";
@@ -1113,12 +1108,6 @@
             this.alphaTrimmedMeanFilterToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.alphaTrimmedMeanFilterToolStripMenuItem.Text = "Alpha-Trimmed Mean Filter";
             this.alphaTrimmedMeanFilterToolStripMenuItem.Click += new System.EventHandler(this.alphaTrimmedMeanFilterToolStripMenuItem_Click);
-            // 
-            // adaptiveMedianFilterToolStripMenuItem
-            // 
-            this.adaptiveMedianFilterToolStripMenuItem.Name = "adaptiveMedianFilterToolStripMenuItem";
-            this.adaptiveMedianFilterToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.adaptiveMedianFilterToolStripMenuItem.Text = "Adaptive Median Filter";
             // 
             // bandFiltersToolStripMenuItem
             // 
@@ -1529,7 +1518,6 @@
             // 
             this.InputPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.InputPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.InputPanel.Controls.Add(this.pictureBox1);
             this.InputPanel.Location = new System.Drawing.Point(1128, 300);
             this.InputPanel.Name = "InputPanel";
             this.InputPanel.Size = new System.Drawing.Size(296, 262);
@@ -1739,14 +1727,6 @@
             this.zoomLabel.TabIndex = 35;
             this.zoomLabel.Text = "Zoom: 0%";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(36, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(158, 86);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // Home
             // 
             this.AllowDrop = true;
@@ -1775,7 +1755,6 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.InputPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.HistoryTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ZoomTrackBar)).EndInit();
@@ -1785,7 +1764,6 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1926,7 +1904,6 @@
         private System.Windows.Forms.ToolStripMenuItem notchPassFiltersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem idealToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem periodicNoiseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem adaptiveMedianFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeAToolStripMenuItem;
@@ -1967,6 +1944,5 @@
         private System.Windows.Forms.ToolStripMenuItem sobelFilterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem verticalFilterToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem horizontalFilterToolStripMenuItem2;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

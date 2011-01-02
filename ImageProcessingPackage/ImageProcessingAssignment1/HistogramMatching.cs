@@ -30,7 +30,7 @@ namespace ImageProcessingAssignment1
                     comboBox1.Items.Add(picList[i].name);
                     comboBox3.Items.Add(picList[i].name);
                 }
-                comboBox1.SelectedIndex = 0;
+                //comboBox1.SelectedIndex = 0;
             }
             catch { }
         }
@@ -41,9 +41,7 @@ namespace ImageProcessingAssignment1
         {
             int FirstPicIndex = comboBox1.SelectedIndex;
             DisplayImage(picList[FirstPicIndex].width, picList[FirstPicIndex].height, picList[FirstPicIndex].redPixels, picList[FirstPicIndex].greenPixels, picList[FirstPicIndex].bluePixels, pictureBox1);
-            if (comboBox3.SelectedIndex == -1)
-                comboBox3.SelectedIndex = 0;
-            else
+            if (comboBox3.SelectedIndex != -1)
                 DisplayChanges();
         }
         private void comboBox3_SelectedIndexChanged_1(object sender, EventArgs e)

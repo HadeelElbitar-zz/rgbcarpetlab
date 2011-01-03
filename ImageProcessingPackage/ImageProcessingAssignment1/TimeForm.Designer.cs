@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeForm));
             this.label1 = new System.Windows.Forms.Label();
             this.TestNameLBL = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -88,6 +89,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TestNameLBL);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TimeForm";
             this.Text = "Time View";
             this.Load += new System.EventHandler(this.TimeForm_Load);

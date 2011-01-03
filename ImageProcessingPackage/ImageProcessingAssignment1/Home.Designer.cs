@@ -194,9 +194,6 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.HistogramZedGraphControl = new ZedGraph.ZedGraphControl();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.zoomLabel = new System.Windows.Forms.Label();
@@ -233,7 +230,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1444, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1436, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -1337,7 +1334,7 @@
             this.saveToolStripButton1});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1444, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1436, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1428,17 +1425,13 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.statusStrip.AutoSize = false;
             this.statusStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.statusStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ImageStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(1, 695);
+            this.statusStrip.Location = new System.Drawing.Point(0, 695);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1111, 34);
+            this.statusStrip.Size = new System.Drawing.Size(1112, 34);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -1511,7 +1504,7 @@
             // HistoryTabControl
             // 
             this.HistoryTabControl.Controls.Add(this.HistoryTabPage);
-            this.HistoryTabControl.Location = new System.Drawing.Point(7, 10);
+            this.HistoryTabControl.Location = new System.Drawing.Point(7, 5);
             this.HistoryTabControl.Name = "HistoryTabControl";
             this.HistoryTabControl.SelectedIndex = 0;
             this.HistoryTabControl.Size = new System.Drawing.Size(278, 310);
@@ -1563,7 +1556,6 @@
             this.tabPage1.Controls.Add(this.checkBox2);
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.HistogramZedGraphControl);
-            this.tabPage1.Controls.Add(this.shapeContainer2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -1648,30 +1640,6 @@
             this.HistogramZedGraphControl.TabIndex = 11;
             this.HistogramZedGraphControl.Visible = false;
             // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 3);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape3,
-            this.rectangleShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(264, 120);
-            this.shapeContainer2.TabIndex = 16;
-            this.shapeContainer2.TabStop = false;
-            // 
-            // rectangleShape3
-            // 
-            this.rectangleShape3.Location = new System.Drawing.Point(-9, -27);
-            this.rectangleShape3.Name = "rectangleShape3";
-            this.rectangleShape3.Size = new System.Drawing.Size(279, 220);
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.Location = new System.Drawing.Point(-5, -22);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(276, 221);
-            // 
             // panel1
             // 
             this.panel1.AutoSize = true;
@@ -1710,7 +1678,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1444, 884);
+            this.ClientSize = new System.Drawing.Size(1436, 876);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.InputPanel);
@@ -1901,9 +1869,6 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private ZedGraph.ZedGraphControl HistogramZedGraphControl;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label zoomLabel;

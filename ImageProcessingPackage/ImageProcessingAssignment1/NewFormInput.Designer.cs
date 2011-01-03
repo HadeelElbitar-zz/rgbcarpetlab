@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewFormInput));
             this.Widthtext = new System.Windows.Forms.TextBox();
             this.HeightText = new System.Windows.Forms.TextBox();
             this.WidthLabel = new System.Windows.Forms.Label();
@@ -101,6 +102,7 @@
             this.ClientSize = new System.Drawing.Size(197, 165);
             this.Controls.Add(this.GoBtn);
             this.Controls.Add(this.Dimensions);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewFormInput";
             this.Text = "New Image";
             this.Dimensions.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomFilter));
             this.OriginalBox = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.PicBox1 = new System.Windows.Forms.PictureBox();
@@ -189,6 +190,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ModifiedBox);
             this.Controls.Add(this.OriginalBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomFilter";
             this.Text = "CustomFilter";
             this.Load += new System.EventHandler(this.CustomFilter_Load);

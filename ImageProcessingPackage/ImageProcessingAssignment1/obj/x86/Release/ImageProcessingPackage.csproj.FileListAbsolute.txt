@@ -161,11 +161,6 @@ C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingPackage\ImageProce
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.TimeForm.resources
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.read.1.tlog
 C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\GenerateResource.write.1.tlog
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.exe.config
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.exe
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.pdb
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.exe
-C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.pdb
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MatLabFunction.dll
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MatlabProject.dll
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\MWArray.dll
@@ -239,3 +234,8 @@ E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssig
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.exe
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.pdb
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\RGBCarpetLab.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\RGBCarpetLab.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\RGBCarpetLab.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\RGBCarpetLab.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\RGBCarpetLab.pdb

@@ -742,9 +742,9 @@ namespace ImageProcessingAssignment1
         //Gamma Correction
         public void GammaCorrection(int height, int width, double Gamma, ref byte[,] modifiedRPixelArray, ref byte[,] modifiedGPixelArray, ref byte[,] modifiedBPixelArray)
         {
-            modifiedRPixelArray = GammaHelp(height, width, Gamma, modifiedRPixelArray);
-            modifiedGPixelArray = GammaHelp(height, width, Gamma, modifiedGPixelArray);
-            modifiedBPixelArray = GammaHelp(height, width, Gamma, modifiedBPixelArray);
+            modifiedRPixelArray = GammaHelp(height, width, (1 / Gamma), modifiedRPixelArray);
+            modifiedGPixelArray = GammaHelp(height, width, (1 / Gamma), modifiedGPixelArray);
+            modifiedBPixelArray = GammaHelp(height, width, (1 / Gamma), modifiedBPixelArray);
         }
         private byte[,] GammaHelp(int height, int width, double lastGamma, byte[,] PixelArray)
         {
@@ -946,23 +946,23 @@ namespace ImageProcessingAssignment1
         public void LocalHE(PictureInfo pic, int WinSize)
         {
             #region Matlab Linking - this one with our implementation of equalization in matlab
-            //MFunctions MatLabFn = new MFunctions();
-            //MWArray[] NewR = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.redPixels, WinSize));
-            //MWArray[] NewG = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.greenPixels, WinSize));
-            //MWArray[] NewB = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.bluePixels, WinSize));
-            //pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
-            //pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
-            //pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
-            #endregion
-
-            #region Matlab Linking # 2 - this one with implementation of equalization in matlab
             MFunctions MatLabFn = new MFunctions();
-            MWArray[] NewR = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.redPixels, WinSize));
-            MWArray[] NewG = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.greenPixels, WinSize));
-            MWArray[] NewB = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.bluePixels, WinSize));
+            MWArray[] NewR = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.redPixels, WinSize));
+            MWArray[] NewG = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.greenPixels, WinSize));
+            MWArray[] NewB = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.bluePixels, WinSize));
             pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
             pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
             pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+            #endregion
+
+            #region Matlab Linking # 2 - this one with implementation of equalization in matlab
+            //MFunctions MatLabFn = new MFunctions();
+            //MWArray[] NewR = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.redPixels, WinSize));
+            //MWArray[] NewG = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.greenPixels, WinSize));
+            //MWArray[] NewB = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.bluePixels, WinSize));
+            //pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
+            //pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
+            //pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
             #endregion
 
             #region C# Impelementation
@@ -1585,7 +1585,7 @@ namespace ImageProcessingAssignment1
                     }
                 }
             }
-            //MessageBox.Show(FinalKr.ToString());
+            MessageBox.Show(FinalKr.ToString());
         }
         public void BasicGlobalThresholding(PictureInfo pic, int Epsilon, byte[,] Red, byte[,] Green, byte[,] Blue)
         {
@@ -1639,7 +1639,7 @@ namespace ImageProcessingAssignment1
                         Red[i, j] = Green[i, j] = Blue[i, j] = 255;
                     else
                         Red[i, j] = Green[i, j] = Blue[i, j] = 0;
-            //MessageBox.Show(Threshold.ToString());
+            MessageBox.Show(Threshold.ToString());
         }
         public void AdaptiveThresholding(PictureInfo pic, int WinSize, int meanOffset)
         {

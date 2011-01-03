@@ -911,6 +911,7 @@ namespace ImageProcessingAssignment1
         }
         public void LocalHE(PictureInfo pic, int WinSize)
         {
+            #region Matlab Linking - this one with our implementation of equalization in matlab
             //MFunctions MatLabFn = new MFunctions();
             //MWArray[] NewR = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.redPixels, WinSize));
             //MWArray[] NewG = (MWArray[])(MatLabFn.LocalHE(1, (MWNumericArray)pic.greenPixels, WinSize));
@@ -918,57 +919,70 @@ namespace ImageProcessingAssignment1
             //pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
             //pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
             //pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+            #endregion
 
-            int height = pic.height;
-            int width = pic.width;
-            int HalfWinSize = WinSize / 2;
-            byte[,] NewR = new byte[height, width];
-            byte[,] NewG = new byte[height, width];
-            byte[,] NewB = new byte[height, width];
-            byte[,] LocalWindowR = new byte[WinSize, WinSize];
-            byte[,] LocalWindowG = new byte[WinSize, WinSize];
-            byte[,] LocalWindowB = new byte[WinSize, WinSize];
-            for (int i = HalfWinSize; i < height - HalfWinSize - 1; i++)
-            {
-                for (int j = HalfWinSize; j < width - HalfWinSize - 1; j++)
-                {
-                    int indexJ = j - HalfWinSize;
-                    int indexI = i - HalfWinSize;
-                    for (int c = 0; c < WinSize; c++)
-                    {
-                        for (int k = 0; k < WinSize; k++)
-                        {
-                            LocalWindowR[c, k] = pic.redPixels[indexI, indexJ];
-                            LocalWindowG[c, k] = pic.greenPixels[indexI, indexJ];
-                            LocalWindowB[c, k] = pic.bluePixels[indexI, indexJ++];
-                        }
-                        indexI++;
-                        indexJ = j - HalfWinSize;
-                    }
-                    double[] RedHistogram = new double[256];
-                    double[] GreenHistogram = new double[256];
-                    double[] BlueHistogram = new double[256];
-                    GetLocalHistogram(ref RedHistogram, ref GreenHistogram, ref BlueHistogram, LocalWindowR, LocalWindowG, LocalWindowB, WinSize);
-                    RunningSumToRound(ref RedHistogram);
-                    RunningSumToRound(ref GreenHistogram);
-                    RunningSumToRound(ref BlueHistogram);
-                    for (int c = 0; c < WinSize; c++)
-                    {
-                        for (int k = 0; k < WinSize; k++)
-                        {
-                            LocalWindowR[c, k] = (byte)RedHistogram[LocalWindowR[c, k]];
-                            LocalWindowG[c, k] = (byte)GreenHistogram[LocalWindowG[c, k]];
-                            LocalWindowB[c, k] = (byte)BlueHistogram[LocalWindowB[c, k]];
-                        }
-                    }
-                    NewR[i, j] = LocalWindowR[HalfWinSize, HalfWinSize];
-                    NewG[i, j] = LocalWindowG[HalfWinSize, HalfWinSize];
-                    NewB[i, j] = LocalWindowB[HalfWinSize, HalfWinSize];
-                }
-            }
-            pic.redPixels = NewR;
-            pic.greenPixels = NewG;
-            pic.bluePixels = NewB;
+            #region Matlab Linking # 2 - this one with implementation of equalization in matlab
+            MFunctions MatLabFn = new MFunctions();
+            MWArray[] NewR = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.redPixels, WinSize));
+            MWArray[] NewG = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.greenPixels, WinSize));
+            MWArray[] NewB = (MWArray[])(MatLabFn.MLocalHE(1, (MWNumericArray)pic.bluePixels, WinSize));
+            pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
+            pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
+            pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+            #endregion
+
+            #region C# Impelementation
+            //int height = pic.height;
+            //int width = pic.width;
+            //int HalfWinSize = WinSize / 2;
+            //byte[,] NewR = new byte[height, width];
+            //byte[,] NewG = new byte[height, width];
+            //byte[,] NewB = new byte[height, width];
+            //byte[,] LocalWindowR = new byte[WinSize, WinSize];
+            //byte[,] LocalWindowG = new byte[WinSize, WinSize];
+            //byte[,] LocalWindowB = new byte[WinSize, WinSize];
+            //for (int i = HalfWinSize; i < height - HalfWinSize - 1; i++)
+            //{
+            //    for (int j = HalfWinSize; j < width - HalfWinSize - 1; j++)
+            //    {
+            //        int indexJ = j - HalfWinSize;
+            //        int indexI = i - HalfWinSize;
+            //        for (int c = 0; c < WinSize; c++)
+            //        {
+            //            for (int k = 0; k < WinSize; k++)
+            //            {
+            //                LocalWindowR[c, k] = pic.redPixels[indexI, indexJ];
+            //                LocalWindowG[c, k] = pic.greenPixels[indexI, indexJ];
+            //                LocalWindowB[c, k] = pic.bluePixels[indexI, indexJ++];
+            //            }
+            //            indexI++;
+            //            indexJ = j - HalfWinSize;
+            //        }
+            //        double[] RedHistogram = new double[256];
+            //        double[] GreenHistogram = new double[256];
+            //        double[] BlueHistogram = new double[256];
+            //        GetLocalHistogram(ref RedHistogram, ref GreenHistogram, ref BlueHistogram, LocalWindowR, LocalWindowG, LocalWindowB, WinSize);
+            //        RunningSumToRound(ref RedHistogram);
+            //        RunningSumToRound(ref GreenHistogram);
+            //        RunningSumToRound(ref BlueHistogram);
+            //        for (int c = 0; c < WinSize; c++)
+            //        {
+            //            for (int k = 0; k < WinSize; k++)
+            //            {
+            //                LocalWindowR[c, k] = (byte)RedHistogram[LocalWindowR[c, k]];
+            //                LocalWindowG[c, k] = (byte)GreenHistogram[LocalWindowG[c, k]];
+            //                LocalWindowB[c, k] = (byte)BlueHistogram[LocalWindowB[c, k]];
+            //            }
+            //        }
+            //        NewR[i, j] = LocalWindowR[HalfWinSize, HalfWinSize];
+            //        NewG[i, j] = LocalWindowG[HalfWinSize, HalfWinSize];
+            //        NewB[i, j] = LocalWindowB[HalfWinSize, HalfWinSize];
+            //    }
+            //}
+            //pic.redPixels = NewR;
+            //pic.greenPixels = NewG;
+            //pic.bluePixels = NewB;
+            #endregion
         }
         public void HistogramMatching(int height, int width, PictureInfo FirstPic, PictureInfo SecondPic, List<PictureInfo> picList)
         {

@@ -320,18 +320,52 @@ namespace ImageProcessingAssignment1
             byte[,] Green = new byte[newHeight, newWidth];
             byte[,] Blue = new byte[newHeight, newWidth];
 
+
             for (int i = 0; i < newHeight; i++)
             {
                 for (int j = 0; j < newWidth; j++)
                 {
-                    int _X = (int)Math.Floor(i * cosTheta + j * (-sinTheta));
-                    int _Y = (int)Math.Floor(i * sinTheta + j * cosTheta);
+                    int _X = (int)Math.Round(i * cosTheta + j * (-sinTheta));
+                    int _Y = (int)Math.Round(i * sinTheta + j * cosTheta);
+
+                    while (_X < 0 && xValue > 0) _X += xValue;
+                    while (_X >= pic.height && xValue > 0) _X -= xValue;
+                    while (_Y < 0 && yValue > 0) _Y += yValue;
+                    while (_Y >= pic.width && yValue > 0) _Y -= yValue;
+
+                    if (_X > -1 && _X < pic.height && _Y > -1 && _Y < pic.width)
+                    {
+                        Red[i, j] = pic.redPixels[_X, _Y];
+                        Green[i, j] = pic.greenPixels[_X, _Y];
+                        Blue[i, j] = pic.bluePixels[_X, _Y];
+                    }
+                }
+            }
+
+
+
+            for (int i = 0; i < newHeight; i++)
+            {
+                for (int j = 0; j < newWidth; j++)
+                {
+                    int _X = (int)Math.Round(i * cosTheta + j * (-sinTheta));
+                    int _Y = (int)Math.Round(i * sinTheta + j * cosTheta);
                     if (_X > -1 && _X < pic.height && _Y > -1 && _Y < pic.width)
                     {
                         Red[i + xValue, j + yValue] = pic.redPixels[_X, _Y];
                         Green[i + xValue, j + yValue] = pic.greenPixels[_X, _Y];
                         Blue[i + xValue, j + yValue] = pic.bluePixels[_X, _Y];
                     }
+                    //else
+                    //{
+                    //while(_X < 0) _X += xValue;
+                    //while (_X >= pic.height) _X -= xValue;
+                    //while (_Y < 0) _Y += yValue;
+                    //while (_Y >= pic.width) _Y -= yValue;
+                    //}
+                    //Red[i + xValue, j + yValue] = pic.redPixels[_X, _Y];
+                    //Green[i + xValue, j + yValue] = pic.greenPixels[_X, _Y];
+                    //Blue[i + xValue, j + yValue] = pic.bluePixels[_X, _Y];
                 }
             }
             pic.height = newHeight;

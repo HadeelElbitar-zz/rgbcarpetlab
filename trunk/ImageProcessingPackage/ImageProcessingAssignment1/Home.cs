@@ -305,13 +305,13 @@ namespace ImageProcessingAssignment1
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)//Close
         {
-            int PicIndex = ImageTabControl.SelectedIndex;
-            ImageTabControl.TabPages.RemoveAt(PicIndex);
-            PicUndoRedo.RemoveAt(PicIndex);
-            HistoryTabPage.Controls.Clear();
-            PicturesList.RemoveAt(PicIndex);
             if (ImageTabControl.TabPages.Count > 0)
             {
+                int PicIndex = ImageTabControl.SelectedIndex;
+                ImageTabControl.TabPages.RemoveAt(PicIndex);
+                PicUndoRedo.RemoveAt(PicIndex);
+                HistoryTabPage.Controls.Clear();
+                PicturesList.RemoveAt(PicIndex);
                 if (PicIndex != 0)
                     ImageTabControl.SelectedIndex = PicIndex - 1;
             }
@@ -325,7 +325,6 @@ namespace ImageProcessingAssignment1
                 ImageTabControl.Visible = false;
                 ImageStatusLabel.Text = "No Image..";
             }
-
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)//CloseAll
         {
@@ -387,18 +386,7 @@ namespace ImageProcessingAssignment1
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int picIndex = ImageTabControl.SelectedIndex;
-            string type = PicturesList[picIndex].name.Substring(PicturesList[picIndex].name.LastIndexOf('.') + 1);
-            string path = PicturesList[picIndex].path;
-            if (type.ToLower() == "bmp")
-                PicturesList[picIndex].pictureBox.Image.Save(path, ImageFormat.Bmp);
-            else if (type.ToLower() == "jpeg")
-                PicturesList[picIndex].pictureBox.Image.Save(path, ImageFormat.Jpeg);
-            else if (type.ToLower() == "ppm")
-            {
-                ImageClass Image = new ImageClass();
-                Image.SaveAsPPM(path, PicturesList[picIndex], PicturesList[picIndex].type);
-            }
+            SaveImage(ImageTabControl.SelectedIndex);
         }
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -434,6 +422,31 @@ namespace ImageProcessingAssignment1
                 }
             }
             catch { }
+        }
+
+        private void SaveAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int length = ImageTabControl.TabPages.Count;
+            for (int i = 0; i < length; i++)
+            {
+                SaveImage(i);
+            }
+        }
+
+        private void SaveImage(int picIndex)
+        {
+            //int picIndex = ImageTabControl.SelectedIndex;
+            string type = PicturesList[picIndex].name.Substring(PicturesList[picIndex].name.LastIndexOf('.') + 1);
+            string path = PicturesList[picIndex].path;
+            if (type.ToLower() == "bmp")
+                PicturesList[picIndex].pictureBox.Image.Save(path, ImageFormat.Bmp);
+            else if (type.ToLower() == "jpeg")
+                PicturesList[picIndex].pictureBox.Image.Save(path, ImageFormat.Jpeg);
+            else if (type.ToLower() == "ppm")
+            {
+                ImageClass Image = new ImageClass();
+                Image.SaveAsPPM(path, PicturesList[picIndex], PicturesList[picIndex].type);
+            }
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -880,22 +893,6 @@ namespace ImageProcessingAssignment1
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
         #region Converting between Spatial & Frequency Domains
-        private void convertToSpatialDomainToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ImageTabControl.TabPages.Count > 0)
-            {
-                int picIndex = ImageTabControl.SelectedIndex;
-                if (PicturesList[picIndex].frequency)
-                {
-                    ImageClass Image = new ImageClass();
-                    Image.ConverttoSpatialDomain(PicturesList[picIndex]);
-                    PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Spatial Domain");
-                    DisplayImage(PicturesList[picIndex]);
-                }
-                else
-                    MessageBox.Show("Image must be in frequency domain..");
-            }
-        }
         private void convertToFrequencyDomainToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ImageTabControl.TabPages.Count > 0)
@@ -903,10 +900,8 @@ namespace ImageProcessingAssignment1
                 int picIndex = ImageTabControl.SelectedIndex;
                 if (!PicturesList[picIndex].frequency)
                 {
-                    ImageClass Image = new ImageClass();
-                    Image.convertToFrequencyDomain(PicturesList[picIndex]);
-                    PicUndoRedo[picIndex].UndoRedoCommands(PicturesList[picIndex], "Convert to Frequency Domain");
-                    DisplayImage(PicturesList[picIndex]);
+                    FrequencyDomain FD = new FrequencyDomain(PicturesList[picIndex]);
+                    FD.Show();
                 }
                 else
                     MessageBox.Show("Image must be in spatial domain..");
@@ -2756,6 +2751,7 @@ namespace ImageProcessingAssignment1
             }
         }
         #endregion
+
 
         //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 

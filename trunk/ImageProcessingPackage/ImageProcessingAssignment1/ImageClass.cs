@@ -877,16 +877,15 @@ namespace ImageProcessingAssignment1
         #region Histogram
         public void GetHistogram(ref double[] R, ref double[] G, ref double[] B, PictureInfo pic)
         {
-            int NR, NG, NB;
             int width = pic.width;
             int height = pic.height;
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    NR = (int)++R[pic.redPixels[i, j]];
-                    NG = (int)++G[pic.greenPixels[i, j]];
-                    NB = (int)++B[pic.bluePixels[i, j]];
+                    R[(int)pic.redPixels[i, j]]++;
+                    G[(int)pic.greenPixels[i, j]]++;
+                    B[(int)pic.bluePixels[i, j]]++;
                 }
             }
         }
@@ -1039,31 +1038,63 @@ namespace ImageProcessingAssignment1
             picList[length].redPixels = new byte[height, width];
             picList[length].greenPixels = new byte[height, width];
             picList[length].bluePixels = new byte[height, width];
+            double[] NewRValues = GetCloseValues(RedHistogram1, RedHistogram2);
+            double[] NewGValues = GetCloseValues(GreenHistogram1, GreenHistogram2);
+            double[] NewBValues = GetCloseValues(BlueHistogram1, BlueHistogram2);
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    picList[length].redPixels[i, j] = (byte)GetClose(RedHistogram1[FirstPic.redPixels[i, j]], RedHistogram2);
-                    picList[length].greenPixels[i, j] = (byte)GetClose(GreenHistogram1[FirstPic.greenPixels[i, j]], GreenHistogram2);
-                    picList[length].bluePixels[i, j] = (byte)GetClose(BlueHistogram1[FirstPic.bluePixels[i, j]], BlueHistogram2);
+                    //picList[length].redPixels[i, j] = (byte)GetClose(RedHistogram1[FirstPic.redPixels[i, j]], RedHistogram2);
+                    //picList[length].greenPixels[i, j] = (byte)GetClose(GreenHistogram1[FirstPic.greenPixels[i, j]], GreenHistogram2);
+                    //picList[length].bluePixels[i, j] = (byte)GetClose(BlueHistogram1[FirstPic.bluePixels[i, j]], BlueHistogram2);
+
+                    picList[length].redPixels[i, j] = (byte)NewRValues[FirstPic.redPixels[i, j]];
+                    picList[length].greenPixels[i, j] = (byte)NewGValues[FirstPic.greenPixels[i, j]];
+                    picList[length].bluePixels[i, j] = (byte)NewBValues[FirstPic.bluePixels[i, j]];
                 }
             }
         }
         private double GetClose(double Value, double[] Array)
         {
-            int Min = int.MaxValue, Diff = 0;
+            int Min = int.MaxValue, Diff;
+            double reternedVal;
             for (int i = 0; i < 256; i++)
             {
                 Diff = (int)(Value - Array[i]);
                 if (Diff >= 0 && Diff < Min)
                 {
                     Min = Diff;
+                    reternedVal = i;
                     if (Min == 0)
-                        break;
+                        return i;
                 }
             }
-            double reternedVal = Value - Min;
-            return reternedVal;
+            //double reternedVal = Value - Min;
+            return (Value - Min);
+        }
+        private double[] GetCloseValues(double[] Source, double[] Dest)
+        {
+            double[] res = new double[256];
+            for (int i = 0; i < 256; i++)
+            {
+                int Min = int.MaxValue, Diff;
+                for (int j = 0; j < 256; j++)
+                {
+                    Diff = (int)(Source[i] - Dest[j]);
+                    if (Diff >= 0 && Diff < Min)
+                    {
+                        Min = Diff;
+                        res[i] = j;
+                        if (Min == 0)
+                        {
+                            res[i] = j;
+                            break;
+                        }
+                    }
+                }
+            }
+            return res;
         }
         #endregion
 
@@ -1962,13 +1993,33 @@ namespace ImageProcessingAssignment1
         #region Matlab Task
         public void LocalStat(PictureInfo pic, double K0, double K1, double K2, double E, int WindowSize)
         {
-            MatlabClass MatLabFn = new MatlabClass();
+            MFunctions MatLabFn = new MFunctions();
             MWArray[] NewR = (MWArray[])(MatLabFn.MLocalStat(1, (MWNumericArray)pic.redPixels, WindowSize, E, K0, K1, K2));
             MWArray[] NewG = (MWArray[])(MatLabFn.MLocalStat(1, (MWNumericArray)pic.greenPixels, WindowSize, E, K0, K1, K2));
             MWArray[] NewB = (MWArray[])(MatLabFn.MLocalStat(1, (MWNumericArray)pic.bluePixels, WindowSize, E, K0, K1, K2));
             pic.redPixels = (byte[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
             pic.greenPixels = (byte[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
             pic.bluePixels = (byte[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+
+            //double[,] R = (double[,])((MWNumericArray)(NewR[0])).ToArray(MWArrayComponent.Real);
+            //double[,] G = (double[,])((MWNumericArray)(NewG[0])).ToArray(MWArrayComponent.Real);
+            //double[,] B = (double[,])((MWNumericArray)(NewB[0])).ToArray(MWArrayComponent.Real);
+            //double Rmin = double.MaxValue, Rmax = double.MinValue, Gmax = double.MinValue, Gmin = double.MaxValue, Bmax = double.MinValue, Bmin = double.MaxValue;
+            //getMaxAndMin(pic.height, pic.width, ref Rmin, ref Rmax, R);
+            //getMaxAndMin(pic.height, pic.width, ref Gmin, ref Gmax, G);
+            //getMaxAndMin(pic.height, pic.width, ref Bmin, ref Bmax, B);
+            //CutOff(pic.height, pic.width, Rmax, Rmin, R);
+            //CutOff(pic.height, pic.width, Gmin, Gmax, G);
+            //CutOff(pic.height, pic.width, Bmin, Bmax, B);
+            //for (int i = 0; i < pic.height; i++)
+            //{
+            //    for (int j = 0; j < pic.width; j++)
+            //    {
+            //        pic.redPixels[i, j] = (byte)R[i, j];
+            //        pic.greenPixels[i, j] = (byte)G[i, j];
+            //        pic.bluePixels[i, j] = (byte)B[i, j];
+            //    }
+            //}
         }
         public void Slicing(PictureInfo pic, int Min, int Max, int NewRange)
         {

@@ -106,8 +106,8 @@ namespace ImageProcessingAssignment1
             {
                 for (int j = 0; j < w; j++)
                 {
-                    if (A[i, j] > max) max = (int)A[i, j];
-                    else if (A[i, j] < min) min = (int)A[i, j];
+                    if (A[i, j] > max) max = (double)A[i, j];
+                    else if (A[i, j] < min) min = (double)A[i, j];
                 }
             }
         }
@@ -179,18 +179,15 @@ namespace ImageProcessingAssignment1
                     res = 0;
                     for (int k = 7, c = 0; k >= 0; k--)
                     {
-                        if ((pic.redPixels[i, j] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, c++);
-                        else
-                            c++;
-                        if ((pic.greenPixels[i, j] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, c++);
-                        else
-                            c++;
                         if ((pic.bluePixels[i, j] & ArrBits[k]) == ArrBits[k])
-                            res += (int)Math.Pow(2, c++);
-                        else
-                            c++;
+                            res += (int)Math.Pow(2, c);
+                        c++;
+                        if ((pic.greenPixels[i, j] & ArrBits[k]) == ArrBits[k])
+                            res += (int)Math.Pow(2, c);
+                        c++;
+                        if ((pic.redPixels[i, j] & ArrBits[k]) == ArrBits[k])
+                            res += (int)Math.Pow(2, c);
+                        c++;
                     }
                     BitMixed[i, j] = res;
                 }
@@ -204,13 +201,13 @@ namespace ImageProcessingAssignment1
             for (int i = 23, j = 0; i >= 0; j++)
             {
                 if ((BitMixedValue & ArrBits[i]) == ArrBits[i])
-                    R += (byte)ArrBits[23 - j];
+                    B += (byte)ArrBits[23 - j];
                 i--;
                 if ((BitMixedValue & ArrBits[i]) == ArrBits[i])
                     G += (byte)ArrBits[23 - j];
                 i--;
                 if ((BitMixedValue & ArrBits[i]) == ArrBits[i])
-                    B += (byte)ArrBits[23 - j];
+                    R += (byte)ArrBits[23 - j];
                 i--;
             }
         }
@@ -624,7 +621,7 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
                             if (temp <= D)
                                 Filter[i, j] = 1;
                             pic.redReal[i, j] *= Filter[i, j];
@@ -641,7 +638,7 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
                             temp /= D;
                             temp = Math.Pow(temp, 2 * N);
                             temp++;
@@ -660,7 +657,7 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
                             temp = Math.Pow(temp, 2);
                             double temp2 = Math.Pow(D, 2) * 2;
                             temp /= temp2;
@@ -720,7 +717,7 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
                             if (temp > D)
                                 Filter[i, j] = 1;
                             pic.redReal[i, j] *= Filter[i, j];
@@ -737,7 +734,7 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
                             temp = D / temp;
                             temp = Math.Pow(temp, 2 * N);
                             temp++;
@@ -756,7 +753,7 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
                             temp = Math.Pow(temp, 2);
                             double temp2 = Math.Pow(D, 2) * 2;
                             temp /= temp2;
@@ -851,6 +848,7 @@ namespace ImageProcessingAssignment1
             int M = (Fheight - 1) / 2, N = (Fwidth - 1) / 2, FSize = Fheight * Fwidth;
             int[] SortedArray = new int[FSize];
             byte Rval = 0, Gval = 0, Bval = 0;
+            byte Rval2 = 0, Gval2 = 0, Bval2 = 0;
             switch (Filter)
             {
                 #region MedianFilter
@@ -946,11 +944,12 @@ namespace ImageProcessingAssignment1
                                     }
                                 }
                                 QuickSort(ref SortedArray, 0, FSize - 1);
-                                int BitMixedMedian = (SortedArray[FSize - 1] + SortedArray[0]) / 2;
-                                GetRGBfromBitMixed(BitMixedMedian, ref Rval, ref Gval, ref Bval);
-                                NewPicR[i + M, j + N] = Rval;
-                                NewPicG[i + M, j + N] = Gval;
-                                NewPicB[i + M, j + N] = Bval;
+                                //int BitMixedMedian = (SortedArray[FSize - 1] + SortedArray[0]) / 2;
+                                GetRGBfromBitMixed(SortedArray[FSize - 1], ref Rval, ref Gval, ref Bval);
+                                GetRGBfromBitMixed(SortedArray[0], ref Rval2, ref Gval2, ref Bval2);
+                                NewPicR[i + M, j + N] = (byte)((Rval + Rval2) / 2);
+                                NewPicG[i + M, j + N] = (byte)((Gval + Gval2) / 2);
+                                NewPicB[i + M, j + N] = (byte)((Bval + Bval2) / 2);
                             }
                         }
                         break;
@@ -1098,11 +1097,13 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
-                            if (temp <= Ldis && temp >= Rdis)
-                                Filter[i, j] = 0;
-                            else
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
+                            if (!(temp <= Ldis) || !(temp >= Rdis))
                                 Filter[i, j] = 1;
+                            //if (!(temp <= Ldis && temp >= Rdis))
+                            //    Filter[i, j] = 1;
+                            //else
+                            //    Filter[i, j] = 1;
                             pic.redReal[i, j] *= Filter[i, j];
                             pic.greenReal[i, j] *= Filter[i, j];
                             pic.blueReal[i, j] *= Filter[i, j];
@@ -1118,7 +1119,7 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp = Math.Sqrt(Math.Pow((i - width / 2), 2) + Math.Pow((j - height / 2), 2));
+                            temp = Math.Sqrt(Math.Pow((j - width / 2), 2) + Math.Pow((i - height / 2), 2));
                             if (temp <= Ldis && temp >= Rdis)
                                 Filter[i, j] = 1;
                             pic.redReal[i, j] *= Filter[i, j];
@@ -1176,8 +1177,8 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp1 = Math.Sqrt(Math.Pow((i - (width / 2 + X)), 2) + Math.Pow((j - (height / 2 + Y)), 2));
-                            temp2 = Math.Sqrt(Math.Pow((i - (width / 2 - X)), 2) + Math.Pow((j - (height / 2 - Y)), 2));
+                            temp1 = Math.Sqrt(Math.Pow((j - (width / 2 + X)), 2) + Math.Pow((i - (height / 2 + Y)), 2));
+                            temp2 = Math.Sqrt(Math.Pow((j - (width / 2 - X)), 2) + Math.Pow((i - (height / 2 - Y)), 2));
                             if (temp1 < R || temp2 < R)
                                 Filter[i, j] = 0;
                             else
@@ -1196,8 +1197,8 @@ namespace ImageProcessingAssignment1
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            temp1 = Math.Sqrt(Math.Pow((i - (width / 2 + X)), 2) + Math.Pow((j - (height / 2 + Y)), 2));
-                            temp2 = Math.Sqrt(Math.Pow((i - (width / 2 - X)), 2) + Math.Pow((j - (height / 2 - Y)), 2));
+                            temp1 = Math.Sqrt(Math.Pow((j - (width / 2 + X)), 2) + Math.Pow((i - (height / 2 + Y)), 2));
+                            temp2 = Math.Sqrt(Math.Pow((j - (width / 2 - X)), 2) + Math.Pow((i - (height / 2 - Y)), 2));
                             if (temp1 < R || temp2 < R)
                                 Filter[i, j] = 1;
                             pic.redReal[i, j] *= Filter[i, j];

@@ -239,3 +239,4 @@ C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\Imag
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Release\RGBCarpetLab.pdb
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\RGBCarpetLab.exe
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\RGBCarpetLab.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Release\ImageProcessingAssignment1.FrequencyDomain.resources

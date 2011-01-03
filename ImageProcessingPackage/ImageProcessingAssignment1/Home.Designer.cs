@@ -37,6 +37,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -152,7 +153,6 @@
             this.meanFilterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.matlabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertToFrequencyDomainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.convertToSpatialDomainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNoiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saltPepperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unifromNoiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -230,7 +230,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1436, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1370, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -242,6 +242,7 @@
             this.toolStripSeparator3,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
+            this.SaveAllToolStripMenuItem,
             this.toolStripSeparator5,
             this.closeToolStripMenuItem,
             this.closeAToolStripMenuItem,
@@ -258,7 +259,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -268,14 +269,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(178, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -283,27 +284,36 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.S)));
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
+            // 
+            // SaveAllToolStripMenuItem
+            // 
+            this.SaveAllToolStripMenuItem.Name = "SaveAllToolStripMenuItem";
+            this.SaveAllToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.SaveAllToolStripMenuItem.Text = "Save All";
+            this.SaveAllToolStripMenuItem.Click += new System.EventHandler(this.SaveAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(178, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -311,19 +321,19 @@
             // 
             this.closeAToolStripMenuItem.Name = "closeAToolStripMenuItem";
             this.closeAToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.closeAToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.closeAToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.closeAToolStripMenuItem.Text = "Close All";
             this.closeAToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(178, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -1217,8 +1227,7 @@
             // matlabToolStripMenuItem
             // 
             this.matlabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.convertToFrequencyDomainToolStripMenuItem,
-            this.convertToSpatialDomainToolStripMenuItem});
+            this.convertToFrequencyDomainToolStripMenuItem});
             this.matlabToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.matlabToolStripMenuItem.Name = "matlabToolStripMenuItem";
             this.matlabToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
@@ -1227,16 +1236,9 @@
             // convertToFrequencyDomainToolStripMenuItem
             // 
             this.convertToFrequencyDomainToolStripMenuItem.Name = "convertToFrequencyDomainToolStripMenuItem";
-            this.convertToFrequencyDomainToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.convertToFrequencyDomainToolStripMenuItem.Text = "Convert to Frequency Domain";
+            this.convertToFrequencyDomainToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.convertToFrequencyDomainToolStripMenuItem.Text = "Frequency / Spatial Domain";
             this.convertToFrequencyDomainToolStripMenuItem.Click += new System.EventHandler(this.convertToFrequencyDomainToolStripMenuItem_Click);
-            // 
-            // convertToSpatialDomainToolStripMenuItem
-            // 
-            this.convertToSpatialDomainToolStripMenuItem.Name = "convertToSpatialDomainToolStripMenuItem";
-            this.convertToSpatialDomainToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.convertToSpatialDomainToolStripMenuItem.Text = "Convert to Spatial Domain";
-            this.convertToSpatialDomainToolStripMenuItem.Click += new System.EventHandler(this.convertToSpatialDomainToolStripMenuItem_Click);
             // 
             // addNoiseToolStripMenuItem
             // 
@@ -1334,7 +1336,7 @@
             this.saveToolStripButton1});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1436, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1370, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -1678,7 +1680,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1436, 876);
+            this.ClientSize = new System.Drawing.Size(1370, 750);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.InputPanel);
@@ -1799,7 +1801,6 @@
         private System.Windows.Forms.ToolStripMenuItem customFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matlabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convertToFrequencyDomainToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem convertToSpatialDomainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lowPassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem idealToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem butterworthFilterToolStripMenuItem;
@@ -1884,5 +1885,6 @@
         private System.Windows.Forms.ToolStripMenuItem histogramSlicingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem singleScaleRetinexToolStripMenuItem;
         private System.Windows.Forms.PictureBox HistogramPictureBox;
+        private System.Windows.Forms.ToolStripMenuItem SaveAllToolStripMenuItem;
     }
 }

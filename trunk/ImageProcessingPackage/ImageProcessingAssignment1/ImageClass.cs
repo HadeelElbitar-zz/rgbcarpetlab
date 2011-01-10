@@ -296,6 +296,7 @@ namespace ImageProcessingAssignment1
         }
         public void RotateImage(PictureInfo pic, double _Theta)
         {
+            while (_Theta >= 360) _Theta -= 360;
             int height = pic.height;
             int width = pic.width;
             _Theta *= -1;
@@ -304,6 +305,7 @@ namespace ImageProcessingAssignment1
             double sinTheta = Math.Sin(Theta);
             int newHeight = 0, newWidth = 0;
             int xValue = 0, yValue = 0;
+
             if (_Theta < 0)
             {
                 xValue = -(int)(width * sinTheta);
@@ -320,52 +322,53 @@ namespace ImageProcessingAssignment1
             byte[,] Green = new byte[newHeight, newWidth];
             byte[,] Blue = new byte[newHeight, newWidth];
 
-
-            for (int i = 0; i < newHeight; i++)
+            for (int i = -xValue; i < newHeight - xValue; i++)
             {
-                for (int j = 0; j < newWidth; j++)
+                for (int j = -yValue; j < newWidth - yValue; j++)
                 {
-                    int _X = (int)Math.Round(i * cosTheta + j * (-sinTheta));
-                    int _Y = (int)Math.Round(i * sinTheta + j * cosTheta);
-
-                    while (_X < 0 && xValue > 0) _X += xValue;
-                    while (_X >= pic.height && xValue > 0) _X -= xValue;
-                    while (_Y < 0 && yValue > 0) _Y += yValue;
-                    while (_Y >= pic.width && yValue > 0) _Y -= yValue;
-
-                    if (_X > -1 && _X < pic.height && _Y > -1 && _Y < pic.width)
+                    double tempx = (i * cosTheta + j * (-sinTheta));
+                    double tempy = (i * sinTheta + j * cosTheta);
+                    if (tempx < 0) tempx++;
+                    if (tempx == pic.height) tempx--;
+                    if (tempy < 0) tempy++;
+                    if (tempy == pic.width) tempy--;
+                    if ((i + xValue) < newHeight && (j + yValue) < newWidth
+                        && tempx >= 0 && tempx < pic.height
+                        && tempy >= 0 && tempy < pic.width)
                     {
-                        Red[i, j] = pic.redPixels[_X, _Y];
-                        Green[i, j] = pic.greenPixels[_X, _Y];
-                        Blue[i, j] = pic.bluePixels[_X, _Y];
+
+                        int X_1 = (int)Math.Floor(tempy);
+                        int X_2 = Math.Min((int)Math.Ceiling(tempy), width - 1);
+                        int Y_1 = (int)Math.Floor(tempx);
+                        int Y_2 = Math.Min((int)Math.Ceiling(tempx), height - 1);
+
+                        Pixel Point_1 = new Pixel(pic.redPixels[Y_1, X_1], pic.greenPixels[Y_1, X_1], pic.bluePixels[Y_1, X_1]);
+                        Pixel Point_2 = new Pixel(pic.redPixels[Y_1, X_2], pic.greenPixels[Y_1, X_2], pic.bluePixels[Y_1, X_2]);
+                        Pixel Point_3 = new Pixel(pic.redPixels[Y_2, X_1], pic.greenPixels[Y_2, X_1], pic.bluePixels[Y_2, X_1]);
+                        Pixel Point_4 = new Pixel(pic.redPixels[Y_2, X_2], pic.greenPixels[Y_2, X_2], pic.bluePixels[Y_2, X_2]);
+
+                        //Calculate X, Y fractions
+                        double X_Fraction = tempy - X_1;
+                        double Y_Fraction = tempx - Y_1;
+
+                        //Interpolate in X-Direction
+                        //float Z_1 = Point_1 * (1 - X_Fraction) + Point_2 * X_Fraction;
+                        //float Z_2 = Point_3 * (1 - X_Fraction) + Point_4 * X_Fraction;
+                        double Z_1_R = Point_1.GetR() * (1 - X_Fraction) + Point_2.GetR() * X_Fraction;
+                        double Z_1_G = Point_1.GetG() * (1 - X_Fraction) + Point_2.GetG() * X_Fraction;
+                        double Z_1_B = Point_1.GetB() * (1 - X_Fraction) + Point_2.GetB() * X_Fraction;
+
+                        //Interpolate in Y-Direction
+                        //int NewPixel = Z_1 * (1 - Y_Fraction) + Z_2 * Y_Fraction;
+                        double Z_2_R = Point_3.GetR() * (1 - X_Fraction) + Point_4.GetR() * X_Fraction;
+                        double Z_2_G = Point_3.GetG() * (1 - X_Fraction) + Point_4.GetG() * X_Fraction;
+                        double Z_2_B = Point_3.GetB() * (1 - X_Fraction) + Point_4.GetB() * X_Fraction;
+
+                        //Add the New Pixel
+                        Red[i + xValue, j + yValue] = (byte)(Z_1_R * (1 - Y_Fraction) + Z_2_R * Y_Fraction);
+                        Green[i + xValue, j + yValue] = (byte)(Z_1_G * (1 - Y_Fraction) + Z_2_G * Y_Fraction);
+                        Blue[i + xValue, j + yValue] = (byte)(Z_1_B * (1 - Y_Fraction) + Z_2_B * Y_Fraction);
                     }
-                }
-            }
-
-
-
-            for (int i = 0; i < newHeight; i++)
-            {
-                for (int j = 0; j < newWidth; j++)
-                {
-                    int _X = (int)Math.Round(i * cosTheta + j * (-sinTheta));
-                    int _Y = (int)Math.Round(i * sinTheta + j * cosTheta);
-                    if (_X > -1 && _X < pic.height && _Y > -1 && _Y < pic.width)
-                    {
-                        Red[i + xValue, j + yValue] = pic.redPixels[_X, _Y];
-                        Green[i + xValue, j + yValue] = pic.greenPixels[_X, _Y];
-                        Blue[i + xValue, j + yValue] = pic.bluePixels[_X, _Y];
-                    }
-                    //else
-                    //{
-                    //while(_X < 0) _X += xValue;
-                    //while (_X >= pic.height) _X -= xValue;
-                    //while (_Y < 0) _Y += yValue;
-                    //while (_Y >= pic.width) _Y -= yValue;
-                    //}
-                    //Red[i + xValue, j + yValue] = pic.redPixels[_X, _Y];
-                    //Green[i + xValue, j + yValue] = pic.greenPixels[_X, _Y];
-                    //Blue[i + xValue, j + yValue] = pic.bluePixels[_X, _Y];
                 }
             }
             pic.height = newHeight;

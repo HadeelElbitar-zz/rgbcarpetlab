@@ -1452,10 +1452,10 @@
             // 
             // ImageTabControl
             // 
-            this.ImageTabControl.Location = new System.Drawing.Point(106, 31);
+            this.ImageTabControl.Location = new System.Drawing.Point(106, 41);
             this.ImageTabControl.Name = "ImageTabControl";
             this.ImageTabControl.SelectedIndex = 0;
-            this.ImageTabControl.Size = new System.Drawing.Size(858, 603);
+            this.ImageTabControl.Size = new System.Drawing.Size(858, 593);
             this.ImageTabControl.TabIndex = 9;
             this.ImageTabControl.Visible = false;
             this.ImageTabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);

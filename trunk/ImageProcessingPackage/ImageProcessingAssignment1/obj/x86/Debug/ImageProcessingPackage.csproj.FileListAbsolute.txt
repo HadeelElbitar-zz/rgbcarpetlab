@@ -424,14 +424,6 @@ C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignm
 C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
 C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
 C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MWArray.dll
-E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
 E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
@@ -650,3 +642,10 @@ C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\Imag
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.exe
 C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.exe.config
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.exe
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.exe
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.FrequencyDomain.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.TimeForm.resources

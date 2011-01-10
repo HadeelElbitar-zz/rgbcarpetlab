@@ -1,0 +1,654 @@
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\IrisSkin4.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.MDIParent1.resources
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\documents\visual studio 2010\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.MDIParent1.resources
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\IrisSkin4.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Visual Studio 2010\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.MDIParent1.resources
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\dydy\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.MDIParent1.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Assignments\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.MDIParent1.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1 - Copy\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+E:\Computer And Informaion Sciences\Fourth Year\First Term\Image Processing\Image Processing 2007\Projects\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\IrisSkin4.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Amal\Documents\Downloads\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\RGB Carpet Lab\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+E:\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+E:\Projects\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\IrisSkin4.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AddSubtract.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingAssignment1\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\Amal\Desktop\New Folder\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatLabFunction.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatLabFunction.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MWArray.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.TimeForm.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe.config
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.exe
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.pdb
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.exe
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ImageProcessingAssignment1.pdb
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.TimeForm.resources
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+C:\Users\dydy\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.exe.config
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.pdb
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatLabFunction.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\MatlabProject.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ZedGraph.xml
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\de\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\es\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\fr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\hu\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\it\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ja\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\pt\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ru\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sk\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\sv\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\tr\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\ManagedCPPAPI.netmodule
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.AboutBox.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Calculations.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.BrightnessContrastGamma.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Binarization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.FrequencyDomain.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Morphology.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Thresholding.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.CustomFilter.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.HistogramMathcing.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.NewFormInput.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Quantization.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Home.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.Properties.Resources.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.SplashScreenImage.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.TimeForm.resources
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.72.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.73.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.74.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.read.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.72.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\GenerateResource.write.75.tlog
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.exe
+C:\My Files\FCIS\Seniors\CS\First Term\Image Processing\Other\Image Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.exe.config
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.exe
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.exe
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.pdb
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.FrequencyDomain.resources
+E:\Projects\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\ImageProcessingAssignment1.TimeForm.resources
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\bin\Debug\RGBCarpetLab.exe.config
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.exe
+C:\Users\Amal\Desktop\Image Processing Package\ImageProcessingPackage\ImageProcessingAssignment1\obj\x86\Debug\RGBCarpetLab.pdb

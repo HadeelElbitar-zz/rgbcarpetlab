@@ -295,23 +295,6 @@ namespace ImageProcessingAssignment1
                     }
                 }
             }
-            else if (Theta == 180)
-            {
-                height = pic.height;
-                width = pic.width;
-                Red = new byte[height, width];
-                Green = new byte[height, width];
-                Blue = new byte[height, width];
-                for (int i = 0; i < height; i++)
-                {
-                    for (int j = 0; j < width; j++)
-                    {
-                        Red[i, j] = pic.redPixels[i, width - j - 1];
-                        Green[i, j] = pic.greenPixels[i, width - j - 1];
-                        Blue[i, j] = pic.bluePixels[i, width - j - 1];
-                    }
-                }
-            }
             pic.redPixels = Red;
             pic.greenPixels = Green;
             pic.bluePixels = Blue;
@@ -1486,7 +1469,7 @@ namespace ImageProcessingAssignment1
                 #region Gamma Noise
                 else if (type == "Gamma")
                 {
-                    for (int j = (int)a; j <= 255; j++)
+                    for (int j = 0; j <= 255; j++)
                     {
                         double t1 = Math.Pow(a, b);
                         double t2 = Math.Pow(j, b - 1);

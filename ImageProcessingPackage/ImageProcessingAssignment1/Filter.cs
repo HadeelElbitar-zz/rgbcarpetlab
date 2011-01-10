@@ -1403,6 +1403,8 @@ namespace ImageProcessingAssignment1
         //}
         private void AdaptiveMeanFilter(int height, int width, int WinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, ref byte[,] NewPicR, ref byte[,] NewPicG, ref byte[,] NewPicB, double GlobalVariance)
         {
+            int M = (WinSize - 1) / 2;
+            int N = (WinSize - 1) / 2;
             double Rmean, Gmean, Bmean, Rvariance, Gvariance, Bvariance, R_ratio, G_ratio, B_ratio;
             double MaskSize = WinSize * WinSize;
             int newHeight = height + WinSize - 1;
@@ -1445,27 +1447,18 @@ namespace ImageProcessingAssignment1
                     R_ratio = (GlobalVariance / Rvariance);
                     G_ratio = (GlobalVariance / Gvariance);
                     B_ratio = (GlobalVariance / Bvariance);
-                    if (R_ratio > 1)
+                    if (GlobalVariance > Rvariance)
                         R_ratio = 1;
-                    if (G_ratio > 1)
+                    if (GlobalVariance > Gvariance)
                         G_ratio = 1;
-                    if (B_ratio > 1)
+                    if (GlobalVariance > Bvariance)
                         B_ratio = 1;
                     //set new value
-                    for (int c = 0; c < WinSize; c++)
-                    {
-                        for (int k = 0; k < WinSize; k++)
-                        {
-                            TempR[i + c, j + k] = (repRPixels[i + c, j + k] - (R_ratio * (repRPixels[i + c, j + k] - Rmean)));
-                            TempG[i + c, j + k] = (repGPixels[i + c, j + k] - (G_ratio * (repGPixels[i + c, j + k] - Gmean)));
-                            TempB[i + c, j + k] = (repBPixels[i + c, j + k] - (B_ratio * (repBPixels[i + c, j + k] - Bmean)));
-                        }
-                    }
+                    NewPicR[i + M, j + N] = (byte)(repRPixels[i + M, j + N] - (R_ratio * (repRPixels[i + M, j + N] - Rmean)));
+                    NewPicG[i + M, j + N] = (byte)(repGPixels[i + M, j + N] - (G_ratio * (repGPixels[i + M, j + N] - Gmean)));
+                    NewPicB[i + M, j + N] = (byte)(repBPixels[i + M, j + N] - (B_ratio * (repBPixels[i + M, j + N] - Bmean)));
                 }
             }
-            NewPicR = Normalize(TempR, newHeight, newWidth);
-            NewPicG = Normalize(TempG, newHeight, newWidth);
-            NewPicB = Normalize(TempB, newHeight, newWidth);
         }
         #endregion
     }

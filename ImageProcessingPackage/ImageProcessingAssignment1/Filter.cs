@@ -1404,6 +1404,13 @@ namespace ImageProcessingAssignment1
         private void AdaptiveMeanFilter(int height, int width, int WinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, ref byte[,] NewPicR, ref byte[,] NewPicG, ref byte[,] NewPicB, int[,] BitMixed, double GlobalVariance)
         {
             double Rmean, Gmean, Bmean, Rvariance, Gvariance, Bvariance;
+            double MaskSize = WinSize * WinSize;
+            int newHeight = height + WinSize - 1;
+            int newWidth = width + WinSize - 1;
+            double[,] TempR, TempG, TempB;
+            TempR = new double[newHeight, newWidth];
+            TempG = new double[newHeight, newWidth];
+            TempB = new double[newHeight, newWidth];
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -1419,9 +1426,9 @@ namespace ImageProcessingAssignment1
                             Bmean += (double)repBPixels[i + c, j + k];
                         }
                     }
-                    Rmean /= (WinSize * WinSize);
-                    Gmean /= (WinSize * WinSize);
-                    Bmean /= (WinSize * WinSize);
+                    Rmean /= MaskSize;
+                    Gmean /= MaskSize;
+                    Bmean /= MaskSize;
                     //for each window find local variance
                     for (int c = 0; c < WinSize; c++)
                     {
@@ -1432,21 +1439,24 @@ namespace ImageProcessingAssignment1
                             Bvariance += Math.Pow(((double)repBPixels[i + c, j + k] - Bmean), 2);
                         }
                     }
-                    Rvariance /= (WinSize * WinSize);
-                    Gvariance /= (WinSize * WinSize);
-                    Bvariance /= (WinSize * WinSize);
+                    Rvariance /= MaskSize;
+                    Gvariance /= MaskSize;
+                    Bvariance /= MaskSize;
                     //set new value
                     for (int c = 0; c < WinSize; c++)
                     {
                         for (int k = 0; k < WinSize; k++)
                         {
-                            NewPicR[i + c, j + k] = (byte)(repRPixels[i + c, j + k] - ((GlobalVariance / Rvariance) * (repRPixels[i + c, j + k] - Rmean)));
-                            NewPicG[i + c, j + k] = (byte)(repGPixels[i + c, j + k] - ((GlobalVariance / Gvariance) * (repGPixels[i + c, j + k] - Gmean)));
-                            NewPicB[i + c, j + k] = (byte)(repBPixels[i + c, j + k] - ((GlobalVariance / Bvariance) * (repBPixels[i + c, j + k] - Bmean)));
+                            TempR[i + c, j + k] = (repRPixels[i + c, j + k] - ((GlobalVariance / Rvariance) * (repRPixels[i + c, j + k] - Rmean)));
+                            TempG[i + c, j + k] = (repGPixels[i + c, j + k] - ((GlobalVariance / Gvariance) * (repGPixels[i + c, j + k] - Gmean)));
+                            TempB[i + c, j + k] = (repBPixels[i + c, j + k] - ((GlobalVariance / Bvariance) * (repBPixels[i + c, j + k] - Bmean)));
                         }
                     }
                 }
             }
+            NewPicR = Normalize(TempR, newHeight, newWidth);
+            NewPicG = Normalize(TempG, newHeight, newWidth);
+            NewPicB = Normalize(TempB, newHeight, newWidth);
         }
         #endregion
     }

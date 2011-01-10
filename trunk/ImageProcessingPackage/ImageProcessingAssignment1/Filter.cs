@@ -1245,7 +1245,7 @@ namespace ImageProcessingAssignment1
             byte[,] NewPicB = new byte[newHeight, newWidth];
             int[,] BitMixed = CalcBitMixed(ReplectPic);
             if (type == 0) AdaptiveMedianFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, ref NewPicR, ref NewPicG, ref NewPicB, BitMixed);
-            else AdaptiveMeanFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, ref NewPicR, ref NewPicG, ref NewPicB, BitMixed, GlobalVariance);
+            else AdaptiveMeanFilter(height, width, MaxWinSize, repRPixels, repGPixels, repBPixels, ref NewPicR, ref NewPicG, ref NewPicB, GlobalVariance);
             OldPic.redPixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicR);
             OldPic.greenPixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicG);
             OldPic.bluePixels = unreplicateImage(MaxWinSize, MaxWinSize, height, width, NewPicB);
@@ -1401,9 +1401,9 @@ namespace ImageProcessingAssignment1
         //        }
         //    }
         //}
-        private void AdaptiveMeanFilter(int height, int width, int WinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, ref byte[,] NewPicR, ref byte[,] NewPicG, ref byte[,] NewPicB, int[,] BitMixed, double GlobalVariance)
+        private void AdaptiveMeanFilter(int height, int width, int WinSize, byte[,] repRPixels, byte[,] repGPixels, byte[,] repBPixels, ref byte[,] NewPicR, ref byte[,] NewPicG, ref byte[,] NewPicB, double GlobalVariance)
         {
-            double Rmean, Gmean, Bmean, Rvariance, Gvariance, Bvariance;
+            double Rmean, Gmean, Bmean, Rvariance, Gvariance, Bvariance, R_ratio, G_ratio, B_ratio;
             double MaskSize = WinSize * WinSize;
             int newHeight = height + WinSize - 1;
             int newWidth = width + WinSize - 1;
@@ -1442,14 +1442,23 @@ namespace ImageProcessingAssignment1
                     Rvariance /= MaskSize;
                     Gvariance /= MaskSize;
                     Bvariance /= MaskSize;
+                    R_ratio = (GlobalVariance / Rvariance);
+                    G_ratio = (GlobalVariance / Gvariance);
+                    B_ratio = (GlobalVariance / Bvariance);
+                    if (R_ratio > 1)
+                        R_ratio = 1;
+                    if (G_ratio > 1)
+                        G_ratio = 1;
+                    if (B_ratio > 1)
+                        B_ratio = 1;
                     //set new value
                     for (int c = 0; c < WinSize; c++)
                     {
                         for (int k = 0; k < WinSize; k++)
                         {
-                            TempR[i + c, j + k] = (repRPixels[i + c, j + k] - ((GlobalVariance / Rvariance) * (repRPixels[i + c, j + k] - Rmean)));
-                            TempG[i + c, j + k] = (repGPixels[i + c, j + k] - ((GlobalVariance / Gvariance) * (repGPixels[i + c, j + k] - Gmean)));
-                            TempB[i + c, j + k] = (repBPixels[i + c, j + k] - ((GlobalVariance / Bvariance) * (repBPixels[i + c, j + k] - Bmean)));
+                            TempR[i + c, j + k] = (repRPixels[i + c, j + k] - (R_ratio * (repRPixels[i + c, j + k] - Rmean)));
+                            TempG[i + c, j + k] = (repGPixels[i + c, j + k] - (G_ratio * (repGPixels[i + c, j + k] - Gmean)));
+                            TempB[i + c, j + k] = (repBPixels[i + c, j + k] - (B_ratio * (repBPixels[i + c, j + k] - Bmean)));
                         }
                     }
                 }

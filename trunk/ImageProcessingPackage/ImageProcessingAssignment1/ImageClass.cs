@@ -1693,8 +1693,8 @@ namespace ImageProcessingAssignment1
                     for (int c = 0; c < WinSize; c++)
                         for (int k = 0; k < WinSize; k++)
                             sum += (double)repRPixels[i + c, j + k];
-                    sum /= Fsize;
-                    if ((repRPixels[i + M, j + N] - sum) < meanOffset)
+                    sum /= (double)Fsize;
+                    if ((sum - repRPixels[i + M, j + N]) < meanOffset)
                     {
                         NewPicR[i + M, j + N] = (byte)255;
                         NewPicG[i + M, j + N] = (byte)255;

@@ -1975,7 +1975,7 @@ namespace ImageProcessingAssignment1
                 applyBtn.Text = "Apply";
                 applyBtn.Location = new System.Drawing.Point(102, 90);
                 applyBtn.Size = new System.Drawing.Size(75, 23);
-                applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveFilterBtn_Click(sender1, e1, MaxWinSizeTxt, 0); };
+                applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveFilterBtn_Click(sender1, e1, MaxWinSizeTxt, 0,null); };
                 inputGroupBox.Controls.Add(applyBtn);
             }
         }
@@ -1986,34 +1986,50 @@ namespace ImageProcessingAssignment1
                 inputGroupBox.Controls.Clear();
                 inputGroupBox.Text = "Adaptive Mean Filter";
                 //MaxWinSize Text Box
-                TextBox MaxWinSizeTxt = new TextBox();
-                MaxWinSizeTxt.Location = new System.Drawing.Point(15, 42);
-                MaxWinSizeTxt.Size = new System.Drawing.Size(100, 20);
-                inputGroupBox.Controls.Add(MaxWinSizeTxt);
+                TextBox WinSizeTxt = new TextBox();
+                WinSizeTxt.Location = new System.Drawing.Point(15, 42);
+                WinSizeTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(WinSizeTxt);
                 //MaxWinSize Label
-                System.Windows.Forms.Label MaxWinSizeLabel = new System.Windows.Forms.Label();
-                MaxWinSizeLabel.Location = new System.Drawing.Point(12, 26);
-                MaxWinSizeLabel.Size = new System.Drawing.Size(114, 13);
-                MaxWinSizeLabel.Text = "Maximum Window Size";
-                inputGroupBox.Controls.Add(MaxWinSizeLabel);
+                System.Windows.Forms.Label WinSizeLabel = new System.Windows.Forms.Label();
+                WinSizeLabel.Location = new System.Drawing.Point(12, 26);
+                WinSizeLabel.Size = new System.Drawing.Size(114, 13);
+                WinSizeLabel.Text = "Window Size";
+                inputGroupBox.Controls.Add(WinSizeLabel);
+                //Global Variance Text Box
+                TextBox VarTxt = new TextBox();
+                VarTxt.Location = new System.Drawing.Point(158, 42);
+                VarTxt.Size = new System.Drawing.Size(100, 20);
+                inputGroupBox.Controls.Add(VarTxt);
+                //Global Variance Label
+                System.Windows.Forms.Label VarLabel = new System.Windows.Forms.Label();
+                VarLabel.Location = new System.Drawing.Point(155, 26);
+                VarLabel.Text = "Global Variance";
+                inputGroupBox.Controls.Add(VarLabel);
 
                 //Button
                 Button applyBtn = new Button();
                 applyBtn.Text = "Apply";
                 applyBtn.Location = new System.Drawing.Point(102, 90);
                 applyBtn.Size = new System.Drawing.Size(75, 23);
-                applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveFilterBtn_Click(sender1, e1, MaxWinSizeTxt, 1); };
+                applyBtn.Click += delegate(object sender1, EventArgs e1) { AdaptiveFilterBtn_Click(sender1, e1, WinSizeTxt, 1, VarTxt); };
                 inputGroupBox.Controls.Add(applyBtn);
             }
         }
-        private void AdaptiveFilterBtn_Click(object sender, EventArgs e, TextBox MaxWinSize, int type)
+        private void AdaptiveFilterBtn_Click(object sender, EventArgs e, TextBox WinSize, int type, TextBox _Variance)
         {
             if (ImageTabControl.TabPages.Count > 0)
             {
                 int picIndex = ImageTabControl.SelectedIndex;
                 Filter filter = new Filter();
                 DateTime BeginTime = DateTime.Now;
-                filter.AdaptiveFilter(PicturesList[picIndex], int.Parse(MaxWinSize.Text), type);
+                double Variance = 0.0;
+                try
+                {
+                    Variance = double.Parse(_Variance.Text);
+                }
+                catch { }
+                filter.AdaptiveFilter(PicturesList[picIndex], int.Parse(WinSize.Text), type, Variance);
                 DisplayImage(PicturesList[picIndex]);
                 DateTime EndTime = DateTime.Now;
                 TimeSpan TimeTaken = EndTime - BeginTime;

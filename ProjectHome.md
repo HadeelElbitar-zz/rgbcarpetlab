@@ -1,0 +1,8 @@
+Ain Shams University
+Faculty of Computer & Information Sciences
+CS Department - 4th Year
+RGB Carpet Lab - Image Processing Package - 2010/2011
+
+Coded By :
+1. Amal Hussein Yassin.
+2. Hadeel Hisham Sadeq.
